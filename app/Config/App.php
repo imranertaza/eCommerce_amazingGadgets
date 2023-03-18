@@ -24,7 +24,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'http://test.dns/ecommerce/public/';
+    public $baseURL = 'http://test.dns/ecommerce/public_html/';
 
     /**
      * --------------------------------------------------------------------------
