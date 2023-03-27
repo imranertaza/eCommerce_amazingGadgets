@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Color Family List</li>
                     </ol>
                 </div>
@@ -27,7 +27,7 @@
                         <h3 class="card-title">Color Family List</h3>
                     </div>
                     <div class="col-md-4">
-                        <a href="<?php echo base_url('Admin/Color_family/create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
+                        <a href="<?php echo base_url('color_family_create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
                     </div>
                     <div class="col-md-12" style="margin-top: 10px">
                         <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
@@ -51,8 +51,8 @@
                             <td><?php echo $val->color_name;?></td>
                             <td><?php echo $val->code;?></td>
                             <td width="180">
-                                <a href="<?php echo base_url('Admin/Color_family/update/'.$val->color_family_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
-                                <a href="<?php echo base_url('Admin/Color_family/delete/'.$val->color_family_id);?>" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
+                                <a href="<?php echo base_url('color_family_update/'.$val->color_family_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
+                                <a href="<?php echo base_url('color_family_delete/'.$val->color_family_id);?>" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
                             </td>
                         </tr>
                     <?php } ?>

@@ -1,6 +1,6 @@
-<?php
+<?php namespace App\Controllers\Products;
 
-namespace App\Controllers;
+use App\Controllers\BaseController;
 
 class Products extends BaseController {
 
@@ -28,4 +28,6 @@ class Products extends BaseController {
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Product/detail');
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
+
+
 }

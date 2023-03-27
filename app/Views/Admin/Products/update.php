@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Product update</li>
                     </ol>
                 </div>
@@ -18,7 +18,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <form action="<?php echo base_url('Admin/Products/update_action') ?>" method="post"
+        <form action="<?php echo base_url('product_update_action') ?>" method="post"
               enctype="multipart/form-data">
             <!-- Default box -->
             <div class="card">

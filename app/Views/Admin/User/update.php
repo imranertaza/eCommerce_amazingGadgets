@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard')?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard')?>">Home</a></li>
                         <li class="breadcrumb-item active">Users update</li>
                     </ol>
                 </div>
@@ -57,7 +57,7 @@
                                 <div class="card-body">
                                     <div class="tab-content" id="custom-tabs-four-tabContent">
                                         <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                                            <form action="<?php echo base_url('Admin/User/update_action')?>" method="post" >
+                                            <form action="<?php echo base_url('user_update_action')?>" method="post" >
                                             <div class="form-group">
                                                 <label>Name</label>
                                                 <input type="text" name="name" class="form-control" placeholder="Name" value="<?php echo $user->name;?>" required>
@@ -84,11 +84,11 @@
                                             </div>
                                             <input type="hidden" name="user_id" value="<?php echo $user->user_id;?>" required>
                                             <button type="submit" class="btn btn-primary" >Update</button>
-                                            <a href="<?php echo base_url('Admin/User')?>" class="btn btn-danger" >Back</a>
+                                            <a href="<?php echo base_url('user')?>" class="btn btn-danger" >Back</a>
                                             </form>
                                         </div>
                                         <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                                            <form action="<?php echo base_url('Admin/User/general_action')?>" method="post">
+                                            <form action="<?php echo base_url('user_general_action')?>" method="post">
                                             <div class="form-group">
                                                 <label>Mobile</label>
                                                 <input type="mobile" name="mobile" class="form-control" placeholder="Mobile" value="<?php echo $user->mobile;?>" required>
@@ -110,11 +110,11 @@
 
                                             <input type="hidden" name="user_id" value="<?php echo $user->user_id;?>" required>
                                             <button class="btn btn-primary" >Update</button>
-                                            <a href="<?php echo base_url('Admin/User')?>" class="btn btn-danger" >Back</a>
+                                            <a href="<?php echo base_url('user')?>" class="btn btn-danger" >Back</a>
                                             </form>
                                         </div>
                                         <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel" aria-labelledby="custom-tabs-four-messages-tab">
-                                            <form action="<?php echo base_url('Admin/User/image_action')?>" method="post" enctype="multipart/form-data" >
+                                            <form action="<?php echo base_url('user_image_action')?>" method="post" enctype="multipart/form-data" >
                                             <div class="form-group">
                                                 <?php echo image_view('uploads/user','',$user->pic,'noimage.png','');?>
                                             </div>
@@ -125,7 +125,7 @@
 
                                             <input type="hidden" name="user_id" value="<?php echo $user->user_id;?>" required>
                                             <button class="btn btn-primary" >Update</button>
-                                            <a href="<?php echo base_url('Admin/User')?>" class="btn btn-danger" >Back</a>
+                                            <a href="<?php echo base_url('user')?>" class="btn btn-danger" >Back</a>
                                             </form>
                                         </div>
                                     </div>

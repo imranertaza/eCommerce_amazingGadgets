@@ -27,7 +27,7 @@ class Attribute_group extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('product_attribute_group');
@@ -54,7 +54,7 @@ class Attribute_group extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -83,14 +83,14 @@ class Attribute_group extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Attribute_group/create');
+            return redirect()->to('attribute_create');
         } else {
 
             $table = DB()->table('product_attribute_group');
             $table->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Attribute_group/create');
+            return redirect()->to('attribute_create');
         }
     }
 
@@ -99,7 +99,7 @@ class Attribute_group extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('product_attribute_group');
@@ -134,14 +134,14 @@ class Attribute_group extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Attribute_group/update/' . $attribute_group_id);
+            return redirect()->to('attribute_update/' . $attribute_group_id);
         } else {
 
             $table = DB()->table('product_attribute_group');
             $table->where('attribute_group_id', $attribute_group_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Attribute_group/update/' . $attribute_group_id);
+            return redirect()->to('attribute_update/' . $attribute_group_id);
 
         }
     }
@@ -155,10 +155,10 @@ class Attribute_group extends BaseController
             $table->where('attribute_group_id', $attribute_group_id)->delete();
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Attribute_group');
+            return redirect()->to('attribute_group');
         }else{
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Already used in another table <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Attribute_group');
+            return redirect()->to('attribute_group');
         }
     }
 

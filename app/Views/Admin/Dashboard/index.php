@@ -153,7 +153,7 @@
                                     </div>
                                     <!-- /.direct-chat-infos -->
                                     <img class="direct-chat-img"
-                                         src="<?php echo base_url() ?>/admin/dist/img/user1-128x128.jpg"
+                                         src="<?php echo base_url() ?>/admin_assets/dist/img/user1-128x128.jpg"
                                          alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
@@ -171,7 +171,7 @@
                                     </div>
                                     <!-- /.direct-chat-infos -->
                                     <img class="direct-chat-img"
-                                         src="<?php echo base_url() ?>/admin/dist/img/user3-128x128.jpg"
+                                         src="<?php echo base_url() ?>/admin_assets/dist/img/user3-128x128.jpg"
                                          alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
@@ -189,7 +189,7 @@
                                     </div>
                                     <!-- /.direct-chat-infos -->
                                     <img class="direct-chat-img"
-                                         src="<?php echo base_url() ?>/admin/dist/img/user1-128x128.jpg"
+                                         src="<?php echo base_url() ?>/admin_assets/dist/img/user1-128x128.jpg"
                                          alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
@@ -207,7 +207,7 @@
                                     </div>
                                     <!-- /.direct-chat-infos -->
                                     <img class="direct-chat-img"
-                                         src="<?php echo base_url() ?>/admin/dist/img/user3-128x128.jpg"
+                                         src="<?php echo base_url() ?>/admin_assets/dist/img/user3-128x128.jpg"
                                          alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
@@ -226,7 +226,7 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                 src="<?php echo base_url() ?>/admin/dist/img/user1-128x128.jpg"
+                                                 src="<?php echo base_url() ?>/admin_assets/dist/img/user1-128x128.jpg"
                                                  alt="User Avatar">
 
                                             <div class="contacts-list-info">
@@ -243,7 +243,7 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                 src="<?php echo base_url() ?>/admin/dist/img/user7-128x128.jpg"
+                                                 src="<?php echo base_url() ?>/admin_assets/dist/img/user7-128x128.jpg"
                                                  alt="User Avatar">
 
                                             <div class="contacts-list-info">
@@ -260,7 +260,7 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                 src="<?php echo base_url() ?>/admin/dist/img/user3-128x128.jpg"
+                                                 src="<?php echo base_url() ?>/admin_assets/dist/img/user3-128x128.jpg"
                                                  alt="User Avatar">
 
                                             <div class="contacts-list-info">
@@ -277,7 +277,7 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                 src="<?php echo base_url() ?>/admin/dist/img/user5-128x128.jpg"
+                                                 src="<?php echo base_url() ?>/admin_assets/dist/img/user5-128x128.jpg"
                                                  alt="User Avatar">
 
                                             <div class="contacts-list-info">
@@ -294,7 +294,7 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                 src="<?php echo base_url() ?>/admin/dist/img/user6-128x128.jpg"
+                                                 src="<?php echo base_url() ?>/admin_assets/dist/img/user6-128x128.jpg"
                                                  alt="User Avatar">
 
                                             <div class="contacts-list-info">
@@ -311,7 +311,7 @@
                                     <li>
                                         <a href="#">
                                             <img class="contacts-list-img"
-                                                 src="<?php echo base_url() ?>/admin/dist/img/user8-128x128.jpg"
+                                                 src="<?php echo base_url() ?>/admin_assets/dist/img/user8-128x128.jpg"
                                                  alt="User Avatar">
 
                                             <div class="contacts-list-info">

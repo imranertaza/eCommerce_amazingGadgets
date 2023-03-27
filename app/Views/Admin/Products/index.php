@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard')?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard')?>">Home</a></li>
                         <li class="breadcrumb-item active">Product List</li>
                     </ol>
                 </div>
@@ -27,7 +27,7 @@
                         <h3 class="card-title">Product List</h3>
                     </div>
                     <div class="col-md-4">
-                        <a href="<?php echo base_url('Admin/Products/create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
+                        <a href="<?php echo base_url('product_create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
                     </div>
                 </div>
             </div>
@@ -52,8 +52,8 @@
                         <td> <?php echo $val->quantity;?></td>
                         <td><?php echo image_view('uploads/products',$val->product_id,'100_'.$val->image,'noimage.png',$class='');?></td>
                         <td>
-                            <a href="<?php echo base_url('Admin/Products/update/'.$val->product_id)?>" class="btn btn-sm btn-info">Edit</a>
-                            <a href="<?php echo base_url('Admin/Products/delete/'.$val->product_id)?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to Delete?')">delete</a>
+                            <a href="<?php echo base_url('product_update/'.$val->product_id)?>" class="btn btn-sm btn-info">Edit</a>
+                            <a href="<?php echo base_url('product_delete/'.$val->product_id)?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to Delete?')">delete</a>
                         </td>
                     </tr>
                     <?php } ?>

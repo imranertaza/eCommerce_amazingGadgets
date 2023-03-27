@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard')?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard')?>">Home</a></li>
                         <li class="breadcrumb-item active">Customers update</li>
                     </ol>
                 </div>
@@ -54,7 +54,7 @@
                             <div class="card-body">
                                 <div class="tab-content" id="custom-tabs-four-tabContent">
                                     <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                                        <form action="<?php echo base_url('Admin/Customers/update_action')?>" method="post" >
+                                        <form action="<?php echo base_url('customers_update_action')?>" method="post" >
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -74,7 +74,7 @@
 
                                                     <input type="hidden" name="customer_id" value="<?php echo $customers->customer_id;?>" required>
                                                     <button type="submit" class="btn btn-primary" >Update</button>
-                                                    <a href="<?php echo base_url('Admin/Customers')?>" class="btn btn-danger" >Back</a>
+                                                    <a href="<?php echo base_url('customers')?>" class="btn btn-danger" >Back</a>
 
                                                 </div>
 
@@ -98,7 +98,7 @@
                                         </form>
                                     </div>
                                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
-                                        <form action="<?php echo base_url('Admin/Customers/general_action')?>" method="post">
+                                        <form action="<?php echo base_url('customers_general_action')?>" method="post">
 
 
 
@@ -106,7 +106,7 @@
 
                                             <input type="hidden" name="customer_id" value="<?php echo $customers->customer_id;?>" required>
                                             <button class="btn btn-primary" >Update</button>
-                                            <a href="<?php echo base_url('Admin/Customers')?>" class="btn btn-danger" >Back</a>
+                                            <a href="<?php echo base_url('customers')?>" class="btn btn-danger" >Back</a>
                                         </form>
                                     </div>
                                 </div>

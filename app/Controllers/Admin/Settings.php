@@ -27,7 +27,7 @@ class Settings extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('settings');
@@ -54,7 +54,7 @@ class Settings extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -86,14 +86,14 @@ class Settings extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Settings/create');
+            return redirect()->to('settings_create');
         } else {
 
             $table = DB()->table('settings');
             $table->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Settings/create');
+            return redirect()->to('settings_create');
         }
     }
 
@@ -102,7 +102,7 @@ class Settings extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('settings');
@@ -137,14 +137,14 @@ class Settings extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Settings/update/' . $settings_id);
+            return redirect()->to('settings_update/' . $settings_id);
         } else {
 
             $table = DB()->table('settings');
             $table->where('settings_id', $settings_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Settings/update/' . $settings_id);
+            return redirect()->to('settings_update/' . $settings_id);
 
         }
     }

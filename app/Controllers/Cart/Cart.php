@@ -1,4 +1,5 @@
-<?php namespace App\Controllers;
+<?php namespace App\Controllers\Cart;
+use App\Controllers\BaseController;
 use App\Libraries\Mycart;
 
 class Cart extends BaseController {
@@ -40,6 +41,7 @@ class Cart extends BaseController {
             'price' => $price
         );
         $this->cart->insert($data);
+//        $this->cart->destroy();
     }
 
 

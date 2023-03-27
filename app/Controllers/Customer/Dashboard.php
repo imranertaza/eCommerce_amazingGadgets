@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Web;
+namespace App\Controllers\Customer;
 
 use App\Controllers\BaseController;
 use App\Libraries\Permission;

@@ -146,7 +146,7 @@
                                                 Categorie
                                             </div>
                                             <div class="product-title mb-2 text-capitalize">
-                                                <a href="<?php echo base_url('Products/detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
+                                                <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
                                             </div>
                                             <div class="price mb-3">
                                                 <?php if (empty($pro->special_price)){ ?>

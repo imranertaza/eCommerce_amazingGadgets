@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Settings List</li>
                     </ol>
                 </div>
@@ -27,7 +27,7 @@
                         <h3 class="card-title">Settings List</h3>
                     </div>
                     <div class="col-md-4">
-                        <a href="<?php echo base_url('Admin/Settings/create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
+                        <a href="<?php echo base_url('settings_create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
                     </div>
                     <div class="col-md-12" style="margin-top: 10px">
                         <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
@@ -51,7 +51,7 @@
                             <td><?php echo $val->label;?></td>
                             <td><?php echo $val->value;?></td>
                             <td width="180">
-                                <a href="<?php echo base_url('Admin/Settings/update/'.$val->settings_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
+                                <a href="<?php echo base_url('settings_update/'.$val->settings_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
                             </td>
                         </tr>
                     <?php } ?>

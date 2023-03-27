@@ -6,7 +6,7 @@
                     <h4>Dashboard</h4>
                 </div>
                 <div class="card-body  p-0 text-center">
-                    <a href="<?php echo base_url('Login/logout')?>" type="submit" class="btn btn-primary mt-4">Log out</a>
+                    <a href="<?php echo base_url('logout')?>" type="submit" class="btn btn-primary mt-4">Log out</a>
                 </div>
             </div>
         </div>

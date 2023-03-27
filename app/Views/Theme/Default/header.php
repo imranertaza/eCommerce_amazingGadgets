@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="message_alert" id="messAlt" >
-    <div class="alert-success py-2 px-3 border-0 text-white fs-5 text-capitalize" >Successfully  add to cart  </div>
+    <div class="alert-success_web py-2 px-3 border-0 text-white fs-5 text-capitalize" >Successfully  add to cart  </div>
 </div>
 <header class="header bg-white">
     <div class="topbar">
@@ -41,7 +41,7 @@
                         <span><i class="fa-solid fa-user me-1"></i></span>
                         <span class="d-none d-sm-block">Create an account</span>
                     </a>
-                    <a class="btn btn-signin text-white bg-black" href="<?php echo base_url('Login')?>"><i class="fa-solid fa-arrow-right-to-bracket me-1"></i> Sign In</a>
+                    <a class="btn btn-signin text-white bg-black" href="<?php echo base_url('login')?>"><i class="fa-solid fa-arrow-right-to-bracket me-1"></i> Sign In</a>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                     </form>
                 </div>
                 <div class="col-6 col-md-3 mb-3 mb-md-0 order-2 order-md-3 d-flex justify-content-end" >
-                    <a href="<?php echo base_url('Cart')?>" >
+                    <a href="<?php echo base_url('cart')?>" >
                     <div class="mini-cart d-flex position-relative" id="cartReload">
 
                         <div class="cart-icon rounded-5 align-items-center justify-content-center p-3 me-3">
@@ -239,10 +239,10 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('Pages/contact')?>">Contact</a>
+                                        <a class="nav-link" href="<?php echo base_url('contact')?>">Contact</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('Pages/about')?>">About Us</a>
+                                        <a class="nav-link" href="<?php echo base_url('about')?>">About Us</a>
                                     </li>
                                 </ul>
                             </div>

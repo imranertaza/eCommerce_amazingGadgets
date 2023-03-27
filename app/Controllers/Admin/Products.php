@@ -27,7 +27,7 @@ class Products extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
             $table = DB()->table('products');
             $data['product'] = $table->get()->getResult();
@@ -52,7 +52,7 @@ class Products extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -91,7 +91,7 @@ class Products extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Products/create');
+            return redirect()->to('product_create');
         } else {
             DB()->transStart();
             //product table data insert(start)
@@ -250,7 +250,7 @@ class Products extends BaseController
 
             DB()->transComplete();
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Products/create');
+            return redirect()->to('product_create');
         }
     }
 
@@ -259,7 +259,7 @@ class Products extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('products');

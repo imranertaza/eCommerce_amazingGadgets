@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard')?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard')?>">Home</a></li>
                         <li class="breadcrumb-item active">Product Category List</li>
                     </ol>
                 </div>
@@ -27,7 +27,7 @@
                         <h3 class="card-title">Product Category List</h3>
                     </div>
                     <div class="col-md-4">
-                        <a href="<?php echo base_url('Admin/Product_category/create')?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
+                        <a href="<?php echo base_url('product_category_create')?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
                     </div>
                 </div>
             </div>
@@ -48,8 +48,8 @@
                             <td><?php echo $parCat. $val->category_name;?></td>
                             <td><?php echo image_view('uploads/category','',$val->image,'noimage.png','width-80');?></td>
                             <td width="180">
-                                <a href="<?php echo base_url('Admin/Product_category/update/'.$val->prod_cat_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
-                                <a href="<?php echo base_url('Admin/Product_category/delete/'.$val->prod_cat_id);?>" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
+                                <a href="<?php echo base_url('product_category_update/'.$val->prod_cat_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
+                                <a href="<?php echo base_url('product_category_delete/'.$val->prod_cat_id);?>" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
                             </td>
                         </tr>
                     <?php } ?>

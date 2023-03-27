@@ -5,7 +5,7 @@
                 <img src="<?php echo base_url()?>/assets/img/sing-up.png" alt="Sing Up" class="img-fluid">
             </div>
             <div class="col-lg-6">
-                <form action="<?php echo base_url('Login/register_action')?>" method="post" class="sing-up">
+                <form action="<?php echo base_url('register_action')?>" method="post" class="sing-up">
                     <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
                     <div class="form-group">
                         <div class="input-group d-flex align-items-center bg-white border rounded-2 px-3 mb-4">
@@ -84,7 +84,7 @@
 
         <div class="sing-in card px-5 bg-white text-center rounded-0 border-0">
             <p>Already have an account?</p>
-            <p><a href="<?php echo base_url('Login') ?>" class="btn bg-black px-5 py-2 fs-5 text-white fw-semibold">Sign In</a></p>
+            <p><a href="<?php echo base_url('login') ?>" class="btn bg-black px-5 py-2 fs-5 text-white fw-semibold">Sign In</a></p>
         </div>
     </div>
 </section>

@@ -142,7 +142,7 @@
         }
         $.ajax({
             method: "POST",
-            url: "<?php echo base_url('Cart/addToCart')?>",
+            url: "<?php echo base_url('addtocart')?>",
             data: {product_id:pro_id,qtyall:qty },
             success: function(response){
                 $('#cartReload').load(location.href + " #cartReload");
@@ -150,6 +150,10 @@
                 setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
             }
         })
+    }
+
+    function minusItem(rowid){
+        alert(rowid);
     }
 </script>
 

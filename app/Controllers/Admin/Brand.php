@@ -27,7 +27,7 @@ class Brand extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('brand');
@@ -54,7 +54,7 @@ class Brand extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -84,7 +84,7 @@ class Brand extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Brand/create');
+            return redirect()->to('brand_create');
         } else {
             if (!empty($_FILES['image']['name'])) {
                 $target_dir = FCPATH . '/uploads/brand/';
@@ -106,7 +106,7 @@ class Brand extends BaseController
             $table->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Brand/create');
+            return redirect()->to('brand_create');
         }
     }
 
@@ -115,7 +115,7 @@ class Brand extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('brand');
@@ -151,7 +151,7 @@ class Brand extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Brand/update/' . $brand_id);
+            return redirect()->to('brand_update/' . $brand_id);
         } else {
             if (!empty($_FILES['image']['name'])) {
                 $target_dir = FCPATH . '/uploads/brand/';
@@ -182,7 +182,7 @@ class Brand extends BaseController
             $table->where('brand_id', $brand_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Brand/update/' . $brand_id);
+            return redirect()->to('brand_update/' . $brand_id);
 
         }
     }
@@ -204,7 +204,7 @@ class Brand extends BaseController
         $table->where('brand_id', $brand_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-        return redirect()->to('/Admin/Brand');
+        return redirect()->to('brand');
     }
 
 }

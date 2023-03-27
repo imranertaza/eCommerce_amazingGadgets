@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Product Category update</li>
                     </ol>
                 </div>
@@ -61,7 +61,7 @@
                                          aria-labelledby="custom-tabs-four-home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form action="<?php echo base_url('Admin/Product_category/update_action') ?>"
+                                                <form action="<?php echo base_url('product_category_update_action') ?>"
                                                       method="post" enctype="multipart/form-data">
                                                     <div class="form-group">
                                                         <label>Name</label>
@@ -88,7 +88,7 @@
                                                     </div>
 
                                                     <button class="btn btn-primary">Update</button>
-                                                    <a href="<?php echo base_url('Admin/Product_category') ?>"
+                                                    <a href="<?php echo base_url('product_category') ?>"
                                                        class="btn btn-danger">Back</a>
                                                 </form>
                                             </div>
@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
                                          aria-labelledby="custom-tabs-four-profile-tab">
-                                        <form action="<?php echo base_url('Admin/Product_category/update_action_others') ?>"
+                                        <form action="<?php echo base_url('product_category_update_action_others') ?>"
                                               method="post" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="col-md-6">

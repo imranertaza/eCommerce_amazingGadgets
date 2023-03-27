@@ -27,7 +27,7 @@ class Role extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('roles');
@@ -54,7 +54,7 @@ class Role extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
             $table = DB()->table('roles');
@@ -89,14 +89,14 @@ class Role extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Role/create');
+            return redirect()->to('role_create');
         } else {
 
             $roleTable = DB()->table('roles');
             $roleTable->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Role/create');
+            return redirect()->to('role_create');
         }
     }
 
@@ -105,7 +105,7 @@ class Role extends BaseController
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('Admin/Login'));
+            return redirect()->to(site_url('admin'));
         } else {
 
 
@@ -145,36 +145,28 @@ class Role extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Role/update/' . $role_id);
+            return redirect()->to('role_update/' . $role_id);
         } else {
 
             $table = DB()->table('roles');
             $table->where('role_id', $role_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Role/update/' . $role_id);
+            return redirect()->to('role_update/' . $role_id);
 
         }
     }
 
-    public function delete($Role_id){
-
-        $target_dir = FCPATH . '/uploads/Role/';
-        //old image unlink
-        $old_img = get_data_by_id('image', 'Role', 'Role_id', $Role_id);
-        if (!empty($old_img)) {
-            $imgPath = $target_dir . '' . $old_img;
-            if (file_exists($imgPath)) {
-                unlink($target_dir . '' . $old_img);
-            }
-        }
+    public function delete($role_id){
 
 
-        $table = DB()->table('Role');
-        $table->where('Role_id', $Role_id)->delete();
+        $table = DB()->table('roles');
+        $table->where('role_id', $role_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-        return redirect()->to('/Admin/Role');
+        return redirect()->to('role');
     }
+
+
 
 }

@@ -8,47 +8,47 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
     <!-- JQVMap -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/jqvmap/jqvmap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/dist/css/custome.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/dist/css/custome.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet"
-          href="<?php echo base_url() ?>/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+          href="<?php echo base_url() ?>/admin_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/summernote/summernote-bs4.min.css">
 
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 
     <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- Select2 -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Bootstrap4 Duallistbox -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- BS Stepper -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/bs-stepper/css/bs-stepper.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/bs-stepper/css/bs-stepper.min.css">
     <!-- dropzonejs -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>/admin/plugins/dropzone/min/dropzone.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/dropzone/min/dropzone.min.css">
     <!-- Theme style -->
 
 
-    <link href="<?php echo base_url() ?>/admin/dist/imgUploder/jquery.uploader.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url() ?>/admin_assets/dist/imgUploder/jquery.uploader.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -69,7 +69,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
+                <a href="<?php echo base_url('admin_dashboard')?>" class="nav-link">Home</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Contact</a>
@@ -111,7 +111,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="<?php echo base_url() ?>/admin/dist/img/user1-128x128.jpg" alt="User Avatar"
+                            <img src="<?php echo base_url() ?>/admin_assets/dist/img/user1-128x128.jpg" alt="User Avatar"
                                  class="img-size-50 mr-3 img-circle">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
@@ -128,7 +128,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="<?php echo base_url() ?>/admin/dist/img/user8-128x128.jpg" alt="User Avatar"
+                            <img src="<?php echo base_url() ?>/admin_assets/dist/img/user8-128x128.jpg" alt="User Avatar"
                                  class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
@@ -145,7 +145,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="<?php echo base_url() ?>/admin/dist/img/user3-128x128.jpg" alt="User Avatar"
+                            <img src="<?php echo base_url() ?>/admin_assets/dist/img/user3-128x128.jpg" alt="User Avatar"
                                  class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
@@ -190,7 +190,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" title="Logout"  href="<?php echo base_url()?>/Admin/Login/logout" role="button">
+                <a class="nav-link" title="Logout"  href="<?php echo base_url('admin_logout')?>" role="button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 20px;"  ><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg> </a>
             </li>
             <li class="nav-item">

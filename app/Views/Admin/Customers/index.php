@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard') ?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Customers List</li>
                     </ol>
                 </div>
@@ -27,7 +27,7 @@
                         <h3 class="card-title">Customers List</h3>
                     </div>
                     <div class="col-md-4">
-                        <a href="<?php echo base_url('Admin/Customers/create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
+                        <a href="<?php echo base_url('customers_create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
                     </div>
                     <div class="col-md-12" style="margin-top: 10px">
                         <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
@@ -55,8 +55,8 @@
                             <td><?php echo $val->email;?></td>
                             <td><?php echo $val->phone;?></td>
                             <td width="180">
-                                <a href="<?php echo base_url('Admin/Customers/update/'.$val->customer_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
-                                <a href="<?php echo base_url('Admin/Customers/delete/'.$val->customer_id);?>" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
+                                <a href="<?php echo base_url('customers_update/'.$val->customer_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
+                                <a href="<?php echo base_url('customers_delete/'.$val->customer_id);?>" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
 
                             </td>
                         </tr>

@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Admin/Dashboard')?>">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard')?>">Home</a></li>
                         <li class="breadcrumb-item active">Users Add</li>
                     </ol>
                 </div>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="<?php echo base_url('Admin/User/create_action')?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo base_url('user_create_action')?>" method="post" enctype="multipart/form-data">
                     <div class="row">
 
                         <div class="col-md-6">
@@ -70,7 +70,7 @@
                                 <input type="password" name="con_password" class="form-control" placeholder="Confirm Password" required>
                             </div></br>
                             <button class="btn btn-primary" >Add</button>
-                            <a href="<?php echo base_url('Admin/User')?>" class="btn btn-danger" >Back</a>
+                            <a href="<?php echo base_url('user')?>" class="btn btn-danger" >Back</a>
                         </div>
                     </div>
                 </form>
