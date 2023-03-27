@@ -125,10 +125,10 @@
         clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
     })
 
-    myDropzone.on("addedfile", function(file) {
-        // Hookup the start button
-        file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
-    })
+    // myDropzone.on("addedfile", function(file) {
+    //     // Hookup the start button
+    //     file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
+    // })
 
     // Update the total progress bar
     myDropzone.on("totaluploadprogress", function(progress) {
@@ -191,6 +191,123 @@
         });
 
     });
+
+    function getSubCat(id){
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('Admin/Products/get_subCategory')?>",
+            data: {cat_id:id},
+            beforeSend: function () {
+                $("#loading-image").show();
+            },
+            success: function (data) {
+                $("#subCatData").html(data);
+            }
+
+        });
+    }
+
+
+    // $('.add').on('click', add);
+    // $('.remove').on('click', remove);
+    function remove() {
+        var last_chq_no = $('#total_chq').val();
+        if (last_chq_no > 1) {
+            $('#new_' + last_chq_no).remove();
+            $('#total_chq').val(last_chq_no - 1);
+        }
+    }
+
+    //option
+    function add_option() {
+        <?php $dat = getListInOption('', 'color_family_id', 'color_name', 'color_family'); ?>
+        var data = '<?php print $dat; ?>';
+
+        var new_chq_no = parseInt($('#total_chq').val()) + 1;
+        var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><select name='color[]'  style='padding: 3px;'><option value=''>Please select</option>"+data+"</select> <input type='number' placeholder='Size' name='size[]' > <input type='number' placeholder='Quantity' name='qty[]' required> <a href='javascript:void(0)' onclick='remove_option(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
+
+        $('#new_chq').append(new_input);
+        $('#total_chq').val(new_chq_no);
+    }
+    function  remove_option(data){
+        $(data).parent().remove();
+    }
+
+
+    //attribute
+    function add_attribute() {
+        <?php $dat = getListInOption('', 'attribute_group_id', 'name', 'product_attribute_group'); ?>
+        var data = '<?php print $dat; ?>';
+
+        var new_chq_no = parseInt($('#total_att').val()) + 1;
+        var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><select name='attribute_group_id[]'  style='padding: 3px; text-transform: capitalize;' required><option value=''>Please select</option>"+data+"</select> <input type='text' placeholder='Name' name='name[]' required> <input type='text' placeholder='Details' name='details[]'> <a href='javascript:void(0)' onclick='remove_attribute(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
+
+        $('#new_att').append(new_input);
+        $('#total_att').val(new_chq_no);
+    }
+
+    function  remove_attribute(data){
+        $(data).parent().remove();
+    }
+
+    window.onload = function(){
+        //Check File API support
+        if(window.File && window.FileList && window.FileReader)
+        {
+            $('#files').live("change", function(event) {
+                var files = event.target.files; //FileList object
+                var output = document.getElementById("result");
+                for(var i = 0; i< files.length; i++)
+                {
+                    var file = files[i];
+                    //Only pics
+                    // if(!file.type.match('image'))
+                    if(file.type.match('image.*')){
+                        if(this.files[0].size < 2097152){
+                            // continue;
+                            var picReader = new FileReader();
+                            picReader.addEventListener("load",function(event){
+                                var picFile = event.target;
+                                var div = document.createElement("div");
+                                div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                                    "title='preview image'/>";
+                                output.insertBefore(div,null);
+                            });
+                            //Read the image
+                            $('#clear, #result').show();
+                            picReader.readAsDataURL(file);
+                        }else{
+                            alert("Image Size is too big. Minimum size is 2MB.");
+                            $(this).val("");
+                        }
+                    }else{
+                        alert("You can only upload image file.");
+                        $(this).val("");
+                    }
+                }
+
+            });
+        }
+        else
+        {
+            console.log("Your browser does not support File API");
+        }
+    }
+
+    $('#files').live("click", function() {
+        $('.thumbnail').parent().remove();
+        $('result').hide();
+        $(this).val("");
+    });
+
+    $('#clear').live("click", function() {
+        $('.thumbnail').parent().remove();
+        $('#result').hide();
+        $('#files').val("");
+        $(this).hide();
+    });
+
+
 
 </script>
 

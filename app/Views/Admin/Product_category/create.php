@@ -41,7 +41,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" name="product_category" class="form-control" placeholder="Product Category name" required>
+                                <input type="text" name="category_name" class="form-control" placeholder="Category name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Name</label>
+                                <select name="parent_id" class="form-control text-capitalize">
+                                    <option value="" >Please select</option>
+                                    <?php echo getListInParentCategory('');?>
+                                </select>
+
                             </div>
 
                             <div class="form-group">

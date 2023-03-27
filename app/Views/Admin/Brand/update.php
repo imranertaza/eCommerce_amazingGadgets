@@ -46,6 +46,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label>Sort Order</label>
+                            <input type="number" name="sort_order" class="form-control" placeholder="Sort Order" value="<?php echo $brand->sort_order;?>" required>
+                        </div>
+
+                        <div class="form-group">
                             <label>Image</label>
                             <input type="file" name="image" class="form-control" placeholder="image" >
                         </div>

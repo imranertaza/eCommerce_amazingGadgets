@@ -39,9 +39,10 @@
                     <thead>
                         <tr>
                             <th>Sl</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>email</th>
                             <th>Phone</th>
-                            <th>Pic</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -49,9 +50,10 @@
                     <?php $i=1; foreach ($customer as $val){ ?>
                         <tr>
                             <td width="40"><?php echo $i++;?></td>
-                            <td><?php echo $val->customer_name;?></td>
-                            <td><?php echo $val->mobile;?></td>
-                            <td><?php echo image_view('uploads/customer','',$val->pic,'noimage.png','width-80');?></td>
+                            <td><?php echo $val->firstname;?></td>
+                            <td><?php echo $val->lastname;?></td>
+                            <td><?php echo $val->email;?></td>
+                            <td><?php echo $val->phone;?></td>
                             <td width="180">
                                 <a href="<?php echo base_url('Admin/Customers/update/'.$val->customer_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
                                 <a href="<?php echo base_url('Admin/Customers/delete/'.$val->customer_id);?>" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
@@ -64,9 +66,10 @@
                     <tfoot>
                         <tr>
                             <th>Sl</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>email</th>
                             <th>Phone</th>
-                            <th>Pic</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

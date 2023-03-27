@@ -4,8 +4,117 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2d05aa8daac229e5232ca9681255f79",
+    "content-hash": "c7bf0bf7fabfdfc75480fe2b36c312e1",
     "packages": [
+        {
+            "name": "codeigniter4/framework",
+            "version": "v4.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeigniter4/framework.git",
+                "reference": "e3821f9e58fadf16a89b3becb4a00e58d466f390"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeigniter4/framework/zipball/e3821f9e58fadf16a89b3becb4a00e58d466f390",
+                "reference": "e3821f9e58fadf16a89b3becb4a00e58d466f390",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "laminas/laminas-escaper": "^2.9",
+                "php": "^7.4 || ^8.0",
+                "psr/log": "^1.1"
+            },
+            "require-dev": {
+                "codeigniter/coding-standard": "^1.5",
+                "fakerphp/faker": "^1.9",
+                "friendsofphp/php-cs-fixer": "3.13.0",
+                "kint-php/kint": "^5.0.4",
+                "mikey179/vfsstream": "^1.6",
+                "nexusphp/cs-config": "^3.6",
+                "phpunit/phpunit": "^9.1",
+                "predis/predis": "^1.1 || ^2.0"
+            },
+            "suggest": {
+                "ext-curl": "If you use CURLRequest class",
+                "ext-dom": "If you use TestResponse",
+                "ext-exif": "If you run Image class tests",
+                "ext-fileinfo": "Improves mime type detection for files",
+                "ext-gd": "If you use Image class GDHandler",
+                "ext-imagick": "If you use Image class ImageMagickHandler",
+                "ext-libxml": "If you use TestResponse",
+                "ext-memcache": "If you use Cache class MemcachedHandler with Memcache",
+                "ext-memcached": "If you use Cache class MemcachedHandler with Memcached",
+                "ext-mysqli": "If you use MySQL",
+                "ext-oci8": "If you use Oracle Database",
+                "ext-pgsql": "If you use PostgreSQL",
+                "ext-readline": "Improves CLI::input() usability",
+                "ext-redis": "If you use Cache class RedisHandler",
+                "ext-simplexml": "If you format XML",
+                "ext-sqlite3": "If you use SQLite3",
+                "ext-sqlsrv": "If you use SQL Server",
+                "ext-xdebug": "If you use CIUnitTestCase::assertHeaderEmitted()"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "CodeIgniter\\": "system/"
+                },
+                "exclude-from-classmap": [
+                    "**/Database/Migrations/**"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The CodeIgniter framework v4",
+            "homepage": "https://codeigniter.com",
+            "support": {
+                "forum": "https://forum.codeigniter.com/",
+                "slack": "https://codeigniterchat.slack.com",
+                "source": "https://github.com/codeigniter4/CodeIgniter4"
+            },
+            "time": "2023-03-26T01:13:46+00:00"
+        },
+        {
+            "name": "jason-napolitano/codeigniter4-cart-module",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jason-napolitano/CodeIgniter4-Cart-Module.git",
+                "reference": "f696be03e715884a04e52d28f104f3f13c326d2b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jason-napolitano/CodeIgniter4-Cart-Module/zipball/f696be03e715884a04e52d28f104f3f13c326d2b",
+                "reference": "f696be03e715884a04e52d28f104f3f13c326d2b",
+                "shasum": ""
+            },
+            "require": {
+                "codeigniter4/framework": "^4.0.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodeIgniterCart\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A basic port of the codeigniter 3 cart module for CodeIgniter 4.",
+            "homepage": "https://github.com/jason-napolitano/CodeIgniter4-Cart-Module",
+            "support": {
+                "issues": "https://github.com/jason-napolitano/CodeIgniter4-Cart-Module/issues",
+                "source": "https://github.com/jason-napolitano/CodeIgniter4-Cart-Module/tree/1.1.0"
+            },
+            "time": "2020-11-22T21:40:22+00:00"
+        },
         {
             "name": "kint-php/kint",
             "version": "4.2.3",

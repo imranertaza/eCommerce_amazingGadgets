@@ -46,5 +46,6 @@ return array(
     'Composer\\Pcre\\' => array($vendorDir . '/composer/pcre/src'),
     'CodeIgniter\\CodingStandard\\' => array($vendorDir . '/codeigniter/coding-standard/src'),
     'CodeIgniter\\AutoReview\\' => array($baseDir . '/tests/AutoReview'),
-    'CodeIgniter\\' => array($baseDir . '/system', $baseDir . '/tests/system'),
+    'CodeIgniter\\' => array($baseDir . '/system', $baseDir . '/tests/system', $vendorDir . '/codeigniter4/framework/system'),
+    'CodeIgniterCart\\' => array($vendorDir . '/jason-napolitano/codeigniter4-cart-module/src'),
 );

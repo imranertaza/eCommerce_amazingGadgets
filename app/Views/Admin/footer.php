@@ -16,6 +16,7 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url() ?>/admin/plugins/jquery/jquery.min.js"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url() ?>/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -84,6 +85,17 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>/admin/dist/js/adminlte.js"></script>
 
+
+<script type="text/javascript" src="<?php echo base_url() ?>/admin/dist/imgUploder/jquery.uploader.min.js"></script>
+
+<script>
+    (function(){
+        $("#example_img_up").uploader({
+            multiple:true,
+        })
+
+    }());
+</script>
 <?php require_once(FCPATH .'admin/dist/js/ajaxScript.php'); ?>
 
 </body>

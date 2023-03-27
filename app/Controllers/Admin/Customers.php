@@ -30,7 +30,7 @@ class Customers extends BaseController
             return redirect()->to(site_url('Admin/Login'));
         } else {
 
-            $table = DB()->table('customers');
+            $table = DB()->table('customer');
             $data['customer'] = $table->get()->getResult();
 
 
@@ -75,14 +75,18 @@ class Customers extends BaseController
 
     public function create_action()
     {
-        $data['name'] = $this->request->getPost('name');
-        $data['mobile'] = $this->request->getPost('mobile');
+        $data['firstname'] = $this->request->getPost('firstname');
+        $data['lastname'] = $this->request->getPost('lastname');
+        $data['email'] = $this->request->getPost('email');
+        $data['phone'] = $this->request->getPost('phone');
         $data['password'] = $this->request->getPost('password');
         $data['con_password'] = $this->request->getPost('con_password');
 
         $this->validation->setRules([
-            'name' => ['label' => 'Name', 'rules' => 'required'],
-            'mobile' => ['label' => 'Phone', 'rules' => 'required|min_length[10]|max_length[12]'],
+            'firstname' => ['label' => 'First Name', 'rules' => 'required'],
+            'lastname' => ['label' => 'Last Name', 'rules' => 'required'],
+            'email' => ['label' => 'Email', 'rules' => 'required'],
+            'phone' => ['label' => 'Phone', 'rules' => 'required|min_length[10]|max_length[12]'],
             'password' => ['label' => 'Password', 'rules' => 'required|min_length[6]|max_length[30]'],
             'con_password' => ['label' => 'Confirm Password', 'rules' => 'required|min_length[6]|max_length[30]|matches[password]'],
         ]);
@@ -91,22 +95,24 @@ class Customers extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('/Admin/Customers/create');
         } else {
-            $check = is_exists('customers','mobile',$data['mobile']);
-            if ($check == true) {
-                $data2['customer_name'] = $this->request->getPost('name');
-                $data2['mobile'] = $this->request->getPost('mobile');
-                $data2['pass'] = $this->request->getPost('password');
+            $check = is_exists('customer','phone',$data['phone']);
+            $check2 = is_exists('customer','email',$data['email']);
+            if (($check == true) && ($check2 == true)) {
+                $data2['firstname'] = $this->request->getPost('firstname');
+                $data2['lastname'] = $this->request->getPost('lastname');
+                $data2['email'] = $this->request->getPost('email');
+                $data2['phone'] = $this->request->getPost('phone');
                 $data2['password'] = SHA1($this->request->getPost('password'));
                 $data2['createdBy'] = $this->session->adUserId;
 
 
-                $table = DB()->table('customers');
+                $table = DB()->table('customer');
                 $table->insert($data2);
 
                 $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 return redirect()->to('/Admin/Customers/create');
             }else{
-                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Email already exists <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Email Or Phone already exists <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 return redirect()->to('/Admin/Customers/create');
             }
         }
@@ -120,7 +126,7 @@ class Customers extends BaseController
             return redirect()->to(site_url('Admin/Login'));
         } else {
 
-            $table = DB()->table('customers');
+            $table = DB()->table('customer');
             $data['customers'] = $table->where('customer_id', $customer_id)->get()->getRow();
 
 
@@ -143,32 +149,41 @@ class Customers extends BaseController
     public function update_action()
     {
         $customer_id = $this->request->getPost('customer_id');
-        $data['customer_name'] = $this->request->getPost('customer_name');
-        $data['mobile'] = $this->request->getPost('mobile');
+        $data['firstname'] = $this->request->getPost('firstname');
+        $data['lastname'] = $this->request->getPost('lastname');
+        $data['email'] = $this->request->getPost('email');
+        $data['phone'] = $this->request->getPost('phone');
         if (!empty($this->request->getPost('password'))) {
             $data['password'] = SHA1($this->request->getPost('password'));
-            $data['pass'] = $this->request->getPost('password');
+
+            if ($this->request->getPost('password') != $this->request->getPost('con_password')){
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Password and Confirm Password do not match <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                return redirect()->to('/Admin/Customers/update/' . $customer_id);
+            }
         }
         $data['updatedBy'] = $this->session->adUserId;
 
         $this->validation->setRules([
-            'customer_name' => ['label' => 'Name', 'rules' => 'required'],
-            'mobile' => ['label' => 'Phone', 'rules' => 'required|min_length[10]|max_length[12]'],
+            'firstname' => ['label' => 'First Name', 'rules' => 'required'],
+            'lastname' => ['label' => 'Last Name', 'rules' => 'required'],
+            'email' => ['label' => 'Email', 'rules' => 'required'],
+            'phone' => ['label' => 'Phone', 'rules' => 'required|min_length[10]|max_length[12]'],
         ]);
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('/Admin/Customers/update/' . $customer_id);
         } else {
-            $check = is_exists_update('customers','mobile',$data['mobile'],'customer_id',$customer_id);
-            if ($check == true) {
-                $table = DB()->table('customers');
+            $check = is_exists_update('customer','phone',$data['phone'],'customer_id',$customer_id);
+            $check2 = is_exists_update('customer','email',$data['email'],'customer_id',$customer_id);
+            if (($check == true) && ($check2 == true)) {
+                $table = DB()->table('customer');
                 $table->where('customer_id', $customer_id)->update($data);
 
                 $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 return redirect()->to('/Admin/Customers/update/' . $customer_id);
             }else{
-                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Email already exists <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Email Or Phone already exists <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                 return redirect()->to('/Admin/Customers/update/'. $customer_id);
             }
 
@@ -194,7 +209,7 @@ class Customers extends BaseController
             return redirect()->to('/Admin/Customers/update/' . $customer_id);
         } else {
 
-            $table = DB()->table('customers');
+            $table = DB()->table('customer');
             $table->where('customer_id', $customer_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -230,7 +245,7 @@ class Customers extends BaseController
             unlink($target_dir . '' . $namePic);
             $data['pic'] = $news_img;
 
-            $table = DB()->table('customers');
+            $table = DB()->table('customer');
             $table->where('customer_id', $customer_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -255,7 +270,7 @@ class Customers extends BaseController
         }
 
 
-        $table = DB()->table('customers');
+        $table = DB()->table('customer');
         $table->where('customer_id', $customer_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

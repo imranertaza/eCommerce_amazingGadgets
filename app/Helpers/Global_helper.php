@@ -14,6 +14,11 @@ function newSession()
     return $session;
 }
 
+function Cart(){
+    $cart = \Config\Services::cart();
+    return $cart;
+}
+
 function bdDateFormat($data = '0000-00-00') {
     return ($data == '0000-00-00') ? 'Unknown' : date('d/m/y', strtotime($data));
 }
@@ -243,4 +248,52 @@ function admin_user_name(){
     return $query;
 }
 
+function get_lebel_by_value_in_settings($lable){
+    $table = DB()->table('settings');
+    $data = $table->where('label',$lable)->get()->getRow();
+    if (!empty($data)){
+        $result = $data->value;
+    }else{
+        $result ='';
+    }
+    return $result;
+}
 
+function getListInParentCategory($selected)
+{
+    $table = DB()->table('product_category');
+    $query = $table->where('parent_id',null)->get();
+    $options = '';
+    foreach ($query->getResult() as $value) {
+        $options .= '<option value="' . $value->prod_cat_id . '" ';
+        $options .= ($value->prod_cat_id == $selected ) ? ' selected="selected"' : '';
+        $options .= '>' . $value->category_name. '</option>';
+    }
+    return $options;
+}
+
+function check_is_parent_category($product_category_id){
+    $table = DB()->table('product_category');
+    $cat = $table->where('prod_cat_id',$product_category_id)->get()->getRow();
+    if (!empty($cat->parent_id)){
+        $result = $cat->parent_id;
+    }else{
+        $result = $cat->prod_cat_id;
+    }
+    return $result;
+}
+
+function check_is_sub_category($product_category_id){
+    $table = DB()->table('product_category');
+    $cat = $table->where('prod_cat_id',$product_category_id)->get()->getRow();
+    if (!empty($cat->parent_id)){
+        $result = false;
+    }else{
+        $result = true;
+    }
+    return $result;
+}
+
+//function product_attribute_by_priduct_id($product_id){
+//    $table = DB()->table('product_attribute');
+//}

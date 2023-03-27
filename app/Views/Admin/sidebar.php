@@ -67,6 +67,10 @@
 
                         <?php echo add_main_based_menu_with_permission('Brand', base_url().'/Admin/Brand', $adRoleId, 'fa-circle', 'Brand');?>
 
+                        <?php echo add_main_based_menu_with_permission('Color Family', base_url().'/Admin/Color_family', $adRoleId, 'fa-circle', 'Color_family');?>
+
+                        <?php echo add_main_based_menu_with_permission('Attribute Group', base_url().'/Admin/Attribute_group', $adRoleId, 'fa-circle', 'Attribute_group');?>
+
 
                     </ul>
                 </li>
@@ -115,16 +119,19 @@
                 <?php } ?>
 
                 <li class="nav-header">Settings</li>
-
+                <?php
+                $modArrayPur = ['Settings'];
+                $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
+                if ($menuAccessPur == true){ ?>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?php echo base_url('Admin/Settings');?>" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Settings
                         </p>
                     </a>
                 </li>
-
+                <?php } ?>
 
             </ul>
         </nav>

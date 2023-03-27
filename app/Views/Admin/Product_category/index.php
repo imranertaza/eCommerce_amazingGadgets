@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped text-capitalize ">
                     <thead>
                     <tr>
                         <th>Sl</th>
@@ -42,10 +42,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $i=1; foreach ($category as $val){ ?>
+                    <?php $i=1; foreach ($category as $val){ $parCat = (!empty($val->parent_id))?get_data_by_id('category_name','product_category','prod_cat_id',$val->parent_id).'-> ':''; ?>
                         <tr>
                             <td width="40" ><?php echo $i++;?></td>
-                            <td><?php echo $val->product_category;?></td>
+                            <td><?php echo $parCat. $val->category_name;?></td>
                             <td><?php echo image_view('uploads/category','',$val->image,'noimage.png','width-80');?></td>
                             <td width="180">
                                 <a href="<?php echo base_url('Admin/Product_category/update/'.$val->prod_cat_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>

@@ -142,6 +142,7 @@ class Brand extends BaseController
     {
         $brand_id = $this->request->getPost('brand_id');
         $data['name'] = $this->request->getPost('name');
+        $data['sort_order'] = $this->request->getPost('sort_order');
         $data['updatedBy'] = $this->session->adUserId;
 
         $this->validation->setRules([

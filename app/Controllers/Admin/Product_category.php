@@ -75,11 +75,12 @@ class Product_category extends BaseController
 
     public function create_action()
     {
-        $data['product_category'] = $this->request->getPost('product_category');
+        $data['category_name'] = $this->request->getPost('category_name');
+        $data['parent_id'] = !empty($this->request->getPost('parent_id'))?$this->request->getPost('parent_id'):null;
         $data['createdBy'] = $this->session->adUserId;
 
         $this->validation->setRules([
-            'product_category' => ['label' => 'Product Category Name', 'rules' => 'required'],
+            'category_name' => ['label' => 'Category Name', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($data) == FALSE) {
@@ -141,11 +142,12 @@ class Product_category extends BaseController
     public function update_action()
     {
         $prod_cat_id = $this->request->getPost('prod_cat_id');
-        $data['product_category'] = $this->request->getPost('product_category');
+        $data['category_name'] = $this->request->getPost('category_name');
+        $data['parent_id'] = !empty($this->request->getPost('parent_id'))?$this->request->getPost('parent_id'):null;
         $data['updatedBy'] = $this->session->adUserId;
 
         $this->validation->setRules([
-            'product_category' => ['label' => 'Product Category Name', 'rules' => 'required'],
+            'category_name' => ['label' => 'Category Name', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($data) == FALSE) {
@@ -176,6 +178,36 @@ class Product_category extends BaseController
                 unlink($target_dir . '' . $namePic);
                 $data['image'] = $news_img;
             }
+
+            $table = DB()->table('product_category');
+            $table->where('prod_cat_id', $prod_cat_id)->update($data);
+
+            $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            return redirect()->to('/Admin/Product_category/update/' . $prod_cat_id);
+
+        }
+    }
+
+    public function update_action_others()
+    {
+        $prod_cat_id = $this->request->getPost('prod_cat_id');
+        $data['meta_title'] = $this->request->getPost('meta_title');
+        $data['meta_keyword'] = $this->request->getPost('meta_keyword');
+        $data['meta_description'] = $this->request->getPost('meta_description');
+        $data['sort_order'] = $this->request->getPost('sort_order');
+        $data['header_menu'] = $this->request->getPost('header_menu');
+        $data['description'] = $this->request->getPost('description');
+
+        $data['updatedBy'] = $this->session->adUserId;
+
+        $this->validation->setRules([
+            'header_menu' => ['label' => 'Header Menu', 'rules' => 'required'],
+        ]);
+
+        if ($this->validation->run($data) == FALSE) {
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            return redirect()->to('/Admin/Product_category/update/' . $prod_cat_id);
+        } else {
 
             $table = DB()->table('product_category');
             $table->where('prod_cat_id', $prod_cat_id)->update($data);

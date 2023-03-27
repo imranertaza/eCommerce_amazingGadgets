@@ -48,17 +48,18 @@
     <!-- Theme style -->
 
 
+    <link href="<?php echo base_url() ?>/admin/dist/imgUploder/jquery.uploader.css" rel="stylesheet" type="text/css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
     <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-<!--        <img class="animation__shake" src="--><?php //echo base_url() ?><!--/admin/dist/img/AdminLTELogo.png" alt="AdminLTELogo"-->
-<!--             height="60" width="60">-->
-        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
-        <div class="text-bold pt-2">Loading...</div>
-    </div>
+<!--    <div class="preloader flex-column justify-content-center align-items-center">-->
+<!---->
+<!--        <i class="fas fa-3x fa-sync-alt fa-spin"></i>-->
+<!--        <div class="text-bold pt-2">Loading...</div>-->
+<!--    </div>-->
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">

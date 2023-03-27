@@ -24,10 +24,10 @@ class Dashboard extends BaseController
             return redirect()->to(site_url('Login'));
         } else {
 
-            $data['menu_view'] = true;
-            echo view('Web/header',$data);
-            echo view('Web/Customer/dashboard');
-            echo view('Web/footer');
+            $data['page_title'] = 'Dashboard';
+            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
+            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Customer/dashboard');
+            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
         }
     }
 
