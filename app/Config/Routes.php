@@ -135,6 +135,8 @@ $routes->get('/dashboard', 'Customer\Dashboard::index');
 //cart routes
 $routes->get('/cart', 'Cart\Cart::index');
 $routes->post('/addtocart', 'Cart\Cart::addToCart');
+$routes->post('/updateToCart', 'Cart\Cart::updateToCart');
+$routes->post('/removeToCart', 'Cart\Cart::removeToCart');
 
 //pages routes
 $routes->get('/about', 'Pages\Pages::about');

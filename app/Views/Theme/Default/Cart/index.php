@@ -1,7 +1,7 @@
 <section class="main-container">
     <div class="container">
         <div class="cart">
-            <table class="cart-table w-100 text-center">
+            <table class="cart-table w-100 text-center" id="tableReload">
                 <thead>
                 <tr>
                     <th>Delete</th>
@@ -16,7 +16,7 @@
                 <?php foreach (Cart()->contents() as $val ){ ?>
                     <tr>
                         <td class="product-remove">
-                            <a href="#"><i class="fa-solid fa-trash-can"></i></a>
+                            <a href="javascript:void(0)" onclick="removeCart('<?php echo $val['rowid'];?>')" ><i class="fa-solid fa-trash-can"></i></a>
                         </td>
                         <td class="product-thumbnail">
                             <a href="#">
@@ -34,15 +34,21 @@
 
                         <td class="product-quantity">
                             <div class="quantity d-flex justify-content-end justify-content-lg-center">
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-3" >
                                     <div class="input-group-prepend">
                                         <button class="btn btn-dark btn-sm" onclick="minusItem('<?php echo $val['rowid'];?>')" id="minus-btn"><i class="fa fa-minus"></i></button>
                                     </div>
-                                    <input type="text" id="qty_input" class="form-control form-control-sm" value="<?php echo $val['qty'];?>" min="1">
+                                    <input type="text" id="qty_input" name="qty" class="form-control form-control-sm item_<?php echo $val['rowid'];?>" value="<?php echo $val['qty'];?>" min="1">
+<!--                                    <input type="hidden"  name="rowid[]"  value="--><?php //echo $val['rowid'];?><!--" >-->
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-dark btn-sm" id="plus-btn"><i class="fa fa-plus"></i></button>
+                                        <button class="btn btn-dark btn-sm" onclick="plusItem('<?php echo $val['rowid'];?>')" id="plus-btn"><i class="fa fa-plus"></i></button>
                                     </div>
+
                                 </div>
+
+                            </div>
+                            <div class="input-group justify-content-center" >
+                                <button class="btn btn-primary btn-sm" id="btn_<?php echo $val['rowid'];?>" style="display:none;" onclick="updateQty('<?php echo $val['rowid'];?>')">Update</button>
                             </div>
                         </td>
                         <td class="product-subtotal">

@@ -41,9 +41,25 @@ class Cart extends BaseController {
             'price' => $price
         );
         $this->cart->insert($data);
-//        $this->cart->destroy();
+        print 'Successfully add to cart';
     }
 
+    public function updateToCart(){
+        $rowid = $this->request->getPost('rowid');
+        $qty = $this->request->getPost('qty');
+        $data = array(
+            'rowid' => $rowid,
+            'qty'   => $qty
+        );
+        $this->cart->update($data);
+        print 'Successfully update to cart';
+    }
+
+    public function removeToCart(){
+        $rowid = $this->request->getPost('rowid');
+        $this->cart->remove($rowid);
+        print 'Successfully remove to cart';
+    }
 
 
 }

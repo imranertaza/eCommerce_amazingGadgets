@@ -22,7 +22,7 @@
 </head>
 <body>
 <div class="message_alert" id="messAlt" >
-    <div class="alert-success_web py-2 px-3 border-0 text-white fs-5 text-capitalize" >Successfully  add to cart  </div>
+    <div class="alert-success_web py-2 px-3 border-0 text-white fs-5 text-capitalize" id="mesVal" >  </div>
 </div>
 <header class="header bg-white">
     <div class="topbar">
