@@ -83,6 +83,7 @@ $routes->post('/product_create_action', 'Admin\Products::create_action');
 $routes->post('/product_update_action', 'Admin\Products::update_action');
 $routes->get('/product_update/(:num)', 'Admin\Products::update/$1');
 $routes->get('/product_delete/(:num)', 'Admin\Products::delete/$1');
+$routes->get('/related_product', 'Admin\Products::related_product');
 
 //User
 $routes->get('/user', 'Admin\User::index');

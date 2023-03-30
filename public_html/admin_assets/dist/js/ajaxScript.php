@@ -28,8 +28,34 @@
         //Initialize Select2 Elements
         $('.select2').select2()
 
+        $('.select2_pro').select2({
+            multiple: true,
+            theme: 'bootstrap4',
+            ajax: {
+                url: "<?php echo base_url('related_product')?>",
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results:  $.map(data, function (item) {
+                            return {
+                                text: item.name,
+                                id: item.product_id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+
         //Initialize Select2 Elements
         $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+        $('.select2bs4_2').select2({
             theme: 'bootstrap4'
         })
 
@@ -306,6 +332,8 @@
         $('#files').val("");
         $(this).hide();
     });
+
+
 
 
 

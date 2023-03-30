@@ -28,7 +28,7 @@
                             <h3 class="card-title">Product create</h3>
                         </div>
                         <div class="col-md-4" style="text-align: right;">
-                            <button type="submit" class="btn btn-primary" >Save</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                         <div class="col-md-12" style="margin-top: 10px">
                             <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
@@ -49,6 +49,11 @@
                                     <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill"
                                        href="#custom-tabs-four-profile" role="tab"
                                        aria-controls="custom-tabs-four-profile" aria-selected="false">Data</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-four-link-tab" data-toggle="pill"
+                                       href="#custom-tabs-four-link" role="tab"
+                                       aria-controls="custom-tabs-four-profile" aria-selected="false">Link</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
@@ -80,7 +85,8 @@
                                      aria-labelledby="custom-tabs-four-home-tab">
                                     <div class="form-group">
                                         <label>Name <span class="requi">*</span></label>
-                                        <input type="text" name="pro_name" class="form-control" placeholder="Name" required>
+                                        <input type="text" name="pro_name" class="form-control" placeholder="Name"
+                                               required>
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
@@ -112,68 +118,99 @@
 
                                 <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
                                      aria-labelledby="custom-tabs-four-profile-tab">
-                                    <div class="form-group">
-                                        <label>Model <span class="requi">*</span></label>
-                                        <input type="text" name="model" class="form-control" placeholder="Model"
-                                               required>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Model <span class="requi">*</span></label>
+                                                <input type="text" name="model" class="form-control" placeholder="Model"
+                                                       required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Price <span class="requi">*</span></label>
+                                                <input type="number" name="price" class="form-control"
+                                                       placeholder="Price"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Quantity <span class="requi">*</span></label>
+                                                <input type="number" name="quantity" class="form-control"
+                                                       placeholder="Quantity" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Wight</label>
+                                                <input type="text" name="weight" class="form-control"
+                                                       placeholder="Weight">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Length</label>
+                                                <input type="text" name="length" class="form-control"
+                                                       placeholder="Length">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Width</label>
+                                                <input type="text" name="width" class="form-control"
+                                                       placeholder="Width">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Height</label>
+                                                <input type="text" name="height" class="form-control"
+                                                       placeholder="Height">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Sort Order</label>
+                                                <input type="text" name="sort_order" class="form-control"
+                                                       placeholder="sort order">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Status</label>
+                                                <select name="status" class="form-control">
+                                                    <option value="Active">Active</option>
+                                                    <option value="Inactive">Inactive</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Brand</label>
-                                        <select name="brand_id" class="form-control">
-                                            <option value="">Please select</option>
-                                            <?php echo getListInOption('', 'brand_id', 'name', 'brand'); ?>
-                                        </select>
+                                </div>
+
+                                <div class="tab-pane fade" id="custom-tabs-four-link" role="tabpanel"
+                                     aria-labelledby="custom-tabs-four-profile-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Product Featured</label>
+                                                <input type="checkbox" name="product_featured"  data-bootstrap-switch>
+                                                <br><br>
+                                                <label>Free Delivery</label>
+                                                <input type="checkbox" name="product_free_delivery"  data-bootstrap-switch>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Brand</label>
+                                                <select name="brand_id" class="form-control">
+                                                    <option value="">Please select</option>
+                                                    <?php echo getListInOption('', 'brand_id', 'name', 'brand'); ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group category">
+                                                <label>Category <span class="requi">*</span></label>
+                                                <select class="select2bs4" name="categorys[]" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" required>
+                                                    <?php foreach ($prodCat as $cat) { ?>
+                                                        <option value="<?php echo $cat->prod_cat_id; ?>"><?php echo (!empty($cat->parent_id)) ? get_data_by_id('category_name', 'product_category', 'prod_cat_id', $cat->parent_id) . '->' : ''; ?><?php echo $cat->category_name; ?></option>
+                                                    <?php } ?>
+
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group category">
+                                                <label>Related Product</label>
+                                                <select class="select2_pro" id="keyword" name="product_related[]" multiple="multiple" style="width: 100%;" ></select>
+
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label>Category <span class="requi">*</span></label>
-                                        <select name="parent_id" class="form-control text-capitalize"
-                                                onchange="getSubCat(this.value)" required>
-                                            <option value="">Please select</option>
-                                            <?php echo getListInParentCategory(''); ?>
-                                        </select>
-                                    </div>
-                                    <div class="form-group" id="subCatData">
 
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Price <span class="requi">*</span></label>
-                                        <input type="number" name="price" class="form-control" placeholder="Price"
-                                               required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Quantity <span class="requi">*</span></label>
-                                        <input type="number" name="quantity" class="form-control" placeholder="Quantity" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Wight</label>
-                                        <input type="text" name="weight" class="form-control" placeholder="Weight">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Length</label>
-                                        <input type="text" name="length" class="form-control" placeholder="Length">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Width</label>
-                                        <input type="text" name="width" class="form-control" placeholder="Width">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Height</label>
-                                        <input type="text" name="height" class="form-control" placeholder="Height">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Sort Order</label>
-                                        <input type="text" name="sort_order" class="form-control"
-                                               placeholder="sort order">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Status</label>
-                                        <select name="status" class="form-control">
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
-                                        </select>
-                                    </div>
                                 </div>
 
                                 <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
@@ -191,7 +228,8 @@
                                         <div class="col-md-6">
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <a href="javascript:void(0)" onclick="add_option();" class="btn btn-sm btn-primary">Add option</a>
+                                            <a href="javascript:void(0)" onclick="add_option();"
+                                               class="btn btn-sm btn-primary">Add option</a>
                                         </div>
 
                                     </div>
@@ -214,13 +252,15 @@
                                         <div class="col-md-6">
                                         </div>
                                         <div class="col-md-6 mt-2">
-                                            <a href="javascript:void(0)" onclick="add_attribute();" class="btn btn-sm btn-primary">Add attribute</a>
+                                            <a href="javascript:void(0)" onclick="add_attribute();"
+                                               class="btn btn-sm btn-primary">Add attribute</a>
                                         </div>
 
                                     </div>
 
 
                                 </div>
+
                                 <div class="tab-pane fade" id="custom-tabs-four-special" role="tabpanel"
                                      aria-labelledby="custom-tabs-four-messages-tab">
                                     <div class="row">
@@ -228,22 +268,24 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Special Price </label>
-                                                <input type="text" name="special_price" class="form-control" placeholder="Special Price" >
+                                                <input type="text" name="special_price" class="form-control"
+                                                       placeholder="Special Price">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Start Date</label>
-                                                <input type="date" name="start_date" class="form-control" placeholder="Start Date" >
+                                                <input type="date" name="start_date" class="form-control"
+                                                       placeholder="Start Date">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>End Date</label>
-                                                <input type="date" name="end_date" class="form-control" placeholder="End Date" >
+                                                <input type="date" name="end_date" class="form-control"
+                                                       placeholder="End Date">
                                             </div>
                                         </div>
-
 
 
                                     </div>
@@ -255,15 +297,23 @@
                                      aria-labelledby="custom-tabs-four-messages-tab">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <h3>Image</h3>
+                                            <h3>Default Image <span class="requi">*</span></h3>
                                         </div>
                                         <div class="col-md-8">
-                                            <input type="file" name="image" class="form-control" required>
+                                            <div id="framesdef"></div><br>
+                                            <input type="file" id="defimage" name="image" class="form-control" required>
+
                                         </div>
+                                        <div class="col-md-12">
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h3>Multiple Image</h3>
+                                        </div>
+                                        <div class="col-md-8 mt-3">
+                                            <div id="frames"></div><br>
+                                            <input type="file" class="form-control" id="image" name="multiImage[]" multiple />
 
-
-                                        <div class="col-md-12 mt-3">
-                                            <input type="text"  id="example_img_up" value="" />
                                         </div>
                                     </div>
 

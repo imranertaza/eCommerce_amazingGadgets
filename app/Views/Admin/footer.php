@@ -86,15 +86,23 @@
 <script src="<?php echo base_url() ?>/admin_assets/dist/js/adminlte.js"></script>
 
 
-<script type="text/javascript" src="<?php echo base_url() ?>/admin_assets/dist/imgUploder/jquery.uploader.min.js"></script>
-
 <script>
-    (function(){
-        $("#example_img_up").uploader({
-            multiple:true,
-        })
+    $(document).ready(function(){
+        $('#image').change(function(){
+            $("#frames").html('');
+            for (var i = 0; i < $(this)[0].files.length; i++) {
+                $("#frames").append('<img src="'+window.URL.createObjectURL(this.files[i])+'" width="150px" height="150px" style="margin-left: 10px; margin-top: 10px;" />');
+            }
+        });
 
-    }());
+        $('#defimage').change(function(){
+            $("#framesdef").html('');
+            for (var i = 0; i < $(this)[0].files.length; i++) {
+                $("#framesdef").append('<img src="'+window.URL.createObjectURL(this.files[i])+'" width="150px" height="150px"/>');
+            }
+        });
+    });
+
 </script>
 <?php require_once(FCPATH .'admin_assets/dist/js/ajaxScript.php'); ?>
 

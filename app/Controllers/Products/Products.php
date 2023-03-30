@@ -20,7 +20,7 @@ class Products extends BaseController {
 
         $table = DB()->table('products');
         $table->join('product_description', 'product_description.product_id = products.product_id ');
-        $table->join('product_special', 'product_special.product_id = products.product_id ');
+//        $table->join('product_special', 'product_special.product_id = products.product_id ');
         $data['products'] = $table->where('products.product_id',$product_id)->get()->getRow();
 
         $data['page_title'] = 'Product Detail';

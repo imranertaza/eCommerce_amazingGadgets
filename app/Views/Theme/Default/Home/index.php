@@ -149,10 +149,10 @@
                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
                                             </div>
                                             <div class="price mb-3">
-                                                <?php if (empty($pro->special_price)){ ?>
+                                                <?php $spPric = get_data_by_id('special_price','product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                     $<?php echo $pro->price;?>
                                                 <?php }else{ ?>
-                                                    <small> <del>$<?php echo $pro->price;?></del></small>/$<?php echo $pro->special_price;?>
+                                                    <small> <del>$<?php echo $pro->price;?></del></small>/$<?php echo $spPric;?>
                                                 <?php } ?>
                                             </div>
                                             <a href="javascript:void(0)" onclick="addToCart(<?php echo $pro->product_id ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>

@@ -16,7 +16,7 @@ class Home extends BaseController {
     public function index(){
         $table = DB()->table('products');
         $table->join('product_description', 'product_description.product_id = products.product_id ');
-        $table->join('product_special', 'product_special.product_id = products.product_id ');
+//        $table->join('product_special', 'product_special.product_id = products.product_id ');
         $data['products'] = $table->where('products.status','Active')->get()->getResult();
 
 

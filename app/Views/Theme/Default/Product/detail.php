@@ -53,10 +53,10 @@
                         <div class="brand mb-3"><strong>Brand:</strong> <?php echo get_data_by_id('name','brand','brand_id',$products->brand_id);?></div>
                         <hr>
                         <div class="price mb-3">
-                            <?php if (empty($products->special_price)){ ?>
+                            <?php $spPric = get_data_by_id('special_price','product_special','product_id',$products->product_id); if (empty($spPric)){ ?>
                             $<?php echo $products->price;?>
                             <?php }else{ ?>
-                               <small> <del>$<?php echo $products->price;?></del></small><br>$<?php echo $products->special_price;?>
+                               <small> <del>$<?php echo $products->price;?></del></small><br>$<?php echo $spPric;?>
                             <?php } ?>
                         </div>
                         <div class="quantity">

@@ -47,9 +47,6 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>/admin_assets/plugins/dropzone/min/dropzone.min.css">
     <!-- Theme style -->
 
-
-    <link href="<?php echo base_url() ?>/admin_assets/dist/imgUploder/jquery.uploader.css" rel="stylesheet" type="text/css">
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

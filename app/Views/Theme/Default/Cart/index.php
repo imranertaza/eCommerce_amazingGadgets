@@ -32,7 +32,7 @@
                             <span class="price">$<?php echo $val['price'];?></span>
                         </td>
 
-                        <td class="product-quantity">
+                        <td class="product-quantity" width="180">
                             <div class="quantity d-flex justify-content-end justify-content-lg-center">
                                 <div class="input-group mb-3" >
                                     <div class="input-group-prepend">
