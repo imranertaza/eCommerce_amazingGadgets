@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController {
+class Freedelivery extends BaseController {
 
     protected $validation;
     protected $session;
@@ -17,12 +17,9 @@ class Home extends BaseController {
         $table = DB()->table('products');
         $data['products'] = $table->where('status','Active')->get()->getResult();
 
-
-        $data['prodFeat'] = $table->where('status','Active')->where('featured','1')->orderBy('product_id','DESC')->limit(8)->get()->getResult();
-
-        $data['home_menu'] = true;
+        $data['page_title'] = 'About Us';
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Home/index');
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Home/index',$data);
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
 }

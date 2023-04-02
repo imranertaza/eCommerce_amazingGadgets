@@ -333,7 +333,20 @@
         $(this).hide();
     });
 
+    function selectState(country_id){
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('get_state')?>",
+            data: {country_id:country_id},
+            beforeSend: function () {
+                $("#loading-image").show();
+            },
+            success: function (data) {
+                $("#stateView").html(data);
+            }
 
+        });
+    }
 
 
 

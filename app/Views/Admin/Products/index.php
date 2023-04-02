@@ -47,7 +47,7 @@
                     <?php $i=1; foreach ($product as $val){ ?>
                     <tr>
                         <td><?php echo $i++;?></td>
-                        <td><?php echo get_data_by_id('name','product_description','product_id',$val->product_id);?></td>
+                        <td><?php echo $val->name;?></td>
                         <td><?php echo $val->model;?></td>
                         <td> <?php echo $val->quantity;?></td>
                         <td><?php echo image_view('uploads/products',$val->product_id,'100_'.$val->image,'noimage.png',$class='');?></td>

@@ -87,7 +87,7 @@
 
     const formSelect = document.getElementById('form-select');
     // Update the custom select
-    FancySelect.update(formSelect);
+    // FancySelect.update(formSelect);
 
     $('#navbarPopUp').click(function () {
         $('#navbarNav').addClass('offcanvas offcanvas-end text-bg-dark');
@@ -171,6 +171,18 @@
     });
 
 
+    function addToWishlist(pro_id){
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('addtoWishlist')?>",
+            data: {product_id:pro_id},
+            success: function(response){
+                $('#mesVal').html(response);
+                $('.message_alert').show();
+                setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
+            }
+        });
+    }
 
 
     function addToCart(pro_id){
@@ -190,6 +202,8 @@
             }
         });
     }
+
+
 
     function minusItem(rowid){
         var quantity = parseInt($('.item_'+rowid).val());

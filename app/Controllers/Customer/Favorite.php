@@ -5,7 +5,7 @@ namespace App\Controllers\Customer;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 
-class Dashboard extends BaseController
+class Favorite extends BaseController
 {
 
     protected $validation;
@@ -23,24 +23,21 @@ class Dashboard extends BaseController
         if (!isset($isLoggedInCustomer) || $isLoggedInCustomer != TRUE) {
             return redirect()->to(site_url('Login'));
         } else {
-
-            $data['page_title'] = 'Dashboard';
-            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
-            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Customer/dashboard');
-            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
-        }
-    }
-
-    public function addtoWishlist(){
-        $data['product_id'] = $this->request->getPost('product_id');
-        $data['customer_id'] = $this->session->cusUserId;
-        $check = is_exists_double_condition('customer_wishlist','product_id',$data['product_id'],'customer_id',$data['customer_id']);
-        if ($check == true) {
+            $wishProduct = array();
             $table = DB()->table('customer_wishlist');
-            $table->insert($data);
-            print 'Successfully add to Wishlist';
-        }else{
-            print 'Already exists';
+            $pro = $table->where('customer_id',$this->session->cusUserId)->get()->getResult();
+            foreach ($pro as $val){
+                $tableSear = DB()->table('products');
+                $rowPro = $tableSear->where('product_id',$val->product_id)->get()->getRow();
+                array_push($wishProduct,$rowPro);
+            }
+            $data['allProd'] = $wishProduct;
+
+
+            $data['page_title'] = 'Favorite';
+            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
+            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Customer/favorite',$data);
+            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
         }
     }
 

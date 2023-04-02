@@ -29,19 +29,24 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
-                    <span class="me-4">Free delivery in dhaka city</span>
+                    <span class="me-4"><a href="">Free delivery</a></span>
                     <span><a href="#">Returns Policy</a></span>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end align-items-center">
-                    <a class="me-3 d-flex" href="#">
+                    <a class="me-3 d-flex" href="<?php echo base_url('favorite')?>">
                         <span><i class="fa-solid fa-heart me-1"></i></span>
-                        <span>Whislist</span>
+                        <span>Wishlist</span>
                     </a>
+                    <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
                     <a class="me-3 py-3 pe-3 border-end d-flex" href="<?php echo base_url('register')?>">
                         <span><i class="fa-solid fa-user me-1"></i></span>
                         <span class="d-none d-sm-block">Create an account</span>
                     </a>
                     <a class="btn btn-signin text-white bg-black" href="<?php echo base_url('login')?>"><i class="fa-solid fa-arrow-right-to-bracket me-1"></i> Sign In</a>
+                    <?php }else{ ?>
+                        <a class="btn btn-signin text-white bg-black mt-2 mb-2" href="<?php echo base_url('dashboard')?>">Dashboard</a>
+                    <?php }?>
+
                 </div>
             </div>
         </div>
@@ -51,7 +56,9 @@
             <div class="row align-items-center">
                 <div class="col-6 col-md-3 order-1 mb-3 mb-md-0">
                     <div class="logo">
+                        <a href="<?php echo base_url()?>">
                         <img src="<?php echo base_url() ?>/assets/img/logo.png" alt="Amazing Gadgets" class="img-fluid">
+                        </a>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-3 order-md-2 mb-3 mb-md-0">
@@ -235,7 +242,7 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="#">Wishlist</a>
+                                        <a class="nav-link" aria-current="page" href="<?php echo base_url('favorite')?>">Wishlist</a>
                                     </li>
 
                                     <li class="nav-item">

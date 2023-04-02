@@ -50,103 +50,62 @@ class Settings extends BaseController
         }
     }
 
-    public function create(){
-        $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
-        $adRoleId = $this->session->adRoleId;
-        if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('admin'));
-        } else {
-
-            //$perm = array('create','read','update','delete','mod_access');
-            $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);
-            foreach ($perm as $key => $val) {
-                $data[$key] = $this->permission->have_access($adRoleId, $this->module_name, $key);
-            }
-            echo view('Admin/header');
-            echo view('Admin/sidebar');
-            if (isset($data['create']) and $data['create'] == 1) {
-                echo view('Admin/Settings/create');
-            } else {
-                echo view('Admin/no_permission');
-            }
-            echo view('Admin/footer');
-        }
-    }
-
-    public function create_action()
-    {
-        $data['label'] = $this->request->getPost('label');
-        $data['value'] = $this->request->getPost('value');
-        $data['createdBy'] = $this->session->adUserId;
-
-        $this->validation->setRules([
-            'label' => ['label' => 'Label', 'rules' => 'required'],
-            'value' => ['label' => 'Value', 'rules' => 'required'],
-        ]);
-
-        if ($this->validation->run($data) == FALSE) {
-            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('settings_create');
-        } else {
-
-            $table = DB()->table('settings');
-            $table->insert($data);
-
-            $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('settings_create');
-        }
-    }
-
-    public function update($settings_id)
-    {
-        $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
-        $adRoleId = $this->session->adRoleId;
-        if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
-            return redirect()->to(site_url('admin'));
-        } else {
-
-            $table = DB()->table('settings');
-            $data['settings'] = $table->where('settings_id', $settings_id)->get()->getRow();
-
-
-            //$perm = array('create','read','update','delete','mod_access');
-            $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);
-            foreach ($perm as $key => $val) {
-                $data[$key] = $this->permission->have_access($adRoleId, $this->module_name, $key);
-            }
-            echo view('Admin/header');
-            echo view('Admin/sidebar');
-            if (isset($data['update']) and $data['update'] == 1) {
-                echo view('Admin/Settings/update', $data);
-            } else {
-                echo view('Admin/no_permission');
-            }
-            echo view('Admin/footer');
-        }
-    }
-
     public function update_action()
     {
-        $settings_id = $this->request->getPost('settings_id');
-        $data['value'] = $this->request->getPost('value');
-        $data['updatedBy'] = $this->session->adUserId;
+        $data['store_name'] = $this->request->getPost('store_name');
+        $data['store_owner'] = $this->request->getPost('store_owner');
+        $data['address'] = $this->request->getPost('address');
+        $data['email'] = $this->request->getPost('email');
+        $data['phone'] = $this->request->getPost('phone');
+        $data['Theme'] = $this->request->getPost('Theme');
 
-        $this->validation->setRules([
-            'value' => ['label' => 'Value', 'rules' => 'required'],
-        ]);
+        $data['country'] = $this->request->getPost('country');
+        $data['state'] = $this->request->getPost('state');
+        $data['length_class'] = $this->request->getPost('length_class');
+        $data['weight_class'] = $this->request->getPost('weight_class');
+        $data['currency'] = $this->request->getPost('currency');
+        $data['currency_symbol'] = $this->request->getPost('currency_symbol');
+        $data['invoice_prefix'] = $this->request->getPost('invoice_prefix');
 
-        if ($this->validation->run($data) == FALSE) {
-            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('settings_update/' . $settings_id);
-        } else {
+//        if ($this->request->getPost('new_account_alert_mail') == on) {
+            $data['new_account_alert_mail'] = $this->request->getPost('new_account_alert_mail');
+//        }
+        $data['new_order_alert_mail'] = $this->request->getPost('new_order_alert_mail');
 
+        $data['mail_protocol'] = $this->request->getPost('mail_protocol');
+        $data['mail_address'] = $this->request->getPost('mail_address');
+        $data['smtp_host'] = $this->request->getPost('smtp_host');
+        $data['smtp_port'] = $this->request->getPost('smtp_port');
+        $data['smtp_timeout'] = $this->request->getPost('smtp_timeout');
+        $data['smtp_username'] = $this->request->getPost('smtp_username');
+        $data['smtp_password'] = $this->request->getPost('smtp_password');
+
+//        if (!empty($_FILES['store_logo']['name'])) {
+//            $target_dir = FCPATH . '/uploads/store/';
+//            if (!file_exists($target_dir)) {
+//                mkdir($target_dir, 0777);
+//            }
+//
+//            //new image upload
+//            $pic = $this->request->getFile('store_logo');
+//            $namePic = $pic->getRandomName();
+//            $pic->move($target_dir, $namePic);
+//            $news_img = 'logo_' . $pic->getName();
+//            $this->crop->withFile($target_dir . '' . $namePic)->fit(200, 100, 'center')->save($target_dir . $news_img);
+//            unlink($target_dir . '' . $namePic);
+//            $data['store_logo'] = $news_img;
+//        }
+
+        foreach($data as $key=>$val){
             $table = DB()->table('settings');
-            $table->where('settings_id', $settings_id)->update($data);
-
-            $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('settings_update/' . $settings_id);
-
+            $table->set('value', $val)->where('label', $key)->update();
         }
+
+
+        $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        return redirect()->to('settings');
+
+
     }
 
 

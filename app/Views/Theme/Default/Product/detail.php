@@ -8,14 +8,15 @@
                             <div class="swiper-container gallery-slider">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
-<!--                                        <img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid">-->
                                         <?php echo image_view('uploads/products',$products->product_id,'437_'.$products->image,'noimage.png','img-fluid')?>
                                     </div>
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
+                                    <?php
+                                    if (!empty($proImg)){
+                                        foreach ($proImg as $imgval) {
+                                            echo '<div class="swiper-slide">'.multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '437_' . $imgval->image, 'noimage.png', 'img-fluid').'</div>';
+                                        }
+                                    }
+                                    ?>
                                 </div>
                             </div>
 
@@ -24,11 +25,13 @@
                                     <div class="swiper-slide">
                                         <?php echo image_view('uploads/products',$products->product_id,'100_'.$products->image,'noimage.png','img-fluid')?>
                                     </div>
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
-<!--                                    <div class="swiper-slide"><img src="--><?php //echo base_url()?><!--/assets/img/product-details.png" alt="" class="img-fluid"></div>-->
+                                    <?php
+                                        if (!empty($proImg)){
+                                            foreach ($proImg as $imgval) {
+                                                echo '<div class="swiper-slide">'.multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '100_' . $imgval->image, 'noimage.png', 'img-fluid').'</div>';
+                                            }
+                                        }
+                                    ?>
                                 </div>
                                 <div class="swiper-button-prev">
                                     <i class="fa-solid fa-angle-left"></i>
@@ -40,7 +43,7 @@
                         </div>
                     </div>
                     <div class="col-lg-4 mb-3 mb-lg-0">
-                        <div class="product-cat mb-3">Categorie</div>
+                        <div class="product-cat mb-3"> </div>
                         <h1 class="product-title mb-4"><?php echo $products->name;?></h1>
                         <div class="rating mb-2">
                             <i class="fa-solid fa-star"></i>
@@ -70,7 +73,11 @@
                                 </div>
                             </div>
                         </div>
-
+                        <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
+                        <a href="<?php echo base_url('login');?>" class="btn  btn-info rounded-0 mt-3" style="color:#ffffff;" ><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
+                        <?php }else{ ?>
+                            <a href="javascript:void(0)" class="btn  btn-info rounded-0 mt-3" style="color:#ffffff;" onclick="addToWishlist(<?php echo $products->product_id ?>)"><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
+                        <?php } ?>
                         <a href="javascript:void(0)" class="btn btn-cart rounded-0 mt-3" onclick="addToCart(<?php echo $products->product_id ?>)">Add to Cart</a>
                     </div>
                     <div class="col-lg-3">
@@ -117,10 +124,16 @@
             </div>
             <div class="col-lg-3">
                 <div class="products">
+                    <?php if(!empty($relProdSide)){ foreach ($relProdSide as $relPro){ ?>
                     <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative text-white card p-3 rounded-0 mb-3">
-                        <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
+                        <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
+                            <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
+                        <?php }else{ ?>
+                            <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $relPro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
+                        <?php } ?>
+                        <a href="" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
                         <div class="product-top">
-                            <img src="<?php echo base_url()?>/assets/img/p1.png" alt="" class="img-fluid w-100">
+                            <?php echo image_view('uploads/products',$relPro->product_id,'191_'.$relPro->image,'noimage.png','img-fluid w-100')?>
                             <div class="rating text-center my-2">
                                 <i class="fa-solid fa-star"></i>
                                 <i class="fa-solid fa-star"></i>
@@ -131,38 +144,22 @@
                         </div>
                         <div class="product-bottom mt-auto">
                             <div class="category">
-                                Categorie
+<!--                                Categorie-->
                             </div>
                             <div class="product-title mb-2">
-                                <a href="#">12 COOL Smart Home Gadgets</a>
+                                <a href="<?php echo base_url('detail/'.$relPro->product_id)?>"><?php echo $relPro->name;?></a>
                             </div>
-                            <div class="price mb-3">$200.00</div>
-                            <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
+                            <div class="price mb-3">
+                                <?php $spPric2 = get_data_by_id('special_price','product_special','product_id',$relPro->product_id);  if (empty($spPric2)){ ?>
+                                    $<?php echo $relPro->price;?>
+                                <?php }else{ ?>
+                                    <small> <del>$<?php echo $relPro->price;?></del></small>/$<?php echo $spPric2;?>
+                                <?php } ?>
+                            </div>
+                            <a href="javascript:void(0)" onclick="addToCart(<?php echo $relPro->product_id ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
                         </div>
                     </div>
-                    <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative text-white card p-3 rounded-0 mb-3">
-                        <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                        <div class="product-top">
-                            <img src="<?php echo base_url()?>/assets/img/p1.png" alt="" class="img-fluid w-100">
-                            <div class="rating text-center my-2">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                        </div>
-                        <div class="product-bottom mt-auto">
-                            <div class="category">
-                                Categorie
-                            </div>
-                            <div class="product-title mb-2">
-                                <a href="#">12 COOL Smart Home Gadgets</a>
-                            </div>
-                            <div class="price mb-3">$200.00</div>
-                            <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                        </div>
-                    </div>
+                    <?php } } ?>
                 </div>
             </div>
         </div>
@@ -174,11 +171,17 @@
                 <div class="card-body">
                     <div class="products h-100">
                         <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-5 h-100">
+                            <?php if(!empty($relProd)){ foreach ($relProd as $rPro){ ?>
                             <div class="col border p-2">
                                 <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
+                                    <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
+                                        <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
+                                    <?php }else{ ?>
+                                        <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $rPro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
+                                    <?php } ?>
+                                    <a href="" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
                                     <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p1.png" alt="" class="img-fluid w-100">
+                                        <?php echo image_view('uploads/products',$rPro->product_id,'191_'.$rPro->image,'noimage.png','img-fluid w-100')?>
                                         <div class="rating text-center my-2">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -189,241 +192,23 @@
                                     </div>
                                     <div class="product-bottom mt-auto">
                                         <div class="category">
-                                            Categorie
+<!--                                            Categorie-->
                                         </div>
                                         <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
+                                            <a href="<?php echo base_url('detail/'.$rPro->product_id)?>"><?php echo $rPro->name;?></a>
                                         </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
+                                        <div class="price mb-3">
+                                            <?php $spPric = get_data_by_id('special_price','product_special','product_id',$rPro->product_id);  if (empty($spPric)){ ?>
+                                                $<?php echo $rPro->price;?>
+                                            <?php }else{ ?>
+                                                <small> <del>$<?php echo $rPro->price;?></del></small>/$<?php echo $spPric;?>
+                                            <?php } ?>
+                                        </div>
+                                        <a href="javascript:void(0)" onclick="addToCart(<?php echo $rPro->product_id ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p2.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p3.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p4.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p5.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p6.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p7.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p8.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p9.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col border p-2">
-                                <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                    <a href="#" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <div class="product-top">
-                                        <img src="<?php echo base_url()?>/assets/img/p1.png" alt="" class="img-fluid w-100">
-                                        <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-bottom mt-auto">
-                                        <div class="category">
-                                            Categorie
-                                        </div>
-                                        <div class="product-title mb-2">
-                                            <a href="#">The Woven Sweet Dreams P.J. Top</a>
-                                        </div>
-                                        <div class="price mb-3">$200.00</div>
-                                        <a href="#" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php } } ?>
                         </div>
                     </div>
                 </div>

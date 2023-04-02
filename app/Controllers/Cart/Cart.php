@@ -28,7 +28,7 @@ class Cart extends BaseController {
         $product_id = $this->request->getPost('product_id');
         $qty = $this->request->getPost('qtyall');
 
-        $name = get_data_by_id('name','product_description','product_id',$product_id);
+        $name = get_data_by_id('name','products','product_id',$product_id);
         $price = get_data_by_id('price','products','product_id',$product_id);
         $specialprice = get_data_by_id('special_price','product_special','product_id',$product_id);
         if (!empty($specialprice)){

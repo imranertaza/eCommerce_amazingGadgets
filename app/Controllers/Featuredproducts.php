@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Home extends BaseController {
+class Featuredproducts extends BaseController {
 
     protected $validation;
     protected $session;
@@ -15,14 +15,11 @@ class Home extends BaseController {
 
     public function index(){
         $table = DB()->table('products');
-        $data['products'] = $table->where('status','Active')->get()->getResult();
+        $data['products'] = $table->where('status','Active')->where('featured','1')->get()->getResult();
 
-
-        $data['prodFeat'] = $table->where('status','Active')->where('featured','1')->orderBy('product_id','DESC')->limit(8)->get()->getResult();
-
-        $data['home_menu'] = true;
+        $data['page_title'] = 'Featured Products';
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Home/index');
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Featuredproducts/index',$data);
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
 }

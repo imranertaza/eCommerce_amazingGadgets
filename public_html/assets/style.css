@@ -286,9 +286,10 @@ a {
     font-size: 18px;
 }
 .btn-wishlist {display: none; transition: all 1s;}
-.product-grid:hover .btn-wishlist {
+.btn-compare {display: none; transition: all 1s;}
+.product-grid:hover .btn-wishlist, .product-grid:hover .btn-compare{
     display: block;
-    color: #FFF;
+    color: #000000;
 }
 .btn-cart {
     background-color: #ECECEC;

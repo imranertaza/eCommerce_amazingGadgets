@@ -177,9 +177,45 @@ function image_view($url,$slug,$image,$no_image,$class=''){
     return $result;
 }
 
+function multi_image_view($url,$slug,$slug2,$image,$no_image,$class=''){
+    $bas_url = base_url();
+
+    $dir = FCPATH .'/'.$url.'/'.$slug.'/'.$slug2;
+    $img = $bas_url.'/'.$url.'/'.$slug.'/'.$slug2.'/'.$image;
+
+
+    $no_img = $bas_url.'/'.$url.'/'.$no_image;
+    if (!empty($image)){
+        if(!file_exists($dir)){
+            $result = '<img data-sizes="auto" src="'.$no_img.'" class="'.$class.'" loading="lazy">';
+        }else{
+            $imgPath = $dir.'/'.$image;
+            if (file_exists($imgPath)) {
+                $result = '<img data-sizes="auto" src="' . $img . '" class="' . $class . '" loading="lazy">';
+            }else{
+                $result = '<img data-sizes="auto" src="'.$no_img.'" class="'.$class.'" loading="lazy">';
+            }
+        }
+    }else{
+        $result = '<img data-sizes="auto" src="'.$no_img.'" class="'.$class.'" loading="lazy">';
+    }
+    return $result;
+}
+
 function is_exists($table,$whereCol,$whereInfo){
     $table = DB()->table($table);
     $query = $table->where($whereCol,$whereInfo)->countAllResults();
+    if (!empty($query)) {
+        $col = false;
+    }else {
+        $col = true;
+    }
+    return $col;
+}
+
+function is_exists_double_condition($table,$whereCol,$whereInfo,$orWhereCol,$orWhereInfo){
+    $table = DB()->table($table);
+    $query = $table->where($whereCol,$whereInfo)->where($orWhereCol,$orWhereInfo)->countAllResults();
     if (!empty($query)) {
         $col = false;
     }else {
@@ -259,6 +295,17 @@ function get_lebel_by_value_in_settings($lable){
     return $result;
 }
 
+function get_lebel_by_title_in_settings($lable){
+    $table = DB()->table('settings');
+    $data = $table->where('label',$lable)->get()->getRow();
+    if (!empty($data)){
+        $result = $data->title;
+    }else{
+        $result ='';
+    }
+    return $result;
+}
+
 function getListInParentCategory($selected)
 {
     $table = DB()->table('product_category');
@@ -294,6 +341,37 @@ function check_is_sub_category($product_category_id){
     return $result;
 }
 
-//function product_attribute_by_priduct_id($product_id){
-//    $table = DB()->table('product_attribute');
-//}
+function available_theme($sel=''){
+    helper('filesystem');
+    $file = get_dir_file_info(FCPATH.'../app/Views/Theme');
+    $view = '';
+    foreach ($file as $key => $val){
+        $s = ($key == $sel)?"selected":"";
+        $view .= '<option value="'.$key.'" '.$s.' >'.$key.'</option>';
+    }
+    return $view;
+}
+
+function country($sel = ''){
+    $table = DB()->table('country');
+    $data = $table->get()->getResult();
+    $options = '';
+    foreach ($data as $value) {
+        $options .= '<option value="' . $value->country_id . '" ';
+        $options .= ($value->country_id == $sel ) ? ' selected="selected"' : '';
+        $options .= '>' . $value->name. '</option>';
+    }
+    return $options;
+}
+
+function state_with_country($country,$sel = ''){
+    $table = DB()->table('zone');
+    $data = $table->where('country_id',$country)->get()->getResult();
+    $options = '';
+    foreach ($data as $value) {
+        $options .= '<option value="' . $value->zone_id . '" ';
+        $options .= ($value->zone_id == $sel ) ? ' selected="selected"' : '';
+        $options .= '>' . $value->name. '</option>';
+    }
+    return $options;
+}

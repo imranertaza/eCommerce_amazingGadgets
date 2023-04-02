@@ -115,6 +115,11 @@ class Products extends BaseController
             $proData['quantity'] = $this->request->getPost('quantity');
             $proData['createdBy'] = $adUserId;
 
+            $product_featured = $this->request->getPost('product_featured');
+            if ($product_featured == 'on'){
+                $proData['featured'] = '1';
+            }
+
             $proTable = DB()->table('products');
             $proTable->insert($proData);
             $productId = DB()->insertID();
@@ -203,15 +208,6 @@ class Products extends BaseController
             //product category insert(end)
 
 
-
-            //product_featured data insert(start)
-            $product_featured = $this->request->getPost('product_featured');
-            if ($product_featured == 'on'){
-                $proFutData['product_id'] = $productId;
-                $proFuttable = DB()->table('product_featured');
-                $proFuttable->insert($proFutData);
-            }
-            //product_featured data insert(end)
 
 
 
@@ -329,8 +325,10 @@ class Products extends BaseController
 
             $table = DB()->table('products');
             $table->join('product_description', 'product_description.product_id = products.product_id ');
-            $table->join('product_special', 'product_special.product_id = products.product_id ');
             $data['prod'] = $table->where('products.product_id', $product_id)->get()->getRow();
+
+            $table = DB()->table('product_category');
+            $data['prodCat'] = $table->get()->getResult();
 
             //$perm = array('create','read','update','delete','mod_access');
             $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);
@@ -436,7 +434,7 @@ class Products extends BaseController
     public function related_product(){
         $product = [];
         $keyword = $this->request->getGet('q');
-        $table = DB()->table('product_description');
+        $table = DB()->table('products');
         $product = $table->like('name', $keyword)->get()->getResult();
 
         return $this->response->setJSON($product);

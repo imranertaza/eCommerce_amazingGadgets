@@ -114,10 +114,11 @@ $routes->get('/customers_delete/(:num)', 'Admin\Customers::delete/$1');
 
 //Settings
 $routes->get('/settings', 'Admin\Settings::index');
-$routes->get('/settings_create', 'Admin\Settings::create');
-$routes->post('/settings_create_action', 'Admin\Settings::create_action');
 $routes->post('/settings_update_action', 'Admin\Settings::update_action');
-$routes->get('/settings_update/(:num)', 'Admin\Settings::update/$1');
+
+//Ajax
+$routes->post('/get_state', 'Admin\Ajax::get_state');
+
 
 
 
@@ -132,6 +133,12 @@ $routes->get('/logout', 'Login::logout');
 
 //Customer Dashboard routes
 $routes->get('/dashboard', 'Customer\Dashboard::index');
+$routes->post('/addtoWishlist', 'Customer\Dashboard::addtoWishlist');
+
+$routes->get('/favorite', 'Customer\Favorite::index');
+
+
+
 
 //cart routes
 $routes->get('/cart', 'Cart\Cart::index');
@@ -145,6 +152,8 @@ $routes->get('/contact', 'Pages\Pages::contact');
 
 //products routes
 $routes->get('/detail/(:num)', 'Products\Products::detail/$1');
+
+$routes->get('/featuredproducts', 'Featuredproducts::index');
 
 
 /*
