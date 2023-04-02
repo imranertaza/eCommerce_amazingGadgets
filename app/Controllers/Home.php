@@ -25,4 +25,6 @@ class Home extends BaseController {
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Home/index');
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
+
+
 }

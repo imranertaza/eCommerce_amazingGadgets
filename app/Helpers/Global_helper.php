@@ -375,3 +375,10 @@ function state_with_country($country,$sel = ''){
     }
     return $options;
 }
+
+function attribute_array_by_product_id($productId){
+    $table = DB()->table('product_attribute');
+    $query = $table->where('product_id',$productId)->get()->getResult();
+
+    return $query;
+}

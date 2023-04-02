@@ -171,6 +171,35 @@
     });
 
 
+    function addToCompare(pro_id){
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('addtoCompare')?>",
+            data: {product_id:pro_id},
+            success: function(response){
+                $('#mesVal').html(response);
+                $('.message_alert').show();
+                setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
+            }
+        });
+    }
+
+    function removeToCompare(key_id){
+        // alert(key_id);
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('removeToCompare')?>",
+            data: {key_id:key_id},
+            success: function(response){
+                $('#compReload').load(location.href + " #compReload");
+                alert(response);
+                // $('#mesVal').html(response);
+                // $('.message_alert').show();
+                // setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
+            }
+        });
+    }
+
     function addToWishlist(pro_id){
         $.ajax({
             method: "POST",

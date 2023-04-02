@@ -37,6 +37,12 @@
                         <span><i class="fa-solid fa-heart me-1"></i></span>
                         <span>Wishlist</span>
                     </a>
+
+                    <a class="me-3 d-flex" href="<?php echo base_url('compare')?>">
+                        <span><i class="fa-solid fa-code-compare"></i></span>
+                        <span> Compare</span>
+                    </a>
+
                     <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
                     <a class="me-3 py-3 pe-3 border-end d-flex" href="<?php echo base_url('register')?>">
                         <span><i class="fa-solid fa-user me-1"></i></span>

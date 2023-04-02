@@ -135,6 +135,7 @@ $routes->get('/logout', 'Login::logout');
 $routes->get('/dashboard', 'Customer\Dashboard::index');
 $routes->post('/addtoWishlist', 'Customer\Dashboard::addtoWishlist');
 
+
 $routes->get('/favorite', 'Customer\Favorite::index');
 
 
@@ -154,6 +155,13 @@ $routes->get('/contact', 'Pages\Pages::contact');
 $routes->get('/detail/(:num)', 'Products\Products::detail/$1');
 
 $routes->get('/featuredproducts', 'Featuredproducts::index');
+
+//Compare
+$routes->get('/compare', 'Compare::index');
+$routes->post('/addtoCompare', 'Compare::addtoCompare');
+$routes->post('/removeToCompare', 'Compare::removeToCompare');
+
+
 
 
 /*
