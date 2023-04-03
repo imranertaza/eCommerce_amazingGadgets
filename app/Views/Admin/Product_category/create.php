@@ -58,6 +58,20 @@
                                 <input type="file" name="image" class="form-control" placeholder="image" >
                             </div>
 
+                            <div class="form-group">
+                                <label>Icon</label>
+                                <?php $icons = get_all_data_array('icons');?>
+                                <div class="row">
+                                    <?php $i = 1; $j = 1; foreach ($icons as $valic){ ?>
+                                    <div class="col-md-2  custom-control custom-radio">
+                                        <input class="custom-control-input" type="radio" id="customRadio_<?php echo $i++?>" name="icon_id" value="<?php echo $valic->icon_id;?>">
+                                        <label for="customRadio_<?php echo $j++?>" class="custom-control-label"><?php echo image_view('icons','',$valic->name,'no_image','')?></label>
+                                    </div>
+                                    <?php } ?>
+
+                                </div>
+                            </div>
+
                             <button class="btn btn-primary" >Create</button>
                             <a href="<?php echo base_url('product_category')?>" class="btn btn-danger" >Back</a>
                         </div>

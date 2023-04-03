@@ -8,6 +8,10 @@
     width: 50px !important;
     height: 50px !important;
 }
+.size-20x20{
+    width: 20px !important;
+    height: 20px !important;
+}
 .requi{
     color:#ff0000;
 }

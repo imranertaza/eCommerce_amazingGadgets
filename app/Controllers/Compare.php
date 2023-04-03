@@ -51,14 +51,13 @@ class Compare extends BaseController {
             }
         }
 //        unset($_SESSION['compare_session']);
-//        print_r($this->session->compare_session);
     }
 
     public function removeToCompare(){
         $key_id = $this->request->getPost('key_id');
         if(isset($this->session->compare_session)){
             unset($_SESSION['compare_session'][$key_id]);
-            print_r($this->session->compare_session);
+            print 'Successfully remove to compare';
         }
     }
 

@@ -51,7 +51,7 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
-                            200 Reating
+                            200 Rating
                         </div>
                         <div class="brand mb-3"><strong>Brand:</strong> <?php echo get_data_by_id('name','brand','brand_id',$products->brand_id);?></div>
                         <hr>
@@ -73,12 +73,15 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="javascript:void(0)" class="btn btn-cart rounded-0 mt-3 width-100" onclick="addToCart(<?php echo $products->product_id ?>)">Add to Cart</a>
+
                         <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
-                        <a href="<?php echo base_url('login');?>" class="btn  btn-info rounded-0 mt-3" style="color:#ffffff;" ><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
+                            <a href="<?php echo base_url('login');?>" class="btn btn-wi  btn-default border rounded-0 mt-3"  ><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
                         <?php }else{ ?>
-                            <a href="javascript:void(0)" class="btn  btn-info rounded-0 mt-3" style="color:#ffffff;" onclick="addToWishlist(<?php echo $products->product_id ?>)"><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
+                            <a href="javascript:void(0)" class="btn btn-wi  btn-default border rounded-0 mt-3"  onclick="addToWishlist(<?php echo $products->product_id ?>)"><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
                         <?php } ?>
-                        <a href="javascript:void(0)" class="btn btn-cart rounded-0 mt-3" onclick="addToCart(<?php echo $products->product_id ?>)">Add to Cart</a>
+
+                        <a href="javascript:void(0)" onclick="addToCompare(<?php echo $products->product_id ?>)" class="btn btn-wi  btn-default border  rounded-0 mt-3"  ><i class="fa-solid fa-code-compare"></i> Add to compare</a>
                     </div>
                     <div class="col-lg-3">
                         <div class="product-info p-3">
@@ -102,24 +105,78 @@
 
         <div class="row mb-4">
             <div class="col-lg-9 mb-3 mb-lg-0">
-                <div class="card p-3 rounded-0 description">
-                    <h2 class="mb-5"><?php echo $products->name;?></h2>
-                    <p><?php echo $products->description;?></p>
-                    <ul class="list-unstyled ps-3 mb-5">
-                        <li>6-Months Service warranty</li>
-                        <li>High-grade stainless steel blade</li>
-                        <li>Compact Design and comfortable to use</li>
-                        <li>Ergonomic design for easier handling</li>
-                        <li>Effortless even trim</li>
-                        <li>Quick-release blades for easy cleaning</li>
-                        <li>45 minutes of cordless use</li>
-                        <li>Skin-friendly blades for smooth skin</li>
-                        <li>4-Detachable 1mm, 3mm, 5mm, & 7mm comb</li>
+                <div class="card product-tab p-5 rounded-0 h-100">
+                    <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
+                    <ul class="nav nav-tabs list-unstyled mb-5 border-0" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description-tab-pane" type="button" role="tab" aria-controls="description-tab-pane" aria-selected="true">Details</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="more-tab" data-bs-toggle="tab" data-bs-target="#more-tab-pane" type="button" role="tab" aria-controls="more-tab-pane" aria-selected="false">More Information</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">Reviews</button>
+                        </li>
                     </ul>
-                    <hr>
-                    <div class="product-video mt-3">
-                        <img src="<?php echo base_url()?>/assets/img/video.png" alt="" class="img-fluid w-100">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel" aria-labelledby="description-tab" tabindex="0">
+                            <div class="description">
+                                <h2 class="mb-5"><?php echo $products->name;?></h2>
+                                <?php echo $products->description;?>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="more-tab-pane" role="tabpanel" aria-labelledby="more-tab" tabindex="0">
+                            <h2 class="mb-5"><?php echo $products->name;?></h2>
+                            <table class="table table-hover">
+<!--                                <tr>-->
+<!--                                    <th>WHAT'S IN THE BOX</th>-->
+<!--                                    <td>-->
+<!--                                        OnePlus Bullets<br>-->
+<!--                                        Wireless Z2 E305A Earphones<br>-->
+<!--                                        3x Silicone eartips (S, M, L)<br>-->
+<!--                                        USB charging cable<br>-->
+<!--                                        e-Manual-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+                                <tr>
+                                    <th>SPECIFICATION</th>
+                                    <td>
+                                        <table class="table">
+                                            <?php foreach (attribute_array_by_product_id($products->product_id) as $spec){?>
+                                            <tr>
+                                                <td><?php echo get_data_by_id('name','product_attribute_group','attribute_group_id',$spec->attribute_group_id);?>:</td>
+                                                <td><?php echo $spec->name;?></td>
+                                            </tr>
+                                            <?php } ?>
+
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+
+                            <form action="<?php echo base_url('review')?>" method="post" class="product-review w-50">
+                                <p class="mb-4"><strong>Your Rating</strong></p>
+                                <?php if (isset(newSession()->isLoggedInCustomer)){ if(empty(check_review($products->product_id))){  ?>
+                                <div class="rating ">
+                                    <div class="ratingPiont"></div>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="review">Message</label>
+                                    <textarea class="form-control" rows="5" name="feedback_text" id="review" placeholder="Message.." required ></textarea>
+                                </div>
+                                    <input type="hidden" name="product_id" value="<?php echo $products->product_id;?>">
+                                <button class="btn rounded-0 mt-3 px-4 py-2" type="submit">Submit Review</button>
+                                <?php }else{ echo '<p>Already Reviewed</p>';} }else{ ?>
+                                    <a href="<?php echo base_url('login')?>">Please login to continue</a>
+                                <?php }?>
+                            </form>
+
+                        </div>
                     </div>
+
+
                 </div>
             </div>
             <div class="col-lg-3">

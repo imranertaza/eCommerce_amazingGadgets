@@ -76,6 +76,7 @@ class Product_category extends BaseController
     public function create_action()
     {
         $data['category_name'] = $this->request->getPost('category_name');
+        $data['icon_id'] = !empty($this->request->getPost('icon_id'))?$this->request->getPost('icon_id'):null;
         $data['parent_id'] = !empty($this->request->getPost('parent_id'))?$this->request->getPost('parent_id'):null;
         $data['createdBy'] = $this->session->adUserId;
 
@@ -143,6 +144,7 @@ class Product_category extends BaseController
     {
         $prod_cat_id = $this->request->getPost('prod_cat_id');
         $data['category_name'] = $this->request->getPost('category_name');
+        $data['icon_id'] = !empty($this->request->getPost('icon_id'))?$this->request->getPost('icon_id'):null;
         $data['parent_id'] = !empty($this->request->getPost('parent_id'))?$this->request->getPost('parent_id'):null;
         $data['updatedBy'] = $this->session->adUserId;
 

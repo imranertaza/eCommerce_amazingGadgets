@@ -60,9 +60,35 @@
     </div>
 </footer>
 
+<script src="<?php echo base_url() ?>/assets/jquery-3.6.0.js"></script>
+<script src="<?php echo base_url() ?>/assets/jquery-ui.js"></script>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/jquery.star-rating.js"></script>
 <script>
+    $('.ratingPiont').starRating({
+        starSize: 1.5,
+        showInfo: true
+    });
+
+    // $(document).on('change', '.ratingPiont', function (e, stars, index) {
+    //     alert(`Thx for ${stars} stars!`);
+    // });
+
+    jQuery( function($) {
+        $( ".slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [ 75, 300 ],
+            slide: function( event, ui ) {
+                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            }
+        });
+        $( "#amount" ).val( "$" + $( ".slider-range" ).slider( "values", 0 ) +
+            " - $" + $( ".slider-range" ).slider( "values", 1 ) );
+    } );
+
     var slider = new Swiper ('.gallery-slider', {
         slidesPerView: 1,
         centeredSlides: true,
@@ -279,6 +305,8 @@
             }
         });
     }
+
+
 </script>
 
 </body>

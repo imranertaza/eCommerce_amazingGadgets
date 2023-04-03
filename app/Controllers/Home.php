@@ -22,7 +22,7 @@ class Home extends BaseController {
 
         $data['home_menu'] = true;
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Home/index');
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Home/index',$data);
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
 

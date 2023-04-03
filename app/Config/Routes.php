@@ -153,6 +153,7 @@ $routes->get('/contact', 'Pages\Pages::contact');
 
 //products routes
 $routes->get('/detail/(:num)', 'Products\Products::detail/$1');
+$routes->post('/review', 'Products\Products::review');
 
 $routes->get('/featuredproducts', 'Featuredproducts::index');
 
@@ -161,7 +162,8 @@ $routes->get('/compare', 'Compare::index');
 $routes->post('/addtoCompare', 'Compare::addtoCompare');
 $routes->post('/removeToCompare', 'Compare::removeToCompare');
 
-
+//Category
+$routes->get('/category/(:num)', 'Category::index/$1');
 
 
 /*

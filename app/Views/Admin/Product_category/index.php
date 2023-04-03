@@ -38,6 +38,7 @@
                         <th>Sl</th>
                         <th>Name</th>
                         <th>Image</th>
+                        <th>Icon</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -47,6 +48,10 @@
                             <td width="40" ><?php echo $i++;?></td>
                             <td><?php echo $parCat. $val->category_name;?></td>
                             <td><?php echo image_view('uploads/category','',$val->image,'noimage.png','width-80');?></td>
+                            <td><?php
+                                    $icon = get_data_by_id('name','icons','icon_id',$val->icon_id);
+                                    echo image_view('icons','',$icon,'noimage.png','size-20x20');
+                                ?></td>
                             <td width="180">
                                 <a href="<?php echo base_url('product_category_update/'.$val->prod_cat_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
                                 <a href="<?php echo base_url('product_category_delete/'.$val->prod_cat_id);?>" onclick="return confirm('Are you sure you want to Delete?')" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> Delete</a>
@@ -60,6 +65,7 @@
                         <th>Sl</th>
                         <th>Name</th>
                         <th>Image</th>
+                        <th>Icon</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>

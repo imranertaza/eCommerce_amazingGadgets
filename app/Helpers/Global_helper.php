@@ -319,6 +319,20 @@ function getListInParentCategory($selected)
     return $options;
 }
 
+function getParentCategoryArray()
+{
+    $table = DB()->table('product_category');
+    $query = $table->where('parent_id',null)->get()->getResult();
+    return $query;
+}
+
+function getCategoryBySubArray($cat_id)
+{
+    $table = DB()->table('product_category');
+    $query = $table->where('parent_id',$cat_id)->get()->getResult();
+    return $query;
+}
+
 function check_is_parent_category($product_category_id){
     $table = DB()->table('product_category');
     $cat = $table->where('prod_cat_id',$product_category_id)->get()->getRow();
@@ -381,4 +395,23 @@ function attribute_array_by_product_id($productId){
     $query = $table->where('product_id',$productId)->get()->getResult();
 
     return $query;
+}
+
+function get_all_data_array($table){
+    $tableSel = DB()->table($table);
+    $query = $tableSel->get()->getResult();
+
+    return $query;
+}
+
+function category_id_by_product_count($category_id){
+    $table = DB()->table('product_to_category');
+    $count = $table->where('category_id',$category_id)->countAllResults();
+    return $count;
+}
+
+function check_review($productId){
+    $table = DB()->table('product_feedback');
+    $count = $table->where('product_id',$productId)->where('customer_id',newSession()->cusUserId)->countAllResults();
+    return $count;
 }

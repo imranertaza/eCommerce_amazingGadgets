@@ -345,7 +345,6 @@ a {
 .alert {
     background-color: #FF4B4B !important;
 }
-
 .sing-up {
     max-width: 390px;
 }
@@ -684,21 +683,4 @@ a {
 .alert-success_web{
     background-color: green;
     border-radius: 20px;
-}
-.alert-success-m {
-    background-color: green !important;
-    padding: 13px;
-    margin: 5px 0px 5px 0px;
-    border-radius: 8px;
-    color: #ffffff;
-}
-.width-100{
-    width:100% !important;
-}
-.width-50{
-    width:50% !important;
-}
-.btn-wi{
-    line-height: 40px;
-    min-width: 49%;
 }

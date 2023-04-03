@@ -59,5 +59,29 @@ class Products extends BaseController {
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
 
+    public function review(){
+        $data['product_id'] = $this->request->getPost('product_id');
+        $data['customer_id'] = $this->session->cusUserId;
+        $data['feedback_star'] = $this->request->getPost('rating');
+        $data['feedback_text'] = $this->request->getPost('feedback_text');
+
+        $this->validation->setRules([
+            'product_id' => ['label' => 'Product', 'rules' => 'required'],
+            'feedback_star' => ['label' => 'Rating', 'rules' => 'required'],
+            'feedback_text' => ['label' => 'Message', 'rules' => 'required'],
+        ]);
+
+        if ($this->validation->run($data) == FALSE) {
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() .'</div>');
+            return redirect()->to('detail/'. $data['product_id']);
+        } else {
+
+            $table = DB()->table('product_feedback');
+            $table->insert($data);
+            $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Successfully submitted review</div>');
+            return redirect()->to('detail/'. $data['product_id']);
+        }
+    }
+
 
 }
