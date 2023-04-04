@@ -116,8 +116,16 @@ $routes->get('/customers_delete/(:num)', 'Admin\Customers::delete/$1');
 $routes->get('/settings', 'Admin\Settings::index');
 $routes->post('/settings_update_action', 'Admin\Settings::update_action');
 
+
+$routes->post('/settings_update_action', 'Admin\Settings::update_action');
+
 //Ajax
-$routes->post('/get_state', 'Admin\Ajax::get_state');
+$routes->get('/page_list', 'Admin\Page_settings::index');
+$routes->get('/page_create', 'Admin\Page_settings::create');
+$routes->get('/page_update/(:num)', 'Admin\Page_settings::update/$1');
+$routes->get('/page_delete/(:num)', 'Admin\Page_settings::delete/$1');
+$routes->post('/page_create_action', 'Admin\Page_settings::create_action');
+$routes->post('/page_update_action', 'Admin\Page_settings::update_action');
 
 
 
@@ -150,6 +158,7 @@ $routes->post('/removeToCart', 'Cart\Cart::removeToCart');
 //pages routes
 $routes->get('/about', 'Pages\Pages::about');
 $routes->get('/contact', 'Pages\Pages::contact');
+$routes->get('/page/(:any)', 'Pages\Pages::page/$1');
 
 //products routes
 $routes->get('/detail/(:num)', 'Products\Products::detail/$1');

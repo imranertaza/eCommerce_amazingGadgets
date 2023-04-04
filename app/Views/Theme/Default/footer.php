@@ -63,10 +63,15 @@
 <script src="<?php echo base_url() ?>/assets/jquery-3.6.0.js"></script>
 <script src="<?php echo base_url() ?>/assets/jquery-ui.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+
 <script src="<?php echo base_url() ?>/assets/jquery.star-rating.js"></script>
 <script>
     $('.ratingPiont').starRating({
+        starSize: 1.5,
+        showInfo: true
+    });
+
+    $('.ratingView').starRating({
         starSize: 1.5,
         showInfo: true
     });
@@ -211,17 +216,15 @@
     }
 
     function removeToCompare(key_id){
-        // alert(key_id);
         $.ajax({
             method: "POST",
             url: "<?php echo base_url('removeToCompare')?>",
             data: {key_id:key_id},
             success: function(response){
                 $('#compReload').load(location.href + " #compReload");
-                alert(response);
-                // $('#mesVal').html(response);
-                // $('.message_alert').show();
-                // setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
+                $('#mesVal').html(response);
+                $('.message_alert').show();
+                setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
             }
         });
     }

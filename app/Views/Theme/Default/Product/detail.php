@@ -46,12 +46,15 @@
                         <div class="product-cat mb-3"> </div>
                         <h1 class="product-title mb-4"><?php echo $products->name;?></h1>
                         <div class="rating mb-2">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            200 Rating
+<!--                            <i class="fa-solid fa-star"></i>-->
+<!--                            <i class="fa-solid fa-star"></i>-->
+<!--                            <i class="fa-solid fa-star"></i>-->
+<!--                            <i class="fa-solid fa-star"></i>-->
+<!--                            <i class="fa-solid fa-star"></i>-->
+<!--                            200 Rating-->
+
+                                <?php echo product_id_by_rating($products->product_id,'1');?>
+
                         </div>
                         <div class="brand mb-3"><strong>Brand:</strong> <?php echo get_data_by_id('name','brand','brand_id',$products->brand_id);?></div>
                         <hr>
@@ -192,11 +195,7 @@
                         <div class="product-top">
                             <?php echo image_view('uploads/products',$relPro->product_id,'191_'.$relPro->image,'noimage.png','img-fluid w-100')?>
                             <div class="rating text-center my-2">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
+                                <?php echo product_id_by_rating($relPro->product_id);?>
                             </div>
                         </div>
                         <div class="product-bottom mt-auto">
@@ -240,11 +239,7 @@
                                     <div class="product-top">
                                         <?php echo image_view('uploads/products',$rPro->product_id,'191_'.$rPro->image,'noimage.png','img-fluid w-100')?>
                                         <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
+                                            <?php echo product_id_by_rating($rPro->product_id);?>
                                         </div>
                                     </div>
                                     <div class="product-bottom mt-auto">

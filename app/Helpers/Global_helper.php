@@ -415,3 +415,47 @@ function check_review($productId){
     $count = $table->where('product_id',$productId)->where('customer_id',newSession()->cusUserId)->countAllResults();
     return $count;
 }
+
+function product_id_by_rating($productId,$ratingCount = 0){
+
+    $table = DB()->table('product_feedback');
+    $pro = $table->where('product_id',$productId)->get()->getResult();
+
+    $average = 0;
+    $numberOfReviews = count($pro);
+    if (!empty($numberOfReviews)) {
+        $totalStar = 0;
+        foreach ($pro as $val) {
+            $totalStar += $val->feedback_star;
+        }
+        $average = $totalStar / $numberOfReviews;
+    }
+    $sty = (!empty($ratingCount))?'display: flex;':'';
+    $view = '<div class="js-wc-star-rating" style="'.$sty.'">';
+            $starColor = 'rgb(0, 0, 0)'; $starType = 'fa-solid';
+            for ($x = 1; $x <= 5; $x++) {
+                if($x > $average) {
+                    $starColor = 'lightgray'; $starType = 'fa-regular';
+                }
+                $view .='<i data-index="0"  class="' . $starType . ' fa-star" style="color: ' . $starColor . '; margin: 2px; font-size: 1em;"></i>';
+            }
+
+    if (!empty($ratingCount)) {
+        $view .= $numberOfReviews . ' Rating';
+    }
+    $view .='</div>';
+
+    return $view;
+}
+
+function available_template($sel=''){
+    helper('filesystem');
+    $tem = get_lebel_by_value_in_settings('Theme');
+    $file = get_dir_file_info(FCPATH.'../app/Views/Theme/'.$tem.'/Page');
+    $view = '';
+    foreach ($file as $key => $val){
+        $s = ($key == $sel)?"selected":"";
+        $view .= '<option value="'.$key.'" '.$s.' >'.$key.'</option>';
+    }
+    return $view;
+}

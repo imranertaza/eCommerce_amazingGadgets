@@ -143,9 +143,11 @@ class Product_category extends BaseController
     public function update_action()
     {
         $prod_cat_id = $this->request->getPost('prod_cat_id');
+        $popular = $this->request->getPost('popular');
         $data['category_name'] = $this->request->getPost('category_name');
         $data['icon_id'] = !empty($this->request->getPost('icon_id'))?$this->request->getPost('icon_id'):null;
         $data['parent_id'] = !empty($this->request->getPost('parent_id'))?$this->request->getPost('parent_id'):null;
+        $data['description'] = $this->request->getPost('description');
         $data['updatedBy'] = $this->session->adUserId;
 
         $this->validation->setRules([
@@ -156,6 +158,21 @@ class Product_category extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('product_category_update/' . $prod_cat_id);
         } else {
+
+            $checkPop = is_exists('product_category_popular','prod_cat_id',$prod_cat_id);
+            if ($popular =='on' ){
+                if ($checkPop == true){
+                    $polulerData['prod_cat_id'] = $prod_cat_id;
+                    $tabPoluler = DB()->table('product_category_popular');
+                    $tabPoluler->insert($polulerData);
+                }
+            }else{
+                if ($checkPop == false){
+                    $tabPoluler = DB()->table('product_category_popular');
+                    $tabPoluler->where('prod_cat_id',$prod_cat_id)->delete();
+                }
+            }
+
             if (!empty($_FILES['image']['name'])) {
                 $target_dir = FCPATH . '/uploads/category/';
                 if (!file_exists($target_dir)) {
@@ -198,7 +215,7 @@ class Product_category extends BaseController
         $data['meta_description'] = $this->request->getPost('meta_description');
         $data['sort_order'] = $this->request->getPost('sort_order');
         $data['header_menu'] = $this->request->getPost('header_menu');
-        $data['description'] = $this->request->getPost('description');
+
 
         $data['updatedBy'] = $this->session->adUserId;
 

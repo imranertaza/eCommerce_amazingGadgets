@@ -166,10 +166,10 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('contact')?>">Contact</a>
+                                        <a class="nav-link" href="<?php echo base_url('page/contact_us')?>">Contact</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('about')?>">About Us</a>
+                                        <a class="nav-link" href="<?php echo base_url('page/about_us')?>">About Us</a>
                                     </li>
                                 </ul>
                             </div>

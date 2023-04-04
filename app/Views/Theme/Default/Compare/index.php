@@ -27,12 +27,7 @@
                                     <small> <del>$<?php echo $pro->price;?></del></small>/$<?php echo $spPric;?>
                                                 <?php } ?></span><br>
                             <span>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    8 Reviews
+                                    <?php echo product_id_by_rating($pro->product_id,'1');?>
                                 </span>
                         </div>
                         <p><a href="javascript:void(0)" onclick="addToCart(<?php echo $pro->product_id ?>)" class="btn btn-cart rounded-0 mt-3 bg-black text-white">Add to Cart</a></p>

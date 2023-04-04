@@ -59,10 +59,11 @@
                                 <div class="tab-content" id="custom-tabs-four-tabContent">
                                     <div class="tab-pane fade active show" id="custom-tabs-four-home" role="tabpanel"
                                          aria-labelledby="custom-tabs-four-home-tab">
+                                        <form action="<?php echo base_url('product_category_update_action') ?>"
+                                              method="post" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form action="<?php echo base_url('product_category_update_action') ?>"
-                                                      method="post" enctype="multipart/form-data">
+
                                                     <div class="form-group">
                                                         <label>Name</label>
                                                         <input type="text" name="category_name" class="form-control"
@@ -104,13 +105,22 @@
                                                     <button class="btn btn-primary">Update</button>
                                                     <a href="<?php echo base_url('product_category') ?>"
                                                        class="btn btn-danger">Back</a>
-                                                </form>
+
                                             </div>
 
                                             <div class="col-md-6">
-
+                                                <div class="form-group">
+                                                    <label>Description</label>
+                                                    <textarea name="description" rows="4" class="form-control"><?php echo $category->description; ?></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Popular</label>
+                                                    <?php $checkPop = is_exists('product_category_popular','prod_cat_id',$category->prod_cat_id); ?>
+                                                    <input type="checkbox" name="popular" <?php echo ($checkPop == false)?'checked':'';?>  data-bootstrap-switch>
+                                                </div>
                                             </div>
                                         </div>
+                                        </form>
 
                                     </div>
                                     <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
@@ -158,10 +168,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label>Description</label>
-                                                        <textarea name="description" rows="4" class="form-control"><?php echo $category->description; ?></textarea>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </form>

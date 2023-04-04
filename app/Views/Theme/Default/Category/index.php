@@ -181,11 +181,7 @@
                                                 <div class="product-top">
                                                     <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid w-100')?>
                                                     <div class="rating text-center my-2">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
+                                                        <?php echo product_id_by_rating($pro->product_id);?>
                                                     </div>
                                                 </div>
                                                 <div class="product-bottom mt-auto">

@@ -24,54 +24,20 @@
                 </div>
                 <div class="card-body p-0">
                     <div class="row gx-0 row-cols-2 row-cols-sm-4 row-cols-lg-6 text-center">
+                        <?php
+
+                            foreach ($populerCat as $catPop){
+                                $icon_id = get_data_by_id('icon_id','product_category','prod_cat_id',$catPop->prod_cat_id);
+                                $icon = get_data_by_id('name','icons','icon_id',$icon_id);
+                        ?>
                         <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat1.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Pant</a></h5>
+                            <a href="<?php echo base_url('category/'.$catPop->prod_cat_id);?>">
+                            <?php  echo image_view('icons','',$icon,'noimage.png','img-fluid icon-pd-20')?>
+                            <h5 class="mt-3"><a href="#"><?php echo get_data_by_id('category_name','product_category','prod_cat_id',$catPop->prod_cat_id);?></a></h5>
+                            </a>
                         </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat2.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Cap</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat3.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Accessories</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat4.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">cat-men-coats</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat5.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Men's Coats</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat6.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Pant</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat7.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Pant</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat8.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Cap</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat9.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Accessories</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat10.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">cat-men-coats</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat11.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Men's Coats</a></h5>
-                        </div>
-                        <div class="col border p-3">
-                            <img src="<?php echo base_url() ?>/assets/img/cat12.png" alt="" class="img-fluid">
-                            <h5 class="mt-3"><a href="#">Pant</a></h5>
-                        </div>
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -169,11 +135,7 @@
                                         <div class="product-top">
                                             <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid w-100')?>
                                             <div class="rating text-center my-2">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
+                                                <?php echo product_id_by_rating($pro->product_id);?>
                                             </div>
                                         </div>
                                         <div class="product-bottom mt-auto">
@@ -224,11 +186,7 @@
                                     <div class="product-top">
                                         <?php echo image_view('uploads/products',$fetPro->product_id,'191_'.$fetPro->image,'noimage.png','img-fluid w-100')?>
                                         <div class="rating text-center my-2">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
+                                            <?php echo product_id_by_rating($fetPro->product_id);?>
                                         </div>
                                     </div>
                                     <div class="product-bottom mt-auto">

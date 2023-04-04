@@ -348,7 +348,12 @@
         });
     }
 
-
+    function page_slug(Text) {
+        var slug = Text.toLowerCase()
+            .replace(/ /g, '_')
+            .replace(/[^\w-]+/g, '');
+        $("#slug").val(slug);
+    }
 
 </script>
 
