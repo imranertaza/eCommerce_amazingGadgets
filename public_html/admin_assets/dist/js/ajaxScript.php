@@ -350,7 +350,7 @@
 
     function page_slug(Text) {
         var slug = Text.toLowerCase()
-            .replace(/ /g, '_')
+            .replace(/ /g, '-')
             .replace(/[^\w-]+/g, '');
         $("#slug").val(slug);
     }

@@ -15,28 +15,6 @@ class Pages extends BaseController {
         $this->session = \Config\Services::session();
     }
 
-//    public function index()
-//    {
-//        $data['home_menu'] = true;
-//        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
-//        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Page/index');
-//        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
-//    }
-    public function about()
-    {
-        $data['page_title'] = 'About Us';
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Page/about_us');
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
-    }
-    public function contact()
-    {
-        $data['page_title'] = 'About Us';
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Page/contact');
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
-    }
-
     public function page($slug){
         $table = DB()->table('pages');
         $page = $table->where('slug',$slug)->get()->getRow();
@@ -50,8 +28,10 @@ class Pages extends BaseController {
         }else{
             echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Page/default',$data);
         }
-
-
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
+
+
+
+
 }

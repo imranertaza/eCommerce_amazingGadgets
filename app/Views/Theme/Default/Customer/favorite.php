@@ -16,13 +16,13 @@
                                         <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
                                             <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
                                         <?php }else{ ?>
-                                            <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $pro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
+                                            <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $pro['product_id'] ?>)"><i class="fa-solid fa-heart"></i></a>
                                         <?php } ?>
-                                        <a href="" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
+                                        <a href="javascript:void(0)" onclick="addToCompare(<?php echo $pro['product_id'] ?>)" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
                                         <div class="product-top">
-                                            <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid w-100')?>
+                                            <?php echo image_view('uploads/products',$pro['product_id'],'191_'.$pro['image'],'noimage.png','img-fluid w-100')?>
                                             <div class="rating text-center my-2">
-                                                <?php echo product_id_by_rating($pro->product_id);?>
+                                                <?php echo product_id_by_rating($pro['product_id']);?>
                                             </div>
                                         </div>
                                         <div class="product-bottom mt-auto">
@@ -30,16 +30,16 @@
                                                 Categorie
                                             </div>
                                             <div class="product-title mb-2">
-                                                <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
+                                                <a href="<?php echo base_url('detail/'.$pro['product_id'])?>"><?php echo $pro['name'];?></a>
                                             </div>
                                             <div class="price mb-3">
-                                                <?php $spPric = get_data_by_id('special_price','product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
-                                                    $<?php echo $pro->price;?>
+                                                <?php $spPric = get_data_by_id('special_price','product_special','product_id',$pro['product_id']);  if (empty($spPric)){ ?>
+                                                    $<?php echo $pro['price'];?>
                                                 <?php }else{ ?>
-                                                    <small> <del>$<?php echo $pro->price;?></del></small>/$<?php echo $spPric;?>
+                                                    <small> <del>$<?php echo $pro['price'];?></del></small>/$<?php echo $spPric;?>
                                                 <?php } ?>
                                             </div>
-                                            <a href="javascript:void(0)" onclick="addToCart(<?php echo $pro->product_id ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
+                                            <a href="javascript:void(0)" onclick="addToCart(<?php echo $pro['product_id'] ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -48,6 +48,8 @@
 
                             </div>
                         </div>
+
+                        <?php echo $links;?>
                     </div>
                 </div>
 

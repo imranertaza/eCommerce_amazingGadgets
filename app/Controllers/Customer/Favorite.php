@@ -4,17 +4,20 @@ namespace App\Controllers\Customer;
 
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
+use App\Models\FavoriteModel;
 
 class Favorite extends BaseController
 {
 
     protected $validation;
     protected $session;
+    protected $favoriteModel;
 
     public function __construct()
     {
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
+        $this->favoriteModel = new FavoriteModel();
     }
 
     public function index()
@@ -23,15 +26,10 @@ class Favorite extends BaseController
         if (!isset($isLoggedInCustomer) || $isLoggedInCustomer != TRUE) {
             return redirect()->to(site_url('Login'));
         } else {
-            $wishProduct = array();
-            $table = DB()->table('customer_wishlist');
-            $pro = $table->where('customer_id',$this->session->cusUserId)->get()->getResult();
-            foreach ($pro as $val){
-                $tableSear = DB()->table('products');
-                $rowPro = $tableSear->where('product_id',$val->product_id)->get()->getRow();
-                array_push($wishProduct,$rowPro);
-            }
-            $data['allProd'] = $wishProduct;
+
+            $data['allProd'] = $this->favoriteModel->where('customer_wishlist.customer_id',$this->session->cusUserId)->query()->paginate(10);
+            $data['pager'] = $this->favoriteModel->pager;
+            $data['links'] = $data['pager']->links('default','custome_link');
 
 
             $data['page_title'] = 'Favorite';

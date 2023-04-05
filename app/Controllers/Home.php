@@ -15,7 +15,7 @@ class Home extends BaseController {
 
     public function index(){
         $table = DB()->table('products');
-        $data['products'] = $table->where('status','Active')->get()->getResult();
+        $data['products'] = $table->where('status','Active')->limit(4)->get()->getResult();
 
 
         $data['prodFeat'] = $table->where('status','Active')->where('featured','1')->orderBy('product_id','DESC')->limit(8)->get()->getResult();
