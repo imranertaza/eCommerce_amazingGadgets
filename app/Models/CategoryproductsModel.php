@@ -8,6 +8,7 @@ class CategoryproductsModel extends Model {
 
     protected $table = 'product_to_category';
     protected $primaryKey = 'product_id';
+    protected $returnType = 'object';
 
     // your function to paginate
     public function query() {

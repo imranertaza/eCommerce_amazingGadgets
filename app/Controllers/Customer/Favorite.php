@@ -31,9 +31,10 @@ class Favorite extends BaseController
             $data['pager'] = $this->favoriteModel->pager;
             $data['links'] = $data['pager']->links('default','custome_link');
 
-
+            $data['menu_active'] = 'favorite';
             $data['page_title'] = 'Favorite';
             echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
+            echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Customer/menu');
             echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Customer/favorite',$data);
             echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
         }

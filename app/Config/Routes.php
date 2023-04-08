@@ -127,6 +127,24 @@ $routes->get('/page_delete/(:num)', 'Admin\Page_settings::delete/$1');
 $routes->post('/page_create_action', 'Admin\Page_settings::create_action');
 $routes->post('/page_update_action', 'Admin\Page_settings::update_action');
 
+//Coupon
+$routes->get('/coupon', 'Admin\Coupon::index');
+$routes->get('/coupon_create', 'Admin\Coupon::create');
+$routes->post('/coupon_create_action', 'Admin\Coupon::create_action');
+$routes->post('/coupon_update_action', 'Admin\Coupon::update_action');
+$routes->get('/coupon_update/(:num)', 'Admin\Coupon::update/$1');
+$routes->get('/coupon_delete/(:num)', 'Admin\Coupon::delete/$1');
+
+//
+$routes->get('/module', 'Admin\Module::index');
+$routes->post('/module_update_action', 'Admin\Module::update_action');
+
+
+$routes->post('/module_update', 'Admin\Ajax::module_update');
+
+
+
+
 
 
 
@@ -145,7 +163,9 @@ $routes->post('/addtoWishlist', 'Customer\Dashboard::addtoWishlist');
 
 
 $routes->get('/favorite', 'Customer\Favorite::index');
-
+$routes->get('/my_order', 'Customer\Order::index');
+$routes->get('/profile', 'Customer\Profile::index');
+$routes->post('/profile_update_action', 'Customer\Profile::update_action');
 
 
 
@@ -173,6 +193,11 @@ $routes->post('/removeToCompare', 'Compare::removeToCompare');
 
 //Category
 $routes->get('/category/(:num)', 'Category::index/$1');
+
+//Search top
+$routes->post('/top_search', 'Search::search_action');
+
+
 
 
 /*

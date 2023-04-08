@@ -459,3 +459,26 @@ function available_template($sel=''){
     }
     return $view;
 }
+
+function top_menu(){
+    $table = DB()->table('product_category');
+    $query = $table->where('header_menu','1')->get()->getResult();
+    $view ='';
+    foreach ($query as $val){
+        $url = base_url('category/'.$val->prod_cat_id);
+        $view .='<li class="nav-item"><a class="nav-link" aria-current="page" href="'.$url.'" >'.$val->category_name.'</a></li>';
+    }
+    return $view;
+
+}
+
+function modules_key_by_access($key){
+    $table = DB()->table('modules');
+    $data = $table->where('module_key',$key)->get()->getRow();
+    if (!empty($data)){
+        $result = $data->status;
+    }else{
+        $result ='';
+    }
+    return $result;
+}

@@ -80,6 +80,11 @@ class Settings extends BaseController
         $data['smtp_username'] = $this->request->getPost('smtp_username');
         $data['smtp_password'] = $this->request->getPost('smtp_password');
 
+        $data['fb_url'] = $this->request->getPost('fb_url');
+        $data['twitter_url'] = $this->request->getPost('twitter_url');
+        $data['tiktok_url'] = $this->request->getPost('tiktok_url');
+        $data['instagram_url'] = $this->request->getPost('instagram_url');
+
 //        if (!empty($_FILES['store_logo']['name'])) {
 //            $target_dir = FCPATH . '/uploads/store/';
 //            if (!file_exists($target_dir)) {

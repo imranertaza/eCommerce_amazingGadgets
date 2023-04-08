@@ -36,4 +36,17 @@ class Ajax extends BaseController
         print $options;
     }
 
+    public function module_update(){
+        $id = $this->request->getPost('id');
+
+        $table = DB()->table('modules');
+        $row = $table->where('module_id',$id)->get()->getRow();
+
+        if($row->status == '1' ) {
+            $table->where('module_id', $id)->update( ['status' => '0'] );
+        } else {
+            $table->where('module_id', $id)->update( ['status' => '1'] );
+        }
+    }
+
 }

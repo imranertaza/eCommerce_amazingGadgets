@@ -46,13 +46,7 @@
         <div class="product-category mb-5">
             <div class="card rounded-0 p-5">
                 <div class="card-header py-3 bg-white border-0">
-                    <h4 class="fs-6 mb-0"><?php
-                        $par_id = get_data_by_id('parent_id','product_category','prod_cat_id',$prod_cat_id);
-                        if (!empty($par_id)){
-                            $url = base_url('category/'.$par_id);
-                            echo '<a class="text-black" href="'.$url.'">'.get_data_by_id('category_name','product_category','prod_cat_id',$par_id).'</a> <i class="fa-solid fa-angle-right"></i>';
-                        }
-                    ?> <?php echo get_data_by_id('category_name','product_category','prod_cat_id',$prod_cat_id); ?></h4>
+                    <h4 class="fs-6 mb-0">Search</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -62,7 +56,7 @@
                                     <p>Category</p>
                                     <ul class="list-unstyled lh-lg">
                                         <?php foreach (getParentCategoryArray() as $cat){ ?>
-                                        <li><a href="<?php echo base_url('category/'.$cat->prod_cat_id);?>"><i class="fa-solid fa-angle-right"></i> <?php echo $cat->category_name?> <span class="count"><?php echo category_id_by_product_count($cat->prod_cat_id)?></span></a></li>
+                                            <li><a href="<?php echo base_url('category/'.$cat->prod_cat_id);?>"><i class="fa-solid fa-angle-right"></i> <?php echo $cat->category_name?> <span class="count"><?php echo category_id_by_product_count($cat->prod_cat_id)?></span></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -149,16 +143,13 @@
                                     <?php foreach ($products as $pro){ ?>
                                         <div class="col border p-2">
                                             <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-                                                <?php if (modules_key_by_access('wishlist') == 1) { ?>
+
                                                 <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
                                                     <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
                                                 <?php }else{ ?>
                                                     <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $pro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
                                                 <?php } ?>
-                                                <?php } ?>
-                                                <?php if (modules_key_by_access('compare') == 1) { ?>
                                                 <a href="javascript:void(0)" onclick="addToCompare(<?php echo $pro->product_id ?>)" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
-                                                <?php } ?>
 
                                                 <div class="product-top">
                                                     <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid w-100')?>

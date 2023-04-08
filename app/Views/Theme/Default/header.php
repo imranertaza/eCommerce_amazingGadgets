@@ -35,15 +35,19 @@
                     <span><a href="#">Returns Policy</a></span>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end align-items-center">
+                    <?php if (modules_key_by_access('wishlist') == 1) { ?>
                     <a class="me-3 d-flex" href="<?php echo base_url('favorite')?>">
                         <span><i class="fa-solid fa-heart me-1"></i></span>
                         <span>Wishlist</span>
                     </a>
+                    <?php } ?>
 
+                    <?php if (modules_key_by_access('compare') == 1) { ?>
                     <a class="me-3 d-flex" href="<?php echo base_url('compare')?>">
                         <span><i class="fa-solid fa-code-compare"></i></span>
                         <span> Compare</span>
                     </a>
+                    <?php } ?>
 
                     <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
                     <a class="me-3 py-3 pe-3 border-end d-flex" href="<?php echo base_url('register')?>">
@@ -70,23 +74,26 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-3 order-md-2 mb-3 mb-md-0">
-                    <form action="search" class="mini-search">
+                    <?php if (modules_key_by_access('top_search') == 1) { ?>
+                    <form action="<?php echo base_url('top_search');?>" class="mini-search" method="post">
                         <div class="input-group">
                             <div class="input-group-btn search-panel">
-                                <select name="category" class="form-select rounded-0">
+                                <select name="top_category"  class="form-select rounded-0">
                                     <option value="">All Categories</option>
-                                    <option value="">Cat 1</option>
-                                    <option value="">Cat 2</option>
+                                    <?php foreach (getParentCategoryArray() as $catTop){ $tCat =  isset($top_category)?$top_category:'';?>
+                                    <option value="<?php echo $catTop->prod_cat_id;?>" <?php echo ($tCat == $catTop->prod_cat_id)?'selected':'';?> ><?php echo $catTop->category_name;?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
-                            <input type="text" class="form-control" name="keyword" placeholder="Search term...">
+                            <input type="text" class="form-control" name="keywordTop" placeholder="Search term..." value="<?php echo isset($keywordTop)?$keywordTop:'';?>" required>
                             <span class="input-group-btn">
-                                <button class="btn btn-default border rounded-0 bg-black text-white" type="button">
+                                <button class="btn btn-default border rounded-0 bg-black text-white" type="submit">
                                     <i class="fa-solid fa-search"></i>
                                 </button>
                             </span>
                         </div>
                     </form>
+                    <?php } ?>
                 </div>
                 <div class="col-6 col-md-3 mb-3 mb-md-0 order-2 order-md-3 d-flex justify-content-end" >
                     <a href="<?php echo base_url('cart')?>" >
@@ -161,9 +168,7 @@
                                         <a class="nav-link" aria-current="page" href="<?php echo base_url()?>">Home</a>
                                     </li>
 
-                                    <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="<?php echo base_url('favorite')?>">Wishlist</a>
-                                    </li>
+                                    <?php echo top_menu();?>
 
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?php echo base_url('page/contact-us')?>">Contact</a>

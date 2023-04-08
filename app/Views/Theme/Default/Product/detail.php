@@ -46,15 +46,7 @@
                         <div class="product-cat mb-3"> </div>
                         <h1 class="product-title mb-4"><?php echo $products->name;?></h1>
                         <div class="rating mb-2">
-<!--                            <i class="fa-solid fa-star"></i>-->
-<!--                            <i class="fa-solid fa-star"></i>-->
-<!--                            <i class="fa-solid fa-star"></i>-->
-<!--                            <i class="fa-solid fa-star"></i>-->
-<!--                            <i class="fa-solid fa-star"></i>-->
-<!--                            200 Rating-->
-
-                                <?php echo product_id_by_rating($products->product_id,'1');?>
-
+                           <?php echo product_id_by_rating($products->product_id,'1');?>
                         </div>
                         <div class="brand mb-3"><strong>Brand:</strong> <?php echo get_data_by_id('name','brand','brand_id',$products->brand_id);?></div>
                         <hr>
@@ -77,14 +69,17 @@
                             </div>
                         </div>
                         <a href="javascript:void(0)" class="btn btn-cart rounded-0 mt-3 width-100" onclick="addToCart(<?php echo $products->product_id ?>)">Add to Cart</a>
-
-                        <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
-                            <a href="<?php echo base_url('login');?>" class="btn btn-wi  btn-default border rounded-0 mt-3"  ><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
-                        <?php }else{ ?>
-                            <a href="javascript:void(0)" class="btn btn-wi  btn-default border rounded-0 mt-3"  onclick="addToWishlist(<?php echo $products->product_id ?>)"><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
+                        <?php if (modules_key_by_access('wishlist') == 1) { ?>
+                            <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
+                                <a href="<?php echo base_url('login');?>" class="btn btn-wi  btn-default border rounded-0 mt-3"  ><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
+                            <?php }else{ ?>
+                                <a href="javascript:void(0)" class="btn btn-wi  btn-default border rounded-0 mt-3"  onclick="addToWishlist(<?php echo $products->product_id ?>)"><i class="fa-solid fa-heart me-1"></i> Add to Wishlist</a>
+                            <?php } ?>
                         <?php } ?>
 
+                        <?php if (modules_key_by_access('compare') == 1) { ?>
                         <a href="javascript:void(0)" onclick="addToCompare(<?php echo $products->product_id ?>)" class="btn btn-wi  btn-default border  rounded-0 mt-3"  ><i class="fa-solid fa-code-compare"></i> Add to compare</a>
+                        <?php } ?>
                     </div>
                     <div class="col-lg-3">
                         <div class="product-info p-3">
@@ -186,12 +181,17 @@
                 <div class="products">
                     <?php if(!empty($relProdSide)){ foreach ($relProdSide as $relPro){ ?>
                     <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative text-white card p-3 rounded-0 mb-3">
-                        <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
-                            <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                        <?php }else{ ?>
-                            <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $relPro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
+                        <?php if (modules_key_by_access('wishlist') == 1) { ?>
+                            <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
+                                <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
+                            <?php }else{ ?>
+                                <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $relPro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
+                            <?php } ?>
                         <?php } ?>
-                        <a href="" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
+
+                        <?php if (modules_key_by_access('compare') == 1) { ?>
+                        <a href="javascript:void(0)" onclick="addToCart(<?php echo $relPro->product_id ?>)" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
+                        <?php } ?>
                         <div class="product-top">
                             <?php echo image_view('uploads/products',$relPro->product_id,'191_'.$relPro->image,'noimage.png','img-fluid w-100')?>
                             <div class="rating text-center my-2">
@@ -230,12 +230,17 @@
                             <?php if(!empty($relProd)){ foreach ($relProd as $rPro){ ?>
                             <div class="col border p-2">
                                 <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
+                                    <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                     <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
                                         <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
                                     <?php }else{ ?>
                                         <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $rPro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
                                     <?php } ?>
-                                    <a href="" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
+                                    <?php } ?>
+
+                                    <?php if (modules_key_by_access('compare') == 1) { ?>
+                                    <a href="javascript:void(0)" onclick="addToCart(<?php echo $rPro->product_id ?>)" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
+                                    <?php } ?>
                                     <div class="product-top">
                                         <?php echo image_view('uploads/products',$rPro->product_id,'191_'.$rPro->image,'noimage.png','img-fluid w-100')?>
                                         <div class="rating text-center my-2">

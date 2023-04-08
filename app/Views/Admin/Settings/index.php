@@ -59,6 +59,10 @@
                                         <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-mail" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Mail</a>
                                     </li>
 
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-footer-social" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Social</a>
+                                    </li>
+
 
 
                                 </ul>
@@ -266,6 +270,34 @@
                                                     <input type="text" name="smtp_password" class="form-control" value="<?php echo get_lebel_by_value_in_settings('smtp_password');?>"  required>
                                                 </div>
 
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="custom-tabs-four-footer-social" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><?php echo get_lebel_by_title_in_settings('fb_url');?></label>
+                                                    <input type="text" name="fb_url" class="form-control" value="<?php echo get_lebel_by_value_in_settings('fb_url');?>"  required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><?php echo get_lebel_by_title_in_settings('twitter_url');?></label>
+                                                    <input type="text" name="twitter_url" class="form-control" value="<?php echo get_lebel_by_value_in_settings('twitter_url');?>"  required>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label><?php echo get_lebel_by_title_in_settings('tiktok_url');?></label>
+                                                    <input type="text" name="tiktok_url" class="form-control" value="<?php echo get_lebel_by_value_in_settings('tiktok_url');?>"  required>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label><?php echo get_lebel_by_title_in_settings('instagram_url');?></label>
+                                                    <input type="text" name="instagram_url" class="form-control" value="<?php echo get_lebel_by_value_in_settings('instagram_url');?>"  required>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

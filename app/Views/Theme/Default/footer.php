@@ -11,7 +11,7 @@
                         <img src="<?php echo base_url() ?>/assets/img/icon-map.png" alt="Maps">
                     </div>
                     <div class="address">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        <?php echo get_lebel_by_value_in_settings('address');?>
                     </div>
                 </div>
                 <div class="d-flex mb-3 mb-md-5">
@@ -19,8 +19,7 @@
                         <img src="<?php echo base_url() ?>/assets/img/icon-phone.png" alt="Phone">
                     </div>
                     <div class="phone">
-                        <a href="tel:+8801851670403">+8801851670403</a>
-                        <a href="tel:+8801928174380">+8801928174380</a>
+                        <a href="tel:<?php echo get_lebel_by_value_in_settings('phone');?>"><?php echo get_lebel_by_value_in_settings('phone');?></a>
                     </div>
                 </div>
                 <div class="d-flex">
@@ -28,18 +27,18 @@
                         <img src="<?php echo base_url() ?>/assets/img/icon-email.png" alt="Email">
                     </div>
                     <div class="email">
-                        <a href="mailto:Dnationsoftearfan@gmail.com">Dnationsoftearfan@gmail.com</a>
+                        <a href="mailto:<?php echo get_lebel_by_value_in_settings('email');?>"><?php echo get_lebel_by_value_in_settings('email');?></a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-xl-3 mb-3 mb-md-5 mb-xl-0">
                 <h3>Customer Care</h3>
                 <ul class="list-unstyled lh-lg">
-                    <li><a href="#" class="nav-link">My Account</a></li>
+                    <li><a href="<?php echo base_url('dashboard');?>" class="nav-link">My Account</a></li>
                     <li><a href="#" class="nav-link">Privacy Policy</a></li>
                     <li><a href="#" class="nav-link">Terms and Conditions</a></li>
                     <li><a href="#" class="nav-link">Returns/Exchange</a></li>
-                    <li><a href="#" class="nav-link">About Us</a></li>
+                    <li><a href="<?php echo base_url('page/about-us');?>" class="nav-link">About Us</a></li>
                     <li><a href="#" class="nav-link">Top Searches</a></li>
                 </ul>
             </div>
@@ -50,10 +49,10 @@
             <div class="col-sm-6 col-xl-2">
                 <h3>Social Media</h3>
                 <div class="social">
-                    <a target="_blank" href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a target="_blank" href="#"><i class="fa-brands fa-twitter"></i></a>
-                    <a target="_blank" href="#"><i class="fa-brands fa-tiktok"></i></a>
-                    <a target="_blank" href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a target="_blank" href="<?php echo get_lebel_by_value_in_settings('fb_url');?>"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a target="_blank" href="<?php echo get_lebel_by_value_in_settings('twitter_url');?>"><i class="fa-brands fa-twitter"></i></a>
+                    <a target="_blank" href="<?php echo get_lebel_by_value_in_settings('tiktok_url');?>"><i class="fa-brands fa-tiktok"></i></a>
+                    <a target="_blank" href="<?php echo get_lebel_by_value_in_settings('instagram_url');?>"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -307,6 +306,17 @@
                 setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
             }
         });
+    }
+
+    function pass_show(val){
+        var html = '<h6 class="mt-2">Change information</h6><div class="form-group mt-4"><label>Current password</label><input type="password" name="current_password" class="form-control" placeholder="Current password" required></div><div class="form-group mt-4"><label>New password</label><input type="password" name="new_password" class="form-control" placeholder="New password" required></div><div class="form-group mt-4"><label>Confirm password</label><input type="password" name="confirm_password" class="form-control" placeholder="Confirm password" required></div>';
+        if (val == '1') {
+            $('#passReset').val(0);
+            $('#pass-data').html(html);
+        }else{
+            $('#passReset').val(1);
+            $('#pass-data').html('');
+        }
     }
 
 
