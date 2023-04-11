@@ -75,9 +75,15 @@
         showInfo: true
     });
 
-    // $(document).on('change', '.ratingPiont', function (e, stars, index) {
-    //     alert(`Thx for ${stars} stars!`);
-    // });
+    function shippingAddress() {
+        var shipping = document.getElementById('shipping_address');
+
+        if (shipping.style.display === "none") {
+            shipping.style.display = "block";
+        } else {
+            shipping.style.display = "none";
+        }
+    }
 
     jQuery( function($) {
         $( ".slider-range" ).slider({
@@ -317,6 +323,17 @@
             $('#passReset').val(1);
             $('#pass-data').html('');
         }
+    }
+
+    function selectState(country_id,id){
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('checkout_country_zoon')?>",
+            data: {country_id:country_id},
+            success: function(data){
+                $('#'+id).html(data);
+            }
+        });
     }
 
 

@@ -18,7 +18,7 @@ class Compare extends BaseController {
         $proArray = array();
         if (isset($arrayCom)) {
             foreach ($arrayCom as $key=>$val) {
-                $table = DB()->table('products');
+                $table = DB()->table('cc_products');
                 $prodata = $table->where('product_id', $val)->get()->getRow();
                 $proArray[$key] = $prodata;
             }

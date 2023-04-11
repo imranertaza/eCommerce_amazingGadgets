@@ -78,7 +78,7 @@ class Login extends BaseController {
     }
 
     private function loginMe($email,$password){
-        $table = DB()->table('customer');
+        $table = DB()->table('cc_customer');
         $user = $table->where('email',$email)->get()->getRow();
 
         if(!empty($user)){
@@ -125,10 +125,10 @@ class Login extends BaseController {
             $data['lastname'] = $this->request->getPost('lastname');
             $data['password'] = SHA1($this->request->getPost('password'));
 
-            $email_check = is_exists('customer','email',$data['email']);
-            $phone_check = is_exists('customer','phone',$data['phone']);
+            $email_check = is_exists('cc_customer','email',$data['email']);
+            $phone_check = is_exists('cc_customer','phone',$data['phone']);
             if (($email_check == true) && ($phone_check == true)){
-                $table = DB()->table('customer');
+                $table = DB()->table('cc_customer');
                 $table->insert($data);
                 $this->session->setFlashdata('message', '<div class="alert-success py-2 px-3 border-0 text-white fs-5 text-capitalize">Register successfully</div>');
                 return redirect()->to(site_url('login'));

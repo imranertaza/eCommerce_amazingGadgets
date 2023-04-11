@@ -28,13 +28,6 @@ class Dashboard extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-//            $active_url  = current_url(true);
-//            $module_name = $active_url->segment(5);
-//            print $this->uri->segment(1);
-//            print uri_string();
-//            print partial_uri();
-//            die();
-
             //$perm = array('create','read','update','delete','mod_access');
             $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);
             foreach ($perm as $key => $val) {

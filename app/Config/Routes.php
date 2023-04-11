@@ -138,11 +138,10 @@ $routes->get('/coupon_delete/(:num)', 'Admin\Coupon::delete/$1');
 //
 $routes->get('/module', 'Admin\Module::index');
 $routes->post('/module_update_action', 'Admin\Module::update_action');
-
-
+//
 $routes->post('/module_update', 'Admin\Ajax::module_update');
-
-
+//
+$routes->get('/newsletter', 'Admin\Newsletter::index');
 
 
 
@@ -174,6 +173,13 @@ $routes->get('/cart', 'Cart\Cart::index');
 $routes->post('/addtocart', 'Cart\Cart::addToCart');
 $routes->post('/updateToCart', 'Cart\Cart::updateToCart');
 $routes->post('/removeToCart', 'Cart\Cart::removeToCart');
+
+//Checkout
+$routes->get('/checkout', 'Checkout::index');
+$routes->post('/checkout_coupon_action', 'Checkout::coupon_action');
+$routes->post('/checkout_action', 'Checkout::checkout_action');
+$routes->post('/checkout_country_zoon', 'Checkout::country_zoon');
+
 
 //pages routes
 $routes->get('/about', 'Pages\Pages::about');

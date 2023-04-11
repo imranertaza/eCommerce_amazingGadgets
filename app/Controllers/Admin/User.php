@@ -30,7 +30,7 @@ class User extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('users');
+            $table = DB()->table('cc_users');
             $data['users'] = $table->get()->getResult();
 
 
@@ -94,7 +94,7 @@ class User extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('user_create');
         } else {
-            $check = is_exists('users','email',$data['email']);
+            $check = is_exists('cc_users','email',$data['email']);
             if ($check == true) {
                 $data2['name'] = $this->request->getPost('name');
                 $data2['email'] = $this->request->getPost('email');
@@ -104,7 +104,7 @@ class User extends BaseController
                 $data2['createdBy'] = $this->session->adUserId;
 
 
-                $table = DB()->table('users');
+                $table = DB()->table('cc_users');
                 $table->insert($data2);
 
                 $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -124,7 +124,7 @@ class User extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('users');
+            $table = DB()->table('cc_users');
             $data['user'] = $table->where('user_id', $user_id)->get()->getRow();
 
 
@@ -167,9 +167,9 @@ class User extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('user_update/' . $user_id);
         } else {
-            $check = is_exists_update('users','email',$data['email'],'user_id',$user_id);
+            $check = is_exists_update('cc_users','email',$data['email'],'user_id',$user_id);
             if ($check == true) {
-                $table = DB()->table('users');
+                $table = DB()->table('cc_users');
                 $table->where('user_id', $user_id)->update($data);
 
                 $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -199,7 +199,7 @@ class User extends BaseController
             return redirect()->to('user_update/' . $user_id);
         } else {
 
-            $table = DB()->table('users');
+            $table = DB()->table('cc_users');
             $table->where('user_id', $user_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -218,7 +218,7 @@ class User extends BaseController
             }
 
             //old image unlink
-            $old_img = get_data_by_id('pic', 'users', 'user_id', $user_id);
+            $old_img = get_data_by_id('pic', 'cc_users', 'user_id', $user_id);
             if (!empty($old_img)) {
                 $imgPath = $target_dir . '' . $old_img;
                 if (file_exists($imgPath)) {
@@ -235,7 +235,7 @@ class User extends BaseController
             unlink($target_dir . '' . $namePic);
             $data['pic'] = $news_img;
 
-            $table = DB()->table('users');
+            $table = DB()->table('cc_users');
             $table->where('user_id', $user_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -251,7 +251,7 @@ class User extends BaseController
 
         $target_dir = FCPATH . '/uploads/user/';
         //old image unlink
-        $old_img = get_data_by_id('pic', 'users', 'user_id', $user_id);
+        $old_img = get_data_by_id('pic', 'cc_users', 'user_id', $user_id);
         if (!empty($old_img)) {
             $imgPath = $target_dir . '' . $old_img;
             if (file_exists($imgPath)) {
@@ -260,7 +260,7 @@ class User extends BaseController
         }
 
 
-        $table = DB()->table('users');
+        $table = DB()->table('cc_users');
         $table->where('user_id', $user_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

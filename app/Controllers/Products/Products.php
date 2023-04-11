@@ -18,20 +18,20 @@ class Products extends BaseController {
     public function detail($product_id)
     {
 
-        $table = DB()->table('products');
-        $table->join('product_description', 'product_description.product_id = products.product_id ');
-        $data['products'] = $table->where('products.product_id',$product_id)->get()->getRow();
+        $table = DB()->table('cc_products');
+        $table->join('cc_product_description', 'cc_product_description.product_id = cc_products.product_id ');
+        $data['products'] = $table->where('cc_products.product_id',$product_id)->get()->getRow();
 
         //image
-        $imgTable = DB()->table('product_image');
+        $imgTable = DB()->table('cc_product_image');
         $data['proImg'] = $imgTable->where('product_id',$product_id)->where('Product_option_id',null)->get()->getResult();
 
         //related product
         $relatedProduct = array();
-        $relTable = DB()->table('product_related');
+        $relTable = DB()->table('cc_product_related');
         $relPro = $relTable->where('product_id',$product_id)->get()->getResult();
         foreach ($relPro as $rVal){
-            $tableSear = DB()->table('products');
+            $tableSear = DB()->table('cc_products');
             $rowPro = $tableSear->where('product_id',$rVal->related_id)->get()->getRow();
             array_push($relatedProduct,$rowPro);
         }
@@ -39,10 +39,10 @@ class Products extends BaseController {
 
         //related product  2 products view
         $relatedProduct2 = array();
-        $relTable = DB()->table('product_related');
+        $relTable = DB()->table('cc_product_related');
         $relPro2 = $relTable->where('product_id',$product_id)->orderBy('product_id','DESC')->limit(2)->get()->getResult();
         foreach ($relPro2 as $rVal2){
-            $tableSear2 = DB()->table('products');
+            $tableSear2 = DB()->table('cc_products');
             $rowPro2 = $tableSear2->where('product_id',$rVal2->related_id)->get()->getRow();
             array_push($relatedProduct2,$rowPro2);
         }
@@ -76,7 +76,7 @@ class Products extends BaseController {
             return redirect()->to('detail/'. $data['product_id']);
         } else {
 
-            $table = DB()->table('product_feedback');
+            $table = DB()->table('cc_product_feedback');
             $table->insert($data);
             $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Successfully submitted review</div>');
             return redirect()->to('detail/'. $data['product_id']);

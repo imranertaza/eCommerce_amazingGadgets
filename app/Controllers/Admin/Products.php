@@ -29,7 +29,7 @@ class Products extends BaseController
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
             return redirect()->to(site_url('admin'));
         } else {
-            $table = DB()->table('products');
+            $table = DB()->table('cc_products');
             $data['product'] = $table->get()->getResult();
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -55,10 +55,10 @@ class Products extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $protable = DB()->table('products');
+            $protable = DB()->table('cc_products');
             $data['products'] = $protable->get()->getResult();
 
-            $table = DB()->table('product_category');
+            $table = DB()->table('cc_product_category');
             $data['prodCat'] = $table->get()->getResult();
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -101,7 +101,7 @@ class Products extends BaseController
         } else {
             DB()->transStart();
             //product table data insert(start)
-            $storeId = get_data_by_id('store_id','stores','is_default','1');
+            $storeId = get_data_by_id('store_id','cc_stores','is_default','1');
             $proData['store_id'] = $storeId;
             $proData['model'] = $data['model'];
             $proData['brand_id'] = !empty($this->request->getPost('brand_id'))?$this->request->getPost('brand_id'):null;
@@ -120,7 +120,7 @@ class Products extends BaseController
                 $proData['featured'] = '1';
             }
 
-            $proTable = DB()->table('products');
+            $proTable = DB()->table('cc_products');
             $proTable->insert($proData);
             $productId = DB()->insertID();
 
@@ -144,7 +144,7 @@ class Products extends BaseController
 
                 $dataImg['image'] = $news_img;
 
-                $proUpTable = DB()->table('products');
+                $proUpTable = DB()->table('cc_products');
                 $proUpTable->where('product_id',$productId)->update($dataImg);
             }
             //product table data insert(end)
@@ -184,7 +184,7 @@ class Products extends BaseController
 
                         $dataMultiImg2['image'] = $news_img2;
 
-                        $proImgUpTable = DB()->table('product_image');
+                        $proImgUpTable = DB()->table('cc_product_image');
                         $proImgUpTable->where('product_image_id',$proImgId)->update($dataMultiImg2);
                     }
 
@@ -202,7 +202,7 @@ class Products extends BaseController
                 $catData['product_id'] = $productId;
                 $catData['category_id'] = $cat;
 
-                $catTable = DB()->table('product_to_category');
+                $catTable = DB()->table('cc_product_to_category');
                 $catTable->insert($catData);
             }
             //product category insert(end)
@@ -215,7 +215,7 @@ class Products extends BaseController
             $free_delivery = $this->request->getPost('product_free_delivery');
             if ($free_delivery == 'on'){
                 $proFreeData['product_id'] = $productId;
-                $proFreetable = DB()->table('product_free_delivery');
+                $proFreetable = DB()->table('cc_product_free_delivery');
                 $proFreetable->insert($proFreeData);
             }
             //product_free_delivery data insert(end)
@@ -232,7 +232,7 @@ class Products extends BaseController
             $proDescData['meta_keyword'] = !empty($this->request->getPost('meta_keyword'))?$this->request->getPost('meta_keyword'):null;
             $proDescData['createdBy'] = $adUserId;
 
-            $proDescTable = DB()->table('product_description');
+            $proDescTable = DB()->table('cc_product_description');
             $proDescTable->insert($proDescData);
             //product description table data insert(end)
 
@@ -249,7 +249,7 @@ class Products extends BaseController
                     $optionData['size'] = $size[$key];
                     $optionData['quantity'] = $qty[$key];
 
-                    $optionTable = DB()->table('product_options');
+                    $optionTable = DB()->table('cc_product_options');
                     $optionTable->insert($optionData);
                 }
             }
@@ -269,7 +269,7 @@ class Products extends BaseController
                     $attributeData['name'] = $name[$key];
                     $attributeData['details'] = $details[$key];
 
-                    $attributeTable = DB()->table('product_attribute');
+                    $attributeTable = DB()->table('cc_product_attribute');
                     $attributeTable->insert($attributeData);
                 }
             }
@@ -288,7 +288,7 @@ class Products extends BaseController
                 $specialData['start_date'] = $start_date;
                 $specialData['end_date'] = $end_date;
 
-                $specialTable = DB()->table('product_special');
+                $specialTable = DB()->table('cc_product_special');
                 $specialTable->insert($specialData);
             }
             //product product_special table data insert(end)
@@ -301,7 +301,7 @@ class Products extends BaseController
                 foreach ($product_related as $relp) {
                     $proRelData['product_id'] = $productId;
                     $proRelData['related_id'] = $relp;
-                    $proReltable = DB()->table('product_related');
+                    $proReltable = DB()->table('cc_product_related');
                     $proReltable->insert($proRelData);
                 }
             }
@@ -323,11 +323,11 @@ class Products extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('products');
-            $table->join('product_description', 'product_description.product_id = products.product_id ');
-            $data['prod'] = $table->where('products.product_id', $product_id)->get()->getRow();
+            $table = DB()->table('cc_products');
+            $table->join('cc_product_description', 'cc_product_description.product_id = cc_products.product_id ');
+            $data['prod'] = $table->where('cc_products.product_id', $product_id)->get()->getRow();
 
-            $table = DB()->table('product_category');
+            $table = DB()->table('cc_product_category');
             $data['prodCat'] = $table->get()->getResult();
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -386,7 +386,7 @@ class Products extends BaseController
                 $data['image'] = $news_img;
             }
 
-            $table = DB()->table('brand');
+            $table = DB()->table('cc_brand');
             $table->where('brand_id', $brand_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -417,7 +417,7 @@ class Products extends BaseController
 
     public function get_subCategory(){
         $categoryID = $this->request->getPost('cat_id');
-        $table = DB()->table('product_category');
+        $table = DB()->table('cc_product_category');
         $data = $table->where('parent_id',$categoryID)->get()->getResult();
         $view ='';
         if (!empty($data)) {
@@ -434,7 +434,7 @@ class Products extends BaseController
     public function related_product(){
         $product = [];
         $keyword = $this->request->getGet('q');
-        $table = DB()->table('products');
+        $table = DB()->table('cc_products');
         $product = $table->like('name', $keyword)->get()->getResult();
 
         return $this->response->setJSON($product);

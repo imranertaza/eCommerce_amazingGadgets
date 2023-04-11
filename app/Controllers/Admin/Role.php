@@ -30,7 +30,7 @@ class Role extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('roles');
+            $table = DB()->table('cc_roles');
             $data['roles'] = $table->get()->getResult();
 
 
@@ -57,7 +57,7 @@ class Role extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('roles');
+            $table = DB()->table('cc_roles');
             $adminRole = $table->where('is_default','1')->get()->getRow();
             $data['permission'] = json_decode($adminRole->permission);
 
@@ -92,7 +92,7 @@ class Role extends BaseController
             return redirect()->to('role_create');
         } else {
 
-            $roleTable = DB()->table('roles');
+            $roleTable = DB()->table('cc_roles');
             $roleTable->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -109,8 +109,9 @@ class Role extends BaseController
         } else {
 
 
-            $rolesTable = DB()->table('roles');
-            $table = DB()->table('roles');
+            $rolesTable = DB()->table('cc_roles');
+
+            $table = DB()->table('cc_roles');
             $adminRole = $table->where('is_default','1')->get()->getRow();
 
             $data['roles'] = $rolesTable->where('role_id',$role_id)->get()->getRow();
@@ -148,7 +149,7 @@ class Role extends BaseController
             return redirect()->to('role_update/' . $role_id);
         } else {
 
-            $table = DB()->table('roles');
+            $table = DB()->table('cc_roles');
             $table->where('role_id', $role_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -160,7 +161,7 @@ class Role extends BaseController
     public function delete($role_id){
 
 
-        $table = DB()->table('roles');
+        $table = DB()->table('cc_roles');
         $table->where('role_id', $role_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

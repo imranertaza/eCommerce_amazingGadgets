@@ -48,10 +48,10 @@
                         <div class="rating mb-2">
                            <?php echo product_id_by_rating($products->product_id,'1');?>
                         </div>
-                        <div class="brand mb-3"><strong>Brand:</strong> <?php echo get_data_by_id('name','brand','brand_id',$products->brand_id);?></div>
+                        <div class="brand mb-3"><strong>Brand:</strong> <?php echo get_data_by_id('name','cc_brand','brand_id',$products->brand_id);?></div>
                         <hr>
                         <div class="price mb-3">
-                            <?php $spPric = get_data_by_id('special_price','product_special','product_id',$products->product_id); if (empty($spPric)){ ?>
+                            <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$products->product_id); if (empty($spPric)){ ?>
                             $<?php echo $products->price;?>
                             <?php }else{ ?>
                                <small> <del>$<?php echo $products->price;?></del></small><br>$<?php echo $spPric;?>
@@ -142,7 +142,7 @@
                                         <table class="table">
                                             <?php foreach (attribute_array_by_product_id($products->product_id) as $spec){?>
                                             <tr>
-                                                <td><?php echo get_data_by_id('name','product_attribute_group','attribute_group_id',$spec->attribute_group_id);?>:</td>
+                                                <td><?php echo get_data_by_id('name','cc_product_attribute_group','attribute_group_id',$spec->attribute_group_id);?>:</td>
                                                 <td><?php echo $spec->name;?></td>
                                             </tr>
                                             <?php } ?>
@@ -206,7 +206,7 @@
                                 <a href="<?php echo base_url('detail/'.$relPro->product_id)?>"><?php echo $relPro->name;?></a>
                             </div>
                             <div class="price mb-3">
-                                <?php $spPric2 = get_data_by_id('special_price','product_special','product_id',$relPro->product_id);  if (empty($spPric2)){ ?>
+                                <?php $spPric2 = get_data_by_id('special_price','cc_product_special','product_id',$relPro->product_id);  if (empty($spPric2)){ ?>
                                     $<?php echo $relPro->price;?>
                                 <?php }else{ ?>
                                     <small> <del>$<?php echo $relPro->price;?></del></small>/$<?php echo $spPric2;?>
@@ -255,7 +255,7 @@
                                             <a href="<?php echo base_url('detail/'.$rPro->product_id)?>"><?php echo $rPro->name;?></a>
                                         </div>
                                         <div class="price mb-3">
-                                            <?php $spPric = get_data_by_id('special_price','product_special','product_id',$rPro->product_id);  if (empty($spPric)){ ?>
+                                            <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$rPro->product_id);  if (empty($spPric)){ ?>
                                                 $<?php echo $rPro->price;?>
                                             <?php }else{ ?>
                                                 <small> <del>$<?php echo $rPro->price;?></del></small>/$<?php echo $spPric;?>

@@ -30,7 +30,7 @@ class Brand extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('brand');
+            $table = DB()->table('cc_brand');
             $data['brand'] = $table->get()->getResult();
 
 
@@ -102,7 +102,7 @@ class Brand extends BaseController
                 $data['image'] = $news_img;
             }
 
-            $table = DB()->table('brand');
+            $table = DB()->table('cc_brand');
             $table->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -118,7 +118,7 @@ class Brand extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('brand');
+            $table = DB()->table('cc_brand');
             $data['brand'] = $table->where('brand_id', $brand_id)->get()->getRow();
 
 
@@ -178,7 +178,7 @@ class Brand extends BaseController
                 $data['image'] = $news_img;
             }
 
-            $table = DB()->table('brand');
+            $table = DB()->table('cc_brand');
             $table->where('brand_id', $brand_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -200,7 +200,7 @@ class Brand extends BaseController
         }
 
 
-        $table = DB()->table('brand');
+        $table = DB()->table('cc_brand');
         $table->where('brand_id', $brand_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

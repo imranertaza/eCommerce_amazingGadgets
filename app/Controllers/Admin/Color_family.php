@@ -30,7 +30,7 @@ class Color_family extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('color_family');
+            $table = DB()->table('cc_color_family');
             $data['color'] = $table->get()->getResult();
 
 
@@ -89,7 +89,7 @@ class Color_family extends BaseController
             return redirect()->to('color_family_create');
         } else {
 
-            $table = DB()->table('color_family');
+            $table = DB()->table('cc_color_family');
             $table->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -105,7 +105,7 @@ class Color_family extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('color_family');
+            $table = DB()->table('cc_color_family');
             $data['color'] = $table->where('color_family_id', $color_family_id)->get()->getRow();
 
 
@@ -142,7 +142,7 @@ class Color_family extends BaseController
             return redirect()->to('color_family_update/' . $color_family_id);
         } else {
 
-            $table = DB()->table('color_family');
+            $table = DB()->table('cc_color_family');
             $table->where('color_family_id', $color_family_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -154,7 +154,7 @@ class Color_family extends BaseController
     public function delete($color_family_id){
 
 
-        $table = DB()->table('color_family');
+        $table = DB()->table('cc_color_family');
         $table->where('color_family_id', $color_family_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

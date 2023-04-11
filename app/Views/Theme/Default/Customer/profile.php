@@ -61,7 +61,10 @@
                         <label>Postal code <span>*</span></label>
                         <input type="text" name="postcode" class="form-control" placeholder="Postal code" value="<?php echo !empty($address->postcode)?$address->postcode:'';?>" required>
                     </div>
-
+                    <?php
+                        $newChe = is_exists('cc_newsletter','customer_id',newSession()->cusUserId);
+                        if ($newChe == true){
+                    ?>
                     <h6 style="margin-top:150px;">Newsletter</h6>
                     <p>You Aren't Subscribed To Our Newsletter</p>
                     <div class="form-group mt-4">
@@ -70,6 +73,8 @@
                             <label for="subscription" class="custom-control-label">General subscription</label>
                         </div>
                     </div>
+                    <?php } ?>
+
                 </div>
                 <div class="col-md-12 text-center">
                     <div class="form-group mt-5">

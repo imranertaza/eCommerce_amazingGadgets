@@ -78,7 +78,7 @@ class Login extends BaseController {
     }
 
     private function loginMe($email,$password){
-        $table = DB()->table('users');
+        $table = DB()->table('cc_users');
         $user = $table->where('email',$email)->where('status','1')->get()->getRow();
 
         if(!empty($user)){

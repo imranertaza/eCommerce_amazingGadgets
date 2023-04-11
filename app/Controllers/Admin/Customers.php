@@ -30,7 +30,7 @@ class Customers extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('customer');
+            $table = DB()->table('cc_customer');
             $data['customer'] = $table->get()->getResult();
 
 
@@ -95,8 +95,8 @@ class Customers extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('customers_create');
         } else {
-            $check = is_exists('customer','phone',$data['phone']);
-            $check2 = is_exists('customer','email',$data['email']);
+            $check = is_exists('cc_customer','phone',$data['phone']);
+            $check2 = is_exists('cc_customer','email',$data['email']);
             if (($check == true) && ($check2 == true)) {
                 $data2['firstname'] = $this->request->getPost('firstname');
                 $data2['lastname'] = $this->request->getPost('lastname');
@@ -106,7 +106,7 @@ class Customers extends BaseController
                 $data2['createdBy'] = $this->session->adUserId;
 
 
-                $table = DB()->table('customer');
+                $table = DB()->table('cc_customer');
                 $table->insert($data2);
 
                 $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -126,7 +126,7 @@ class Customers extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('customer');
+            $table = DB()->table('cc_customer');
             $data['customers'] = $table->where('customer_id', $customer_id)->get()->getRow();
 
 
@@ -174,10 +174,10 @@ class Customers extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('customers_update/' . $customer_id);
         } else {
-            $check = is_exists_update('customer','phone',$data['phone'],'customer_id',$customer_id);
-            $check2 = is_exists_update('customer','email',$data['email'],'customer_id',$customer_id);
+            $check = is_exists_update('cc_customer','phone',$data['phone'],'customer_id',$customer_id);
+            $check2 = is_exists_update('cc_customer','email',$data['email'],'customer_id',$customer_id);
             if (($check == true) && ($check2 == true)) {
-                $table = DB()->table('customer');
+                $table = DB()->table('cc_customer');
                 $table->where('customer_id', $customer_id)->update($data);
 
                 $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -209,7 +209,7 @@ class Customers extends BaseController
             return redirect()->to('customers_update/' . $customer_id);
         } else {
 
-            $table = DB()->table('customer');
+            $table = DB()->table('cc_customer');
             $table->where('customer_id', $customer_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -228,7 +228,7 @@ class Customers extends BaseController
             }
 
             //old image unlink
-            $old_img = get_data_by_id('pic', 'customers', 'customer_id', $customer_id);
+            $old_img = get_data_by_id('pic', 'cc_customers', 'customer_id', $customer_id);
             if (!empty($old_img)) {
                 $imgPath = $target_dir . '' . $old_img;
                 if (file_exists($imgPath)) {
@@ -245,7 +245,7 @@ class Customers extends BaseController
             unlink($target_dir . '' . $namePic);
             $data['pic'] = $news_img;
 
-            $table = DB()->table('customer');
+            $table = DB()->table('cc_customer');
             $table->where('customer_id', $customer_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -261,7 +261,7 @@ class Customers extends BaseController
 
         $target_dir = FCPATH . '/uploads/customer/';
         //old image unlink
-        $old_img = get_data_by_id('pic', 'customers', 'customer_id', $customer_id);
+        $old_img = get_data_by_id('pic', 'cc_customers', 'customer_id', $customer_id);
         if (!empty($old_img)) {
             $imgPath = $target_dir . '' . $old_img;
             if (file_exists($imgPath)) {
@@ -270,7 +270,7 @@ class Customers extends BaseController
         }
 
 
-        $table = DB()->table('customer');
+        $table = DB()->table('cc_customer');
         $table->where('customer_id', $customer_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

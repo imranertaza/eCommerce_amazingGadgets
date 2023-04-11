@@ -30,7 +30,7 @@ class Product_category extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('product_category');
+            $table = DB()->table('cc_product_category');
             $data['category'] = $table->get()->getResult();
 
 
@@ -104,7 +104,7 @@ class Product_category extends BaseController
                 $data['image'] = $news_img;
             }
 
-            $table = DB()->table('product_category');
+            $table = DB()->table('cc_product_category');
             $table->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -120,7 +120,7 @@ class Product_category extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('product_category');
+            $table = DB()->table('cc_product_category');
             $data['category'] = $table->where('prod_cat_id', $prod_cat_id)->get()->getRow();
 
 
@@ -159,16 +159,16 @@ class Product_category extends BaseController
             return redirect()->to('product_category_update/' . $prod_cat_id);
         } else {
 
-            $checkPop = is_exists('product_category_popular','prod_cat_id',$prod_cat_id);
+            $checkPop = is_exists('cc_product_category_popular','prod_cat_id',$prod_cat_id);
             if ($popular =='on' ){
                 if ($checkPop == true){
                     $polulerData['prod_cat_id'] = $prod_cat_id;
-                    $tabPoluler = DB()->table('product_category_popular');
+                    $tabPoluler = DB()->table('cc_product_category_popular');
                     $tabPoluler->insert($polulerData);
                 }
             }else{
                 if ($checkPop == false){
-                    $tabPoluler = DB()->table('product_category_popular');
+                    $tabPoluler = DB()->table('cc_product_category_popular');
                     $tabPoluler->where('prod_cat_id',$prod_cat_id)->delete();
                 }
             }
@@ -180,7 +180,7 @@ class Product_category extends BaseController
                 }
 
                 //old image unlink
-                $old_img = get_data_by_id('image', 'product_category', 'prod_cat_id', $prod_cat_id);
+                $old_img = get_data_by_id('image', 'cc_product_category', 'prod_cat_id', $prod_cat_id);
                 if (!empty($old_img)) {
                     $imgPath = $target_dir . '' . $old_img;
                     if (file_exists($imgPath)) {
@@ -198,7 +198,7 @@ class Product_category extends BaseController
                 $data['image'] = $news_img;
             }
 
-            $table = DB()->table('product_category');
+            $table = DB()->table('cc_product_category');
             $table->where('prod_cat_id', $prod_cat_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -228,7 +228,7 @@ class Product_category extends BaseController
             return redirect()->to('product_category_update/' . $prod_cat_id);
         } else {
 
-            $table = DB()->table('product_category');
+            $table = DB()->table('cc_product_category');
             $table->where('prod_cat_id', $prod_cat_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -241,7 +241,7 @@ class Product_category extends BaseController
 
         $target_dir = FCPATH . '/uploads/category/';
         //old image unlink
-        $old_img = get_data_by_id('image', 'product_category', 'prod_cat_id', $prod_cat_id);
+        $old_img = get_data_by_id('image', 'cc_product_category', 'prod_cat_id', $prod_cat_id);
         if (!empty($old_img)) {
             $imgPath = $target_dir . '' . $old_img;
             if (file_exists($imgPath)) {
@@ -250,7 +250,7 @@ class Product_category extends BaseController
         }
 
 
-        $table = DB()->table('product_category');
+        $table = DB()->table('cc_product_category');
         $table->where('prod_cat_id', $prod_cat_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

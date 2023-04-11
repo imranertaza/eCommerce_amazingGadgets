@@ -129,7 +129,7 @@
                             <li>
                                 <a class="dropdown-item" href="<?php echo base_url('category/'.$pcat->prod_cat_id);?>">
                                     <span class="icon">
-                                        <?php $icon = get_data_by_id('name','icons','icon_id',$pcat->icon_id); echo image_view('icons','',$icon,'noimage.png','')?>
+                                        <?php $icon = get_data_by_id('name','cc_icons','icon_id',$pcat->icon_id); echo image_view('icons','',$icon,'noimage.png','')?>
                                     </span>
                                     <?php echo $pcat->category_name; ?>
                                     <?php  if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>

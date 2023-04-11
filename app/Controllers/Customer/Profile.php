@@ -26,10 +26,10 @@ class Profile extends BaseController
         if (!isset($isLoggedInCustomer) || $isLoggedInCustomer != TRUE) {
             return redirect()->to(site_url('Login'));
         } else {
-            $table = DB()->table('customer');
+            $table = DB()->table('cc_customer');
             $data['customer'] = $table->where('customer_id',$this->session->cusUserId)->get()->getRow();
 
-            $table = DB()->table('address');
+            $table = DB()->table('cc_address');
             $data['address'] = $table->where('customer_id',$this->session->cusUserId)->get()->getRow();
 
             $data['menu_active'] = 'profile';
@@ -80,7 +80,7 @@ class Profile extends BaseController
             $cusData['phone'] = $data['phone'];
 
             if (!empty($data['current_password'])){
-                $check = is_exists_double_condition('customer','customer_id',$this->session->cusUserId,'password',SHA1($data['current_password']));
+                $check = is_exists_double_condition('cc_customer','customer_id',$this->session->cusUserId,'password',SHA1($data['current_password']));
                 if ($check == false){
                     if ($data['new_password'] == $data['confirm_password']){
                         $cusData['password'] =  SHA1($data['new_password']);
@@ -94,7 +94,7 @@ class Profile extends BaseController
                 }
             }
 
-            $table = DB()->table('customer');
+            $table = DB()->table('cc_customer');
             $table->where('customer_id',$this->session->cusUserId)->update($cusData);
 
             //address
@@ -106,14 +106,22 @@ class Profile extends BaseController
             $addData['city'] = $data['city'];
             $addData['postcode'] = $data['postcode'];
 
-            $check_address = is_exists('address','customer_id',$this->session->cusUserId);
+            $check_address = is_exists('cc_address','customer_id',$this->session->cusUserId);
             if ($check_address == true){
-                $tabAd = DB()->table('address');
+                $tabAd = DB()->table('cc_address');
                 $tabAd->insert($addData);
             }else{
-                $tabAd = DB()->table('address');
+                $tabAd = DB()->table('cc_address');
                 $tabAd->where('customer_id',$this->session->cusUserId)->update($addData);
             }
+
+            if (!empty($this->request->getPost('subscription'))){
+                $newData['customer_id'] = $this->session->cusUserId;
+                $newData['email'] = $data['email'];
+                $newAd = DB()->table('cc_newsletter');
+                $newAd->insert($newData);
+            }
+
 
             $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Update successfully </div>');
             return redirect()->to('profile');

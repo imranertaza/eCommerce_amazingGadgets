@@ -43,13 +43,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $i=1; foreach ($category as $val){ $parCat = (!empty($val->parent_id))?get_data_by_id('category_name','product_category','prod_cat_id',$val->parent_id).'-> ':''; ?>
+                    <?php $i=1; foreach ($category as $val){ $parCat = (!empty($val->parent_id))?get_data_by_id('category_name','cc_product_category','prod_cat_id',$val->parent_id).'-> ':''; ?>
                         <tr>
                             <td width="40" ><?php echo $i++;?></td>
                             <td><?php echo $parCat. $val->category_name;?></td>
                             <td><?php echo image_view('uploads/category','',$val->image,'noimage.png','width-80');?></td>
                             <td><?php
-                                    $icon = get_data_by_id('name','icons','icon_id',$val->icon_id);
+                                    $icon = get_data_by_id('name','cc_icons','icon_id',$val->icon_id);
                                     echo image_view('icons','',$icon,'noimage.png','size-20x20');
                                 ?></td>
                             <td width="180">

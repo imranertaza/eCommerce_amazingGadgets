@@ -26,7 +26,7 @@ class Ajax extends BaseController
     public function get_state(){
         $country_id = $this->request->getPost('country_id');
 
-        $table = DB()->table('zone');
+        $table = DB()->table('cc_zone');
         $data = $table->where('country_id',$country_id)->get()->getResult();
         $options = '';
         foreach ($data as $value) {
@@ -39,7 +39,7 @@ class Ajax extends BaseController
     public function module_update(){
         $id = $this->request->getPost('id');
 
-        $table = DB()->table('modules');
+        $table = DB()->table('cc_modules');
         $row = $table->where('module_id',$id)->get()->getRow();
 
         if($row->status == '1' ) {

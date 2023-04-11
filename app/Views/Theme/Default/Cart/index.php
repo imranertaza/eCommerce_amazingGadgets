@@ -1,7 +1,12 @@
-<section class="main-container">
+<section class="main-container" id="tableReload">
     <div class="container">
         <div class="cart">
-            <table class="cart-table w-100 text-center" id="tableReload">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
+                </div>
+            </div>
+            <table class="cart-table w-100 text-center" >
                 <thead>
                 <tr>
                     <th>Delete</th>
@@ -20,7 +25,7 @@
                         </td>
                         <td class="product-thumbnail">
                             <a href="#">
-                                <?php $img = get_data_by_id('image','products','product_id',$val['id']); ?>
+                                <?php $img = get_data_by_id('image','cc_products','product_id',$val['id']); ?>
                                 <?php echo image_view('uploads/products',$val['id'],'100_'.$img,'noimage.png','img-fluid')?>
                             </a>
                         </td>
@@ -57,9 +62,36 @@
                     </tr>
                 <?php } ?>
 
+                <tr>
+                    <td colspan="4" style="border-right:0">
+                        <form action="<?php echo base_url('checkout_coupon_action')?>" method="post">
+                        <div class="d-flex coupon">
+                            <input type="text" class="form-control w-auto rounded-0 me-1" name="coupon" placeholder="Coupon Code" required >
+                            <input class="btn btn-dark rounded-0 px-4" type="submit" name="submit" value="Apply Coupon">
+                        </div>
+                        </form>
+                    </td>
+                    <td class="border-end-0 " style="text-align:left;">
+                        <?php $disc = 0; if (isset(newSession()->coupon_discount)){ ?>
+                        <span class="fs-4 ">Price</span><br>
+                        <span class="fs-4 ">Discount</span><br>
+                        <?php } ?>
+                        <span class="fs-4 fw-bold">Total</span>
+                    </td>
+                    <td style="text-align:left;">
+                        <?php if (isset(newSession()->coupon_discount)){ $disc = round((Cart()->total() *newSession()->coupon_discount)/100); ?>
+                        <span class=" fs-4">$<?php echo Cart()->total() ?></span><br>
+                        <span class=" fs-4">$<?php echo $disc ?></span><br>
+                        <?php } $total = (isset(newSession()->coupon_discount))?Cart()->total() - $disc:Cart()->total();?>
+                        <span class="fw-bold fs-4">$<?php echo $total ?></span>
+                    </td>
+                </tr>
+
                 </tbody>
             </table>
-            <p class="text-end"><a href="#" class="btn btn-dark rounded-0 px-4 btn-checkout">Proceed to checkout</a></p>
+            <?php if (!empty(Cart()->contents())){ ?>
+            <p class="text-end"><a href="<?php echo base_url('checkout')?>" class="btn btn-dark rounded-0 px-4 btn-checkout">Proceed to checkout</a></p>
+            <?php } ?>
         </div>
     </div>
 </section>

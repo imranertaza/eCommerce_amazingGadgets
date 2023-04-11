@@ -14,13 +14,13 @@ class Home extends BaseController {
     }
 
     public function index(){
-        $table = DB()->table('products');
+        $table = DB()->table('cc_products');
         $data['products'] = $table->where('status','Active')->limit(4)->get()->getResult();
 
 
         $data['prodFeat'] = $table->where('status','Active')->where('featured','1')->orderBy('product_id','DESC')->limit(8)->get()->getResult();
 
-        $tabPopuler = DB()->table('product_category_popular');
+        $tabPopuler = DB()->table('cc_product_category_popular');
         $data['populerCat'] = $tabPopuler->limit(12)->get()->getResult();
 
         $data['home_menu'] = true;

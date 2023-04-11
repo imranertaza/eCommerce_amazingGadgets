@@ -30,7 +30,7 @@ class Settings extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('settings');
+            $table = DB()->table('cc_settings');
             $data['settings'] = $table->get()->getResult();
 
 
@@ -67,9 +67,7 @@ class Settings extends BaseController
         $data['currency_symbol'] = $this->request->getPost('currency_symbol');
         $data['invoice_prefix'] = $this->request->getPost('invoice_prefix');
 
-//        if ($this->request->getPost('new_account_alert_mail') == on) {
-            $data['new_account_alert_mail'] = $this->request->getPost('new_account_alert_mail');
-//        }
+        $data['new_account_alert_mail'] = $this->request->getPost('new_account_alert_mail');
         $data['new_order_alert_mail'] = $this->request->getPost('new_order_alert_mail');
 
         $data['mail_protocol'] = $this->request->getPost('mail_protocol');
@@ -102,7 +100,7 @@ class Settings extends BaseController
 //        }
 
         foreach($data as $key=>$val){
-            $table = DB()->table('settings');
+            $table = DB()->table('cc_settings');
             $table->set('value', $val)->where('label', $key)->update();
         }
 

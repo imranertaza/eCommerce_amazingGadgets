@@ -90,7 +90,7 @@
 
                                                     <div class="form-group">
                                                         <label>Icon</label>
-                                                        <?php $icons = get_all_data_array('icons');?>
+                                                        <?php $icons = get_all_data_array('cc_icons');?>
                                                         <div class="row">
                                                             <?php $i = 1; $j = 1; foreach ($icons as $valic){ ?>
                                                                 <div class="col-md-2  custom-control custom-radio">
@@ -115,7 +115,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Popular</label>
-                                                    <?php $checkPop = is_exists('product_category_popular','prod_cat_id',$category->prod_cat_id); ?>
+                                                    <?php $checkPop = is_exists('cc_product_category_popular','prod_cat_id',$category->prod_cat_id); ?>
                                                     <input type="checkbox" name="popular" <?php echo ($checkPop == false)?'checked':'';?>  data-bootstrap-switch>
                                                 </div>
                                             </div>

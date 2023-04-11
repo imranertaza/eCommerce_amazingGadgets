@@ -13,7 +13,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <?php
-                    $pic = get_data_by_id('pic','users','user_id',newSession()->adUserId);
+                    $pic = get_data_by_id('pic','cc_users','user_id',newSession()->adUserId);
                     echo image_view('uploads/user','',$pic,'noimage.png','img-circle elevation-2 size-50x50');
                 ?>
             </div>
@@ -172,6 +172,21 @@
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
                                 Page
+                            </p>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <?php
+                $modArrayPur = ['Newsletter'];
+                $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
+                if ($menuAccessPur == true){
+                    ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('newsletter');?>" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Newsletter
                             </p>
                         </a>
                     </li>

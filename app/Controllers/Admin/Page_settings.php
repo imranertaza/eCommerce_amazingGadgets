@@ -30,7 +30,7 @@ class Page_settings extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('pages');
+            $table = DB()->table('cc_pages');
             $data['pages'] = $table->get()->getResult();
 
 
@@ -106,7 +106,7 @@ class Page_settings extends BaseController
 //                $data['f_image'] = $news_img;
 //            }
 
-            $table = DB()->table('pages');
+            $table = DB()->table('cc_pages');
             $table->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -122,7 +122,7 @@ class Page_settings extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('pages');
+            $table = DB()->table('cc_pages');
             $data['page'] = $table->where('page_id', $page_id)->get()->getRow();
 
 
@@ -161,7 +161,7 @@ class Page_settings extends BaseController
             return redirect()->to('page_update/' . $page_id);
         } else {
 
-            $table = DB()->table('pages');
+            $table = DB()->table('cc_pages');
             $table->where('page_id', $page_id)->update($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -172,7 +172,7 @@ class Page_settings extends BaseController
 
     public function delete($page_id){
 
-        $table = DB()->table('pages');
+        $table = DB()->table('cc_pages');
         $table->where('page_id', $page_id)->delete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

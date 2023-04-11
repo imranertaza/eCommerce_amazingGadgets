@@ -27,7 +27,7 @@ class Favorite extends BaseController
             return redirect()->to(site_url('Login'));
         } else {
 
-            $data['allProd'] = $this->favoriteModel->where('customer_wishlist.customer_id',$this->session->cusUserId)->query()->paginate(10);
+            $data['allProd'] = $this->favoriteModel->where('cc_customer_wishlist.customer_id',$this->session->cusUserId)->query()->paginate(10);
             $data['pager'] = $this->favoriteModel->pager;
             $data['links'] = $data['pager']->links('default','custome_link');
 

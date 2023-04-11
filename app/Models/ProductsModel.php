@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class ProductsModel extends Model {
 
-    protected $table = 'products';
+    protected $table = 'cc_products';
     protected $primaryKey = 'product_id';
     protected $returnType = 'object';
     protected $useSoftDeletes = false;

@@ -27,13 +27,13 @@
                         <?php
 
                             foreach ($populerCat as $catPop){
-                                $icon_id = get_data_by_id('icon_id','product_category','prod_cat_id',$catPop->prod_cat_id);
-                                $icon = get_data_by_id('name','icons','icon_id',$icon_id);
+                                $icon_id = get_data_by_id('icon_id','cc_product_category','prod_cat_id',$catPop->prod_cat_id);
+                                $icon = get_data_by_id('name','cc_icons','icon_id',$icon_id);
                         ?>
                         <div class="col border p-3">
                             <a href="<?php echo base_url('category/'.$catPop->prod_cat_id);?>">
                             <?php  echo image_view('icons','',$icon,'noimage.png','img-fluid icon-pd-20')?>
-                            <h5 class="mt-3"><a href="#"><?php echo get_data_by_id('category_name','product_category','prod_cat_id',$catPop->prod_cat_id);?></a></h5>
+                            <h5 class="mt-3"><a href="#"><?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$catPop->prod_cat_id);?></a></h5>
                             </a>
                         </div>
                         <?php } ?>
@@ -150,7 +150,7 @@
                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
                                             </div>
                                             <div class="price mb-3">
-                                                <?php $spPric = get_data_by_id('special_price','product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
+                                                <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                     $<?php echo $pro->price;?>
                                                 <?php }else{ ?>
                                                     <small> <del>$<?php echo $pro->price;?></del></small>/$<?php echo $spPric;?>
@@ -206,7 +206,7 @@
                                             <a href="<?php echo base_url('detail/'.$fetPro->product_id)?>"><?php echo $fetPro->name;?></a>
                                         </div>
                                         <div class="price mb-3">
-                                            <?php $spPricFut = get_data_by_id('special_price','product_special','product_id',$fetPro->product_id);  if (empty($spPricFut)){ ?>
+                                            <?php $spPricFut = get_data_by_id('special_price','cc_product_special','product_id',$fetPro->product_id);  if (empty($spPricFut)){ ?>
                                                 $<?php echo $fetPro->price;?>
                                             <?php }else{ ?>
                                                 <small> <del>$<?php echo $fetPro->price;?></del></small>/$<?php echo $spPricFut;?>

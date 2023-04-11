@@ -47,12 +47,12 @@
             <div class="card rounded-0 p-5">
                 <div class="card-header py-3 bg-white border-0">
                     <h4 class="fs-6 mb-0"><?php
-                        $par_id = get_data_by_id('parent_id','product_category','prod_cat_id',$prod_cat_id);
+                        $par_id = get_data_by_id('parent_id','cc_product_category','prod_cat_id',$prod_cat_id);
                         if (!empty($par_id)){
                             $url = base_url('category/'.$par_id);
-                            echo '<a class="text-black" href="'.$url.'">'.get_data_by_id('category_name','product_category','prod_cat_id',$par_id).'</a> <i class="fa-solid fa-angle-right"></i>';
+                            echo '<a class="text-black" href="'.$url.'">'.get_data_by_id('category_name','cc_product_category','prod_cat_id',$par_id).'</a> <i class="fa-solid fa-angle-right"></i>';
                         }
-                    ?> <?php echo get_data_by_id('category_name','product_category','prod_cat_id',$prod_cat_id); ?></h4>
+                    ?> <?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$prod_cat_id); ?></h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -174,7 +174,7 @@
                                                         <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
                                                     </div>
                                                     <div class="price mb-3">
-                                                        <?php $spPric = get_data_by_id('special_price','product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
+                                                        <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                             $<?php echo $pro->price;?>
                                                         <?php }else{ ?>
                                                             <small> <del>$<?php echo $pro->price;?></del></small>/$<?php echo $spPric;?>

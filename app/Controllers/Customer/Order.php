@@ -26,7 +26,7 @@ class Order extends BaseController
         if (!isset($isLoggedInCustomer) || $isLoggedInCustomer != TRUE) {
             return redirect()->to(site_url('Login'));
         } else {
-            $table = DB()->table('order');
+            $table = DB()->table('cc_order');
             $data['order'] = $table->where('customer_id',$this->session->cusUserId)->get()->getResult();
 
             $data['menu_active'] = 'order';

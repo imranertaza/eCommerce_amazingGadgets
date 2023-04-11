@@ -19,7 +19,7 @@ class Category extends BaseController {
 
     public function index($cat_id){
 
-        $data['products'] = $this->categoryproductsModel->where('product_to_category.category_id',$cat_id)->query()->paginate(9);
+        $data['products'] = $this->categoryproductsModel->where('cc_product_to_category.category_id',$cat_id)->query()->paginate(9);
         $data['pager'] = $this->categoryproductsModel->pager;
         $data['links'] = $data['pager']->links('default','custome_link');
 

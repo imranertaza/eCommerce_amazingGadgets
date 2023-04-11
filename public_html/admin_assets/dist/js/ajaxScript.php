@@ -246,7 +246,7 @@
 
     //option
     function add_option() {
-        <?php $dat = getListInOption('', 'color_family_id', 'color_name', 'color_family'); ?>
+        <?php $dat = getListInOption('', 'color_family_id', 'color_name', 'cc_color_family'); ?>
         var data = '<?php print $dat; ?>';
 
         var new_chq_no = parseInt($('#total_chq').val()) + 1;
@@ -262,7 +262,7 @@
 
     //attribute
     function add_attribute() {
-        <?php $dat = getListInOption('', 'attribute_group_id', 'name', 'product_attribute_group'); ?>
+        <?php $dat = getListInOption('', 'attribute_group_id', 'name', 'cc_product_attribute_group'); ?>
         var data = '<?php print $dat; ?>';
 
         var new_chq_no = parseInt($('#total_att').val()) + 1;

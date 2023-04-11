@@ -5,14 +5,14 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 
-class Module extends BaseController
+class Newsletter extends BaseController
 {
 
     protected $validation;
     protected $session;
     protected $crop;
     protected $permission;
-    private $module_name = 'Module';
+    private $module_name = 'Newsletter';
 
     public function __construct()
     {
@@ -30,8 +30,8 @@ class Module extends BaseController
             return redirect()->to(site_url('admin'));
         } else {
 
-            $table = DB()->table('cc_modules');
-            $data['modules'] = $table->get()->getResult();
+            $table = DB()->table('cc_newsletter');
+            $data['newsletter'] = $table->get()->getResult();
 
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -42,7 +42,7 @@ class Module extends BaseController
             echo view('Admin/header');
             echo view('Admin/sidebar');
             if (isset($data['mod_access']) and $data['mod_access'] == 1) {
-                echo view('Admin/Module/index', $data);
+                echo view('Admin/Newsletter/index', $data);
             } else {
                 echo view('Admin/no_permission');
             }
@@ -51,5 +51,24 @@ class Module extends BaseController
     }
 
 
+    public function delete($brand_id){
+
+        $target_dir = FCPATH . '/uploads/brand/';
+        //old image unlink
+        $old_img = get_data_by_id('image', 'brand', 'brand_id', $brand_id);
+        if (!empty($old_img)) {
+            $imgPath = $target_dir . '' . $old_img;
+            if (file_exists($imgPath)) {
+                unlink($target_dir . '' . $old_img);
+            }
+        }
+
+
+        $table = DB()->table('brand');
+        $table->where('brand_id', $brand_id)->delete();
+
+        $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        return redirect()->to('brand');
+    }
 
 }

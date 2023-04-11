@@ -279,13 +279,13 @@ function all_menu_permission_check($module_name_array,$role_id){
 
 function admin_user_name(){
     $userId = newSession()->adUserId;
-    $table = DB()->table('users');
+    $table = DB()->table('cc_users');
     $query = $table->where('user_id',$userId)->get()->getRow()->name;
     return $query;
 }
 
 function get_lebel_by_value_in_settings($lable){
-    $table = DB()->table('settings');
+    $table = DB()->table('cc_settings');
     $data = $table->where('label',$lable)->get()->getRow();
     if (!empty($data)){
         $result = $data->value;
@@ -296,7 +296,7 @@ function get_lebel_by_value_in_settings($lable){
 }
 
 function get_lebel_by_title_in_settings($lable){
-    $table = DB()->table('settings');
+    $table = DB()->table('cc_settings');
     $data = $table->where('label',$lable)->get()->getRow();
     if (!empty($data)){
         $result = $data->title;
@@ -308,7 +308,7 @@ function get_lebel_by_title_in_settings($lable){
 
 function getListInParentCategory($selected)
 {
-    $table = DB()->table('product_category');
+    $table = DB()->table('cc_product_category');
     $query = $table->where('parent_id',null)->get();
     $options = '';
     foreach ($query->getResult() as $value) {
@@ -321,20 +321,20 @@ function getListInParentCategory($selected)
 
 function getParentCategoryArray()
 {
-    $table = DB()->table('product_category');
+    $table = DB()->table('cc_product_category');
     $query = $table->where('parent_id',null)->get()->getResult();
     return $query;
 }
 
 function getCategoryBySubArray($cat_id)
 {
-    $table = DB()->table('product_category');
+    $table = DB()->table('cc_product_category');
     $query = $table->where('parent_id',$cat_id)->get()->getResult();
     return $query;
 }
 
 function check_is_parent_category($product_category_id){
-    $table = DB()->table('product_category');
+    $table = DB()->table('cc_product_category');
     $cat = $table->where('prod_cat_id',$product_category_id)->get()->getRow();
     if (!empty($cat->parent_id)){
         $result = $cat->parent_id;
@@ -345,7 +345,7 @@ function check_is_parent_category($product_category_id){
 }
 
 function check_is_sub_category($product_category_id){
-    $table = DB()->table('product_category');
+    $table = DB()->table('cc_product_category');
     $cat = $table->where('prod_cat_id',$product_category_id)->get()->getRow();
     if (!empty($cat->parent_id)){
         $result = false;
@@ -367,7 +367,7 @@ function available_theme($sel=''){
 }
 
 function country($sel = ''){
-    $table = DB()->table('country');
+    $table = DB()->table('cc_country');
     $data = $table->get()->getResult();
     $options = '';
     foreach ($data as $value) {
@@ -379,7 +379,7 @@ function country($sel = ''){
 }
 
 function state_with_country($country,$sel = ''){
-    $table = DB()->table('zone');
+    $table = DB()->table('cc_zone');
     $data = $table->where('country_id',$country)->get()->getResult();
     $options = '';
     foreach ($data as $value) {
@@ -391,7 +391,7 @@ function state_with_country($country,$sel = ''){
 }
 
 function attribute_array_by_product_id($productId){
-    $table = DB()->table('product_attribute');
+    $table = DB()->table('cc_product_attribute');
     $query = $table->where('product_id',$productId)->get()->getResult();
 
     return $query;
@@ -405,20 +405,20 @@ function get_all_data_array($table){
 }
 
 function category_id_by_product_count($category_id){
-    $table = DB()->table('product_to_category');
+    $table = DB()->table('cc_product_to_category');
     $count = $table->where('category_id',$category_id)->countAllResults();
     return $count;
 }
 
 function check_review($productId){
-    $table = DB()->table('product_feedback');
+    $table = DB()->table('cc_product_feedback');
     $count = $table->where('product_id',$productId)->where('customer_id',newSession()->cusUserId)->countAllResults();
     return $count;
 }
 
 function product_id_by_rating($productId,$ratingCount = 0){
 
-    $table = DB()->table('product_feedback');
+    $table = DB()->table('cc_product_feedback');
     $pro = $table->where('product_id',$productId)->get()->getResult();
 
     $average = 0;
@@ -461,7 +461,7 @@ function available_template($sel=''){
 }
 
 function top_menu(){
-    $table = DB()->table('product_category');
+    $table = DB()->table('cc_product_category');
     $query = $table->where('header_menu','1')->get()->getResult();
     $view ='';
     foreach ($query as $val){
@@ -473,7 +473,7 @@ function top_menu(){
 }
 
 function modules_key_by_access($key){
-    $table = DB()->table('modules');
+    $table = DB()->table('cc_modules');
     $data = $table->where('module_key',$key)->get()->getRow();
     if (!empty($data)){
         $result = $data->status;
@@ -482,3 +482,7 @@ function modules_key_by_access($key){
     }
     return $result;
 }
+
+//function coupon_available_by_coupon_id(){
+//
+//}
