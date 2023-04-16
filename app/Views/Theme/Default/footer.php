@@ -336,6 +336,19 @@
         });
     }
 
+    function user_create(){
+
+        var createNew = $('#createNew').val();
+        var html = '<div class="row"><div class="col-lg-6"><div class="form-group mb-4"><label class="w-100" for="password">Password</label><input class="form-control rounded-0" type="password" name="password" id="password" placeholder="Password"  required></div></div> <div class="col-lg-6"><div class="form-group mb-4"><label class="w-100" for="password">Confirm Password</label><input class="form-control rounded-0" type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password"  required></div></div></div>'
+        if (createNew == 0){
+            $('#createNew').val(1);
+            $('#regData').html(html);
+        }else{
+            $('#createNew').val(0);
+            $('#regData').html('');
+        }
+    }
+
 
 </script>
 

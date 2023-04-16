@@ -51,9 +51,21 @@
                         <input type="text" name="address_2" class="form-control" placeholder="Address line 2" value="<?php echo !empty($address->address_2)?$address->address_2:'';?>" >
                     </div>
 
+
                     <div class="form-group mt-4">
-                        <label>City <span>*</span></label>
-                        <input type="text" name="city" class="form-control" placeholder="City" value="<?php echo !empty($address->city)?$address->city:'';?>" required>
+                        <label class="w-100" for="phone">Country</label>
+                        <select name="country_id" class="form-control" onchange="selectState(this.value,'stateView')" required>
+                            <option value="" >Please select</option>
+                            <?php echo country(!empty($address->country_id)?$address->country_id:'');?>
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label class="w-100" for="payment_city">District</label>
+                        <select name="zone_id" class="form-control" id="stateView" required >
+                            <option value="" >Please select</option>
+                            <?php echo state_with_country(!empty($address->country_id)?$address->country_id:'',!empty($address->zone_id)?$address->zone_id:'');?>
+                        </select>
                     </div>
 
 

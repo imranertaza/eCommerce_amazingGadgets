@@ -143,6 +143,18 @@ $routes->post('/module_update', 'Admin\Ajax::module_update');
 //
 $routes->get('/newsletter', 'Admin\Newsletter::index');
 
+$routes->get('/option', 'Admin\Option::index');
+$routes->get('/option_create', 'Admin\Option::create');
+$routes->post('/option_create_action', 'Admin\Option::create_action');
+$routes->post('/option_update_action', 'Admin\Option::update_action');
+$routes->get('/option_update/(:num)', 'Admin\Option::update/$1');
+$routes->get('/option_delete/(:num)', 'Admin\Option::delete/$1');
+$routes->post('/option_remove_action', 'Admin\Option::option_remove_action');
+
+//Coupon
+$routes->get('/order_list', 'Admin\Order::index');
+$routes->get('/order_view', 'Admin\Order::order_view');
+
 
 
 

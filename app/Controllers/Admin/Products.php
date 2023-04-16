@@ -99,10 +99,11 @@ class Products extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('product_create');
         } else {
-            DB()->transStart();
+//            DB()->transStart();
             //product table data insert(start)
             $storeId = get_data_by_id('store_id','cc_stores','is_default','1');
             $proData['store_id'] = $storeId;
+            $proData['name'] = $data['pro_name'];
             $proData['model'] = $data['model'];
             $proData['brand_id'] = !empty($this->request->getPost('brand_id'))?$this->request->getPost('brand_id'):null;
             $proData['price'] = $data['price'];
@@ -164,7 +165,7 @@ class Products extends BaseController
                     if ($file->isValid() && ! $file->hasMoved())
                     {
                         $dataMultiImg['product_id'] = $productId;
-                        $proImgTable = DB()->table('product_image');
+                        $proImgTable = DB()->table('cc_product_image');
                         $proImgTable->insert($dataMultiImg);
                         $proImgId = DB()->insertID();
 
@@ -224,7 +225,6 @@ class Products extends BaseController
 
             //product description table data insert(start)
             $proDescData['product_id'] = $productId;
-            $proDescData['name'] = $data['pro_name'];
             $proDescData['description'] = !empty($this->request->getPost('description'))?$this->request->getPost('description'):null;
             $proDescData['tag'] = !empty($this->request->getPost('tag'))?$this->request->getPost('tag'):null;
             $proDescData['meta_title'] = !empty($this->request->getPost('meta_title'))?$this->request->getPost('meta_title'):null;
@@ -239,17 +239,34 @@ class Products extends BaseController
 
 
             //product options table data insert(start)
-            $color = $this->request->getPost('color[]');
-            $size = $this->request->getPost('size[]');
+//            $color = $this->request->getPost('color[]');
+//            $size = $this->request->getPost('size[]');
+//            $qty = $this->request->getPost('qty[]');
+//            if (!empty($qty)){
+//                foreach ($qty as $key => $val){
+//                    $optionData['product_id'] = $productId;
+//                    $optionData['color_family_id'] = $color[$key];
+//                    $optionData['size'] = $size[$key];
+//                    $optionData['quantity'] = $qty[$key];
+//
+//                    $optionTable = DB()->table('cc_product_options');
+//                    $optionTable->insert($optionData);
+//                }
+//            }
+
+            $option = $this->request->getPost('option[]');
+            $opValue = $this->request->getPost('opValue[]');
             $qty = $this->request->getPost('qty[]');
+            $price_op = $this->request->getPost('price_op[]');
             if (!empty($qty)){
                 foreach ($qty as $key => $val){
                     $optionData['product_id'] = $productId;
-                    $optionData['color_family_id'] = $color[$key];
-                    $optionData['size'] = $size[$key];
+                    $optionData['option_id'] = $option[$key];
+                    $optionData['option_value_id'] = $opValue[$key];
                     $optionData['quantity'] = $qty[$key];
+                    $optionData['price'] = $price_op[$key];
 
-                    $optionTable = DB()->table('cc_product_options');
+                    $optionTable = DB()->table('cc_product_option');
                     $optionTable->insert($optionData);
                 }
             }

@@ -49,7 +49,8 @@ class Profile extends BaseController
 
         $data['address_1'] = $this->request->getPost('address_1');
         $data['address_2'] = $this->request->getPost('address_2');
-        $data['city'] = $this->request->getPost('city');
+        $data['country_id'] = $this->request->getPost('country_id');
+        $data['zone_id'] = $this->request->getPost('zone_id');
         $data['postcode'] = $this->request->getPost('postcode');
 
 
@@ -65,7 +66,7 @@ class Profile extends BaseController
             'email' => ['label' => 'Email', 'rules' => 'required'],
             'phone' => ['label' => 'Phone', 'rules' => 'required'],
             'postcode' => ['label' => 'Post code', 'rules' => 'required'],
-            'city' => ['label' => 'City', 'rules' => 'required'],
+            'country_id' => ['label' => 'Country', 'rules' => 'required'],
             'address_1' => ['label' => 'Address line 1', 'rules' => 'required'],
         ]);
 
@@ -103,7 +104,8 @@ class Profile extends BaseController
             $addData['lastname'] = $data['lastname'];
             $addData['address_1'] = $data['address_1'];
             $addData['address_2'] = $data['address_2'];
-            $addData['city'] = $data['city'];
+            $addData['country_id'] = $data['country_id'];
+            $addData['zone_id'] = $data['zone_id'];
             $addData['postcode'] = $data['postcode'];
 
             $check_address = is_exists('cc_address','customer_id',$this->session->cusUserId);

@@ -48,12 +48,29 @@
 
                 <?php } ?>
 
+                <li class="nav-header">Products</li>
+
+                <?php
+                $modArrayPur = ['Order'];
+                $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
+                if ($menuAccessPur == true){
+                    ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('order_list');?>" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Order
+                            </p>
+                        </a>
+                    </li>
+                <?php } ?>
+
                 <?php
                     $modArrayPur = ['Products'];
                     $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
                     if ($menuAccessPur == true){
                 ?>
-                <li class="nav-header">Products</li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
@@ -70,6 +87,8 @@
                         <?php echo add_main_based_menu_with_permission('Color Family', base_url('color_family'), $adRoleId, 'fa-circle', 'Color_family');?>
 
                         <?php echo add_main_based_menu_with_permission('Attribute Group', base_url('attribute_group'), $adRoleId, 'fa-circle', 'Attribute_group');?>
+
+                        <?php echo add_main_based_menu_with_permission('Option', base_url('option'), $adRoleId, 'fa-circle', 'Option');?>
 
 
                     </ul>

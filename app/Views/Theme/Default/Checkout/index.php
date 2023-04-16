@@ -5,10 +5,10 @@
                 <div class="col-lg-6">
                     <?php $isLoggedInCustomer = newSession()->isLoggedInCustomer;
                     if (!isset($isLoggedInCustomer) || $isLoggedInCustomer != TRUE) { ?>
-                    <p><a class="btn bg-black w-100 text-white rounded-0" href="#">Log In</a></p>
+                    <p><a class="btn bg-black w-100 text-white rounded-0" href="<?php echo base_url('login') ?>">Log In</a></p>
                     <p class="text-center">Or</p>
                     <div class="create-box mb-5">
-                        <p class="mb-0"><label><input type="checkbox" name="create" id="createNew"> Check Mark the box
+                        <p class="mb-0"><label><input type="checkbox" onclick="user_create()" name="new_acc_create" id="createNew" value="0" > Check Mark the box
                                 for create an account</label></p>
                         <p class="ms-3 lh-sm"><small>By creating an account you will be able to make quick purchases
                                 later and see details about all orders</small></p>
@@ -31,13 +31,6 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group mb-4">
-                                <label class="w-100" for="phone">Phone</label>
-                                <input class="form-control rounded-0" type="number" name="payment_phone" id="payment_phone"
-                                       placeholder="Phone" value="<?php echo isset($customer->phone)?$customer->phone:'';?>" required>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group mb-4">
                                 <label class="w-100" for="email">Email</label>
                                 <input class="form-control rounded-0" type="email" name="payment_email" id="email"
                                        placeholder="Email" value="<?php echo isset($customer->email)?$customer->email:'';?>" required>
@@ -45,11 +38,31 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group mb-4">
+                                <label class="w-100" for="phone">Phone</label>
+                                <input class="form-control rounded-0" type="number" name="payment_phone" id="payment_phone"
+                                       placeholder="Phone" value="<?php echo isset($customer->phone)?$customer->phone:'';?>" required>
+                            </div>
+                        </div>
+
+                        <div class="class="row"" id="regData"></div>
+
+
+                        <?php
+                        $coun = isset($customer->customer_id)?get_data_by_id('country_id','cc_address','customer_id',$customer->customer_id):'';
+                        $zon = isset($customer->customer_id)?get_data_by_id('zone_id','cc_address','customer_id',$customer->customer_id):'';
+                        $post = isset($customer->customer_id)?get_data_by_id('postcode','cc_address','customer_id',$customer->customer_id):'';
+                        $add1 = isset($customer->customer_id)?get_data_by_id('address_1','cc_address','customer_id',$customer->customer_id):'';
+                        $add2 = isset($customer->customer_id)?get_data_by_id('address_2','cc_address','customer_id',$customer->customer_id):'';
+                        ?>
+
+
+                        <div class="col-lg-6">
+                            <div class="form-group mb-4">
                                 <label class="w-100" for="phone">Country</label>
                                 <select name="payment_country_id" class="form-control" onchange="selectState(this.value,'stateView')" required>
                                     <option value="" >Please select</option>
-                                    <?php $cou = isset($customer->email)?$customer->email:'';?>
-                                    <?php echo country('');?>
+
+                                    <?php echo country($coun);?>
                                 </select>
                             </div>
                         </div>
@@ -58,21 +71,31 @@
                                 <label class="w-100" for="payment_city">District</label>
                                 <select name="payment_city" class="form-control" id="stateView" required >
                                     <option value="" >Please select</option>
+                                    <?php echo state_with_country($coun,$zon)?>
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group mb-4">
+                                <label class="w-100" for="email">Post code</label>
+                                <input class="form-control rounded-0" type="number" name="payment_postcode" id="payment_postcode"
+                                       placeholder="Post code" value="<?php echo $post;?>" required>
+                            </div>
+                        </div>
+
                         <div class="col-lg-12">
                             <div class="form-group mb-4">
                                 <label class="w-100" for="name">Address line 1*</label>
                                 <input class="form-control rounded-0" type="text" name="payment_address_1"
-                                       id="payment_address_1" placeholder="Address line 1" required>
+                                       id="payment_address_1" placeholder="Address line 1" value="<?php echo $add1?>" required>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group mb-4">
                                 <label class="w-100" for="name">Address line 2*</label>
                                 <input class="form-control rounded-0" type="text" name="payment_address_2"
-                                       id="payment_address_2" placeholder="Address line 2" required>
+                                       id="payment_address_2" placeholder="Address line 2" value="<?php echo $add2?>" required>
                             </div>
                         </div>
                     </div>
@@ -101,17 +124,11 @@
                                            placeholder="Phone">
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="form-group mb-4">
-                                    <label class="w-100" for="email">Email</label>
-                                    <input class="form-control rounded-0" type="email" name="shipping_email" id="shipping_email"
-                                           placeholder="Email">
-                                </div>
-                            </div>
+
                             <div class="col-lg-6">
                                 <div class="form-group mb-4">
                                     <label class="w-100" for="country">Country</label>
-                                    <select name="	shipping_country_id" class="form-control" onchange="selectState(this.value,'sh_stateView')" required>
+                                    <select name="shipping_country_id" class="form-control" onchange="selectState(this.value,'sh_stateView')" >
                                         <option value="" >Please select</option>
                                         <?php echo country('');?>
                                     </select>
@@ -120,9 +137,16 @@
                             <div class="col-lg-6">
                                 <div class="form-group mb-4">
                                     <label class="w-100" for="email">District</label>
-                                    <select name="shipping_city" class="form-control" id="sh_stateView" required >
+                                    <select name="shipping_city" class="form-control" id="sh_stateView"  >
                                         <option value="" >Please select</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group mb-4">
+                                    <label class="w-100" for="email">Postcode</label>
+                                    <input class="form-control rounded-0" type="number" name="shipping_postcode" id="shipping_postcode"
+                                           placeholder="Shipping postcode">
                                 </div>
                             </div>
                             <div class="col-lg-12">
@@ -200,9 +224,9 @@
                             <span>Shipping Charge</span>
                             <div class="d-flex flex-column text-end">
                                 <span><label>Home delivery 50tk <input type="radio" name="shipping_method"
-                                                                       id="shipping_method"></label></span>
+                                                                       id="shipping_method" value="50" required></label></span>
                                 <span><label>Courier 70tk <input type="radio" name="shipping_method"
-                                                                 id="shipping_method"></label></span>
+                                                                 id="shipping_method" value="70" required></label></span>
                             </div>
                         </div>
                         <div class="total py-3 mt-3">
@@ -213,9 +237,9 @@
                         </div>
                     </div>
                     <div class="payment-method mt-5 mb-4 p-3">
-                        <p><label><input type="radio" name="payment_method" id="payment_method"> Cash on delivery
+                        <p><label><input type="radio" name="payment_method" id="payment_method" value="cash_on" required> Cash on delivery
                                 <small>(Cash to be paid after product delivery.)</small></label></p>
-                        <p><label><input type="radio" name="payment_method" id="payment_method"> <img
+                        <p><label><input type="radio" name="payment_method" id="payment_method" required> <img
                                         src="assets/img/ssl-commerz.png" alt=""></label></p>
                     </div>
                     <p>

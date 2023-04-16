@@ -246,17 +246,34 @@
 
     //option
     function add_option() {
-        <?php $dat = getListInOption('', 'color_family_id', 'color_name', 'cc_color_family'); ?>
+        <?php $dat = getListInOption('', 'option_id', 'name', 'cc_option'); ?>
         var data = '<?php print $dat; ?>';
 
         var new_chq_no = parseInt($('#total_chq').val()) + 1;
-        var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><select name='color[]'  style='padding: 3px;'><option value=''>Please select</option>"+data+"</select> <input type='number' placeholder='Size' name='size[]' > <input type='number' placeholder='Quantity' name='qty[]' required> <a href='javascript:void(0)' onclick='remove_option(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
+        var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><select name='option[]' onchange='optionVal(this.value,"+new_chq_no+" )'  style='padding: 3px;'><option value=''>Please select</option>"+data+"</select> <select name='opValue[]' id='valId_"+new_chq_no+"' style='padding: 3px;'><option value=''>Please select</option></select> <input type='number' placeholder='Quantity' name='qty[]' required> <input type='number' placeholder='Price' name='price_op[]' required> <a href='javascript:void(0)' onclick='remove_option(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
 
         $('#new_chq').append(new_input);
         $('#total_chq').val(new_chq_no);
     }
     function  remove_option(data){
         $(data).parent().remove();
+    }
+
+    function optionVal(val,idview){
+
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('Admin/Ajax/get_option_value')?>",
+            data: {option_id:val},
+            beforeSend: function () {
+                $("#loading-image").show();
+            },
+            success: function (data) {
+                $("#valId_"+idview).html(data);
+                // alert(data);
+            }
+
+        });
     }
 
 
@@ -369,6 +386,39 @@
             }
 
         });
+    }
+
+    //option
+    function add_option_new() {
+        <?php $dat = getListInOption('', 'attribute_group_id', 'name', 'cc_product_attribute_group'); ?>
+        var data = '<?php print $dat; ?>';
+
+        var new_chq_no = parseInt($('#total_chq').val()) + 1;
+        var new_input = "<div class='form-group mt-3' id='new_" + new_chq_no + "' ><input type='text' class='form-control'  placeholder='value' name='value[]' style='width: 70%;float: left;'> <a href='javascript:void(0)' onclick='remove_option_new(this)' class='btn btn-sm btn-danger' style='margin-left: 5px;padding: 7px;'>X</a></div>";
+
+        $('#new_chq').append(new_input);
+        $('#total_chq').val(new_chq_no);
+    }
+
+    function  remove_option_new(data,id){
+        $(data).parent().remove();
+    }
+
+    function  remove_option_new_remove(data,id){
+        $(data).parent().remove();
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('option_remove_action')?>",
+            data: {id:id},
+            beforeSend: function () {
+                $("#loading-image").show();
+            },
+            success: function (data) {
+                $(data).parent().remove();
+            }
+
+        });
+
     }
 
 </script>

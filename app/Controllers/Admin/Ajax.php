@@ -49,4 +49,19 @@ class Ajax extends BaseController
         }
     }
 
+    public function get_option_value(){
+        $option_id = $this->request->getPost('option_id');
+
+        $table = DB()->table('cc_option_value');
+        $data = $table->where('option_id',$option_id)->get()->getResult();
+        $options = '';
+        foreach ($data as $value) {
+            $options .= '<option value="' . $value->option_value_id . '" ';
+            $options .= '>' . $value->name. '</option>';
+        }
+        print $options;
+
+
+    }
+
 }
