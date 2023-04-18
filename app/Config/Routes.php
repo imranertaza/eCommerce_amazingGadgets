@@ -155,6 +155,13 @@ $routes->post('/option_remove_action', 'Admin\Option::option_remove_action');
 $routes->get('/order_list', 'Admin\Order::index');
 $routes->get('/order_view', 'Admin\Order::order_view');
 
+//Theme Settings
+$routes->get('/theme_settings', 'Admin\Theme_settings::index');
+$routes->post('/slider_update', 'Admin\Theme_settings::slider_update');
+$routes->post('/logo_update', 'Admin\Theme_settings::logo_update');
+$routes->post('/home_category', 'Admin\Theme_settings::home_category');
+$routes->post('/settings_update', 'Admin\Theme_settings::settings_update');
+
 
 
 

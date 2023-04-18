@@ -14,12 +14,16 @@ class Home extends BaseController {
     }
 
     public function index(){
+        $category = get_lebel_by_value_in_theme_settings('home_category');
         $table = DB()->table('cc_products');
-        $data['products'] = $table->where('status','Active')->limit(4)->get()->getResult();
+        $table->join('cc_product_to_category', 'cc_product_to_category.product_id = cc_products.product_id')->where('cc_products.status','Active');
+        $data['products'] = $table->where('cc_product_to_category.category_id',$category)->limit(4)->get()->getResult();
+//        $data['products'] = $table->where('status','Active')->limit(4)->get()->getResult();
 
+        $featLimit = get_lebel_by_value_in_theme_settings('featured_products_limit');
+        $data['prodFeat'] = $table->where('status','Active')->where('featured','1')->orderBy('product_id','DESC')->limit($featLimit)->get()->getResult();
 
-        $data['prodFeat'] = $table->where('status','Active')->where('featured','1')->orderBy('product_id','DESC')->limit(8)->get()->getResult();
-
+        $featLimit = get_lebel_by_value_in_theme_settings('featured_products_limit');
         $tabPopuler = DB()->table('cc_product_category_popular');
         $data['populerCat'] = $tabPopuler->limit(12)->get()->getResult();
 

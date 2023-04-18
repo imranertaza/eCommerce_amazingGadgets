@@ -483,6 +483,13 @@ function modules_key_by_access($key){
     return $result;
 }
 
-//function coupon_available_by_coupon_id(){
-//
-//}
+function get_lebel_by_value_in_theme_settings($lable){
+    $table = DB()->table('cc_theme_settings');
+    $data = $table->where('label',$lable)->get()->getRow();
+    if (!empty($data)){
+        $result = $data->value;
+    }else{
+        $result ='';
+    }
+    return $result;
+}

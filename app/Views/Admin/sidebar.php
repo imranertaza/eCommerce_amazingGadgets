@@ -168,6 +168,20 @@
                 <?php } ?>
 
                 <?php
+                $modArrayPur = ['Theme_settings'];
+                $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
+                if ($menuAccessPur == true){ ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('theme_settings');?>" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Theme Settings
+                            </p>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <?php
                 $modArrayPur = ['Module'];
                 $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
                 if ($menuAccessPur == true){

@@ -4,9 +4,12 @@
             <div class="col-lg-9 offset-lg-3">
                 <div class="swiper bannerSlide">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="<?php echo base_url() ?>/assets/img/banner.png" alt="" class="img-fluid w-100"></div>
-                        <div class="swiper-slide"><img src="<?php echo base_url() ?>/assets/img/banner.png" alt="" class="img-fluid w-100"></div>
-                        <div class="swiper-slide"><img src="<?php echo base_url() ?>/assets/img/banner.png" alt="" class="img-fluid w-100"></div>
+                        <?php $sli_1 = get_lebel_by_value_in_theme_settings('slider_1'); ?>
+                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_1, 'noimage.png', 'img-fluid w-100');?></div>
+                        <?php $sli_2 = get_lebel_by_value_in_theme_settings('slider_2'); ?>
+                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_2, 'noimage.png', 'img-fluid w-100');?></div>
+                        <?php $sli_3 = get_lebel_by_value_in_theme_settings('slider_3'); ?>
+                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_3, 'noimage.png', 'img-fluid w-100');?></div>
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
