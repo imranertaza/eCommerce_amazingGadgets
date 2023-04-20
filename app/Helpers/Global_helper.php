@@ -493,3 +493,18 @@ function get_lebel_by_value_in_theme_settings($lable){
     }
     return $result;
 }
+
+function email_send($to,$subject,$message){
+    $form = get_lebel_by_value_in_settings('mail_address');
+    $headers = "From: ".$form ;
+
+//    mail($to,$subject,$message,$headers);
+
+    if(mail($to,$subject,$message,$headers)){
+        echo 'Your mail has been sent successfully.';
+    } else{
+        echo 'Unable to send email. Please try again.';
+    }
+
+//    print $headers;
+}

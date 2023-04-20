@@ -160,6 +160,21 @@
 
                                             <button class="btn btn-primary">Save</button>
                                         </form>
+
+                                        <form action="<?php echo base_url('home_category_banner') ?>" method="post"
+                                              enctype="multipart/form-data">
+                                            <div class="form-group mt-5">
+                                                <?php
+                                                $banner_1 = get_lebel_by_value_in_theme_settings('home_category_banner');
+                                                echo image_view('uploads/category_banner', '', $banner_1, 'noimage.png', '');
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Home Category Banner</label>
+                                                <input type="file" name="home_category_banner" class="form-control" required>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </form>
                                     </div>
 
                                     <div class="col-md-6">

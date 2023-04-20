@@ -160,7 +160,12 @@ $routes->get('/theme_settings', 'Admin\Theme_settings::index');
 $routes->post('/slider_update', 'Admin\Theme_settings::slider_update');
 $routes->post('/logo_update', 'Admin\Theme_settings::logo_update');
 $routes->post('/home_category', 'Admin\Theme_settings::home_category');
+$routes->post('/home_category_banner', 'Admin\Theme_settings::home_category_banner');
 $routes->post('/settings_update', 'Admin\Theme_settings::settings_update');
+
+//Email_send
+$routes->get('/email_send', 'Admin\Email_send::index');
+$routes->post('/email_send_action', 'Admin\Email_send::email_send_action');
 
 
 
@@ -174,6 +179,13 @@ $routes->get('/login', 'Login::index');
 $routes->post('/login_action', 'Login::login_action');
 $routes->post('/register_action', 'Login::register_action');
 $routes->get('/logout', 'Login::logout');
+$routes->get('/forgotpassword', 'Login::forgotPassword');
+$routes->post('/password_action', 'Login::password_action');
+$routes->get('/otp_submit', 'Login::otp_submit');
+$routes->post('/otp_action', 'Login::otp_action');
+$routes->get('/password_reset', 'Login::password_reset');
+$routes->post('/reset_action', 'Login::reset_action');
+
 
 //Customer Dashboard routes
 $routes->get('/dashboard', 'Customer\Dashboard::index');

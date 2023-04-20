@@ -117,7 +117,10 @@
                 <div class="row gx-0">
                     <div class="col-lg-3">
                         <div class="deal-box position-relative h-100">
-                            <img src="<?php echo base_url() ?>/assets/img/deal.png" alt="" class="w-100 h-100">
+                            <?php
+                            $banner_1 = get_lebel_by_value_in_theme_settings('home_category_banner');
+                            echo image_view('uploads/category_banner', '', $banner_1, 'noimage.png', 'w-100 h-100');
+                            ?>
                             <div class="deal-content position-absolute top-0 d-flex align-items-stretch h-100 w-100 flex-column p-4">
                                 <p class="mt-auto text-center"><a href="#" class="btn btn-shop">Shop Now <i class="fa-solid fa-angle-right"></i></a></p>
                             </div>

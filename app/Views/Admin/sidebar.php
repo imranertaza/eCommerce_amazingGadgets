@@ -225,6 +225,20 @@
                     </li>
                 <?php } ?>
 
+                <?php
+                $modArrayPur = ['Email_send'];
+                $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
+                if ($menuAccessPur == true){ ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('email_send');?>" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Email Send
+                            </p>
+                        </a>
+                    </li>
+                <?php } ?>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

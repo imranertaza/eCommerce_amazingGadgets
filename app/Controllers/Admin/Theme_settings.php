@@ -113,6 +113,37 @@ class Theme_settings extends BaseController
 
     }
 
+    public function home_category_banner()
+    {
+
+        if (!empty($_FILES['home_category_banner']['name'])) {
+            $target_dir = FCPATH . '/uploads/category_banner/';
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777);
+            }
+
+            //new image uplode
+            $pic = $this->request->getFile('home_category_banner');
+            $namePic = $pic->getRandomName();
+            $pic->move($target_dir, $namePic);
+            $news_img = 'banner_' . $pic->getName();
+            $this->crop->withFile($target_dir . '' . $namePic)->fit(280, 440, 'center')->save($target_dir . '' . $news_img);
+            unlink($target_dir . '' . $namePic);
+            $data['value'] = $news_img;
+
+            $table = DB()->table('cc_theme_settings');
+            $table->where('label','home_category_banner')->update($data);
+
+            $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            return redirect()->to('theme_settings');
+        }else{
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Logo required <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            return redirect()->to('theme_settings');
+        }
+
+
+    }
+
     public function home_category()
     {
 

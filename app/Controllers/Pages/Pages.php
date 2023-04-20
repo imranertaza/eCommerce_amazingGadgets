@@ -16,7 +16,7 @@ class Pages extends BaseController {
     }
 
     public function page($slug){
-        $table = DB()->table('pages');
+        $table = DB()->table('cc_pages');
         $page = $table->where('slug',$slug)->get()->getRow();
 
         $data['page_title'] = $page->page_title;
