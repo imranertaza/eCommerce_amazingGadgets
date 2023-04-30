@@ -110,12 +110,15 @@ class Checkout extends BaseController {
         $data['payment_email'] = $this->request->getPost('payment_email');
         $data['payment_country_id'] = $this->request->getPost('payment_country_id');
         $data['payment_city'] = $this->request->getPost('payment_city');
+        $data['payment_postcode'] = $this->request->getPost('payment_postcode');
         $data['payment_address_1'] = $this->request->getPost('payment_address_1');
         $data['payment_address_2'] = $this->request->getPost('payment_address_2');
 
 //        $data['shipping_method'] = $this->request->getPost('shipping_method');
         $data['shipping_charge'] = $this->request->getPost('shipping_method');
         $data['payment_method'] = $this->request->getPost('payment_method');
+
+        $data['store_id'] = get_data_by_id('store_id','cc_stores','is_default','1');
 
         $new_acc_create = $this->request->getPost('new_acc_create');
 
@@ -150,7 +153,7 @@ class Checkout extends BaseController {
                 $data['shipping_phone'] = $data['payment_phone'];
                 $data['shipping_country_id'] = $data['payment_country_id'];
                 $data['shipping_city'] = $data['payment_city'];
-                $data['shipping_postcode'] = $this->request->getPost('shipping_postcode');
+                $data['shipping_postcode'] = $this->request->getPost('payment_postcode');
                 $data['shipping_address_1'] = $data['payment_address_1'];
                 $data['shipping_address_2'] = $data['payment_address_2'];
             }
@@ -170,7 +173,7 @@ class Checkout extends BaseController {
             $data['total'] = $this->cart->total();
             $data['discount'] = $disc;
             $data['final_amount'] = $finalAmo;
-            $data['order_status'] = 'Processing';
+            $data['order_status'] = 'Pending';
 
 
             $table = DB()->table('cc_order');

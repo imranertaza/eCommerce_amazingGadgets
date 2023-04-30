@@ -154,8 +154,18 @@
                         </div>
                         <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
 
+                            <?php foreach ($review as $rev){ ?>
+                                <div class="review text-capitalize mt-2" style="border: 1px solid #ededed;padding: 20px 10px 10px 10px;">
+                                    <span style="float: right;"><?php echo $rev->feedback_star;?> <i data-index="2" title="Medium" class="fa-solid fa-star" style="color: rgb(0, 0, 0); margin: 2px; font-size: 1em;"></i></span>
+                                    <p><strong><?php echo get_data_by_id('firstname','cc_customer','customer_id',$rev->customer_id).' '.get_data_by_id('lastname','cc_customer','customer_id',$rev->customer_id)?></strong> </p>
+
+                                    <p><?php echo $rev->feedback_text;?></p>
+                                </div>
+                            <?php } ?>
+
+
                             <form action="<?php echo base_url('review')?>" method="post" class="product-review w-50">
-                                <p class="mb-4"><strong>Your Rating</strong></p>
+                                <p class="mb-4 mt-2"><strong>Your Rating</strong></p>
                                 <?php if (isset(newSession()->isLoggedInCustomer)){ if(empty(check_review($products->product_id))){  ?>
                                 <div class="rating ">
                                     <div class="ratingPiont"></div>

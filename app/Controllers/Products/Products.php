@@ -48,8 +48,9 @@ class Products extends BaseController {
         }
         $data['relProdSide'] = $relatedProduct2;
 
-
-
+        //reviews
+        $reviewTable = DB()->table('cc_product_feedback');
+        $data['review'] = $reviewTable->where('product_id',$product_id)->where('status','Active')->get()->getResult();
 
 
 

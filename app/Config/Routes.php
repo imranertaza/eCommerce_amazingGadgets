@@ -153,7 +153,7 @@ $routes->post('/option_remove_action', 'Admin\Option::option_remove_action');
 
 //Coupon
 $routes->get('/order_list', 'Admin\Order::index');
-$routes->get('/order_view', 'Admin\Order::order_view');
+$routes->get('/order_view/(:num)', 'Admin\Order::order_view/$1');
 
 //Theme Settings
 $routes->get('/theme_settings', 'Admin\Theme_settings::index');
@@ -167,7 +167,10 @@ $routes->post('/settings_update', 'Admin\Theme_settings::settings_update');
 $routes->get('/email_send', 'Admin\Email_send::index');
 $routes->post('/email_send_action', 'Admin\Email_send::email_send_action');
 
-
+//Reviews
+$routes->get('/reviews', 'Admin\Reviews::index');
+$routes->post('/reviews_status_update', 'Admin\Reviews::reviews_status_update');
+$routes->get('/reviews_delete/(:num)', 'Admin\Reviews::delete/$1');
 
 
 

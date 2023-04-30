@@ -110,6 +110,21 @@
                     </li>
                 <?php } ?>
 
+                <?php
+                $modArrayPur = ['Reviews'];
+                $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
+                if ($menuAccessPur == true){
+                    ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('reviews');?>" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Reviews
+                            </p>
+                        </a>
+                    </li>
+                <?php } ?>
+
                 <li class="nav-header">Users</li>
                 <?php
                     $modArrayPur = ['User'];
