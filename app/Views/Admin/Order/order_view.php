@@ -174,6 +174,10 @@
                                             <td>$<?php echo $order->discount;?></td>
                                         </tr>
                                         <tr>
+                                            <td class="text-right" colspan="3">Shipping Charge:</td>
+                                            <td>$<?php echo $order->shipping_charge;?></td>
+                                        </tr>
+                                        <tr>
                                             <td class="text-right" colspan="3">Total:</td>
                                             <td>$<?php echo $order->final_amount;?></td>
                                         </tr>

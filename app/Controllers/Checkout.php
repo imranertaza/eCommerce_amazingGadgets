@@ -3,13 +3,19 @@
 namespace App\Controllers;
 
 use App\Libraries\Mycart;
+use App\Libraries\Zone_shipping;
+use App\Libraries\Flat_shipping;
 use App\Models\ProductsModel;
+
+
 
 class Checkout extends BaseController {
 
     protected $validation;
     protected $session;
     protected $productsModel;
+    protected $zone_shipping;
+    protected $flat_shipping;
     protected $cart;
 
     public function __construct()
@@ -17,6 +23,8 @@ class Checkout extends BaseController {
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
         $this->productsModel = new ProductsModel();
+        $this->zone_shipping = new Zone_shipping();
+        $this->flat_shipping = new Flat_shipping();
         $this->cart = new Mycart();
     }
 
@@ -114,8 +122,8 @@ class Checkout extends BaseController {
         $data['payment_address_1'] = $this->request->getPost('payment_address_1');
         $data['payment_address_2'] = $this->request->getPost('payment_address_2');
 
-//        $data['shipping_method'] = $this->request->getPost('shipping_method');
-        $data['shipping_charge'] = $this->request->getPost('shipping_method');
+        $data['shipping_method'] = $this->request->getPost('shipping_method');
+        $data['shipping_charge'] = $this->request->getPost('shipping_charge');
         $data['payment_method'] = $this->request->getPost('payment_method');
 
         $data['store_id'] = get_data_by_id('store_id','cc_stores','is_default','1');
@@ -206,10 +214,31 @@ class Checkout extends BaseController {
             unset($_SESSION['coupon_discount']);
             $this->cart->destroy();
 
-            $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Your order has been successfully placed </div>');
-            return redirect()->to('home');
+            $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Your order has been successfully placed </div>');
+            return redirect()->to('my_order');
 
         }
+    }
+
+
+
+    public function shipping_rate(){
+
+        $city_id = $this->request->getPost('city_id');
+        $shipCityId = $this->request->getPost('shipCityId');
+        $paymethod = $this->request->getPost('paymethod');
+        if (!empty($shipCityId)){
+            $city_id = $shipCityId;
+        }
+
+        if ($paymethod == 'flat') {
+            $data['charge'] = $this->flat_shipping->getSettings()->calculateShipping();
+        }
+        if ($paymethod == 'zone') {
+            $data['charge'] = $this->zone_shipping->getSettings()->calculateShipping($city_id);
+        }
+
+        return $this->response->setJSON($data);
     }
 
 

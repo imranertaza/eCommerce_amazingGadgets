@@ -213,6 +213,9 @@ $routes->get('/checkout', 'Checkout::index');
 $routes->post('/checkout_coupon_action', 'Checkout::coupon_action');
 $routes->post('/checkout_action', 'Checkout::checkout_action');
 $routes->post('/checkout_country_zoon', 'Checkout::country_zoon');
+$routes->post('/flat_shipping_rate', 'Checkout::flat_shipping_rate');
+$routes->post('/zone_shipping_rate', 'Checkout::zone_shipping_rate');
+$routes->post('/shipping_rate', 'Checkout::shipping_rate');
 
 
 //pages routes

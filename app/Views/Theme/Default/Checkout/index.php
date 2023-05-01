@@ -44,7 +44,7 @@
                             </div>
                         </div>
 
-                        <div class="class="row"" id="regData"></div>
+                        <div class="row" id="regData"></div>
 
 
                         <?php
@@ -69,7 +69,7 @@
                         <div class="col-lg-6">
                             <div class="form-group mb-4">
                                 <label class="w-100" for="payment_city">District</label>
-                                <select name="payment_city" class="form-control" id="stateView" required >
+                                <select name="payment_city" class="form-control" onchange="shippingCharge()" id="stateView" required >
                                     <option value="" >Please select</option>
                                     <?php echo state_with_country($coun,$zon)?>
                                 </select>
@@ -137,7 +137,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group mb-4">
                                     <label class="w-100" for="email">District</label>
-                                    <select name="shipping_city" class="form-control" id="sh_stateView"  >
+                                    <select name="shipping_city" class="form-control" onchange="shippingCharge()"  id="sh_stateView"  >
                                         <option value="" >Please select</option>
                                     </select>
                                 </div>
@@ -221,26 +221,31 @@
                             $total = (isset(newSession()->coupon_discount)) ? Cart()->total() - $disc : Cart()->total(); ?>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
-                            <span>Shipping Charge</span>
+                            <span>Shipping Method</span>
                             <div class="d-flex flex-column text-end">
-                                <span><label>Home delivery 50tk <input type="radio" name="shipping_method"
-                                                                       id="shipping_method" value="50" required></label></span>
-                                <span><label>Courier 70tk <input type="radio" name="shipping_method"
-                                                                 id="shipping_method" value="70" required></label></span>
+                                <?php foreach (get_all_data_array('cc_shipping_method') as $ship){ ?>
+                                <span><label><?php echo $ship->name;?> <input type="radio" name="shipping_method" oninput="shippingCharge()" id="shipping_method" value="<?php echo $ship->code;?>" required></label></span>
+                                <?php } ?>
                             </div>
                         </div>
-                        <div class="total py-3 mt-3">
+                        <div class="d-flex justify-content-between mt-3">
+                            <span>Shipping charge</span>
+                            <span id="chargeShip">0tk</span>
+                            <input type="hidden" name="shipping_charge" id="shipping_charge" >
+                        </div>
+                        <div class="total py-3 ">
                             <div class="d-flex justify-content-between fw-bold">
                                 <span>Total</span>
-                                <span><?php echo $total ?>tk</span>
+                                <span id="total"><?php echo $total ?>tk</span>
+                                <input type="hidden" id="totalamo" value="<?php echo $total ?>">
                             </div>
                         </div>
                     </div>
                     <div class="payment-method mt-5 mb-4 p-3">
-                        <p><label><input type="radio" name="payment_method" id="payment_method" value="cash_on" required> Cash on delivery
-                                <small>(Cash to be paid after product delivery.)</small></label></p>
-                        <p><label><input type="radio" name="payment_method" id="payment_method" required> <img
-                                        src="assets/img/ssl-commerz.png" alt=""></label></p>
+                        <?php foreach (get_all_data_array('cc_payment_method') as $pay){ ?>
+                        <p><label><input type="radio" name="payment_method" id="payment_method" value="<?php echo $pay->payment_method_id;?>" required> <?php echo $pay->name;?> </label></p>
+                        <?php } ?>
+
                     </div>
                     <p>
                         <button type="submit" class="btn bg-black text-white w-100 rounded-0">Confirm Order</button>

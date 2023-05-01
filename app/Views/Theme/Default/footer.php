@@ -350,6 +350,30 @@
     }
 
 
+    function shippingCharge(){
+        var paymethod = $('#shipping_method:checked').val();
+        var cityId = $('#stateView').val();
+        var totalAmount = $('#totalamo').val();
+        var shipcityId = $('#sh_stateView').val();
+
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('shipping_rate')?>",
+            data: {amount:totalAmount,city_id:cityId,shipCityId:shipcityId,paymethod:paymethod},
+            dataType: 'json',
+            success: function(data){
+                var charge = Number(data.charge);
+                var total = Number(totalAmount);
+                var amount = total+charge;
+
+                $('#chargeShip').html(data.charge+'tk');
+                $('#total').html(amount+'tk');
+                $('#shipping_charge').val(charge);
+            }
+        });
+    }
+
+
 </script>
 
 </body>
