@@ -105,7 +105,7 @@
                         <span class="cart-item position-absolute rounded-5 d-flex align-items-center justify-content-center"><?php echo count(Cart()->contents()); ?></span>
                         <div class="cart-content d-flex flex-column">
                             <span class="w-100">My Cart</span>
-                            <span class="total">$ <?php echo Cart()->total() ?></span>
+                            <span class="total"> <?php echo currency_symbol(Cart()->total()) ?></span>
                         </div>
 
                     </div>

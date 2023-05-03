@@ -81,6 +81,7 @@ $routes->get('/products', 'Admin\Products::index');
 $routes->get('/product_create', 'Admin\Products::create');
 $routes->post('/product_create_action', 'Admin\Products::create_action');
 $routes->post('/product_update_action', 'Admin\Products::update_action');
+$routes->post('/product_image_delete', 'Admin\Products::image_delete');
 $routes->get('/product_update/(:num)', 'Admin\Products::update/$1');
 $routes->get('/product_delete/(:num)', 'Admin\Products::delete/$1');
 $routes->get('/related_product', 'Admin\Products::related_product');
@@ -118,6 +119,11 @@ $routes->post('/settings_update_action', 'Admin\Settings::update_action');
 
 
 $routes->post('/settings_update_action', 'Admin\Settings::update_action');
+
+//Shipping
+$routes->get('/shipping', 'Admin\Shipping::index');
+$routes->get('/shipping_settings/(:num)', 'Admin\Shipping::shipping_settings/$1');
+$routes->post('/shipping_update_action', 'Admin\Shipping::update_action');
 
 //Ajax
 $routes->get('/page_list', 'Admin\Page_settings::index');

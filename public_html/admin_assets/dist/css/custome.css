@@ -15,4 +15,13 @@
 .requi{
     color:#ff0000;
 }
+.img_view{
+    border: 1px solid #d0d0d0;
+    padding: 10px;
+    margin-right: 10px;
+    text-align: center;
+}
+.del-btn{
+    color:red;
+}
 

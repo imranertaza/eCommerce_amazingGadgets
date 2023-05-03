@@ -20,10 +20,10 @@
                 <?php foreach ($order as $val){ ?>
                     <tr>
                         <td><?php echo $val->createdDtm;?></td>
-                        <td><?php echo $val->total;?></td>
-                        <td><?php echo $val->discount;?></td>
-                        <td><?php echo $val->shipping_charge;?></td>
-                        <td><?php echo $val->final_amount;?></td>
+                        <td><?php echo currency_symbol($val->total);?></td>
+                        <td><?php echo currency_symbol($val->discount);?></td>
+                        <td><?php echo currency_symbol($val->shipping_charge);?></td>
+                        <td><?php echo currency_symbol($val->final_amount);?></td>
                         <td><?php echo $val->order_status;?></td>
                         <td>
                             <a href="#" class="btn btn-success">View</a>

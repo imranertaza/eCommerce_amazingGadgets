@@ -4,7 +4,7 @@
     <a href="<?php echo base_url('admin_dashboard')?>" class="brand-link">
         <img src="<?php echo base_url() ?>/admin_assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">Amazing Gadgets</span>
     </a>
 
     <!-- Sidebar -->
@@ -191,6 +191,20 @@
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
                                 Theme Settings
+                            </p>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <?php
+                $modArrayPur = ['Shipping'];
+                $menuAccessPur = all_menu_permission_check($modArrayPur,$adRoleId);
+                if ($menuAccessPur == true){ ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url('shipping');?>" class="nav-link">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Shipping
                             </p>
                         </a>
                     </li>

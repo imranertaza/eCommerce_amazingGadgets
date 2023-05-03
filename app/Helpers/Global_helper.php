@@ -149,6 +149,19 @@ function getListInOption($selected, $tblId, $needCol, $table)
     return $options;
 }
 
+function getIdByListInOption($selected,$tblId, $needCol, $table ,$where, $needwhere)
+{
+    $table = DB()->table($table);
+    $query = $table->where($where, $needwhere)->get();
+    $options = '';
+    foreach ($query->getResult() as $value) {
+        $options .= '<option value="' . $value->$tblId . '" ';
+        $options .= ($value->$tblId == $selected ) ? ' selected="selected"' : '';
+        $options .= '>' . $value->$needCol. '</option>';
+    }
+    return $options;
+}
+
 function image_view($url,$slug,$image,$no_image,$class=''){
     $bas_url = base_url();
 
@@ -507,4 +520,11 @@ function email_send($to,$subject,$message){
     }
 
 //    print $headers;
+}
+
+function currency_symbol($amount){
+    $symbol = get_lebel_by_value_in_settings('currency_symbol');
+    $cur = !empty($amount)?$amount:0;
+    $result = $symbol.' '.$cur;
+    return $result;
 }

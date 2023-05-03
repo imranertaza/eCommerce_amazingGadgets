@@ -437,6 +437,22 @@
         });
     }
 
+    function removeImg(product_image_id){
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('product_image_delete')?>",
+            data: {product_image_id:product_image_id},
+            beforeSend: function () {
+                $("#loading-image").show();
+            },
+            success: function (data) {
+                $("#message").html(data);
+                $('#reloadImg').load(document.URL + ' #reloadImg');
+            }
+
+        });
+    }
+
 </script>
 
 

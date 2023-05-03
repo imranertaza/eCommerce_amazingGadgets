@@ -87,6 +87,11 @@
 
 
 <script>
+    $(function () {
+        // Summernote
+        $('#editor').summernote()
+    })
+
     $(document).ready(function(){
         $('#image').change(function(){
             $("#frames").html('');

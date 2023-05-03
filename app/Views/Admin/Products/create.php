@@ -90,8 +90,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea name="description" rows="3" class="form-control"
-                                                  placeholder="Description"></textarea>
+                                        <textarea name="description" rows="3" class="form-control" id="editor" placeholder="Description"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Tag</label>

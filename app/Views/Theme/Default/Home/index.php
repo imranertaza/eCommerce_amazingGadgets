@@ -157,9 +157,9 @@
                                             </div>
                                             <div class="price mb-3">
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
-                                                    $<?php echo $pro->price;?>
+                                                    <?php echo currency_symbol($pro->price);?>
                                                 <?php }else{ ?>
-                                                    <small> <del>$<?php echo $pro->price;?></del></small>/$<?php echo $spPric;?>
+                                                    <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
                                                 <?php } ?>
                                             </div>
                                             <a href="javascript:void(0)" onclick="addToCart(<?php echo $pro->product_id ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
@@ -196,7 +196,7 @@
                                     <?php } ?>
 
                                     <?php if (modules_key_by_access('compare') == 1) { ?>
-                                    <a href="javascript:void(0)" onclick="addToCart(<?php echo $fetPro->product_id ?>)" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
+                                    <a href="javascript:void(0)" onclick="addToCompare(<?php echo $fetPro->product_id ?>)" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
                                     <?php } ?>
                                     <div class="product-top">
                                         <?php echo image_view('uploads/products',$fetPro->product_id,'191_'.$fetPro->image,'noimage.png','img-fluid w-100')?>
@@ -213,9 +213,9 @@
                                         </div>
                                         <div class="price mb-3">
                                             <?php $spPricFut = get_data_by_id('special_price','cc_product_special','product_id',$fetPro->product_id);  if (empty($spPricFut)){ ?>
-                                                $<?php echo $fetPro->price;?>
+                                                <?php echo currency_symbol($fetPro->price);?>
                                             <?php }else{ ?>
-                                                <small> <del>$<?php echo $fetPro->price;?></del></small>/$<?php echo $spPricFut;?>
+                                                <small> <del><?php echo currency_symbol($fetPro->price);?></del></small>/<?php echo currency_symbol($spPricFut);?>
                                             <?php } ?>
                                         </div>
                                         <a href="javascript:void(0)" onclick="addToCart(<?php echo $fetPro->product_id ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
@@ -225,15 +225,6 @@
                             <?php } ?>
                         </div>
                     </div>
-<!--                    <nav aria-label="Page navigation example" class="mt-3 d-flex  justify-content-end">-->
-<!--                        <ul class="pagination mb-0">-->
-<!--                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
-<!--                            <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--                            <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--                            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--                            <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
-<!--                        </ul>-->
-<!--                    </nav>-->
                 </div>
             </div>
         </div>

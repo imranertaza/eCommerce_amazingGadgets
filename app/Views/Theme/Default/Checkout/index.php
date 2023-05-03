@@ -208,7 +208,7 @@
                     <div class="summery">
                         <div class="d-flex justify-content-between mb-2">
                             <span>Price</span>
-                            <span><?php echo Cart()->total() ?>tk</span>
+                            <span><?php echo currency_symbol(Cart()->total()) ?></span>
                         </div>
 
                         <div class="d-flex justify-content-between mb-2">
@@ -216,8 +216,8 @@
                             <?php $disc = 0;
                             if (isset(newSession()->coupon_discount)) {
                                 $disc = round((Cart()->total() * newSession()->coupon_discount) / 100); ?>
-                                <span><?php echo $disc ?>tk</span>
-                            <?php }
+                                <span><?php echo currency_symbol($disc) ?></span>
+                            <?php }else{echo currency_symbol($disc); }
                             $total = (isset(newSession()->coupon_discount)) ? Cart()->total() - $disc : Cart()->total(); ?>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
@@ -230,13 +230,13 @@
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <span>Shipping charge</span>
-                            <span id="chargeShip">0tk</span>
+                            <span id="chargeShip"><?php echo currency_symbol(0)?></span>
                             <input type="hidden" name="shipping_charge" id="shipping_charge" >
                         </div>
                         <div class="total py-3 ">
                             <div class="d-flex justify-content-between fw-bold">
                                 <span>Total</span>
-                                <span id="total"><?php echo $total ?>tk</span>
+                                <span id="total"><?php echo currency_symbol($total) ?></span>
                                 <input type="hidden" id="totalamo" value="<?php echo $total ?>">
                             </div>
                         </div>

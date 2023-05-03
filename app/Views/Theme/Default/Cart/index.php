@@ -34,7 +34,7 @@
                         </td>
 
                         <td class="product-price">
-                            <span class="price">$<?php echo $val['price'];?></span>
+                            <span class="price"><?php echo currency_symbol($val['price']);?></span>
                         </td>
 
                         <td class="product-quantity" width="180">
@@ -57,7 +57,7 @@
                             </div>
                         </td>
                         <td class="product-subtotal">
-                            <span class="price">$<?php echo $val['subtotal'];?></span>
+                            <span class="price"><?php echo currency_symbol($val['subtotal']);?></span>
                         </td>
                     </tr>
                 <?php } ?>
@@ -80,10 +80,10 @@
                     </td>
                     <td style="text-align:left;">
                         <?php if (isset(newSession()->coupon_discount)){ $disc = round((Cart()->total() *newSession()->coupon_discount)/100); ?>
-                        <span class=" fs-4">$<?php echo Cart()->total() ?></span><br>
-                        <span class=" fs-4">$<?php echo $disc ?></span><br>
+                        <span class=" fs-4"><?php echo currency_symbol(Cart()->total()) ?></span><br>
+                        <span class=" fs-4"><?php echo currency_symbol($disc) ?></span><br>
                         <?php } $total = (isset(newSession()->coupon_discount))?Cart()->total() - $disc:Cart()->total();?>
-                        <span class="fw-bold fs-4">$<?php echo $total ?></span>
+                        <span class="fw-bold fs-4"><?php echo currency_symbol($total) ?></span>
                     </td>
                 </tr>
 

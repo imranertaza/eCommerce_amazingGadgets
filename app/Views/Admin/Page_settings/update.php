@@ -68,7 +68,7 @@
 
                             <div class="form-group">
                                 <label>Page Description</label>
-                                <textarea name="page_description" rows="4" class="form-control" placeholder="Page Description" ><?php echo $page->page_description;?></textarea>
+                                <textarea name="page_description" id="editor" rows="4" class="form-control" placeholder="Page Description" ><?php echo $page->page_description;?></textarea>
                             </div>
 
 <!--                            <div class="form-group">-->

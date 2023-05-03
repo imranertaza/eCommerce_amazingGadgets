@@ -22,9 +22,9 @@
                         <p><a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a></p>
                         <div class="">
                             <span><?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
-                                    $<?php echo $pro->price;?>
+                                    <?php echo currency_symbol($pro->price);?>
                                 <?php }else{ ?>
-                                    <small> <del>$<?php echo $pro->price;?></del></small>/$<?php echo $spPric;?>
+                                    <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
                                                 <?php } ?></span><br>
                             <span>
                                     <?php echo product_id_by_rating($pro->product_id,'1');?>

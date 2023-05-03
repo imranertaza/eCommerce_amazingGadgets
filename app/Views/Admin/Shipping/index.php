@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Order List</h1>
+                    <h1>Shipping List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard') ?>">Home</a></li>
-                        <li class="breadcrumb-item active">Order List</li>
+                        <li class="breadcrumb-item active">Shipping List</li>
                     </ol>
                 </div>
             </div>
@@ -18,15 +18,15 @@
 
     <!-- Main content -->
     <section class="content">
-
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3 class="card-title">Order List</h3>
+                        <h3 class="card-title">Shipping List</h3>
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-4 text-right">
+                    </div>
                     <div class="col-md-12" style="margin-top: 10px">
                         <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
                     </div>
@@ -36,23 +36,20 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>Sl</th>
                         <th>Name</th>
-                        <th>Amount</th>
-                        <th>Order Status</th>
+                        <th>Code</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $i=1; foreach ($order as $val){ ?>
+                    <?php $i=1; foreach ($shipping as $val){ ?>
                         <tr>
-                            <td><?php echo $val->order_id;?></td>
-                            <td><?php echo $val->payment_firstname . $val->payment_lastname;?></td>
-                            <td><?php echo currency_symbol($val->final_amount) ;?></td>
-                            <td><?php echo $val->order_status ;?></td>
+                            <td width="40"><?php echo $i++;?></td>
+                            <td><?php echo $val->name;?></td>
+                            <td><?php echo $val->code;?></td>
                             <td width="180">
-                                <a href="<?php echo base_url('order_view/'.$val->order_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-eye"></i> View</a>
-
+                                <a href="<?php echo base_url('shipping_settings/'.$val->shipping_method_id);?>" class="btn btn-primary btn-xs"><i class="fas fa-cogs"></i> Settings</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -60,10 +57,9 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>Id</th>
+                        <th>Sl</th>
                         <th>Name</th>
-                        <th>Amount</th>
-                        <th>Order Status</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                     </tfoot>
@@ -76,7 +72,6 @@
             <!-- /.card-footer-->
         </div>
         <!-- /.card -->
-
     </section>
     <!-- /.content -->
 </div>

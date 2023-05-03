@@ -52,9 +52,9 @@
                         <hr>
                         <div class="price mb-3">
                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$products->product_id); if (empty($spPric)){ ?>
-                            $<?php echo $products->price;?>
+                            <?php echo currency_symbol($products->price);?>
                             <?php }else{ ?>
-                               <small> <del>$<?php echo $products->price;?></del></small><br>$<?php echo $spPric;?>
+                               <small> <del><?php echo currency_symbol($products->price);?></del></small><br><?php echo currency_symbol($spPric);?>
                             <?php } ?>
                         </div>
                         <div class="quantity">
@@ -217,9 +217,9 @@
                             </div>
                             <div class="price mb-3">
                                 <?php $spPric2 = get_data_by_id('special_price','cc_product_special','product_id',$relPro->product_id);  if (empty($spPric2)){ ?>
-                                    $<?php echo $relPro->price;?>
+                                    <?php echo currency_symbol($relPro->price);?>
                                 <?php }else{ ?>
-                                    <small> <del>$<?php echo $relPro->price;?></del></small>/$<?php echo $spPric2;?>
+                                    <small> <del><?php echo currency_symbol($relPro->price);?></del></small>/<?php echo currency_symbol($spPric2);?>
                                 <?php } ?>
                             </div>
                             <a href="javascript:void(0)" onclick="addToCart(<?php echo $relPro->product_id ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
@@ -266,9 +266,9 @@
                                         </div>
                                         <div class="price mb-3">
                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$rPro->product_id);  if (empty($spPric)){ ?>
-                                                $<?php echo $rPro->price;?>
+                                                <?php echo currency_symbol($rPro->price);?>
                                             <?php }else{ ?>
-                                                <small> <del>$<?php echo $rPro->price;?></del></small>/$<?php echo $spPric;?>
+                                                <small> <del><?php echo currency_symbol($rPro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
                                             <?php } ?>
                                         </div>
                                         <a href="javascript:void(0)" onclick="addToCart(<?php echo $rPro->product_id ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>

@@ -366,8 +366,8 @@
                 var total = Number(totalAmount);
                 var amount = total+charge;
 
-                $('#chargeShip').html(data.charge+'tk');
-                $('#total').html(amount+'tk');
+                $('#chargeShip').html(data.charge);
+                $('#total').html(amount);
                 $('#shipping_charge').val(charge);
             }
         });

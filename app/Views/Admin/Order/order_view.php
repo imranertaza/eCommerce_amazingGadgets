@@ -69,7 +69,7 @@
                                     </tr>
                                     <tr>
                                         <td>Total</td>
-                                        <td>$<?php echo $order->final_amount;?></td>
+                                        <td><?php echo currency_symbol($order->final_amount);?></td>
                                     </tr>
                                     <tr>
                                         <td>Order Status</td>
@@ -160,26 +160,26 @@
                                         <tr>
                                             <td><?php echo get_data_by_id('name','cc_products','product_id',$vew->product_id);?></td>
                                             <td><?php echo $vew->quantity;?></td>
-                                            <td>$<?php echo $vew->price;?></td>
-                                            <td>$<?php echo $vew->final_price;?></td>
+                                            <td><?php echo currency_symbol($vew->price);?></td>
+                                            <td><?php echo currency_symbol($vew->final_price);?></td>
                                         </tr>
                                         <?php } ?>
 
                                         <tr>
                                             <td class="text-right" colspan="3">Sub-Total:</td>
-                                            <td>$<?php echo $order->total;?></td>
+                                            <td><?php echo currency_symbol($order->total);?></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right" colspan="3">Discount:</td>
-                                            <td>$<?php echo $order->discount;?></td>
+                                            <td><?php echo currency_symbol($order->discount);?></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right" colspan="3">Shipping Charge:</td>
-                                            <td>$<?php echo $order->shipping_charge;?></td>
+                                            <td><?php echo currency_symbol($order->shipping_charge);?></td>
                                         </tr>
                                         <tr>
                                             <td class="text-right" colspan="3">Total:</td>
-                                            <td>$<?php echo $order->final_amount;?></td>
+                                            <td><?php echo currency_symbol($order->final_amount);?></td>
                                         </tr>
                                     </tbody>
                                 </table>

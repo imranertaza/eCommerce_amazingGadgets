@@ -99,7 +99,8 @@ class Products extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('product_create');
         } else {
-//            DB()->transStart();
+            DB()->transStart();
+
             //product table data insert(start)
             $storeId = get_data_by_id('store_id','cc_stores','is_default','1');
             $proData['store_id'] = $storeId;
@@ -347,6 +348,25 @@ class Products extends BaseController
             $table = DB()->table('cc_product_category');
             $data['prodCat'] = $table->get()->getResult();
 
+            $tablecat = DB()->table('cc_product_to_category');
+            $data['prodCatSel'] = $tablecat->where('product_id', $product_id)->get()->getResult();
+
+            $tablefreeDel = DB()->table('cc_product_free_delivery');
+            $data['free_delivery'] = $tablefreeDel->where('product_id', $product_id)->countAllResults();
+
+            $tableOpti = DB()->table('cc_product_option');
+            $data['prodOption'] = $tableOpti->where('product_id', $product_id)->get()->getResult();
+
+            $tableAttr = DB()->table('cc_product_attribute');
+            $data['prodattribute'] = $tableAttr->where('product_id', $product_id)->get()->getResult();
+
+            $tableSpec = DB()->table('cc_product_special');
+            $data['prodspecial'] = $tableSpec->where('product_id', $product_id)->get()->getRow();
+
+            $tableimg = DB()->table('cc_product_image');
+            $data['prodimage'] = $tableimg->where('product_id', $product_id)->get()->getResult();
+
+
             //$perm = array('create','read','update','delete','mod_access');
             $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);
             foreach ($perm as $key => $val) {
@@ -363,73 +383,338 @@ class Products extends BaseController
         }
     }
 
-    public function update_action()
-    {
-        $brand_id = $this->request->getPost('brand_id');
-        $data['name'] = $this->request->getPost('name');
-        $data['sort_order'] = $this->request->getPost('sort_order');
-        $data['updatedBy'] = $this->session->adUserId;
+    public function update_action(){
+
+        $adUserId = $this->session->adUserId;
+
+        $product_id = $this->request->getPost('product_id');
+
+        $data['pro_name'] = $this->request->getPost('pro_name');
+        $data['model'] = $this->request->getPost('model');
+        $data['categorys'] = $this->request->getPost('categorys[]');
+        $data['price'] = $this->request->getPost('price');
+        $data['quantity'] = $this->request->getPost('quantity');
 
         $this->validation->setRules([
-            'name' => ['label' => 'Name', 'rules' => 'required'],
+            'pro_name' => ['label' => 'Name', 'rules' => 'required'],
+            'model' => ['label' => 'Model', 'rules' => 'required'],
+            'categorys' => ['label' => 'Category', 'rules' => 'required'],
+            'price' => ['label' => 'Price', 'rules' => 'required'],
+            'quantity' => ['label' => 'Quantity', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Brand/update/' . $brand_id);
+            return redirect()->to('product_update/'.$product_id);
         } else {
+            DB()->transStart();
+
+            //product table data insert(start)
+            $proData['name'] = $data['pro_name'];
+            $proData['model'] = $data['model'];
+            $proData['brand_id'] = !empty($this->request->getPost('brand_id'))?$this->request->getPost('brand_id'):null;
+            $proData['price'] = $data['price'];
+            $proData['weight'] = $this->request->getPost('weight');
+            $proData['length'] = $this->request->getPost('length');
+            $proData['width'] = $this->request->getPost('width');
+            $proData['height'] = $this->request->getPost('height');
+            $proData['sort_order'] = $this->request->getPost('sort_order');
+            $proData['status'] = $this->request->getPost('status');
+            $proData['quantity'] = $this->request->getPost('quantity');
+
+            $product_featured = $this->request->getPost('product_featured');
+            if ($product_featured == 'on'){
+                $proData['featured'] = '1';
+            }
+
+            $proTable = DB()->table('cc_products');
+            $proTable->where('product_id',$product_id)->update($proData);
+
+
+
+
             if (!empty($_FILES['image']['name'])) {
-                $target_dir = FCPATH . '/uploads/brand/';
+                $target_dir = FCPATH . '/uploads/products/'.$product_id.'/';
+
+                //un link
+                $oldImg = get_data_by_id('image','cc_products','product_id',$product_id);
+                if ((!empty($oldImg)) && (file_exists($target_dir))) {
+                    $mainImg = str_replace('pro_', '', $oldImg);
+                    if (file_exists($target_dir . '/' . $mainImg)) {
+                        unlink($target_dir . '' . $mainImg);
+                    }
+                    if (file_exists($target_dir . '/191_' . $oldImg)) {
+                        unlink($target_dir . '191_' . $oldImg);
+                    }
+                    if (file_exists($target_dir . '/198_' . $oldImg)) {
+                        unlink($target_dir . '198_' . $oldImg);
+                    }
+                    if (file_exists($target_dir . '/100_' . $oldImg)) {
+                        unlink($target_dir . '100_' . $oldImg);
+                    }
+                    if (file_exists($target_dir . '/437_' . $oldImg)) {
+                        unlink($target_dir . '437_' . $oldImg);
+                    }
+                }
+
+
                 if (!file_exists($target_dir)) {
                     mkdir($target_dir, 0777);
                 }
 
-                //old image unlink
-                $old_img = get_data_by_id('image', 'brand', 'brand_id', $brand_id);
-                if (!empty($old_img)) {
-                    $imgPath = $target_dir . '' . $old_img;
-                    if (file_exists($imgPath)) {
-                        unlink($target_dir . '' . $old_img);
-                    }
-                }
-
-                //new image uplode
+                //new image upload
                 $pic = $this->request->getFile('image');
                 $namePic = $pic->getRandomName();
                 $pic->move($target_dir, $namePic);
-                $news_img = 'brand_' . $pic->getName();
-                $this->crop->withFile($target_dir . '' . $namePic)->fit(250, 150, 'center')->save($target_dir . '' . $news_img);
-                unlink($target_dir . '' . $namePic);
-                $data['image'] = $news_img;
+                $news_img = 'pro_' . $pic->getName();
+                $this->crop->withFile($target_dir . '' . $namePic)->fit(191, 191, 'center')->save($target_dir . '191_'.$news_img);
+                $this->crop->withFile($target_dir . '' . $namePic)->fit(198, 198, 'center')->save($target_dir . '198_'.$news_img);
+                $this->crop->withFile($target_dir . '' . $namePic)->fit(100, 100, 'center')->save($target_dir . '100_'.$news_img);
+                $this->crop->withFile($target_dir . '' . $namePic)->fit(437, 400, 'center')->save($target_dir . '437_'.$news_img);
+
+                $dataImg['image'] = $news_img;
+
+                $proUpTable = DB()->table('cc_products');
+                $proUpTable->where('product_id',$product_id)->update($dataImg);
+            }
+            //product table data insert(end)
+
+
+            //multi image upload(start)
+            if($this->request->getFileMultiple('multiImage')){
+
+                $target_dir = FCPATH . '/uploads/products/'.$product_id.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                $files = $this->request->getFileMultiple('multiImage');
+                foreach ($files as $file) {
+
+                    if ($file->isValid() && ! $file->hasMoved())
+                    {
+                        $dataMultiImg['product_id'] = $product_id;
+                        $proImgTable = DB()->table('cc_product_image');
+                        $proImgTable->insert($dataMultiImg);
+                        $proImgId = DB()->insertID();
+
+                        $target_dir2 = FCPATH . '/uploads/products/'.$product_id.'/'.$proImgId.'/';
+                        if (!file_exists($target_dir2)) {
+                            mkdir($target_dir2, 0777);
+                        }
+
+                        $nameMulPic = $file->getRandomName();
+                        $file->move($target_dir2, $nameMulPic);
+                        $news_img2 = 'pro_' . $file->getName();
+                        $this->crop->withFile($target_dir2 . '' . $nameMulPic)->fit(191, 191, 'center')->save($target_dir2 . '191_'.$news_img2);
+                        $this->crop->withFile($target_dir2 . '' . $nameMulPic)->fit(198, 198, 'center')->save($target_dir2 . '198_'.$news_img2);
+                        $this->crop->withFile($target_dir2 . '' . $nameMulPic)->fit(100, 100, 'center')->save($target_dir2 . '100_'.$news_img2);
+                        $this->crop->withFile($target_dir2 . '' . $nameMulPic)->fit(437, 400, 'center')->save($target_dir2 . '437_'.$news_img2);
+
+
+                        $dataMultiImg2['image'] = $news_img2;
+
+                        $proImgUpTable = DB()->table('cc_product_image');
+                        $proImgUpTable->where('product_image_id',$proImgId)->update($dataMultiImg2);
+                    }
+
+                }
+
+            }
+            //multi image upload(start)
+
+
+
+
+
+            //product category insert(start)
+            $catTableDel = DB()->table('cc_product_to_category');
+            $catTableDel->where('product_id',$product_id)->delete();
+
+            foreach ($data['categorys'] as $cat){
+                $catData['product_id'] = $product_id;
+                $catData['category_id'] = $cat;
+
+                $catTable = DB()->table('cc_product_to_category');
+                $catTable->insert($catData);
+            }
+            //product category insert(end)
+
+
+
+
+
+            //product_free_delivery data insert(start)
+            $free_delivery = $this->request->getPost('product_free_delivery');
+            if ($free_delivery == 'on'){
+                if (is_exists('cc_product_free_delivery','product_id',$product_id) == true) {
+                    $proFreeData['product_id'] = $product_id;
+                    $proFreetable = DB()->table('cc_product_free_delivery');
+                    $proFreetable->insert($proFreeData);
+                }
+            }else{
+                if (is_exists('cc_product_free_delivery','product_id',$product_id) == false) {
+                    $proFreetable = DB()->table('cc_product_free_delivery');
+                    $proFreetable->where('product_id', $product_id)->delete();
+                }
+            }
+            //product_free_delivery data insert(end)
+
+
+
+            //product description table data insert(start)
+            $proDescData['product_id'] = $product_id;
+            $proDescData['description'] = !empty($this->request->getPost('description'))?$this->request->getPost('description'):null;
+            $proDescData['tag'] = !empty($this->request->getPost('tag'))?$this->request->getPost('tag'):null;
+            $proDescData['meta_title'] = !empty($this->request->getPost('meta_title'))?$this->request->getPost('meta_title'):null;
+            $proDescData['meta_description'] = !empty($this->request->getPost('meta_description'))?$this->request->getPost('meta_description'):null;
+            $proDescData['meta_keyword'] = !empty($this->request->getPost('meta_keyword'))?$this->request->getPost('meta_keyword'):null;
+
+
+            $proDescTable = DB()->table('cc_product_description');
+            $proDescTable->where('product_id',$product_id)->update($proDescData);
+            //product description table data insert(end)
+
+
+
+
+
+            $option = $this->request->getPost('option[]');
+            $opValue = $this->request->getPost('opValue[]');
+            $qty = $this->request->getPost('qty[]');
+            $price_op = $this->request->getPost('price_op[]');
+            if (!empty($qty)){
+                $optionTableDel = DB()->table('cc_product_option');
+                $optionTableDel->where('product_id',$product_id)->delete();
+                foreach ($qty as $key => $val){
+                    $optionData['product_id'] = $product_id;
+                    $optionData['option_id'] = $option[$key];
+                    $optionData['option_value_id'] = $opValue[$key];
+                    $optionData['quantity'] = $qty[$key];
+                    $optionData['price'] = $price_op[$key];
+
+                    $optionTable = DB()->table('cc_product_option');
+                    $optionTable->insert($optionData);
+                }
+            }
+            //product options table data insert(end)
+
+
+
+            //product Attribute table data insert(start)
+            $attribute_group_id = $this->request->getPost('attribute_group_id[]');
+            $name = $this->request->getPost('name[]');
+            $details = $this->request->getPost('details[]');
+
+            if (!empty($attribute_group_id)){
+                $attributeTableDel = DB()->table('cc_product_attribute');
+                $attributeTableDel->where('product_id',$product_id)->delete();
+
+                foreach ($attribute_group_id as $key => $val){
+                    $attributeData['product_id'] = $product_id;
+                    $attributeData['attribute_group_id'] = $attribute_group_id[$key];
+                    $attributeData['name'] = $name[$key];
+                    $attributeData['details'] = $details[$key];
+
+                    $attributeTable = DB()->table('cc_product_attribute');
+                    $attributeTable->insert($attributeData);
+                }
             }
 
-            $table = DB()->table('cc_brand');
-            $table->where('brand_id', $brand_id)->update($data);
+            //product Attribute table data insert(end)
 
+
+            //product product_special table data insert(start)
+            $special_price = $this->request->getPost('special_price');
+            $start_date = $this->request->getPost('start_date');
+            $end_date = $this->request->getPost('end_date');
+
+            if (!empty($special_price)){
+                $specialData['product_id'] = $product_id;
+                $specialData['special_price'] = $special_price;
+                $specialData['start_date'] = $start_date;
+                $specialData['end_date'] = $end_date;
+
+                $specialTable = DB()->table('cc_product_special');
+                $checkSpec = $specialTable->where('product_id',$product_id)->countAllResults();
+                if (empty($checkSpec)) {
+                    $specialTable->insert($specialData);
+                }else{
+                    $specialTable->where('product_id',$product_id)->update($specialData);
+                }
+
+            }
+            //product product_special table data insert(end)
+
+
+
+            //product_related table data insert(start)
+            $product_related = $this->request->getPost('product_related[]');
+            if (!empty($product_related)){
+                $proReltableDel = DB()->table('cc_product_related');
+                $proReltableDel->where('product_id',$product_id)->delete();
+
+                foreach ($product_related as $relp) {
+                    $proRelData['product_id'] = $product_id;
+                    $proRelData['related_id'] = $relp;
+                    $proReltable = DB()->table('cc_product_related');
+                    $proReltable->insert($proRelData);
+                }
+            }
+            //product_related table data insert(end)
+
+
+
+            DB()->transComplete();
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('/Admin/Brand/update/' . $brand_id);
+            return redirect()->to('product_update/'.$product_id);
 
         }
     }
 
-    public function delete($brand_id){
+    public function delete($product_id){
 
-        $target_dir = FCPATH . '/uploads/brand/';
-        //old image unlink
-        $old_img = get_data_by_id('image', 'brand', 'brand_id', $brand_id);
-        if (!empty($old_img)) {
-            $imgPath = $target_dir . '' . $old_img;
-            if (file_exists($imgPath)) {
-                unlink($target_dir . '' . $old_img);
-            }
+        helper('filesystem');
+
+        DB()->transStart();
+
+        $target_dir = FCPATH . '/uploads/products/'.$product_id;
+        if (file_exists($target_dir)) {
+            delete_files($target_dir, TRUE);
+            rmdir($target_dir);
         }
 
+        $proTable = DB()->table('cc_products');
+        $proTable->where('product_id',$product_id)->delete();
 
-        $table = DB()->table('brand');
-        $table->where('brand_id', $brand_id)->delete();
+        $proImgTable = DB()->table('cc_product_image');
+        $proImgTable->where('product_id',$product_id)->delete();
+
+        $catTableDel = DB()->table('cc_product_to_category');
+        $catTableDel->where('product_id',$product_id)->delete();
+
+        $proFreetable = DB()->table('cc_product_free_delivery');
+        $proFreetable->where('product_id', $product_id)->delete();
+
+        $proDescTable = DB()->table('cc_product_description');
+        $proDescTable->where('product_id',$product_id)->delete();
+
+        $optionTableDel = DB()->table('cc_product_option');
+        $optionTableDel->where('product_id',$product_id)->delete();
+
+        $attributeTableDel = DB()->table('cc_product_attribute');
+        $attributeTableDel->where('product_id',$product_id)->delete();
+
+        $specialTable = DB()->table('cc_product_special');
+        $specialTable->where('product_id',$product_id)->delete();
+
+        $proReltableDel = DB()->table('cc_product_related');
+        $proReltableDel->where('product_id',$product_id)->delete();
+
+        DB()->transComplete();
 
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-        return redirect()->to('/Admin/Brand');
+        return redirect()->to('products');
     }
 
     public function get_subCategory(){
@@ -455,6 +740,23 @@ class Products extends BaseController
         $product = $table->like('name', $keyword)->get()->getResult();
 
         return $this->response->setJSON($product);
+    }
+
+    public function image_delete(){
+        helper('filesystem');
+
+        $product_image_id = $this->request->getPost('product_image_id');
+        $table = DB()->table('cc_product_image');
+        $data = $table->where('product_image_id', $product_image_id)->get()->getRow();
+
+        $target_dir = FCPATH . '/uploads/products/'.$data->product_id.'/'.$product_image_id;
+        if (file_exists($target_dir)) {
+            delete_files($target_dir, TRUE);
+            rmdir($target_dir);
+        }
+
+        $table->where('product_image_id', $product_image_id)->delete();
+        print '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
     }
 
 }

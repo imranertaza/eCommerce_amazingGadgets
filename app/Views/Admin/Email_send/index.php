@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <label>Message</label>
-                            <textarea rows="5" name="message" class="form-control" placeholder="Message" required></textarea>
+                            <textarea rows="5" name="message" id="editor" class="form-control" placeholder="Message" required></textarea>
                         </div>
 
                         <div class="form-group">
