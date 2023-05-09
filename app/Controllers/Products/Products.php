@@ -79,6 +79,11 @@ class Products extends BaseController {
 
             $table = DB()->table('cc_product_feedback');
             $table->insert($data);
+
+            $dataRet['average_feedback'] = product_id_by_average_rating($data['product_id']);
+            $tablePro = DB()->table('cc_products');
+            $tablePro->where('product_id',$data['product_id'])->update($dataRet);
+
             $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Successfully submitted review</div>');
             return redirect()->to('detail/'. $data['product_id']);
         }

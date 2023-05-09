@@ -558,10 +558,22 @@ a {
     display: inline-block;
     margin-bottom: 10px;
 }
+.filter-items .btn-op {
+    background-color: #DDDDDD;
+    color: #262626;
+    font-size: 14px;
+    padding: 15px;
+    margin-right: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
 .filter-items a:hover {
     background-color: var(--color-secondary);
     color: #FFF;
 }
+
+
+
 
 /* Styles for the range slider */
 .slider-range {
@@ -704,4 +716,15 @@ a {
 }
 .icon-pd-20{
     padding:20px !important;
+}
+.top-bar{
+    padding: 11px;
+    margin-bottom: 10px;
+}
+.active-view{
+    background-color: #000000;
+    color: #ffffff;
+}
+.shortBy{
+    padding: 5px;
 }

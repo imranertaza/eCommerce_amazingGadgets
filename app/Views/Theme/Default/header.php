@@ -69,7 +69,8 @@
                 <div class="col-6 col-md-3 order-1 mb-3 mb-md-0">
                     <div class="logo">
                         <a href="<?php echo base_url()?>">
-                        <img src="<?php echo base_url() ?>/assets/img/logo.png" alt="Amazing Gadgets" class="img-fluid">
+                            <?php $logoImg = get_lebel_by_value_in_theme_settings('side_logo');
+                            echo image_view('uploads/logo','',$logoImg,'noimage.png','img-fluid');?>
                         </a>
                     </div>
                 </div>

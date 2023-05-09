@@ -159,6 +159,7 @@ $routes->post('/option_remove_action', 'Admin\Option::option_remove_action');
 
 //Coupon
 $routes->get('/order_list', 'Admin\Order::index');
+$routes->post('/order_history_action', 'Admin\Order::history_action');
 $routes->get('/order_view/(:num)', 'Admin\Order::order_view/$1');
 
 //Theme Settings
@@ -242,6 +243,7 @@ $routes->post('/removeToCompare', 'Compare::removeToCompare');
 
 //Category
 $routes->get('/category/(:num)', 'Category::index/$1');
+$routes->Post('/category_url_generate', 'Category::url_generate');
 
 //Search top
 $routes->post('/top_search', 'Search::search_action');

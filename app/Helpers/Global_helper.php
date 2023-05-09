@@ -417,6 +417,13 @@ function get_all_data_array($table){
     return $query;
 }
 
+function get_array_data_by_id($table,$whereInfo,$whereId){
+    $tableSel = DB()->table($table);
+    $query = $tableSel->where($whereInfo,$whereId)->get()->getResult();
+
+    return $query;
+}
+
 function category_id_by_product_count($category_id){
     $table = DB()->table('cc_product_to_category');
     $count = $table->where('category_id',$category_id)->countAllResults();
@@ -459,6 +466,22 @@ function product_id_by_rating($productId,$ratingCount = 0){
     $view .='</div>';
 
     return $view;
+}
+
+function product_id_by_average_rating($productId){
+    $table = DB()->table('cc_product_feedback');
+    $pro = $table->where('product_id', $productId)->get()->getResult();
+
+    $average = 0;
+    $numberOfReviews = count($pro);
+    if (!empty($numberOfReviews)) {
+        $totalStar = 0;
+        foreach ($pro as $val) {
+            $totalStar += $val->feedback_star;
+        }
+        $average = $totalStar / $numberOfReviews;
+    }
+    return $average;
 }
 
 function available_template($sel=''){
@@ -519,7 +542,6 @@ function email_send($to,$subject,$message){
         echo 'Unable to send email. Please try again.';
     }
 
-//    print $headers;
 }
 
 function currency_symbol($amount){
@@ -527,4 +549,221 @@ function currency_symbol($amount){
     $cur = !empty($amount)?$amount:0;
     $result = $symbol.' '.$cur;
     return $result;
+}
+
+function order_email_template($orderId){
+    $table = DB()->table('cc_order');
+    $val = $table->where('order_id',$orderId)->get()->getRow();
+
+    $tableItem = DB()->table('cc_order_item');
+    $item = $tableItem->where('order_id',$orderId)->get()->getResult();
+    $logoImg = get_lebel_by_value_in_theme_settings('side_logo');
+    $logo = image_view('uploads/logo','',$logoImg,'noimage.png','logo-css');
+    $view ='';
+    $view .= "<div style='width:680px'><style> .logo-css{ margin-bottom:20px;border:none; } </style>
+    <a href='#' title='Amazing Gadgets' target='_blank' >
+        $logo
+    </a>
+    <p style='margin-top:0px;margin-bottom:20px'>
+        Thank you for your interest in
+        <span class='il'>Amazing</span>
+        <span class='il'>Gadgets</span> products. Your
+        <span class='il'>order</span>
+        has been received and will be processed once payment has been confirmed.
+    </p>
+    
+    <table style='border-collapse:collapse;width:100%;border-top:1px solid #dddddd;border-left:1px solid #dddddd;margin-bottom:20px'>
+        <thead>
+        <tr>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:left;padding:7px;color:#222222'
+                colspan='2'><span class='il'>Order</span> Details
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:left;padding:7px'>
+                <b><span class='il'>Order</span> ID:</b> $val->order_id<br>
+                <b>Date Added:</b> $val->createdDtm<br>
+                <b>Payment Method:</b> $val->payment_method<br>
+                <b>Shipping Method:</b> $val->shipping_method
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:left;padding:7px'>
+                <b>Email:</b> <a href='mailto:$val->payment_email' target='_blank'>$val->payment_email</a><br>
+                <b>Telephone:</b> $val->payment_phone<br>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table style='border-collapse:collapse;width:100%;border-top:1px solid #dddddd;border-left:1px solid #dddddd;margin-bottom:20px'>
+        <thead>
+        <tr>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:left;padding:7px;color:#222222'>
+                Payment Address
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:left;padding:7px;color:#222222'>
+                Shipping Address
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:left;padding:7px'>
+                $val->payment_address_1
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:left;padding:7px'>
+                $val->shipping_address_1
+            </td>
+        </tr>
+        </tbody>
+    </table>";
+
+    $view .= "<table style='border-collapse:collapse;width:100%;border-top:1px solid #dddddd;border-left:1px solid #dddddd;margin-bottom:20px'>
+        <thead>
+        <tr>
+            <td style='border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:left;padding:7px;color:#222222'>
+                Image
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:left;padding:7px;color:#222222'>
+                Product
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:left;padding:7px;color:#222222'>
+                Model
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:right;padding:7px;color:#222222'>
+                Quantity
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:right;padding:7px;color:#222222'>
+                Price
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;background-color:#efefef;font-weight:bold;text-align:right;padding:7px;color:#222222'>
+                Total
+            </td>
+        </tr>
+        </thead>
+        <tbody>";
+
+    foreach ($item as $row) {
+        $proName = get_data_by_id('name','cc_products','product_id',$row->product_id);
+        $model = get_data_by_id('model','cc_products','product_id',$row->product_id);
+        $image = get_data_by_id('image','cc_products','product_id',$row->product_id);
+        $imgView = image_view('uploads/products',$row->product_id,'100_'.$image,'noimage.png','');
+        $url = base_url('detail/'.$row->product_id);
+        $price = currency_symbol($row->total_price);
+        $total = currency_symbol($row->final_price);
+        $view .= "<tr>
+            <td style='border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:left;padding:7px'>
+            <a href='$url' target='_blank' title='GUCCI MEN BUSINESS SHOE A02 350' style='padding:1px;border:1px solid #dddddd' >
+                    $imgView
+            </a>
+            </td>
+
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:left;padding:7px'>
+                <a href='$url' target='_blank'>$proName</a>
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:left;padding:7px'>
+                $model
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                $row->quantity
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                $price
+            </td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                $total
+            </td>
+        </tr>";
+    }
+
+    $subTo = currency_symbol($val->total);
+    $shipping_charge = currency_symbol($val->shipping_charge);
+    $discount = currency_symbol($val->discount);
+    $final_amount = currency_symbol($val->final_amount);
+    $view .= "</tbody>
+        <tfoot>
+        <tr>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'
+                colspan='5'><b>Sub-Total:</b></td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                $subTo
+            </td>
+        </tr>
+        <tr>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'
+                colspan='5'><b>Shipping Charge:</b></td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                $shipping_charge
+            </td>
+        </tr>
+        <tr>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'
+                colspan='5'><b>Discount:</b></td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                $discount
+            </td>
+        </tr>
+        <tr>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'
+                colspan='5'><b>Total:</b></td>
+            <td style='font-size:12px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                $final_amount
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>";
+
+    return $view;
+}
+
+function success_email_template($title,$message,$url){
+    $address = get_lebel_by_value_in_settings('address');
+    $logoImg = get_lebel_by_value_in_theme_settings('side_logo');
+    $logo = image_view('uploads/logo','',$logoImg,'noimage.png','logo-css');
+
+    $fbIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="30px" height="30px"><path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"/><path fill="#fff" d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"/></svg>';
+    $twi = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="30px" height="30px"><path fill="#03A9F4" d="M42,12.429c-1.323,0.586-2.746,0.977-4.247,1.162c1.526-0.906,2.7-2.351,3.251-4.058c-1.428,0.837-3.01,1.452-4.693,1.776C34.967,9.884,33.05,9,30.926,9c-4.08,0-7.387,3.278-7.387,7.32c0,0.572,0.067,1.129,0.193,1.67c-6.138-0.308-11.582-3.226-15.224-7.654c-0.64,1.082-1,2.349-1,3.686c0,2.541,1.301,4.778,3.285,6.096c-1.211-0.037-2.351-0.374-3.349-0.914c0,0.022,0,0.055,0,0.086c0,3.551,2.547,6.508,5.923,7.181c-0.617,0.169-1.269,0.263-1.941,0.263c-0.477,0-0.942-0.054-1.392-0.135c0.94,2.902,3.667,5.023,6.898,5.086c-2.528,1.96-5.712,3.134-9.174,3.134c-0.598,0-1.183-0.034-1.761-0.104C9.268,36.786,13.152,38,17.321,38c13.585,0,21.017-11.156,21.017-20.834c0-0.317-0.01-0.633-0.025-0.945C39.763,15.197,41.013,13.905,42,12.429"/></svg>';
+    $link = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="30px" height="30px"><path fill="#0288D1" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"/><path fill="#FFF" d="M12 19H17V36H12zM14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12c1.521 0 2.458 1.08 2.486 2.499C17 15.887 16.035 17 14.485 17zM36 36h-5v-9.099c0-2.198-1.225-3.698-3.192-3.698-1.501 0-2.313 1.012-2.707 1.99C24.957 25.543 25 26.511 25 27v9h-5V19h5v2.616C25.721 20.5 26.85 19 29.738 19c3.578 0 6.261 2.25 6.261 7.274L36 36 36 36z"/></svg>';
+    $view = '';
+    $view .= "<div style='width:680px'>
+            <style> .logo-css{ margin-top:20px;border:none; } </style>
+    <div style='width:100%;background-color: #FFC107; min-height:250px; text-align: center;'>        
+        $logo
+        <h1 style='color:#000000; '>Welcome!</h1>
+        <center><p style='background-color: #ffffff;color:#000000;width: 300px;font-size: 20px;padding: 5px; '>
+        $title
+        </p></center>
+    </div>
+
+    <div style='width:100%;'>
+        <div style='padding:20px;'>
+            <p>Hello</p>
+            <p style='margin-bottom: 30px;'>
+                $message
+            </p>
+            <center><a href='$url' target='_blank' style='background-color: #000000;border: none;padding: 10px 98px;color: #ffffff;font-size: 20px;text-decoration: none; '>Visit</a></center>
+            <hr style='margin-top: 30px;margin-bottom: 30px;border: 2px solid #d5d5d5;'>
+            <center> <a href='#'>$fbIcon</a> <a href='#'>$twi</a> <a href='#'>$link</a></center>
+            <center> <p>$address</p></center>
+            <center><hr style='width:300px;'></center>
+            <center> <p>© 2023 Amazing Gadgets. All rights reserved.</p></center>
+        </div>
+
+    </div>
+
+</div>";
+
+    return $view;
+
+}
+
+function order_id_by_status($order_id){
+    $table = DB()->table('cc_order_history');
+    $order = $table->where('order_id',$order_id)->get()->getLastRow();
+
+    $status = get_data_by_id('name','cc_order_status','order_status_id',$order->order_status_id);
+
+    return $status;
 }

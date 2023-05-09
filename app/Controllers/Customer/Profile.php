@@ -122,6 +122,10 @@ class Profile extends BaseController
                 $newData['email'] = $data['email'];
                 $newAd = DB()->table('cc_newsletter');
                 $newAd->insert($newData);
+
+                $subject = 'Subscription';
+                $message = "Thank you.Your subscription has been successfully completed";
+                email_send($data['email'],$subject,$message);
             }
 
 

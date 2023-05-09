@@ -89,14 +89,18 @@
         $( ".slider-range" ).slider({
             range: true,
             min: 0,
-            max: 500,
-            values: [ 75, 300 ],
+            max: 10000,
+            values: [ <?php print isset($fstprice)?$fstprice:5; ?> , <?php print isset($lstPrice)?$lstPrice:6000; ?> ],
             slide: function( event, ui ) {
-                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                $( "#amount" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+                $( "#price" ).val( "" + ui.values[ 0 ] + "," + ui.values[ 1 ] );
+                $("#searchForm").submit();
             }
         });
-        $( "#amount" ).val( "$" + $( ".slider-range" ).slider( "values", 0 ) +
-            " - $" + $( ".slider-range" ).slider( "values", 1 ) );
+        $( "#amount" ).val( "" + $( ".slider-range" ).slider( "values", 0 ) +
+            " - " + $( ".slider-range" ).slider( "values", 1 ) );
+        $( "#price" ).val( "" + $( ".slider-range" ).slider( "values", 0 ) +
+            "," + $( ".slider-range" ).slider( "values", 1 ) );
     } );
 
     var slider = new Swiper ('.gallery-slider', {
@@ -373,6 +377,24 @@
         });
     }
 
+    function viewStyle(view){
+        if (view == 'list'){
+            $( "#list-btn" ).addClass( 'active-view');
+            $( "#gird-btn" ).removeClass( 'active-view');
+            $( "#grid-view" ).hide();
+            $( "#list-view" ).show();
+        }
+        if (view == 'gird'){
+            $( "#gird-btn" ).addClass( 'active-view');
+            $( "#list-btn" ).removeClass( 'active-view');
+            $( "#grid-view" ).show();
+            $( "#list-view" ).hide();
+        }
+    }
+
+    function formSubmit(){
+        $("#searchForm").submit();
+    }
 
 </script>
 

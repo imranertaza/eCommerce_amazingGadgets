@@ -15,4 +15,9 @@ class CategoryproductsModel extends Model {
         return $this->select()->join('cc_products', 'cc_products.product_id = cc_product_to_category.product_id');
     }
 
+    public function all_join(){
+        return $this->select('cc_product_to_category.category_id,cc_products.*,cc_product_option.option_value_id,cc_product_feedback.feedback_star')->join('cc_products', 'cc_products.product_id = cc_product_to_category.product_id')->join('cc_product_option','cc_product_option.product_id = cc_product_to_category.product_id')->join('cc_product_feedback', 'cc_product_feedback.product_id = cc_product_to_category.product_id')->groupBy('product_id');
+    }
+
+
 }

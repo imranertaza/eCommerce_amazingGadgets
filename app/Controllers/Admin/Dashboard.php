@@ -29,10 +29,10 @@ class Dashboard extends BaseController
         } else {
 
             $table = DB()->table('cc_order');
-            $data['allOrder'] = $table->where('order_status','Complete')->countAllResults();
-            $data['pendingOrder'] = $table->where('order_status','Pending')->countAllResults();
-            $data['processingOrder'] = $table->where('order_status','Processing')->countAllResults();
-            $data['canceledOrder'] = $table->where('order_status','Canceled')->countAllResults();
+            $data['allOrder'] = $table->countAllResults();
+            $data['pendingOrder'] = $table->countAllResults();
+            $data['processingOrder'] = $table->countAllResults();
+            $data['canceledOrder'] = $table->countAllResults();
 
             //$perm = array('create','read','update','delete','mod_access');
             $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);
