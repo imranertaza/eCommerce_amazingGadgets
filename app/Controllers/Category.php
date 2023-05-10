@@ -33,9 +33,9 @@ class Category extends BaseController {
         }else {
             $optionWhere ='';
             foreach ($options as $valOp){
-                $optionWhere .= 'option_value_id = '.$valOp. ' AND ';
+                $optionWhere .= 'option_value_id = '.$valOp. ' OR ';
             }
-            $allOption = rtrim($optionWhere, ' AND ');
+            $allOption = '('.rtrim($optionWhere, ' OR ').')';
             $data['optionval'] = $options;
         }
 
@@ -45,9 +45,9 @@ class Category extends BaseController {
         }else {
             $brandWhere ='';
             foreach ($brand as $valBr){
-                $brandWhere .= 'brand_id = '.$valOp. ' AND ';
+                $brandWhere .= 'brand_id = '.$valBr. ' OR ';
             }
-            $allbrand = rtrim($brandWhere, ' AND ');
+            $allbrand = '('.rtrim($brandWhere, ' OR ').')';
             $data['brandval'] = $brand;
         }
 
@@ -67,9 +67,9 @@ class Category extends BaseController {
         }else {
             $ratingWhere ='';
             foreach ($rating as $valRati){
-                $ratingWhere .= 'average_feedback = '.$valRati. ' AND ';
+                $ratingWhere .= 'average_feedback = '.$valRati. ' OR ';
             }
-            $allrating = rtrim($ratingWhere, ' AND ');
+            $allrating = '('.rtrim($ratingWhere, ' OR ').')';
             $data['ratingval'] = $rating;
         }
 
@@ -115,6 +115,7 @@ class Category extends BaseController {
             }
             $vars ['manufacturer'] = rtrim($menu,',');
         }
+
         if (!empty($options)) {
             $option = '';
             foreach ($options as $key => $optVal) {
@@ -122,12 +123,15 @@ class Category extends BaseController {
             }
             $vars ['option'] = rtrim($option, ',');
         }
+
         if (!empty($category)){
             $vars ['category'] = $category;
         }
+
         if (!empty($shortBy)){
             $vars ['shortBy'] = $shortBy;
         }
+
         if (!empty($price)){
             $vars ['price'] = $price;
         }

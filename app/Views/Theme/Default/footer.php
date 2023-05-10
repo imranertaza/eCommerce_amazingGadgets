@@ -35,9 +35,9 @@
                 <h3>Customer Care</h3>
                 <ul class="list-unstyled lh-lg">
                     <li><a href="<?php echo base_url('dashboard');?>" class="nav-link">My Account</a></li>
-                    <li><a href="#" class="nav-link">Privacy Policy</a></li>
-                    <li><a href="#" class="nav-link">Terms and Conditions</a></li>
-                    <li><a href="#" class="nav-link">Returns/Exchange</a></li>
+                    <li><a href="<?php echo base_url('page/privacy-policy')?>" class="nav-link">Privacy Policy</a></li>
+                    <li><a href="<?php echo base_url('page/terms-and-conditions')?>" class="nav-link">Terms and Conditions</a></li>
+                    <li><a href="<?php echo base_url('page/returns-policy')?>" class="nav-link">Returns/Exchange</a></li>
                     <li><a href="<?php echo base_url('page/about-us');?>" class="nav-link">About Us</a></li>
                     <li><a href="#" class="nav-link">Top Searches</a></li>
                 </ul>

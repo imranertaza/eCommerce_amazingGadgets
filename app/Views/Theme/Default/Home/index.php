@@ -31,11 +31,11 @@
 
                             foreach ($populerCat as $catPop){
                                 $icon_id = get_data_by_id('icon_id','cc_product_category','prod_cat_id',$catPop->prod_cat_id);
-                                $icon = get_data_by_id('name','cc_icons','icon_id',$icon_id);
+                                $icon = get_data_by_id('code','cc_icons','icon_id',$icon_id);
                         ?>
-                        <div class="col border p-3">
+                        <div class="col border p-5">
                             <a href="<?php echo base_url('category/'.$catPop->prod_cat_id);?>">
-                            <?php  echo image_view('icons','',$icon,'noimage.png','img-fluid icon-pd-20')?>
+                            <?php echo $icon; //echo image_view('icons','',$icon,'noimage.png','img-fluid icon-pd-20')?>
                             <h5 class="mt-3"><a href="#"><?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$catPop->prod_cat_id);?></a></h5>
                             </a>
                         </div>

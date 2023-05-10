@@ -226,10 +226,8 @@
                                                 <?php } ?>
 
                                                 <div class="product-top" style="width:40%;float:left; " >
-                                                    <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid w-100')?>
-                                                    <div class="rating text-center my-2">
-                                                        <?php echo product_id_by_rating($pro->product_id);?>
-                                                    </div>
+                                                    <?php echo image_view('uploads/products',$pro->product_id,'198_'.$pro->image,'noimage.png','img-fluid w-100')?>
+
                                                 </div>
 
 
@@ -240,6 +238,12 @@
                                                     <div class="product-title mb-2">
                                                         <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
                                                     </div>
+                                                    <div class="brand mb-3"><strong>Brand:</strong> <?php echo get_data_by_id('name','cc_brand','brand_id',$pro->brand_id);?></div>
+
+                                                    <div class="rating my-2">
+                                                        <?php echo product_id_by_rating($pro->product_id);?>
+                                                    </div>
+
                                                     <div class="price mb-3">
                                                         <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                             <?php echo currency_symbol($pro->price);?>
