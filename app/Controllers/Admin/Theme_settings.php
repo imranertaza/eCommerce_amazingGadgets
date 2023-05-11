@@ -93,12 +93,13 @@ class Theme_settings extends BaseController
 
             //new image uplode
             $pic = $this->request->getFile('side_logo');
-            $namePic = $pic->getRandomName();
+            $namePic = 'logo_' . $pic->getRandomName();
             $pic->move($target_dir, $namePic);
-            $news_img = 'logo_' . $pic->getName();
-            $this->crop->withFile($target_dir . '' . $namePic)->fit(150, 90, 'center')->save($target_dir . '' . $news_img);
-            unlink($target_dir . '' . $namePic);
-            $data['value'] = $news_img;
+//            $news_img = 'logo_' . $pic->getName();
+//            $this->crop->withFile($target_dir . '' . $namePic)->fit(150, 90, 'center')->save($target_dir . '' . $news_img);
+//            unlink($target_dir . '' . $namePic);
+//            $data['value'] = $news_img;
+            $data['value'] = $namePic;
 
             $table = DB()->table('cc_theme_settings');
             $table->where('label','side_logo')->update($data);

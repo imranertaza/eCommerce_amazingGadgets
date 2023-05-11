@@ -35,9 +35,9 @@
                 <h3>Customer Care</h3>
                 <ul class="list-unstyled lh-lg">
                     <li><a href="<?php echo base_url('dashboard');?>" class="nav-link">My Account</a></li>
-                    <li><a href="#" class="nav-link">Privacy Policy</a></li>
-                    <li><a href="#" class="nav-link">Terms and Conditions</a></li>
-                    <li><a href="#" class="nav-link">Returns/Exchange</a></li>
+                    <li><a href="<?php echo base_url('page/privacy-policy')?>" class="nav-link">Privacy Policy</a></li>
+                    <li><a href="<?php echo base_url('page/terms-and-conditions')?>" class="nav-link">Terms and Conditions</a></li>
+                    <li><a href="<?php echo base_url('page/returns-policy')?>" class="nav-link">Returns/Exchange</a></li>
                     <li><a href="<?php echo base_url('page/about-us');?>" class="nav-link">About Us</a></li>
                     <li><a href="#" class="nav-link">Top Searches</a></li>
                 </ul>
@@ -89,14 +89,18 @@
         $( ".slider-range" ).slider({
             range: true,
             min: 0,
-            max: 500,
-            values: [ 75, 300 ],
+            max: 10000,
+            values: [ <?php print isset($fstprice)?$fstprice:5; ?> , <?php print isset($lstPrice)?$lstPrice:6000; ?> ],
             slide: function( event, ui ) {
-                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                $( "#amount" ).val( "" + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+                $( "#price" ).val( "" + ui.values[ 0 ] + "," + ui.values[ 1 ] );
+                $("#searchForm").submit();
             }
         });
-        $( "#amount" ).val( "$" + $( ".slider-range" ).slider( "values", 0 ) +
-            " - $" + $( ".slider-range" ).slider( "values", 1 ) );
+        $( "#amount" ).val( "" + $( ".slider-range" ).slider( "values", 0 ) +
+            " - " + $( ".slider-range" ).slider( "values", 1 ) );
+        $( "#price" ).val( "" + $( ".slider-range" ).slider( "values", 0 ) +
+            "," + $( ".slider-range" ).slider( "values", 1 ) );
     } );
 
     var slider = new Swiper ('.gallery-slider', {
@@ -373,6 +377,34 @@
         });
     }
 
+    function viewStyle(view){
+        if (view == 'list'){
+            $( "#list-btn" ).addClass( 'active-view');
+            $( "#gird-btn" ).removeClass( 'active-view');
+            $( "#grid-view" ).hide();
+            $( "#list-view" ).show();
+        }
+        if (view == 'gird'){
+            $( "#gird-btn" ).addClass( 'active-view');
+            $( "#list-btn" ).removeClass( 'active-view');
+            $( "#grid-view" ).show();
+            $( "#list-view" ).hide();
+        }
+    }
+
+    function formSubmit(){
+        $("#searchForm").submit();
+    }
+    function subscription(){
+
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('newsletter_action')?>",
+            success: function(data){
+                $("#message").html(data);
+            }
+        });
+    }
 
 </script>
 

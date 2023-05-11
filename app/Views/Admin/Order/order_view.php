@@ -36,16 +36,16 @@
                 <div class="row">
                     <div class="col-5 col-sm-3">
                         <div class="nav flex-column nav-tabs h-100 text-right font-weight-bolder " id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active text-dark" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="true">Order Details</a>
+                            <a class="nav-link <?php echo isset($_GET['selTab'])?'':'active';?> text-dark" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="true">Order Details</a>
                             <a class="nav-link text-dark" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">Payment Details</a>
                             <a class="nav-link text-dark" id="vert-tabs-messages-tab" data-toggle="pill" href="#vert-tabs-messages" role="tab" aria-controls="vert-tabs-messages" aria-selected="false">Shipping Details</a>
                             <a class="nav-link text-dark" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Products</a>
-                            <a class="nav-link text-dark" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-history" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">History</a>
+                            <a class="nav-link text-dark <?php echo isset($_GET['selTab'])?'active':'';?>" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-history" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">History</a>
                         </div>
                     </div>
                     <div class="col-7 col-sm-9">
                         <div class="tab-content" id="vert-tabs-tabContent">
-                            <div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
+                            <div class="tab-pane text-left fade  <?php echo isset($_GET['selTab'])?'':'show active';?>" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
                                 <table class="table  table-striped text-capitalize" >
                                     <tr>
                                         <td>Order ID</td>
@@ -73,7 +73,7 @@
                                     </tr>
                                     <tr>
                                         <td>Order Status</td>
-                                        <td><?php echo $order->order_status;?></td>
+                                        <td><?php echo get_data_by_id('name','cc_order_status','order_status_id',$orderhistoryLast->order_status_id);?></td>
                                     </tr>
                                 </table>
                             </div>
@@ -185,8 +185,50 @@
                                 </table>
                             </div>
 
-                            <div class="tab-pane fade" id="vert-tabs-history" role="tabpanel" aria-labelledby="vert-tabs-settings-tab">
-                                --
+                            <div class="tab-pane fade <?php echo isset($_GET['selTab'])?'show active':'';?>" id="vert-tabs-history" role="tabpanel" aria-labelledby="vert-tabs-settings-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>History</h5>
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Comment</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php foreach ($orderhistory as $hist){ ?>
+                                                <tr>
+                                                    <td><?php echo invoiceDateFormat($hist->date_added)?></td>
+                                                    <td><?php echo get_data_by_id('name','cc_order_status','order_status_id',$hist->order_status_id)?></td>
+                                                    <td><?php echo $hist->comment?></td>
+                                                </tr>
+                                            <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form action="<?php echo base_url('order_history_action')?>" method="post">
+                                            <div class="form-group">
+                                                <label>Status <span class="requi">*</span></label>
+
+                                                <select class="form-control" name="order_status_id" >
+                                                    <option>Please select</option>
+                                                    <?php echo getListInOption($orderhistoryLast->order_status_id, 'order_status_id', 'name', 'cc_order_status');?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Comments</label>
+                                                <textarea name="comment" rows="3" class="form-control"  placeholder="Comments"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="hidden" name="order_id" value="<?php echo $order->order_id;?>">
+                                                <button type="submit" class="btn btn-primary " >Add History</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -130,6 +130,15 @@ class Login extends BaseController {
             if (($email_check == true) && ($phone_check == true)){
                 $table = DB()->table('cc_customer');
                 $table->insert($data);
+
+                $title = 'Your registration is completed!';
+                $message = 'Thank you. Your registration has been successfully completed. 
+                Login details  Email: '.$data['email'].' Password: '.$this->request->getPost('password');
+                $url = base_url('login');
+                $temp = success_email_template($title,$message,$url);
+
+                email_send($data['email'],$title,$temp);
+
                 $this->session->setFlashdata('message', '<div class="alert-success py-2 px-3 border-0 text-white fs-5 text-capitalize">Register successfully</div>');
                 return redirect()->to(site_url('login'));
             }else{
@@ -172,10 +181,13 @@ class Login extends BaseController {
             $this->session->set($sessionArray);
 
             //email send
-            $to = $email;
-            $subject = 'Reset Otp';
+            $title = 'Password reset Otp';
             $message = 'Your otp is '.$otp;
-            email_send($to,$subject,$message);
+            $url = base_url('otp_submit');
+            $tem = success_email_template($title,$message,$url);
+
+            $to = $email;
+            email_send($to,$title,$tem);
 
             return redirect()->to(site_url('otp_submit'));
 
@@ -229,6 +241,13 @@ class Login extends BaseController {
 
             $table = DB()->table('cc_customer');
             $table->where('email',$email)->update($data);
+
+            //email send
+            $title = 'Your password reset is completed!';
+            $message = 'Thank you. Your new login details  Email: '.$email.' Password: '.$this->request->getPost('password');
+            $url = base_url('login');
+            $temp = success_email_template($title,$message,$url);
+            email_send($email,$title,$temp);
 
             unset($_SESSION['forgot_email']);
             unset($_SESSION['otp']);

@@ -32,7 +32,7 @@
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start">
                     <span class="me-4"><a href="">Free delivery</a></span>
-                    <span><a href="#">Returns Policy</a></span>
+                    <span><a href="<?php echo base_url('page/returns-policy')?>">Returns Policy</a></span>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end align-items-center">
                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
@@ -69,7 +69,8 @@
                 <div class="col-6 col-md-3 order-1 mb-3 mb-md-0">
                     <div class="logo">
                         <a href="<?php echo base_url()?>">
-                        <img src="<?php echo base_url() ?>/assets/img/logo.png" alt="Amazing Gadgets" class="img-fluid">
+                            <?php $logoImg = get_lebel_by_value_in_theme_settings('side_logo');
+                            echo image_view('uploads/logo','',$logoImg,'noimage.png','img-fluid');?>
                         </a>
                     </div>
                 </div>
@@ -129,7 +130,7 @@
                             <li>
                                 <a class="dropdown-item" href="<?php echo base_url('category/'.$pcat->prod_cat_id);?>">
                                     <span class="icon">
-                                        <?php $icon = get_data_by_id('name','cc_icons','icon_id',$pcat->icon_id); echo image_view('icons','',$icon,'noimage.png','')?>
+                                        <?php echo get_data_by_id('code','cc_icons','icon_id',$pcat->icon_id); ?>
                                     </span>
                                     <?php echo $pcat->category_name; ?>
                                     <?php  if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>

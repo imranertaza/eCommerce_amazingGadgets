@@ -181,12 +181,20 @@ class Checkout extends BaseController {
             $data['total'] = $this->cart->total();
             $data['discount'] = $disc;
             $data['final_amount'] = $finalAmo;
-            $data['order_status'] = 'Pending';
 
 
             $table = DB()->table('cc_order');
             $table->insert($data);
             $order_id = DB()->insertID();
+
+
+
+            //order cc_order_history
+            $order_status_id = get_id_by_data('order_status_id','cc_order_status','name','Pending');
+            $dataOrderHistory['order_id'] = $order_id;
+            $dataOrderHistory['order_status_id'] = $order_status_id;
+            $tabHistOr = DB()->table('cc_order_history');
+            $tabHistOr->insert($dataOrderHistory);
 
 
 
@@ -210,6 +218,19 @@ class Checkout extends BaseController {
 
 
             DB()->transComplete();
+
+            //email send customer
+            $temMes = order_email_template($order_id);
+            $subject = 'Product order';
+            $message = $temMes;
+            email_send($data['payment_email'],$subject,$message);
+
+
+            //email send admin
+            $email = get_lebel_by_value_in_settings('email');
+            $subjectAd = 'Product order';
+            $messageAd = $temMes;
+            email_send($email,$subjectAd,$messageAd);
 
             unset($_SESSION['coupon_discount']);
             $this->cart->destroy();
@@ -242,6 +263,13 @@ class Checkout extends BaseController {
     }
 
 
-
+//    public function templete(){
+////        print order_email_template(1);
+//
+//        $title = 'Your registration is completed!';
+//        $message = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+//        $url = base_url();
+//        print success_email_template($title,$message,$url);
+//    }
 
 }
