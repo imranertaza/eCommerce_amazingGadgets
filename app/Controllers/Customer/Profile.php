@@ -71,9 +71,23 @@ class Profile extends BaseController
         ]);
 
         if ($this->validation->run($data) == FALSE) {
-            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . '</div>');
+            $this->session->setFlashdata('message', '<div class="alert text-white alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . '</div>');
             return redirect()->to('profile');
         } else {
+
+            if (!empty($this->request->getPost('subscription'))){
+                $newData['customer_id'] = $this->session->cusUserId;
+                $newData['email'] = $data['email'];
+                $newAd = DB()->table('cc_newsletter');
+                $newAd->insert($newData);
+
+                $cusData['newsletter'] = '1';
+
+                $subject = 'Subscription';
+                $message = "Thank you.Your subscription has been successfully completed";
+                email_send($data['email'],$subject,$message);
+            }
+
 
             $cusData['firstname'] = $data['firstname'];
             $cusData['lastname'] = $data['lastname'];
@@ -86,11 +100,11 @@ class Profile extends BaseController
                     if ($data['new_password'] == $data['confirm_password']){
                         $cusData['password'] =  SHA1($data['new_password']);
                     }else{
-                        $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">New password and confirm password not match </div>');
+                        $this->session->setFlashdata('message', '<div class="alert alert-danger text-white alert-dismissible" role="alert">New password and confirm password not match </div>');
                         return redirect()->to('profile');
                     }
                 }else{
-                    $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Current password not match </div>');
+                    $this->session->setFlashdata('message', '<div class="alert alert-danger text-white alert-dismissible" role="alert">Current password not match </div>');
                     return redirect()->to('profile');
                 }
             }
@@ -117,22 +131,78 @@ class Profile extends BaseController
                 $tabAd->where('customer_id',$this->session->cusUserId)->update($addData);
             }
 
-            if (!empty($this->request->getPost('subscription'))){
-                $newData['customer_id'] = $this->session->cusUserId;
-                $newData['email'] = $data['email'];
-                $newAd = DB()->table('cc_newsletter');
-                $newAd->insert($newData);
 
-                $subject = 'Subscription';
-                $message = "Thank you.Your subscription has been successfully completed";
-                email_send($data['email'],$subject,$message);
-            }
 
 
             $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Update successfully </div>');
             return redirect()->to('profile');
 
         }
+    }
+
+    public function password_action(){
+
+
+        $data['current_password'] = $this->request->getPost('current_password');
+        $data['new_password'] = $this->request->getPost('new_password');
+        $data['confirm_password'] = $this->request->getPost('confirm_password');
+
+        $this->validation->setRules([
+            'current_password' => ['label' => 'Current Password', 'rules' => 'required'],
+            'new_password' => ['label' => 'New Password', 'rules' => 'required'],
+            'confirm_password' => ['label' => 'Confirm Password', 'rules' => 'required|matches[new_password]'],
+        ]);
+
+        if ($this->validation->run($data) == FALSE) {
+            $this->session->setFlashdata('message', '<div class="alert text-white  alert-dismissible" role="alert">' . $this->validation->listErrors() . '</div>');
+            return redirect()->to('dashboard');
+        } else {
+
+            if (!empty($data['current_password'])){
+                $check = is_exists_double_condition('cc_customer','customer_id',$this->session->cusUserId,'password',SHA1($data['current_password']));
+                if ($check == false){
+                    $cusData['password'] =  SHA1($data['new_password']);
+                }else{
+                    $this->session->setFlashdata('message', '<div class="alert  alert-dismissible" role="alert">Current password not match </div>');
+                    return redirect()->to('dashboard');
+                }
+            }
+
+            $table = DB()->table('cc_customer');
+            $table->where('customer_id',$this->session->cusUserId)->update($cusData);
+
+
+            $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Update successfully </div>');
+            return redirect()->to('dashboard');
+
+        }
+    }
+
+    public function newsletter_action(){
+        $check = get_data_by_id('newsletter','cc_customer','customer_id',$this->session->cusUserId);
+
+        if ($check == '0') {
+            $email = get_data_by_id('email','cc_customer','customer_id',$this->session->cusUserId);
+            $newData['customer_id'] = $this->session->cusUserId;
+            $newData['email'] = $email;
+            $newAd = DB()->table('cc_newsletter');
+            $newAd->insert($newData);
+
+
+            $cusData['newsletter'] = '1';
+            $table = DB()->table('cc_customer');
+            $table->where('customer_id',$this->session->cusUserId)->update($cusData);
+
+            $subject = 'Subscription';
+            $message = "Thank you.Your subscription has been successfully completed";
+            email_send($email,$subject,$message);
+
+            print '<div class="alert-success-m alert-success alert-dismissible" role="alert">Your subscription has been successfully completed </div>';
+        }else{
+            print '<div class="alert alert-danger alert-dismissible text-white " role="alert">Your email already exists</div>';
+        }
+
+
     }
 
 }

@@ -23,6 +23,14 @@ class Dashboard extends BaseController
         if (!isset($isLoggedInCustomer) || $isLoggedInCustomer != TRUE) {
             return redirect()->to(site_url('Login'));
         } else {
+            $table = DB()->table('cc_order');
+            $order = $table->where('customer_id',$this->session->cusUserId)->get()->getLastRow();
+
+            $data['order'] = $table->where('customer_id',$this->session->cusUserId)->get()->getResult();
+
+            $tableItem = DB()->table('cc_order_item');
+            $data['orderItem'] = $tableItem->where('order_id',$order->order_id)->get()->getResult();
+
 
             $data['page_title'] = 'Dashboard';
             $data['menu_active'] = 'dashboard';

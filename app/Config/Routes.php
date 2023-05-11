@@ -204,8 +204,12 @@ $routes->post('/addtoWishlist', 'Customer\Dashboard::addtoWishlist');
 
 $routes->get('/favorite', 'Customer\Favorite::index');
 $routes->get('/my_order', 'Customer\Order::index');
+$routes->get('/invoice/(:num)', 'Customer\Order::invoice/$1');
+
 $routes->get('/profile', 'Customer\Profile::index');
 $routes->post('/profile_update_action', 'Customer\Profile::update_action');
+$routes->post('/password_action_update', 'Customer\Profile::password_action');
+$routes->post('/newsletter_action', 'Customer\Profile::newsletter_action');
 
 
 

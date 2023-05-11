@@ -26,7 +26,7 @@
                         <td><?php echo currency_symbol($val->final_amount);?></td>
                         <td><?php echo order_id_by_status($val->order_id);?></td>
                         <td>
-                            <a href="#" class="btn btn-success">View</a>
+                            <a href="<?php echo base_url('invoice/'.$val->order_id)?>" class="btn btn-success">View</a>
                         </td>
                     </tr>
                 <?php } ?>

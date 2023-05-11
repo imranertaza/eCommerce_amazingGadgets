@@ -395,6 +395,16 @@
     function formSubmit(){
         $("#searchForm").submit();
     }
+    function subscription(){
+
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('newsletter_action')?>",
+            success: function(data){
+                $("#message").html(data);
+            }
+        });
+    }
 
 </script>
 

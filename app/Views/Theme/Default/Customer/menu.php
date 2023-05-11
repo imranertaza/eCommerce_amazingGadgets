@@ -6,5 +6,6 @@
         <?php if (modules_key_by_access('wishlist') == 1) { ?>
         <a href="<?php echo base_url('favorite');?>" class="btn btn-default border <?php echo ($menu_active == 'favorite')?'text-white bg-black':'';?>">My Wish list</a>
         <?php } ?>
+        <a href="<?php echo base_url('logout');?>" class="btn btn-default border">Log out</a>
     </div>
 </section>

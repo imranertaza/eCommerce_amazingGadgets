@@ -572,8 +572,10 @@ a {
     color: #FFF;
 }
 
-
-
+.round{
+    top: -42px;
+    left: 46%;
+}
 
 /* Styles for the range slider */
 .slider-range {
@@ -727,4 +729,70 @@ a {
 }
 .shortBy{
     padding: 5px;
+}
+.amount-or{
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 70px;
+    text-transform: capitalize;
+
+    color: #DEDEDE;
+}
+.p-sty{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #505050;
+    line-height: 19px;
+}
+.p-date{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: #979797;
+    line-height: 0px;
+    margin-top: 25px;
+}
+.div-p{
+    padding: 35px;
+    background-color: #FFFFFF;
+}
+.ti-or-n{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 26px;
+    text-transform: capitalize;
+    color: #2B2B2B;
+
+}
+.con-or{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #AAAAAA;
+}
+.con-tit{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #2B2B2B;
+}
+.box-order{
+    padding: 20px;
+}
+.w-60{
+    width: 60px;
+    height: 60px;
+}
+.lab-st{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    text-transform: capitalize;
+    color: #231F20;
 }
