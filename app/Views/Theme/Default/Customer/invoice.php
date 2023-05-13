@@ -43,6 +43,7 @@
                         </div>
                         <?php
                             $status = order_id_by_status($order->order_id);
+
                             $bacColor = 'bg-danger';
                             $titleS = 'Unpaid';
                             $pad ='padding:35px 20px;';

@@ -366,6 +366,9 @@ class Products extends BaseController
             $tableimg = DB()->table('cc_product_image');
             $data['prodimage'] = $tableimg->where('product_id', $product_id)->get()->getResult();
 
+            $tableRel = DB()->table('cc_product_related');
+            $data['prodrelated'] = $tableRel->where('product_id', $product_id)->get()->getResult();
+
 
             //$perm = array('create','read','update','delete','mod_access');
             $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);

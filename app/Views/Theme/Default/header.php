@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazing Gadgets</title>
+    <link rel="shortcut icon" href="<?php echo base_url() ?>/favicon.ico">
 
     <link rel="stylesheet" href="<?php echo base_url() ?>/assets/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>/assets/swiper-bundle.min.css">
@@ -76,10 +77,11 @@
                 </div>
                 <div class="col-12 col-md-6 order-3 order-md-2 mb-3 mb-md-0">
                     <?php if (modules_key_by_access('top_search') == 1) { ?>
-                    <form action="<?php echo base_url('top_search');?>" class="mini-search" method="post">
+                    <form action="<?php echo base_url('products/search');?>" class="mini-search" method="GET">
                         <div class="input-group">
                             <div class="input-group-btn search-panel">
-                                <select name="top_category"  class="form-select rounded-0">
+<!--                                <select name="top_category"  class="form-select rounded-0">-->
+                                <select name="cat"  class="form-select rounded-0">
                                     <option value="">All Categories</option>
                                     <?php foreach (getParentCategoryArray() as $catTop){ $tCat =  isset($top_category)?$top_category:'';?>
                                     <option value="<?php echo $catTop->prod_cat_id;?>" <?php echo ($tCat == $catTop->prod_cat_id)?'selected':'';?> ><?php echo $catTop->category_name;?></option>

@@ -61,8 +61,9 @@
                         <div class="col-lg-4">
                             <div class="card p-3 rounded-0">
                                 <div class="product-filter">
-                                    <p>Category</p>
+                                    <p>Sub Category</p>
                                     <input type="hidden" name="prod_cat_id" value="<?php echo $prod_cat_id?>">
+                                    <input type="hidden" name="cat" value="<?php echo $prod_cat_id?>">
                                     <ul class="list-unstyled lh-lg">
                                         <?php $i=1;$j=1; foreach ($parent_Cat as $cat){ ?>
                                         <li>
@@ -139,6 +140,25 @@
                                         <i class="fa-regular fa-star"></i>
                                         <i class="fa-regular fa-star"></i>
                                         <span class="count">3 Rating</span>
+                                    </label>
+
+                                    <label class="w-100 mb-2">
+                                        <input type="checkbox" onclick="formSubmit()" <?php foreach ($ratingval as $retSel){ echo ($retSel == '2')?'checked':'';} ?> name="rating[]" id="" value="2">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <span class="count">2 Rating</span>
+                                    </label>
+                                    <label class="w-100 mb-2">
+                                        <input type="checkbox" onclick="formSubmit()" <?php foreach ($ratingval as $retSel){ echo ($retSel == '1')?'checked':'';} ?> name="rating[]" id="" value="1">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <span class="count">1 Rating</span>
                                     </label>
                                 </div>
                             </div>

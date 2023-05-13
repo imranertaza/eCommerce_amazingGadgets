@@ -158,9 +158,6 @@ class Option extends BaseController
             $table = DB()->table('cc_option');
             $table->where('option_id', $option_id)->update($data);
 
-//            $tableValDel = DB()->table('cc_option_value');
-//            $tableValDel->where('option_id', $option_id)->delete();
-
             foreach ($value as $key => $val){
                 $dataval['option_id'] = $option_id;
                 $dataval['name'] = $val;
@@ -183,6 +180,9 @@ class Option extends BaseController
 
     public function delete($option_id){
 
+        $tabOp = DB()->table('cc_product_option');
+        $tabOp->where('option_id', $option_id)->delete();
+
         $tableVal = DB()->table('cc_option_value');
         $tableVal->where('option_id', $option_id)->delete();
 
@@ -196,6 +196,10 @@ class Option extends BaseController
 
     public function option_remove_action(){
         $option_value_id = $this->request->getPost('id');
+
+        $tabOp = DB()->table('cc_product_option');
+        $tabOp->where('option_value_id', $option_value_id)->delete();
+
         $tableValDel = DB()->table('cc_option_value');
         $tableValDel->where('option_value_id', $option_value_id)->delete();
     }

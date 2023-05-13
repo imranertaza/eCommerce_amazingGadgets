@@ -204,7 +204,12 @@
 
                                             <div class="form-group category">
                                                 <label>Related Product</label>
-                                                <select class="select2_pro" id="keyword" name="product_related[]" multiple="multiple" style="width: 100%;" ></select>
+
+                                                <select class="select2_pro" id="keyword" name="product_related[]" multiple="multiple" style="width: 100%;" >
+                                                    <?php foreach ($prodrelated as $rel){ ?>
+                                                        <option value="<?php echo $rel->related_id?>" selected ><?php echo get_data_by_id('name','cc_products','product_id',$rel->related_id)?> </option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

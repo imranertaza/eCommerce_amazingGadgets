@@ -228,6 +228,10 @@ $routes->post('/flat_shipping_rate', 'Checkout::flat_shipping_rate');
 $routes->post('/zone_shipping_rate', 'Checkout::zone_shipping_rate');
 $routes->post('/shipping_rate', 'Checkout::shipping_rate');
 
+$routes->get('/checkout_success', 'Checkout::success');
+$routes->get('/checkout_failed', 'Checkout::failed');
+$routes->get('/checkout_canceled', 'Checkout::canceled');
+
 
 //pages routes
 $routes->get('/about', 'Pages\Pages::about');

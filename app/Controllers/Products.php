@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CategoryproductsModel;
 
-class Category extends BaseController {
+class Products extends BaseController {
 
     protected $validation;
     protected $session;
@@ -17,7 +17,12 @@ class Category extends BaseController {
         $this->categoryproductsModel = new CategoryproductsModel();
     }
 
-    public function index($cat_id){
+    public function search(){
+        $cat_id = $this->request->getGetPost('cat');
+        $keyword = $this->request->getGetPost('keywordTop');
+        $data['top_category'] = $cat_id;
+        $data['keywordTop'] = $keyword;
+
 
         $shortBy = !empty($this->request->getGetPost('shortBy'))?$this->request->getGetPost('shortBy'):'';
         $categoryWhere = !empty($this->request->getGetPost('category'))? 'category_id = '.$this->request->getGetPost('category'): 'category_id = '.$cat_id;
@@ -74,11 +79,16 @@ class Category extends BaseController {
         }
 
         $where = "$categoryWhere AND $allOption AND $allbrand AND $allrating AND $firstPrice AND $lastPrice";
+//        $where = "$categoryWhere AND $allOption AND $allbrand AND $allrating AND $firstPrice AND $lastPrice AND `cc_products`.`name` LIKE '%$keyword%' ESCAPE '!'";
 
 //        print $where;
 //        die();
 
         $data['products'] = $this->categoryproductsModel->where($where)->all_join()->orderBy($shortBy)->paginate(9);
+
+        if (!empty($keyword)){
+            $data['products'] = $this->categoryproductsModel->where($where)->like('cc_products.name',$keyword)->all_join()->orderBy($shortBy)->paginate(9);
+        }
         $data['pager'] = $this->categoryproductsModel->pager;
         $data['links'] = $data['pager']->links('default','custome_link');
 
@@ -93,64 +103,6 @@ class Category extends BaseController {
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Category/index',$data);
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer', $data);
-    }
-
-    public function url_generate(){
-
-        $prod_cat_id = $this->request->getPost('prod_cat_id');
-        $cat = $this->request->getPost('cat');
-        $shortBy = $this->request->getPost('shortBy');
-        $category = $this->request->getPost('category');
-        $options = $this->request->getPost('options[]');
-        $brand = $this->request->getPost('manufacturer[]');
-        $rating = $this->request->getPost('rating[]');
-        $price = $this->request->getPost('price');
-
-
-
-        $vars = array();
-        if (!empty($brand)) {
-            $menu = '';
-            foreach ($brand as $key => $brVal) {
-                $menu .= $brVal . ',';
-            }
-            $vars ['manufacturer'] = rtrim($menu,',');
-        }
-
-        if (!empty($options)) {
-            $option = '';
-            foreach ($options as $key => $optVal) {
-                $option .= $optVal.',' ;
-            }
-            $vars ['option'] = rtrim($option, ',');
-        }
-
-        if (!empty($category)){
-            $vars ['category'] = $category;
-        }
-
-        if (!empty($shortBy)){
-            $vars ['shortBy'] = $shortBy;
-        }
-
-        if (!empty($price)){
-            $vars ['price'] = $price;
-        }
-
-        if (!empty($rating)) {
-            $rat = '';
-            foreach ($rating as $key => $ratVal) {
-                $rat .= $ratVal . ',';
-            }
-            $vars ['rating'] = rtrim($rat,',');
-        }
-
-        $querystring = http_build_query($vars);
-//        print $querystring;
-//        die();
-//        return redirect()->to('category/'.$prod_cat_id.'?'.$querystring);
-        return redirect()->to('products/search?cat='.$cat.'&'.$querystring);
-
     }
 
 

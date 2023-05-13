@@ -190,7 +190,7 @@ class Checkout extends BaseController {
 
 
             //order cc_order_history
-            $order_status_id = get_id_by_data('order_status_id','cc_order_status','name','Pending');
+            $order_status_id = get_data_by_id('order_status_id','cc_order_status','name','Pending');
             $dataOrderHistory['order_id'] = $order_id;
             $dataOrderHistory['order_status_id'] = $order_status_id;
             $tabHistOr = DB()->table('cc_order_history');
@@ -236,7 +236,7 @@ class Checkout extends BaseController {
             $this->cart->destroy();
 
             $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Your order has been successfully placed </div>');
-            return redirect()->to('my_order');
+            return redirect()->to('checkout_success');
 
         }
     }
@@ -260,6 +260,30 @@ class Checkout extends BaseController {
         }
 
         return $this->response->setJSON($data);
+    }
+
+    public function success(){
+        $data['page_title'] = 'Checkout Success';
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Checkout/success',$data);
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
+
+    }
+
+    public function failed(){
+        $data['page_title'] = 'Checkout Failed';
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Checkout/failed',$data);
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
+
+    }
+
+    public function canceled(){
+        $data['page_title'] = 'Checkout Canceled';
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Checkout/canceled',$data);
+        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
+
     }
 
 
