@@ -345,7 +345,6 @@ a {
 .alert {
     background-color: #FF4B4B !important;
 }
-
 .sing-up {
     max-width: 390px;
 }
@@ -558,23 +557,9 @@ a {
     display: inline-block;
     margin-bottom: 10px;
 }
-.filter-items .btn-op {
-    background-color: #DDDDDD;
-    color: #262626;
-    font-size: 14px;
-    padding: 15px;
-    margin-right: 10px;
-    display: inline-block;
-    margin-bottom: 10px;
-}
 .filter-items a:hover {
     background-color: var(--color-secondary);
     color: #FFF;
-}
-
-.round{
-    top: -42px;
-    left: 46%;
 }
 
 /* Styles for the range slider */
@@ -699,132 +684,3 @@ a {
     background-color: green;
     border-radius: 20px;
 }
-.alert-success-m {
-    background-color: green !important;
-    padding: 13px;
-    margin: 5px 0px 5px 0px;
-    border-radius: 8px;
-    color: #ffffff;
-}
-.width-100{
-    width:100% !important;
-}
-.width-50{
-    width:50% !important;
-}
-.btn-wi{
-    line-height: 40px;
-    min-width: 49%;
-}
-.icon-pd-20{
-    padding:20px !important;
-}
-.top-bar{
-    padding: 11px;
-    margin-bottom: 10px;
-}
-.active-view{
-    background-color: #000000;
-    color: #ffffff;
-}
-.shortBy{
-    padding: 5px;
-}
-.amount-or{
-    font-weight: 500;
-    font-size: 60px;
-    line-height: 70px;
-    text-transform: capitalize;
-
-    color: #DEDEDE;
-}
-.p-sty{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    color: #505050;
-    line-height: 19px;
-}
-.p-date{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    color: #979797;
-    line-height: 0px;
-    margin-top: 25px;
-}
-.div-p{
-    padding: 35px;
-    background-color: #FFFFFF;
-}
-.ti-or-n{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 26px;
-    text-transform: capitalize;
-    color: #2B2B2B;
-
-}
-.con-or{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    color: #AAAAAA;
-}
-.con-tit{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-    text-transform: capitalize;
-    color: #2B2B2B;
-}
-.box-order{
-    padding: 20px;
-}
-.w-60{
-    width: 60px;
-    height: 60px;
-}
-.lab-st{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 19px;
-    text-transform: capitalize;
-    color: #231F20;
-}
-.suc-title{
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 22px;
-    text-transform: capitalize;
-    color: #00A650;
-}
-.suc-message{
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    text-align: center;
-    text-transform: capitalize;
-    color: #595959;
-}
-.can-title{
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 22px;
-    text-transform: capitalize;
-    color: #FF725E;
-}
-.fale-title{
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 22px;
-    text-transform: capitalize;
-    color: #F10909;
-}
-
