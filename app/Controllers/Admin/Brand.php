@@ -160,7 +160,7 @@ class Brand extends BaseController
                 }
 
                 //old image unlink
-                $old_img = get_data_by_id('image', 'brand', 'brand_id', $brand_id);
+                $old_img = get_data_by_id('image', 'cc_brand', 'brand_id', $brand_id);
                 if (!empty($old_img)) {
                     $imgPath = $target_dir . '' . $old_img;
                     if (file_exists($imgPath)) {
@@ -191,7 +191,7 @@ class Brand extends BaseController
 
         $target_dir = FCPATH . '/uploads/brand/';
         //old image unlink
-        $old_img = get_data_by_id('image', 'brand', 'brand_id', $brand_id);
+        $old_img = get_data_by_id('image', 'cc_brand', 'brand_id', $brand_id);
         if (!empty($old_img)) {
             $imgPath = $target_dir . '' . $old_img;
             if (file_exists($imgPath)) {

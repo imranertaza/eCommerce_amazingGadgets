@@ -530,6 +530,17 @@ function get_lebel_by_value_in_theme_settings($lable){
     return $result;
 }
 
+function get_lebel_by_title_in_theme_settings($lable){
+    $table = DB()->table('cc_theme_settings');
+    $data = $table->where('label',$lable)->get()->getRow();
+    if (!empty($data)){
+        $result = $data->title;
+    }else{
+        $result ='';
+    }
+    return $result;
+}
+
 function email_send($to,$subject,$message){
     $form = get_lebel_by_value_in_settings('mail_address');
     $headers = "From: ".$form ;
