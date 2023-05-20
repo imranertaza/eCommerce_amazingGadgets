@@ -40,7 +40,7 @@
                             <div class="row gx-0 ">
                                 <div id="hotDells" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
-                                <?php foreach ($productstranding as $key => $pro){ ?>
+                                <?php foreach ($hotProSide as $key => $pro){ ?>
                                         <div class="carousel-item  <?php echo ($key == '0')?'active':'';?>" >
                                     <div class="col pro-pd-hot">
                                         <div class="product-grid   d-flex align-items-stretch flex-column position-relative text-center">
@@ -80,7 +80,7 @@
                 <div class="col-lg-9">
                     <div class="products h-100">
                         <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-md-3 h-100">
-                            <?php foreach ($productsHot as $pro){ ?>
+                            <?php foreach ($hotProlimit as $pro){ ?>
                                 <div class="col pe-3 each_pro">
                                     <div class="border p-3 product-grid h-100 d-flex align-items-stretch flex-column position-relative">
                                         <?php if (modules_key_by_access('wishlist') == 1) { ?>
@@ -158,7 +158,7 @@
                                 <div class="row gx-0 ">
                                     <div id="trandCol" class="carousel slide" data-bs-ride="carousel">
                                         <div class="carousel-inner">
-                                    <?php foreach ($productstranding as $key => $pro){ ?>
+                                    <?php foreach ($tranPro as $key => $pro){ ?>
                                         <div class="col carousel-item  <?php echo ($key == '0')?'active':'';?> pro-pd-hot">
                                             <div class="product-grid   d-flex align-items-stretch flex-column position-relative text-center">
 
@@ -196,7 +196,7 @@
                     </div>
                     <div class="col-lg-9">
                         <div class="video h-100">
-                            <iframe class="h-100 w-100" src="https://www.youtube.com/embed/6KPnDV5Lf6k" title="My sunconure flock flewed high in sky for more then 5min||sunconure freefly training in india||" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe class="h-100 w-100" src="<?php echo get_lebel_by_value_in_theme_settings('trending_youtube_video');?>" title="My sunconure flock flewed high in sky for more then 5min||sunconure freefly training in india||" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                             </span>
                         </div>
                         <div class="products h-100 p-2">
-                            <?php foreach ($productspecial as $pro){ ?>
+                            <?php foreach ($specialPro as $pro){ ?>
                                 <div class="row border-top mt-3 pt-1 pb-1" style="margin-left: -8px !important;margin-right: -8px !important;margin-top: -8px !important;">
                                         <div class="col-md-4 p-2" >
                                             <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid w-100 ')?>
@@ -238,23 +238,20 @@
                 <div class="col-lg-9 ">
                     <div class="h-100">
                         <div class="banner">
-                            <img src="<?php echo base_url()?>/assets/amazing_gadgets/img/special-banner.svg" alt="" class="w-100">
+                            <?php
+                            $special_banner_1 = get_lebel_by_value_in_theme_settings('special_banner');
+                            echo image_view('uploads/special_banner', '', $special_banner_1, 'noimage.png', 'w-100');
+                            ?>
                         </div>
                         <div class="products mt-5 ">
 
                             <div class="menu d-flex justify-content-between ">
                                 <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-                                    <a class="btn border btn-sp-m nav-link active " data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Laptop</a>
-                                    <a class="btn border btn-sp-m nav-link" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Phone</a>
-                                    <a class="btn border btn-sp-m nav-link" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tablet</a>
+                                    <a class="btn border btn-sp-m nav-link active " onclick="loadFun('regular')" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><?php echo $special_category_one_name;?></a>
+                                    <a class="btn border btn-sp-m nav-link" onclick="loadFun('regular-2')" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><?php echo $special_category_two_name;?></a>
+                                    <a class="btn border btn-sp-m nav-link" onclick="loadFun('regular-3')" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><?php echo $special_category_three_name;?></a>
                                 </div>
                                 <div class="menu-icon ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 15px;" width="9" height="16" viewBox="0 0 9 16" fill="none" >
-                                        <path d="M7.5 15.5L0 8L7.5 0.5L8.83125 1.83125L2.6625 8L8.83125 14.1687L7.5 15.5Z" fill="#2E2E2E"/>
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="0 0 9 16" fill="none" >
-                                        <path d="M0.362549 14.825C0.175049 14.6375 0.0812988 14.4155 0.0812988 14.159C0.0812988 13.903 0.175049 13.6813 0.362549 13.4938L5.8563 8L0.343799 2.4875C0.168799 2.3125 0.0812988 2.09375 0.0812988 1.83125C0.0812988 1.56875 0.175049 1.34375 0.362549 1.15625C0.550049 0.96875 0.772049 0.875 1.02855 0.875C1.28455 0.875 1.5063 0.96875 1.6938 1.15625L7.9938 7.475C8.0688 7.55 8.12205 7.63125 8.15355 7.71875C8.18455 7.80625 8.20005 7.9 8.20005 8C8.20005 8.1 8.18455 8.19375 8.15355 8.28125C8.12205 8.36875 8.0688 8.45 7.9938 8.525L1.67505 14.8438C1.50005 15.0188 1.28455 15.1063 1.02855 15.1063C0.772049 15.1063 0.550049 15.0125 0.362549 14.825Z" fill="#2E2E2E"/>
-                                    </svg>
                                 </div>
                             </div>
 
@@ -262,7 +259,7 @@
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                                     <div class="row mt-3 regular">
-                                        <?php foreach ($productsSpAr as $key => $pro){ ?>
+                                        <?php foreach ($special_category_onePro as $key => $pro){ ?>
                                             <div class="col item pe-3 ">
                                                 <div class="border pro-s-height p-3 product-grid  d-flex align-items-stretch flex-column position-relative">
                                                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
@@ -317,7 +314,7 @@
 
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                     <div class="row mt-3 regular-2">
-                                        <?php foreach ($productsSpAr as $key => $pro){ ?>
+                                        <?php foreach ($special_category_twoPro as $key => $pro){ ?>
                                             <div class="col item pe-3 ">
                                                 <div class="border pro-s-height p-3 product-grid  d-flex align-items-stretch flex-column position-relative">
                                                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
@@ -372,7 +369,7 @@
 
                                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                     <div class="row mt-3 regular-3">
-                                        <?php foreach ($productsSpAr as $key => $pro){ ?>
+                                        <?php foreach ($special_category_threePro as $key => $pro){ ?>
                                             <div class="col item pe-3 ">
                                                 <div class="border pro-s-height p-3 product-grid  d-flex align-items-stretch flex-column position-relative">
                                                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
@@ -437,7 +434,27 @@
             <div class="row gx-0">
                 <div class="col-lg-3">
                     <div class="deal-box border position-relative  h-100 me-3">
-                        <img src="<?php echo base_url()?>/assets/amazing_gadgets/img/etc_banner.svg" alt="banner" class="w-100 h-100" >
+                        <div class="regular-4 w-100">
+                            <div class="carousel-item w-100">
+                                <?php
+                                $special_banner_1 = get_lebel_by_value_in_theme_settings('left_side_banner_one');
+                                echo image_view('uploads/left_side_banner', '', $special_banner_1, 'noimage.png', 'w-100 h-100');
+                                ?>
+                            </div>
+                            <div class="carousel-item w-100">
+                                <?php
+                                $banner_two = get_lebel_by_value_in_theme_settings('left_side_banner_two');
+                                echo image_view('uploads/left_side_banner', '', $banner_two, 'noimage.png', 'w-100 h-100');
+                                ?>
+                            </div>
+                            <div class="carousel-item w-100">
+                                <?php
+                                $banner_three = get_lebel_by_value_in_theme_settings('left_side_banner_three');
+                                echo image_view('uploads/left_side_banner', '', $banner_three, 'noimage.png', 'w-100 h-100');
+                                ?>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -509,20 +526,38 @@
                         <div class="title p-2 bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Brands</span>
                             <span class="icon-mt">
-                                <svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-<path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB"/>
+                                <a href="javascript:void(0)"><svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+<path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB" data-bs-target="#brand" data-bs-slide="prev" /></a>
 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-<path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB"/>
+                                <a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+<path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB" data-bs-target="#brand" data-bs-slide="next" /></a>
 </svg>
                             </span>
                         </div>
-                        <div class="row px-2">
-                            <?php foreach ($brand as $ba){ ?>
-                                <div class="col-md-6 mt-2 no-padding"  >
-                                    <?php echo image_view('uploads/brand','',$ba->image,'noimage.png','w-100');?>
-                                </div>
-                            <?php } ?>
+                        <div id="brand" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+
+
+                                <?php
+                                    $perPageShow = 6;
+                                    $count = count($brand)/$perPageShow;
+                                    $j = 1;
+                                    for ($i=1; $i<=$count; $i++){
+                                        $l = $i*$perPageShow;
+                                        $act = ($l == $perPageShow)?'active':'';
+                                    print '<div class="carousel-item '.$act.'"> <div class="row px-2">';
+                                    while($j<=$l){
+                                            if (array_key_exists($j-1, $brand)) {
+                                                echo '<div class="col-md-6  mt-2  no-padding">'.image_view('uploads/brand', '', $brand[$j-1]->image, 'noimage.png', 'w-100').'</div>';
+                                            }
+                                            $j++;
+                                        }
+                                        print ' </div> </div>';
+                                     }
+                                ?>
+
+
+                            </div>
                         </div>
 
                         <div class="title mt-3 p-2 bg-black text-white d-flex justify-content-between ">
@@ -543,7 +578,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="video h-100">
-                        <iframe class="h-100 w-100" style="min-height:370px;" src="https://www.youtube.com/embed/zsxBqvbUf20" title="My sunconure flock flewed high in sky for more then 5min||sunconure freefly training in india||" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe class="h-100 w-100" style="min-height:370px;" src="<?php echo get_lebel_by_value_in_theme_settings('brands_youtube_video');?>" title="My sunconure flock flewed high in sky for more then 5min||sunconure freefly training in india||" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

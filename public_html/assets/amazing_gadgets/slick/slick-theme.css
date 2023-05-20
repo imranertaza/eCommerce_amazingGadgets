@@ -29,7 +29,7 @@
     display: block;
 
     width: 20px;
-    height: 20px;
+    /*height: 20px;*/
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
@@ -40,8 +40,7 @@
     color: transparent;
     border: none;
     outline: none;
-    /*background: transparent;*/
-    background: #000000;
+    background: transparent;
 
 }
 .slick-prev:hover,
@@ -51,8 +50,7 @@
 {
     color: transparent;
     outline: none;
-    /*background: transparent;*/
-    background: #000000;
+    background: transparent;
 }
 .slick-prev:hover:before,
 .slick-prev:focus:before,

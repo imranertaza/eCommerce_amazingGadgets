@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="message_alert" id="messAlt" >
-    <div class="alert-success_web py-2 px-3 border-0 text-white fs-5 text-capitalize" id="mesVal" >  </div>
+    <div class="alert-success_web py-2 px-3 border-0 text-white fs-5 text-capitalize" id="mesVal" ><?php print 'Successfully update to cart';?> </div>
 </div>
 <header class="header bg-white">
     <div class="topbar">

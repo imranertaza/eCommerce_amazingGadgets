@@ -750,14 +750,16 @@ a {
 .message_alert{
   width: 30%;
   position: fixed;
-  left: 50px;
-  top: 30%;
+  /*left: 50px;*/
+  /*top: 30%;*/
   z-index: 1000000;
   display: none;
+    bottom: 22px;
+    right: 10px;
 }
 .alert-success_web{
-    background-color: green;
-    border-radius: 20px;
+    background-color: #000000;
+    /*border-radius: 20px;*/
 }
 .alert-success-m {
     background-color: green !important;
@@ -1228,4 +1230,7 @@ a {
 }
 .no-padding{
     padding:0px!important;
+}
+.regular-4 .slick-list{
+    padding-left: unset !important;
 }

@@ -1,65 +1,24 @@
 <section class="main-container">
     <div class="container">
-        <div class="trend-collection mb-5">
-            <div class="card rounded-0">
-                <div class="card-header py-3 bg-white d-flex justify-content-between align-items-center">
-                    <h4>Trending collection</h4>
-                    <div class="swiper-btn d-flex">
-                        <div class="trend-button-prev">
-                            <i class="fa-solid fa-angle-left"></i>
-                        </div>
-                        <div class="trend-button-next">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </div>
 
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="swiper trendSlide text-center">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="<?php echo base_url() ?>/assets/img/trend1.png" alt="" class="img-fluid w-100">
-                                <h3 class="my-3"><a href="#">The Oversized Alpaca Crew</a></h3>
-                                <p><a href="#" class="btn btn-shop w-100">Shop Now</a></p>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="<?php echo base_url() ?>/assets/img/trend2.png" alt="" class="img-fluid w-100">
-                                <h3 class="my-3"><a href="#">The Premium-Weight Crew</a></h3>
-                                <p><a href="#" class="btn btn-shop w-100">Shop Now</a></p>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="<?php echo base_url() ?>/assets/img/trend3.png" alt="" class="img-fluid w-100">
-                                <h3 class="my-3"><a href="#">The Forever High-Top</a></h3>
-                                <p><a href="#" class="btn btn-shop w-100">Shop Now</a></p>
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="<?php echo base_url() ?>/assets/img/trend3.png" alt="" class="img-fluid w-100">
-                                <h3 class="my-3"><a href="#">The Forever High-Top</a></h3>
-                                <p><a href="#" class="btn btn-shop w-100">Shop Now</a></p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="product-category mb-5">
-            <div class="card rounded-0 p-5">
-                <div class="card-header py-3 bg-white border-0">
-                    <h4 class="fs-6 mb-0"><?php
-                        $par_id = get_data_by_id('parent_id','cc_product_category','prod_cat_id',$prod_cat_id);
-                        if (!empty($par_id)){
-                            $url = base_url('category/'.$par_id);
-                            echo '<a class="text-black" href="'.$url.'">'.get_data_by_id('category_name','cc_product_category','prod_cat_id',$par_id).'</a> <i class="fa-solid fa-angle-right"></i>';
-                        }
-                    ?> <?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$prod_cat_id); ?></h4>
-                </div>
-                <div class="card-body">
+
+
                     <form action="<?php echo base_url('category_url_generate')?>" method="post" id="searchForm">
 <!--                    <form  method="get" id="searchForm">-->
                     <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card p-3 rounded-0">
+                        <div class="col-lg-3">
+                            <div class="title bg-black text-white  " >
+                                <span class="title-hot"><?php
+                                    $par_id = get_data_by_id('parent_id','cc_product_category','prod_cat_id',$prod_cat_id);
+                                    if (!empty($par_id)){
+                                        $url = base_url('category/'.$par_id);
+                                        echo '<a href="'.$url.'">'.get_data_by_id('category_name','cc_product_category','prod_cat_id',$par_id).'</a> <i class="fa-solid fa-angle-right"></i>';
+                                    }
+                                    ?> <?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$prod_cat_id); ?></span>
+                            </div>
+                            <div class="card p-3 rounded-0 ">
+
                                 <div class="product-filter">
                                     <p>Sub Category</p>
                                     <input type="hidden" name="prod_cat_id" value="<?php echo $prod_cat_id?>">
@@ -163,7 +122,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-9 " style="padding-left: 3px;">
                             <div class="top-bar border">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -215,7 +174,7 @@
                                                 <?php } ?>
 
                                                 <div class="product-top">
-                                                    <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid w-100')?>
+                                                    <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid ')?>
                                                     <div class="rating text-center my-2">
                                                         <?php echo product_id_by_rating($pro->product_id);?>
                                                     </div>
@@ -270,7 +229,7 @@
                                                 <?php } ?>
 
                                                 <div class="product-top" style="width:40%;float:left; " >
-                                                    <?php echo image_view('uploads/products',$pro->product_id,'198_'.$pro->image,'noimage.png','img-fluid w-100')?>
+                                                    <?php echo image_view('uploads/products',$pro->product_id,'198_'.$pro->image,'noimage.png','img-fluid ')?>
 
                                                 </div>
 
@@ -308,18 +267,13 @@
 
 
                         </div>
-
-
-
                         <div class="col-lg-12" >
 
                             <?php echo $links;?>
                         </div>
-
                     </div>
                     </form>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>

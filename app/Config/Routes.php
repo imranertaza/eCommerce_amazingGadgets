@@ -169,6 +169,8 @@ $routes->post('/logo_update', 'Admin\Theme_settings::logo_update');
 $routes->post('/home_category', 'Admin\Theme_settings::home_category');
 $routes->post('/home_category_banner', 'Admin\Theme_settings::home_category_banner');
 $routes->post('/settings_update', 'Admin\Theme_settings::settings_update');
+$routes->post('/home_special_banner', 'Admin\Theme_settings::home_special_banner');
+$routes->post('/home_left_side_banner', 'Admin\Theme_settings::home_left_side_banner');
 
 //Email_send
 $routes->get('/email_send', 'Admin\Email_send::index');
