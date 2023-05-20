@@ -182,6 +182,14 @@ class Theme_settings extends BaseController
         $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
         return redirect()->to('theme_settings?sel=home_settings');
 
+            //new image uplode
+            $pic = $this->request->getFile('special_banner');
+            $namePic = $pic->getRandomName();
+            $pic->move($target_dir, $namePic);
+            $news_img = 'sp_banner_' . $pic->getName();
+            $this->crop->withFile($target_dir . '' . $namePic)->fit(837, 190, 'center')->save($target_dir . '' . $news_img);
+            unlink($target_dir . '' . $namePic);
+            $data['value'] = $news_img;
 
     }
 
@@ -240,5 +248,7 @@ class Theme_settings extends BaseController
         }
     }
 
+            $table = DB()->table('cc_theme_settings');
+            $table->where('label','special_banner')->update($data);
 
 }

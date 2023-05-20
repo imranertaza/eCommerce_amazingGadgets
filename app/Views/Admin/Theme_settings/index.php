@@ -187,6 +187,29 @@
                                             <button class="btn btn-primary">Save</button>
                                         </form>
 
+                                        <form action="<?php echo base_url('settings_update') ?>" method="post"
+                                              enctype="multipart/form-data">
+
+                                            <div class="form-group mt-2">
+                                                <label><?php echo get_lebel_by_title_in_theme_settings('trending_youtube_video');?></label>
+                                                <input type="text" name="value" class="form-control" value="<?php echo get_lebel_by_value_in_theme_settings('trending_youtube_video');?>" required>
+                                                <input type="hidden" name="label" value="trending_youtube_video" required>
+                                            </div>
+
+                                            <button class="btn btn-primary">Save</button>
+                                        </form>
+                                        <form action="<?php echo base_url('settings_update') ?>" method="post"
+                                              enctype="multipart/form-data">
+
+                                            <div class="form-group mt-2">
+                                                <label><?php echo get_lebel_by_title_in_theme_settings('brands_youtube_video');?></label>
+                                                <input type="text" name="value" class="form-control" value="<?php echo get_lebel_by_value_in_theme_settings('brands_youtube_video');?>" required>
+                                                <input type="hidden" name="label" value="brands_youtube_video" required>
+                                            </div>
+
+                                            <button class="btn btn-primary">Save</button>
+                                        </form>
+
                                         <form action="<?php echo base_url('home_category_banner') ?>" method="post"
                                               enctype="multipart/form-data">
                                             <div class="form-group mt-5">
