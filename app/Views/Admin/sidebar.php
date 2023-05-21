@@ -248,7 +248,7 @@
                         <a href="<?php echo base_url('newsletter');?>" class="nav-link">
                             <i class="nav-icon far fa-calendar-alt"></i>
                             <p>
-                                Newsletter
+                                Subscriber
                             </p>
                         </a>
                     </li>

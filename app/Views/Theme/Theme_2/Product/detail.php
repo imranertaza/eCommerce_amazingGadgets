@@ -193,14 +193,25 @@
                     <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative text-white card p-3 rounded-0 mb-3">
                         <?php if (modules_key_by_access('wishlist') == 1) { ?>
                             <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
-                                <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
+
+                                <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute  mt-2 ms-2"><i class="fa-solid fa-heart"></i>
+                                    <span class="btn-wishlist-text position-absolute  mt-5 ms-2">Favorite</span>
+                                </a>
+
                             <?php }else{ ?>
-                                <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $relPro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
+
+                                <a href="javascript:void(0)" class="btn-wishlist position-absolute mt-2 ms-2" onclick="addToWishlist(<?php echo $relPro->product_id ?>)"><i class="fa-solid fa-heart"></i>
+                                    <span class="btn-wishlist-text position-absolute  mt-5 ms-2">Favorite</span>
+                                </a>
+
                             <?php } ?>
                         <?php } ?>
-
                         <?php if (modules_key_by_access('compare') == 1) { ?>
-                        <a href="javascript:void(0)" onclick="addToCart(<?php echo $relPro->product_id ?>)" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
+
+                            <a href="javascript:void(0)" onclick="addToCompare(<?php echo $relPro->product_id ?>)" class="btn-compare position-absolute  mt-5 ms-2"><i class="fa-solid fa-code-compare"></i>
+                                <span class="btn-compare-text position-absolute  mt-5 ms-2">Compare</span>
+                            </a>
+
                         <?php } ?>
                         <div class="product-top">
                             <?php echo image_view('uploads/products',$relPro->product_id,'191_'.$relPro->image,'noimage.png','img-fluid w-100')?>
@@ -241,15 +252,26 @@
                             <div class="col border p-2">
                                 <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
                                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
-                                    <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
-                                        <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2"><i class="fa-solid fa-heart"></i></a>
-                                    <?php }else{ ?>
-                                        <a href="javascript:void(0)" class="btn-wishlist position-absolute start-0 top-0 mt-2 ms-2" onclick="addToWishlist(<?php echo $rPro->product_id ?>)"><i class="fa-solid fa-heart"></i></a>
-                                    <?php } ?>
-                                    <?php } ?>
+                                        <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
 
+                                            <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute  mt-2 ms-2"><i class="fa-solid fa-heart"></i>
+                                                <span class="btn-wishlist-text position-absolute  mt-5 ms-2">Favorite</span>
+                                            </a>
+
+                                        <?php }else{ ?>
+
+                                            <a href="javascript:void(0)" class="btn-wishlist position-absolute mt-2 ms-2" onclick="addToWishlist(<?php echo $rPro->product_id ?>)"><i class="fa-solid fa-heart"></i>
+                                                <span class="btn-wishlist-text position-absolute  mt-5 ms-2">Favorite</span>
+                                            </a>
+
+                                        <?php } ?>
+                                    <?php } ?>
                                     <?php if (modules_key_by_access('compare') == 1) { ?>
-                                    <a href="javascript:void(0)" onclick="addToCart(<?php echo $rPro->product_id ?>)" class="btn-compare position-absolute start-0 top-0 mt-5 ms-2"><i class="fa-solid fa-code-compare"></i></a>
+
+                                        <a href="javascript:void(0)" onclick="addToCompare(<?php echo $rPro->product_id ?>)" class="btn-compare position-absolute  mt-5 ms-2"><i class="fa-solid fa-code-compare"></i>
+                                            <span class="btn-compare-text position-absolute  mt-5 ms-2">Compare</span>
+                                        </a>
+
                                     <?php } ?>
                                     <div class="product-top">
                                         <?php echo image_view('uploads/products',$rPro->product_id,'191_'.$rPro->image,'noimage.png','img-fluid w-100')?>

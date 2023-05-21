@@ -1184,7 +1184,7 @@ a {
     padding-right: 0px !important;
 }
 .nav-menu-main{
-    width:890px !important;
+    width:100% !important;
 }
 .nav-menu-collapse{
     display: block !important;

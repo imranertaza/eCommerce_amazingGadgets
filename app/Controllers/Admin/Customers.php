@@ -259,17 +259,6 @@ class Customers extends BaseController
 
     public function delete($customer_id){
 
-        $target_dir = FCPATH . '/uploads/customer/';
-        //old image unlink
-        $old_img = get_data_by_id('pic', 'cc_customers', 'customer_id', $customer_id);
-        if (!empty($old_img)) {
-            $imgPath = $target_dir . '' . $old_img;
-            if (file_exists($imgPath)) {
-                unlink($target_dir . '' . $old_img);
-            }
-        }
-
-
         $table = DB()->table('cc_customer');
         $table->where('customer_id', $customer_id)->delete();
 

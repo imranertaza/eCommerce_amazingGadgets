@@ -103,7 +103,7 @@
                         <div class="input-group">
                             <div class="input-group-btn search-panel">
 <!--                                <select name="top_category"  class="form-select rounded-0">-->
-                                <select name="cat"  class="form-select rounded-0">
+                                <select name="cat"  class="form-select rounded-0" required>
                                     <option value="">All Categories</option>
                                     <?php foreach (getParentCategoryArray() as $catTop){ $tCat =  isset($top_category)?$top_category:'';?>
                                     <option value="<?php echo $catTop->prod_cat_id;?>" <?php echo ($tCat == $catTop->prod_cat_id)?'selected':'';?> ><?php echo $catTop->category_name;?></option>

@@ -48,13 +48,13 @@
                                 </div>
                                 <?php
                                 $i=1;
-                                foreach(get_all_data_array('cc_option') as $op){ ?>
+                                foreach(get_all_data_array('cc_option') as $op){  ?>
                                 <div class="product-filter">
                                     <p><?php echo $op->name;?></p>
                                     <ul class="list-unstyled filter-items">
                                         <?php foreach(get_array_data_by_id('cc_option_value','option_id',$op->option_id) as $key=>$opVal){ ?>
                                         <li class="mt-2"><input type="checkbox" onclick="formSubmit()"  class="btn-check" <?php foreach ($optionval as $vSel){ echo ($vSel == $opVal->option_value_id)?'checked':'';} ?> name="options[]" id="option_<?php echo $opVal->name; ?>" value="<?php echo $opVal->option_value_id?>"  autocomplete="off">
-                                            <label class="btn btn-outline-secondary" for="option_<?php echo $opVal->name; ?>"><?php echo $opVal->name?></label></li>
+                                            <label class="btn btn-outline-secondary" <?php  echo ($op->name == 'Color')?'style="background-color:'. $opVal->name.'; padding: 15px;border: unset;"':''; ?>  for="option_<?php echo $opVal->name; ?>"><?php  echo ($op->name == 'Color')?'':$opVal->name; ?></label></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -139,7 +139,6 @@
                                                 <option value="" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == ''))?'selected':''; ?>>Position</option>
                                                 <option value="name" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == 'name'))?'selected':''; ?> >Product Name</option>
                                                 <option value="price" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == 'price'))?'selected':''; ?>>Price</option>
-                                                <option value="feedback_star" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == 'feedback_star'))?'selected':''; ?>>Rating</option>
                                             </select>
                                         </div>
                                     </div>

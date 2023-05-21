@@ -248,7 +248,7 @@ class Theme_settings extends BaseController
         }
     }
 
-            $table = DB()->table('cc_theme_settings');
-            $table->where('label','special_banner')->update($data);
+//            $table = DB()->table('cc_theme_settings');
+//            $table->where('label','special_banner')->update($data);
 
 }

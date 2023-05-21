@@ -53,7 +53,7 @@
                                 <label>Role </label>
                                 <select name="role_id" class="form-control" required>
                                     <option value="">Please select</option>
-                                    <?php echo getListInOption('', 'role_id', 'role', 'roles');?>
+                                    <?php echo getListInOption('', 'role_id', 'role', 'cc_roles');?>
                                 </select>
                             </div>
 
