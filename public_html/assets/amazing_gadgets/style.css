@@ -1234,3 +1234,14 @@ a {
 .regular-4 .slick-list{
     padding-left: unset !important;
 }
+.owl-theme .owl-nav [class*=owl-]:hover {
+     background: unset !important;
+     color: unset !important;
+}
+
+.owl-theme .owl-nav{
+    position: absolute !important;;
+    top: -87px;
+    right: -4px;
+    font-size: 38px;
+}

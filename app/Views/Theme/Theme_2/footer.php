@@ -183,55 +183,28 @@
 
 
 <script src="<?php echo base_url() ?>/assets/amazing_gadgets/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo base_url() ?>/assets/amazing_gadgets/owl.carousel.js"></script>
 <script>
 
     $(document).ready(function() {
 
-        $(".regular").slick({
-            dots: false,
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            autoplay:true,
-            arrows:true,
-            prevArrow:'<svg xmlns="http://www.w3.org/2000/svg" data-role="none" class="slick-prev"  width="9" height="16" viewBox="0 0 9 16" fill="none" ><path d="M7.5 15.5L0 8L7.5 0.5L8.83125 1.83125L2.6625 8L8.83125 14.1687L7.5 15.5Z" fill="#2E2E2E"/></svg>',
-            nextArrow:'<svg xmlns="http://www.w3.org/2000/svg" data-role="none" class="slick-next" width="9" height="16" viewBox="0 0 9 16" fill="none" ><path d="M0.362549 14.825C0.175049 14.6375 0.0812988 14.4155 0.0812988 14.159C0.0812988 13.903 0.175049 13.6813 0.362549 13.4938L5.8563 8L0.343799 2.4875C0.168799 2.3125 0.0812988 2.09375 0.0812988 1.83125C0.0812988 1.56875 0.175049 1.34375 0.362549 1.15625C0.550049 0.96875 0.772049 0.875 1.02855 0.875C1.28455 0.875 1.5063 0.96875 1.6938 1.15625L7.9938 7.475C8.0688 7.55 8.12205 7.63125 8.15355 7.71875C8.18455 7.80625 8.20005 7.9 8.20005 8C8.20005 8.1 8.18455 8.19375 8.15355 8.28125C8.12205 8.36875 8.0688 8.45 7.9938 8.525L1.67505 14.8438C1.50005 15.0188 1.28455 15.1063 1.02855 15.1063C0.772049 15.1063 0.550049 15.0125 0.362549 14.825Z" fill="#2E2E2E"/></svg>',
-          });
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            autoplay: true,
+            dots:false,
+            nav:true,
+        })
 
-          $(".regular-2").slick({
-            dots: false,
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            autoplay:true,
-            speed: 500,
-            arrows:true,
-            prevArrow:'<svg xmlns="http://www.w3.org/2000/svg" data-role="none" class="slick-prev"  width="9" height="16" viewBox="0 0 9 16" fill="none" ><path d="M7.5 15.5L0 8L7.5 0.5L8.83125 1.83125L2.6625 8L8.83125 14.1687L7.5 15.5Z" fill="#2E2E2E"/></svg>',
-            nextArrow:'<svg xmlns="http://www.w3.org/2000/svg" data-role="none" class="slick-next" width="9" height="16" viewBox="0 0 9 16" fill="none" ><path d="M0.362549 14.825C0.175049 14.6375 0.0812988 14.4155 0.0812988 14.159C0.0812988 13.903 0.175049 13.6813 0.362549 13.4938L5.8563 8L0.343799 2.4875C0.168799 2.3125 0.0812988 2.09375 0.0812988 1.83125C0.0812988 1.56875 0.175049 1.34375 0.362549 1.15625C0.550049 0.96875 0.772049 0.875 1.02855 0.875C1.28455 0.875 1.5063 0.96875 1.6938 1.15625L7.9938 7.475C8.0688 7.55 8.12205 7.63125 8.15355 7.71875C8.18455 7.80625 8.20005 7.9 8.20005 8C8.20005 8.1 8.18455 8.19375 8.15355 8.28125C8.12205 8.36875 8.0688 8.45 7.9938 8.525L1.67505 14.8438C1.50005 15.0188 1.28455 15.1063 1.02855 15.1063C0.772049 15.1063 0.550049 15.0125 0.362549 14.825Z" fill="#2E2E2E"/></svg>',
-
-          });
-
-          $(".regular-3").slick({
-            dots: false,
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            autoplay:true,
-            speed: 500,
-            arrows:true,
-            prevArrow:'<svg xmlns="http://www.w3.org/2000/svg" data-role="none" class="slick-prev"  width="9" height="16" viewBox="0 0 9 16" fill="none" ><path d="M7.5 15.5L0 8L7.5 0.5L8.83125 1.83125L2.6625 8L8.83125 14.1687L7.5 15.5Z" fill="#2E2E2E"/></svg>',
-            nextArrow:'<svg xmlns="http://www.w3.org/2000/svg" data-role="none" class="slick-next" width="9" height="16" viewBox="0 0 9 16" fill="none" ><path d="M0.362549 14.825C0.175049 14.6375 0.0812988 14.4155 0.0812988 14.159C0.0812988 13.903 0.175049 13.6813 0.362549 13.4938L5.8563 8L0.343799 2.4875C0.168799 2.3125 0.0812988 2.09375 0.0812988 1.83125C0.0812988 1.56875 0.175049 1.34375 0.362549 1.15625C0.550049 0.96875 0.772049 0.875 1.02855 0.875C1.28455 0.875 1.5063 0.96875 1.6938 1.15625L7.9938 7.475C8.0688 7.55 8.12205 7.63125 8.15355 7.71875C8.18455 7.80625 8.20005 7.9 8.20005 8C8.20005 8.1 8.18455 8.19375 8.15355 8.28125C8.12205 8.36875 8.0688 8.45 7.9938 8.525L1.67505 14.8438C1.50005 15.0188 1.28455 15.1063 1.02855 15.1063C0.772049 15.1063 0.550049 15.0125 0.362549 14.825Z" fill="#2E2E2E"/></svg>',
-
-          });
-
-          $(".regular-4").slick({
+        $(".regular-4").slick({
             dots: false,
             infinite: true,
             autoplay:true,
             speed: 500,
             fade: true,
             cssEase: 'linear'
-          });
+       });
     })
 </script>
 <script>
