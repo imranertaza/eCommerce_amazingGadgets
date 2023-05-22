@@ -258,9 +258,10 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                                    <div class="row mt-3 regular">
+<!--                                    <div class="row mt-3 regular">-->
+                                    <div class=" mt-3 owl-carousel owl-theme">
                                         <?php foreach ($special_category_onePro as $key => $pro){ ?>
-                                            <div class="col item pe-3 ">
+                                            <div class="col item  ">
                                                 <div class="border pro-s-height p-3 product-grid  d-flex align-items-stretch flex-column position-relative">
                                                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                                         <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
@@ -297,7 +298,7 @@
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
-                                                        <div class="price-new mb-3">
+                                                        <div class="price-new ">
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
@@ -313,9 +314,10 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                    <div class="row mt-3 regular-2">
+<!--                                    <div class="row mt-3 regular-2">-->
+                                        <div class="mt-3 owl-carousel owl-theme">
                                         <?php foreach ($special_category_twoPro as $key => $pro){ ?>
-                                            <div class="col item pe-3 ">
+                                            <div class="col item ">
                                                 <div class="border pro-s-height p-3 product-grid  d-flex align-items-stretch flex-column position-relative">
                                                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                                         <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
@@ -352,7 +354,7 @@
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
-                                                        <div class="price-new mb-3">
+                                                        <div class="price-new ">
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
@@ -368,9 +370,10 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                                    <div class="row mt-3 regular-3">
+<!--                                    <div class="row mt-3 regular-3">-->
+                                    <div class=" mt-3 owl-carousel owl-theme">
                                         <?php foreach ($special_category_threePro as $key => $pro){ ?>
-                                            <div class="col item pe-3 ">
+                                            <div class="col item  ">
                                                 <div class="border pro-s-height p-3 product-grid  d-flex align-items-stretch flex-column position-relative">
                                                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                                         <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
@@ -407,7 +410,7 @@
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
-                                                        <div class="price-new mb-3">
+                                                        <div class="price-new ">
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
@@ -740,8 +743,6 @@
                 </div>
             </div>
         </div>
-
-
 
 
     </div>

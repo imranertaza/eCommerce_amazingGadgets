@@ -25,6 +25,11 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/assets/amazing_gadgets/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>/assets/amazing_gadgets/slick/slick-theme.css">
+
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>/assets/amazing_gadgets/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>/assets/amazing_gadgets/owl.theme.default.min.css">
+
 </head>
 <body>
 <div class="message_alert" id="messAlt" >
