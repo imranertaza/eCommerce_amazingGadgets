@@ -298,7 +298,7 @@
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
-                                                        <div class="price-new mb-3">
+                                                        <div class="price-new ">
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
@@ -354,7 +354,7 @@
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
-                                                        <div class="price-new mb-3">
+                                                        <div class="price-new ">
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
@@ -410,7 +410,7 @@
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
-                                                        <div class="price-new mb-3">
+                                                        <div class="price-new ">
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
