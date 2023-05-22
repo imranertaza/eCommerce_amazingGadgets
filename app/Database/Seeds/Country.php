@@ -9,7 +9,6 @@ class Country extends Seeder
     public function run()
     {
         $data = [
-
             ['country_id' =>'2', 'name' =>'Albania', 'iso_code_2'=> 'AL', 'iso_code_3' =>'ALB', 'address_format' =>'','postcode_required' => 0, 'status' => 1],
             [ 'country_id' =>'3','name' =>  'Algeria','iso_code_2'=>  'DZ', 'iso_code_3' =>'DZA',  'address_format' =>  '','postcode_required' =>  0,'status' => 1],
             [ 'country_id' =>'4','name' =>  'American Samoa', 'iso_code_2'=> 'AS','iso_code_3' => 'ASM',  'address_format' =>  '','postcode_required' =>  0,'status' => 1],

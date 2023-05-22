@@ -12,18 +12,22 @@ class Brand extends Seeder
             [
                 'name' => 'Chanel',
                 'image' => 'chanel.png',
+                'createdBy' => 1,
             ],
             [
                 'name' => 'LV',
                 'image' => 'lv.png',
+                'createdBy' => 1,
             ],
             [
                 'name' => 'Bally',
                 'image' => 'bally.png',
+                'createdBy' => 1,
             ],
             [
                 'name' => 'Hermes',
                 'image' => 'hermes.png',
+                'createdBy' => 1,
             ],
         ];
 
