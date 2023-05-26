@@ -5,30 +5,36 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 use CodeIgniter\Database\RawSql;
 
-class Brand extends Migration
+class ProductFeedback extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'brand_id' => [
+            'product_feedback_id' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'name' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
+            'product_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
             ],
-            'image' => [
-                'type' => 'VARCHAR',
-                'constraint' => 155,
-                'null' => true,
-                'default' => NULL,
+            'customer_id' => [
+                'type'           => 'INT',
+                'constraint'     => 11,
             ],
-            'sort_order' => [
-                'type' => 'INT',
-                'constraint' => 3,
+            'feedback_star' => [
+                'type'           => 'INT',
+                'constraint'     => 1,
+            ],
+            'feedback_text' => [
+                'type' => 'text',
+            ],
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['Pending', 'Active'],
+                'default' => 'Pending',
             ],
             'createdDtm' => [
                 'type' => 'DATETIME',
@@ -48,12 +54,13 @@ class Brand extends Migration
             ],
             'updatedDtm DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
-        $this->forge->addKey('brand_id', true);
-        $this->forge->createTable('cc_brand');
+
+        $this->forge->addKey('product_feedback_id', true);
+        $this->forge->createTable('cc_product_feedback');
     }
 
     public function down()
     {
-        $this->forge->dropTable('cc_brand');
+        $this->forge->dropTable('cc_product_feedback');
     }
 }

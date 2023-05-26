@@ -5,30 +5,28 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 use CodeIgniter\Database\RawSql;
 
-class Brand extends Migration
+class ThemeSettings extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'brand_id' => [
+            'settings_id' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'name' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
-            ],
-            'image' => [
+            'label' => [
                 'type' => 'VARCHAR',
                 'constraint' => 155,
-                'null' => true,
-                'default' => NULL,
             ],
-            'sort_order' => [
-                'type' => 'INT',
-                'constraint' => 3,
+            'title' => [
+                'type' => 'VARCHAR',
+                'constraint' => 155,
+            ],
+            'value' => [
+                'type' => 'VARCHAR',
+                'constraint' => 155,
             ],
             'createdDtm' => [
                 'type' => 'DATETIME',
@@ -48,12 +46,13 @@ class Brand extends Migration
             ],
             'updatedDtm DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
-        $this->forge->addKey('brand_id', true);
-        $this->forge->createTable('cc_brand');
+
+        $this->forge->addKey('settings_id', true);
+        $this->forge->createTable('cc_theme_settings');
     }
 
     public function down()
     {
-        $this->forge->dropTable('cc_brand');
+        $this->forge->dropTable('cc_theme_settings');
     }
 }

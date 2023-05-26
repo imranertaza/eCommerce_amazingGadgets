@@ -5,30 +5,28 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 use CodeIgniter\Database\RawSql;
 
-class Brand extends Migration
+class Roles extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'brand_id' => [
+            'role_id' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'name' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
-            ],
-            'image' => [
+            'role' => [
                 'type' => 'VARCHAR',
-                'constraint' => 155,
-                'null' => true,
-                'default' => NULL,
+                'constraint' => 30,
             ],
-            'sort_order' => [
-                'type' => 'INT',
-                'constraint' => 3,
+            'permission' => [
+                'type' => 'text',
+            ],
+            'is_default' => [
+                'type' => 'ENUM',
+                'constraint' => ['1', '0'],
+                'default' => '0',
             ],
             'createdDtm' => [
                 'type' => 'DATETIME',
@@ -48,12 +46,13 @@ class Brand extends Migration
             ],
             'updatedDtm DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
-        $this->forge->addKey('brand_id', true);
-        $this->forge->createTable('cc_brand');
+
+        $this->forge->addKey('role_id', true);
+        $this->forge->createTable('cc_roles');
     }
 
     public function down()
     {
-        $this->forge->dropTable('cc_brand');
+        $this->forge->dropTable('cc_roles');
     }
 }
