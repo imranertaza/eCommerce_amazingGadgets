@@ -25,7 +25,7 @@ class Category extends BaseController {
         $data['ratingval'] = array();
 
         $where = "$categoryWhere ";
-        $data['products'] = $this->categoryproductsModel->where($where)->all_join()->paginate(9);
+        $data['products'] = $this->categoryproductsModel->where($where)->query()->paginate(9);
         $data['pager'] = $this->categoryproductsModel->pager;
         $data['links'] = $data['pager']->links('default','custome_link');
 
