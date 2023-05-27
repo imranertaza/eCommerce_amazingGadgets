@@ -1246,3 +1246,10 @@ a {
     right: -4px;
     font-size: 38px;
 }
+.w-h-100{
+    width:100px !important;
+    height:100px !important;
+}
+.btn-check:checked+.btn{
+    border:2px solid #000000 !important;
+}
