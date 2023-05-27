@@ -84,7 +84,7 @@
 
                         <?php echo add_main_based_menu_with_permission('Brand', base_url('brand'), $adRoleId, 'fa-circle', 'Brand');?>
 
-                        <?php echo add_main_based_menu_with_permission('Color Family', base_url('color_family'), $adRoleId, 'fa-circle', 'Color_family');?>
+                        <?php //echo add_main_based_menu_with_permission('Color Family', base_url('color_family'), $adRoleId, 'fa-circle', 'Color_family');?>
 
                         <?php echo add_main_based_menu_with_permission('Attribute Group', base_url('attribute_group'), $adRoleId, 'fa-circle', 'Attribute_group');?>
 

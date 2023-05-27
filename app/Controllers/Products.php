@@ -79,16 +79,17 @@ class Products extends BaseController {
         }
 
         $where = "$categoryWhere AND $allOption AND $allbrand AND $allrating AND $firstPrice AND $lastPrice";
-//        $where = "$categoryWhere AND $allOption AND $allbrand AND $allrating AND $firstPrice AND $lastPrice AND `cc_products`.`name` LIKE '%$keyword%' ESCAPE '!'";
 
-//        print $where;
-//        die();
-
-        $data['products'] = $this->categoryproductsModel->where($where)->all_join()->orderBy($shortBy)->paginate(9);
+        if(empty($this->request->getGetPost('option'))) {
+            $data['products'] = $this->categoryproductsModel->where($where)->query()->orderBy($shortBy)->paginate(9);
+        }else{
+            $data['products'] = $this->categoryproductsModel->where($where)->all_join()->orderBy($shortBy)->paginate(9);
+        }
 
         if (!empty($keyword)){
-            $data['products'] = $this->categoryproductsModel->where($where)->like('cc_products.name',$keyword)->all_join()->orderBy($shortBy)->paginate(9);
+            $data['products'] = $this->categoryproductsModel->where($where)->like('cc_products.name',$keyword)->query()->orderBy($shortBy)->paginate(9);
         }
+
         $data['pager'] = $this->categoryproductsModel->pager;
         $data['links'] = $data['pager']->links('default','custome_link');
 

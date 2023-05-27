@@ -18,67 +18,14 @@ class Category extends BaseController {
     }
 
     public function index($cat_id){
-
-        $shortBy = !empty($this->request->getGetPost('shortBy'))?$this->request->getGetPost('shortBy'):'';
         $categoryWhere = !empty($this->request->getGetPost('category'))? 'category_id = '.$this->request->getGetPost('category'): 'category_id = '.$cat_id;
 
-        $brand = explode(',', $this->request->getGetPost('manufacturer'));
-        $options = explode(',', $this->request->getGetPost('option'));
-        $price = explode(',', $this->request->getGetPost('price'));
-        $rating = explode(',', $this->request->getGetPost('rating'));
-
         $data['optionval'] = array();
-        if(empty($this->request->getGetPost('option'))) {
-            $allOption = '1=1';
-        }else {
-            $optionWhere ='';
-            foreach ($options as $valOp){
-                $optionWhere .= 'option_value_id = '.$valOp. ' OR ';
-            }
-            $allOption = '('.rtrim($optionWhere, ' OR ').')';
-            $data['optionval'] = $options;
-        }
-
         $data['brandval'] = array();
-        if(empty($this->request->getGetPost('manufacturer'))){
-            $allbrand ='1=1';
-        }else {
-            $brandWhere ='';
-            foreach ($brand as $valBr){
-                $brandWhere .= 'brand_id = '.$valBr. ' OR ';
-            }
-            $allbrand = '('.rtrim($brandWhere, ' OR ').')';
-            $data['brandval'] = $brand;
-        }
-
-        if(empty($this->request->getGetPost('price'))) {
-            $firstPrice = '1=1';
-            $lastPrice = '1=1';
-        }else {
-            $firstPrice = 'cc_products.price >= '.$price[0];
-            $lastPrice = 'cc_products.price <= '.$price[1];
-        }
-        $data['fstprice'] = !empty($price[0]) ? $price[0] : 5;
-        $data['lstPrice'] = !empty($price[1]) ? $price[1] : 6000;
-
         $data['ratingval'] = array();
-        if(empty($this->request->getGetPost('rating'))){
-            $allrating ='1=1';
-        }else {
-            $ratingWhere ='';
-            foreach ($rating as $valRati){
-                $ratingWhere .= 'average_feedback = '.$valRati. ' OR ';
-            }
-            $allrating = '('.rtrim($ratingWhere, ' OR ').')';
-            $data['ratingval'] = $rating;
-        }
 
-        $where = "$categoryWhere AND $allOption AND $allbrand AND $allrating AND $firstPrice AND $lastPrice";
-
-//        print $where;
-//        die();
-
-        $data['products'] = $this->categoryproductsModel->where($where)->all_join()->orderBy($shortBy)->paginate(9);
+        $where = "$categoryWhere ";
+        $data['products'] = $this->categoryproductsModel->where($where)->all_join()->paginate(9);
         $data['pager'] = $this->categoryproductsModel->pager;
         $data['links'] = $data['pager']->links('default','custome_link');
 
