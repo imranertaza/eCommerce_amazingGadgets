@@ -1253,3 +1253,6 @@ a {
 .btn-check:checked+.btn{
     border:2px solid #000000 !important;
 }
+.fw-semibold{
+    column-width: 305px;
+}
