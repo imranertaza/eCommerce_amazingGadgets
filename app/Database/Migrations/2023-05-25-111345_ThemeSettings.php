@@ -10,7 +10,7 @@ class ThemeSettings extends Migration
     public function up()
     {
         $this->forge->addField([
-            'settings_id' => [
+            'theme_settings_id' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
@@ -47,7 +47,7 @@ class ThemeSettings extends Migration
             'updatedDtm DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
 
-        $this->forge->addKey('settings_id', true);
+        $this->forge->addKey('theme_settings_id', true);
         $this->forge->createTable('cc_theme_settings');
     }
 
