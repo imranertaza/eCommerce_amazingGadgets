@@ -24,13 +24,13 @@ class Coupon extends Migration
                 'constraint' => 255,
             ],
             'discount_on' => [
-                'type' => 'decimal',
-                'constraint' => '7,5',
-            ],
-            'discount' => [
                 'type' => 'ENUM',
                 'constraint' => ['Product', 'Shipping'],
                 'default' => 'Product',
+            ],
+            'discount' => [
+                'type' => 'decimal',
+                'constraint' => '7,5',
             ],
             'for_subscribed_user' => [
                 'type' => 'ENUM',
