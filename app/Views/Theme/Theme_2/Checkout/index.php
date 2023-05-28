@@ -170,7 +170,6 @@
                     <div class="checkout-items mb-4">
                         <?php foreach (Cart()->contents() as $val) { ?>
                             <div class="list-item d-flex gap-2 mb-2">
-
                                 <div class="d-flex gap-2 bg-gray p-2 rounded-2">
                                     <?php
                                     $img = get_data_by_id('image', 'cc_products', 'product_id', $val['id']);
@@ -203,7 +202,6 @@
                                                 class="fa-solid fa-trash-can"></i></a>
                                 </div>
                             </div>
-
                         <?php } ?>
 
                     </div>
