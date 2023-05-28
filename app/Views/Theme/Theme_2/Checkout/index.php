@@ -175,10 +175,10 @@
                                     $img = get_data_by_id('image', 'cc_products', 'product_id', $val['id']);
                                     $des = get_data_by_id('description', 'cc_product_description', 'product_id', $val['id']);
                                     ?>
-                                    <?php echo image_view('uploads/products', $val['id'], '100_' . $img, 'noimage.png', 'img-fluid w-h-100s') ?>
+                                    <?php echo image_view('uploads/products', $val['id'], '100_' . $img, 'noimage.png', 'img-fluid w-h-100') ?>
                                     <div>
                                         <p class="fw-semibold mb-2"><?php echo $val['name']; ?></p>
-                                        <p class="lh-sm"><small><?php echo substr($des, 0, 80) ?></small></p>
+                                        <p class="lh-sm"><small><?php echo product_id_by_rating($val['id'],'1');?></small></p>
                                     </div>
                                 </div>
                                 <div class="list-item-qty text-center bg-gray p-1 py-3 rounded-2 align-items-center d-flex flex-column">
