@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-    <div class="sticky-menu">
+    <div class="sticky-menu menu-show">
     <div class="header-main py-1">
         <div class="container">
             <div class="row align-items-center">
@@ -150,11 +150,11 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 col-8">
                     <?php if(isset($home_menu)){  ?>
                     <div class="allcategory h-100 " style="width:94%;">
-                        <button class="cat-btn-h btn bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="cat-btn-h btn bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-bars me-3"></i>
                             Shop by Categories
                         </button>
-                        <ul class="dropdown-menu show border  cat-drop-menu all-cat-menu" >
+                        <ul class="dropdown-menu show border  cat-drop-menu all-cat-menu btn-cat-show" >
                             <?php foreach (getParentCategoryArray() as $pcat){?>
                             <li>
                                 <a class="dropdown-item" href="<?php echo base_url('category/'.$pcat->prod_cat_id);?>">
@@ -217,6 +217,135 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <div class="sticky-menu sticky-menu-class menu-show-hide" >
+        <div class="header-main py-1">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3 order-1 mb-3 mb-md-0">
+                        <div class="logo">
+                            <a href="<?php echo base_url()?>">
+                                <?php $logoImg = get_lebel_by_value_in_theme_settings('side_logo');
+                                echo image_view('uploads/logo','',$logoImg,'noimage.png','img-fluid side_logo img-30');?>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 order-3 order-md-2 mb-3 mb-md-0 sear-pd" >
+                        <?php if (modules_key_by_access('top_search') == 1) { ?>
+                            <form action="<?php echo base_url('products/search');?>" class="mini-search" method="GET">
+                                <div class="input-group">
+                                    <div class="input-group-btn search-panel">
+                                        <!--                                <select name="top_category"  class="form-select rounded-0">-->
+                                        <select name="cat"  class="form-select rounded-0" required>
+                                            <option value="">All Categories</option>
+                                            <?php foreach (getParentCategoryArray() as $catTop){ $tCat =  isset($top_category)?$top_category:'';?>
+                                                <option value="<?php echo $catTop->prod_cat_id;?>" <?php echo ($tCat == $catTop->prod_cat_id)?'selected':'';?> ><?php echo $catTop->category_name;?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <input type="text" class="form-control" name="keywordTop" placeholder="Search item..." value="<?php echo isset($keywordTop)?$keywordTop:'';?>" required>
+                                    <span class="input-group-btn">
+                                <button class="btn btn-default border rounded-0 bg-black text-white" type="submit">
+                                    <i class="fa-solid fa-search"></i>
+                                </button>
+                            </span>
+                                </div>
+                            </form>
+                        <?php } ?>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3 mb-md-0 order-2 order-md-3 d-flex justify-content-end" >
+                        <a href="<?php echo base_url('cart')?>" >
+                            <div class="mini-cart d-flex position-relative" id="cartReload">
+
+                                <div class="cart-icon rounded-5 align-items-center justify-content-center p-3 me-3">
+                                    <img src="<?php echo base_url() ?>/assets/amazing_gadgets/img/cart.png" alt="" class="img-fluid">
+                                </div>
+                                <span class="cart-item position-absolute rounded-5 d-flex align-items-center justify-content-center"><?php echo count(Cart()->contents()); ?></span>
+                                <div class="cart-content d-flex flex-column">
+                                    <span class="w-100">My Cart</span>
+                                    <span class="total"> <?php echo currency_symbol(Cart()->total()) ?></span>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom border-bottom">
+            <div class="container">
+                <div class="row gx-0">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-8">
+                        <?php if(isset($home_menu)){  ?>
+                            <div class="allcategory h-100 " style="width:94%;">
+                                <button class="cat-btn-h btn bg-black text-white text-uppercase fw-semibold dropdown-toggle rounded-0 h-100 border-0 text-center w-100 btn-click" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-bars me-3"></i>
+                                    Shop by Categories
+                                </button>
+                                <ul class="dropdown-menu border cat-drop-menu all-cat-menu" >
+                                    <?php foreach (getParentCategoryArray() as $pcat){?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?php echo base_url('category/'.$pcat->prod_cat_id);?>">
+                                    <span class="icon icon-he">
+                                        <?php echo get_data_by_id('code','cc_icons','icon_id',$pcat->icon_id); ?>
+                                    </span>
+                                                <?php echo $pcat->category_name; ?>
+                                                <?php  if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>
+                                                    <i class="fa-solid fa-angle-right  float-end"></i>
+                                                <?php } ?>
+                                            </a>
+                                            <?php  if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>
+                                                <ul class="dropdown-menu dropdown-submenu" >
+                                                    <?php foreach (getCategoryBySubArray($pcat->prod_cat_id) as $sCat){ ?>
+                                                        <li><a class="dropdown-item" href="<?php echo base_url('category/'.$sCat->prod_cat_id);?>"><?php echo $sCat->category_name; ?></a></li>
+                                                    <?php } ?>
+                                                </ul>
+                                            <?php } ?>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        <?php }else{ ?>
+                            <div class="breadcrumb mb-0 mt-3 d-flex align-items-center">
+                                <a href="<?php echo base_url();?>">Home</a>
+                                <i class="fa fa-angle-right mx-2"></i>
+                                <?php echo (isset($page_title))?$page_title:'';?>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-6 col-4 d-flex align-items-center">
+                        <nav class="navbar-primary navbar navbar-expand-xl nav-menu-main">
+                            <div class="container-fluid  main-menu-but" >
+                                <button class="navbar-toggler" id="navbarPopUp" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse w-100  nav-menu-collapse" id="navbarNav">
+                                    <button type="button" class="btn-close d-xl-none"id="navClose" aria-label="Close"></button>
+                                    <ul class="navbar-nav d-flex justify-content-between  ">
+                                        <li class="nav-item">
+                                            <a class="nav-link" aria-current="page" href="<?php echo base_url()?>">Home</a>
+                                        </li>
+
+                                        <?php echo top_menu();?>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url('page/contact-us')?>">Contact</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url('page/about-us')?>">About Us</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url('page/about-us')?>">Help Center</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 

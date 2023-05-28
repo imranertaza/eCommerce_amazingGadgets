@@ -211,15 +211,21 @@
     $(document).scroll(function() {
       var y = $(this).scrollTop();
       if (y > 200) {
-        $(".sticky-menu").addClass("sticky-menu-class");
-        $(".header-bottom").addClass("border-bottom");
-        $(".side_logo").addClass("img-30");
-        $(".all-cat-menu").removeClass("show");
+          $(".btn-cat-show").removeClass("show");
+        //   $(".sticky-menu").addClass("sticky-header");
+        // $(".sticky-menu").addClass("sticky-menu-class");
+        // $(".header-bottom").addClass("border-bottom");
+        // $(".side_logo").addClass("img-30");
+        // $(".menu-show").hide();
+          $(".menu-show-hide").slideDown(200);
+
       } else if (y < 200) {
-            $(".sticky-menu").removeClass("sticky-menu-class");
-            $(".header-bottom").removeClass("border-bottom");
-            $(".side_logo").removeClass("img-30");
-            $(".all-cat-menu").addClass("show");
+            // $(".sticky-menu").removeClass("sticky-menu-class");
+            // $(".header-bottom").removeClass("border-bottom");
+            // $(".side_logo").removeClass("img-30");
+            $(".btn-cat-show").addClass("show");
+          $(".menu-show-hide").slideUp(200);
+          // $(".menu-show").show();
       }
     });
 
