@@ -26,5 +26,17 @@ class AllDemo extends Seeder
         $this->call('ThemeSettings');
         $this->call('Users');
         $this->call('Zone');
+        $this->call('Products');
+        $this->call('ProductAttribute');
+        $this->call('ProductAttributeGroup');
+        $this->call('ProductCategoryPopular');
+        $this->call('ProductDescription');
+        $this->call('ProductFeedback');
+        $this->call('ProductFreeDelivery');
+        $this->call('ProductImage');
+        $this->call('ProductOption');
+        $this->call('ProductRelated');
+        $this->call('ProductSpecial');
+        $this->call('ProductToCategory');
     }
 }
