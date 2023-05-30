@@ -202,7 +202,6 @@
                                                 class="fa-solid fa-trash-can"></i></a>
                                 </div>
                             </div>
-
                         <?php } ?>
 
                     </div>

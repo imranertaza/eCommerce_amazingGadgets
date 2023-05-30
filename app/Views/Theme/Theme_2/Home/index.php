@@ -116,7 +116,7 @@
                                                 Categorie
                                             </div>
                                             <div class="product-title-new mb-2 text-capitalize">
-                                                <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
+                                                <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                             </div>
                                             <div class="price-new mb-3">
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
@@ -499,7 +499,7 @@
                                                 Categorie
                                             </div>
                                             <div class="product-title-new mb-2 text-capitalize">
-                                                <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
+                                                <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                             </div>
                                             <div class="price-new mb-3">
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>

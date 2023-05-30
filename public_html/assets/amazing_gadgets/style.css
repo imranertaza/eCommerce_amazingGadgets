@@ -925,7 +925,7 @@ a {
     font-size: 15px;
     line-height: 22px;
     color: #2E2E2E;
-    height:38px;
+    height:60px;
 }
 .category-new{
     font-family: 'Roboto';
@@ -1168,7 +1168,7 @@ a {
     top:0px;
     background-color: #ffffff;
     width: 100%;
-    /*display: none;*/
+    display: none;
 }
 
 .img-30{
