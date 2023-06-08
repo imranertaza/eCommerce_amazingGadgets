@@ -37,6 +37,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->post('/user_subscribe', 'Home::user_subscribe');
 
 $routes->get('/admin', 'Admin\Login::index');
 $routes->post('/admin_login_action', 'Admin\Login::login_action');
@@ -218,6 +219,7 @@ $routes->post('/newsletter_action', 'Customer\Profile::newsletter_action');
 //cart routes
 $routes->get('/cart', 'Cart\Cart::index');
 $routes->post('/addtocart', 'Cart\Cart::addToCart');
+$routes->post('/addtocartgroup', 'Cart\Cart::addToCartGroup');
 $routes->post('/updateToCart', 'Cart\Cart::updateToCart');
 $routes->post('/removeToCart', 'Cart\Cart::removeToCart');
 
@@ -243,6 +245,7 @@ $routes->get('/page/(:any)', 'Pages\Pages::page/$1');
 //products routes
 $routes->get('/detail/(:num)', 'Products\Products::detail/$1');
 $routes->post('/review', 'Products\Products::review');
+$routes->post('/both_product_price', 'Products\Products::both_product_price');
 
 $routes->get('/featuredproducts', 'Featuredproducts::index');
 

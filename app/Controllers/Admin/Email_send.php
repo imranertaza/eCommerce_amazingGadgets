@@ -65,34 +65,35 @@ class Email_send extends BaseController
             return redirect()->to('email_send');
         } else {
 
-            $to= 'dnationsoftbd5@gmail.com';
-            $subject = $data['subject'];
-            $message= $data['message'];
-            email_send($to,$subject,$message);
+//            $to= 'dnationsoftbd5@gmail.com';
+//            $to= 'dnationsoftdm8@gmail.com';
+//            $subject = $data['subject'];
+//            $message= $data['message'];
+//            email_send($to,$subject,$message);
 
-//            if ($data['user'] == 'subscribe'){
-//                $subscrib = get_all_data_array('cc_newsletter');
-//                foreach ($subscrib as $sub){
-//                    $to = $sub->email;
-//                    $subject = $data['subject'];
-//                    $message= $data['message'];
-//                    email_send($to,$subject,$message);
-//                }
-//            }
-//
-//            if ($data['user'] == 'customer'){
-//                $customer = get_all_data_array('cc_customer');
-//                foreach ($customer as $cus){
-//                    $to = $cus->email;
-//                    $subject = $data['subject'];
-//                    $message= $data['message'];
-//                    email_send($to,$subject,$message);
-//                }
-//            }
+            if ($data['user'] == 'subscribe'){
+                $subscrib = get_all_data_array('cc_newsletter');
+                foreach ($subscrib as $sub){
+                    $to = $sub->email;
+                    $subject = $data['subject'];
+                    $message= $data['message'];
+                    email_send($to,$subject,$message);
+                }
+            }
+
+            if ($data['user'] == 'customer'){
+                $customer = get_all_data_array('cc_customer');
+                foreach ($customer as $cus){
+                    $to = $cus->email;
+                    $subject = $data['subject'];
+                    $message= $data['message'];
+                    email_send($to,$subject,$message);
+                }
+            }
 
 
-//            $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-//            return redirect()->to('email_send');
+            $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            return redirect()->to('email_send');
         }
     }
 

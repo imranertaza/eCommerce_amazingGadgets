@@ -25,3 +25,11 @@
     color:red;
 }
 
+.select2-container--bootstrap4 .select2-selection--multiple .select2-selection__rendered{
+    padding: 0 0.575rem !important;
+    white-space: initial !important;
+}
+
+.select2-container--bootstrap4 .select2-selection--multiple .select2-selection__choice {
+    padding: 0px 5px !important;
+}

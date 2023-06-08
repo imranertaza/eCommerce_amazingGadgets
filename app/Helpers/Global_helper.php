@@ -542,16 +542,39 @@ function get_lebel_by_title_in_theme_settings($lable){
 }
 
 function email_send($to,$subject,$message){
+
+    $email = \Config\Services::email();
+
+    $config['protocol'] = get_lebel_by_value_in_settings('mail_protocol');
+    $config['SMTPHost'] = get_lebel_by_value_in_settings('smtp_host');
+    $config['SMTPUser'] = get_lebel_by_value_in_settings('smtp_username');
+    $config['SMTPPass'] = get_lebel_by_value_in_settings('smtp_password');
+    $config['SMTPPort'] = get_lebel_by_value_in_settings('smtp_port');
+    $config['SMTPCrypto'] = get_lebel_by_value_in_settings('smtp_crypto');
+
+    $email->initialize($config);
+
     $form = get_lebel_by_value_in_settings('mail_address');
-    $headers = "From: ".$form ;
 
-//    mail($to,$subject,$message,$headers);
+    $email->setFrom($form, 'Amazing Gadgets');
+    $email->setTo($to);
 
-    if(mail($to,$subject,$message,$headers)){
-        echo 'Your mail has been sent successfully.';
-    } else{
-        echo 'Unable to send email. Please try again.';
+    $email->setSubject($subject);
+    $email->setMessage($message);
+
+//    $email->send();
+    if ($email->send())
+    {
+        echo 'Email successfully sent';
     }
+    else
+    {
+        $data = $email->printDebugger(['headers']);
+        print_r($data);
+    }
+
+
+
 
 }
 
@@ -777,4 +800,11 @@ function order_id_by_status($order_id){
     $status = get_data_by_id('name','cc_order_status','order_status_id',$order->order_status_id);
 
     return $status;
+}
+
+function getSideMenuArray()
+{
+    $table = DB()->table('cc_product_category');
+    $query = $table->where('side_menu',1)->get()->getResult();
+    return $query;
 }

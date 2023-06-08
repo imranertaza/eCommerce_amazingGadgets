@@ -46,7 +46,7 @@ class Home extends BaseController {
         // product special
         $table = DB()->table('cc_products');
         $table->join('cc_product_special', 'cc_product_special.product_id = cc_products.product_id')->where('cc_products.status','Active');
-        $data['specialPro'] = $table->get()->getResult();
+        $data['specialPro'] = $table->limit(7)->get()->getResult();
 
         $spc_category = get_lebel_by_value_in_theme_settings('special_category_one');
         $table = DB()->table('cc_products');
@@ -77,6 +77,28 @@ class Home extends BaseController {
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Home/index',$data);
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
+    }
+
+    public function user_subscribe(){
+        $email = $this->request->getPost('email');
+
+        if (!empty($email)){
+            if(is_exists('cc_newsletter','email',$email) == true) {
+                $newData['email'] = $email;
+                $newAd = DB()->table('cc_newsletter');
+                $newAd->insert($newData);
+
+                print "Thank you.Your subscription has been successfully completed";
+
+                $subject = 'Subscription';
+                $message = "Thank you.Your subscription has been successfully completed";
+//            email_send($email,$subject,$message);
+            }else{
+                print 'Your email already exists';
+            }
+        }else{
+            print 'Email required';
+        }
     }
 
 

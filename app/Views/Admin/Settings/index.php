@@ -244,9 +244,10 @@
                                                     <input type="text" name="smtp_host" class="form-control" value="<?php echo get_lebel_by_value_in_settings('smtp_host');?>"  required>
                                                 </div>
 
-
-
-
+                                                <div class="form-group">
+                                                    <label><?php echo get_lebel_by_title_in_settings('smtp_crypto');?></label>
+                                                    <input type="text" name="smtp_crypto" class="form-control" value="<?php echo get_lebel_by_value_in_settings('smtp_crypto');?>"  required>
+                                                </div>
 
                                             </div>
                                             <div class="col-md-6">

@@ -10,16 +10,18 @@
                         <div class="col-lg-3">
                             <div class="title bg-black text-white  " >
                                 <span class="title-hot"><?php
+                                    if (!empty($prod_cat_id)){
                                     $par_id = get_data_by_id('parent_id','cc_product_category','prod_cat_id',$prod_cat_id);
                                     if (!empty($par_id)){
                                         $url = base_url('category/'.$par_id);
                                         echo '<a href="'.$url.'">'.get_data_by_id('category_name','cc_product_category','prod_cat_id',$par_id).'</a> <i class="fa-solid fa-angle-right"></i>';
                                     }
-                                    ?> <?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$prod_cat_id); ?></span>
+                                    ?> <?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$prod_cat_id);}else{ echo 'All Category';} ?></span>
                             </div>
                             <div class="card p-3 rounded-0 ">
 
                                 <div class="product-filter">
+                                    <?php if(!empty($parent_Cat)){ ?>
                                     <p>Sub Category</p>
                                     <input type="hidden" name="prod_cat_id" value="<?php echo $prod_cat_id?>">
                                     <input type="hidden" name="cat" value="<?php echo $prod_cat_id?>">
@@ -37,6 +39,14 @@
                                         </li>
                                         <?php } ?>
                                     </ul>
+                                    <?php } else{ if (!empty($main_Cat)){?>
+                                        <ul class="lh-lg text-capitalize">
+                                            <?php  foreach ($main_Cat as $cat) { ?>
+                                            <li><a href="<?php echo base_url('category/'.$cat->prod_cat_id);?>"><?php echo $cat->category_name;?></a></li>
+                                            <?php } ?>
+                                        </ul>
+
+                                    <?php } }?>
                                 </div>
                                 <div class="product-filter">
                                     <p>Filter Price</p>
@@ -126,9 +136,9 @@
                             <div class="top-bar border">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <a href="javascript:void(0)" onclick="viewStyle('gird')" id="gird-btn" class="border p-2 active-view"><svg aria-hidden="true" focusable="false" width="20px" height="20px" data-prefix="fas" data-icon="grid" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-grid fa-lg"><path fill="currentColor" d="M0 72C0 49.9 17.9 32 40 32H88c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V72zM0 232c0-22.1 17.9-40 40-40H88c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V232zM128 392v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40H88c22.1 0 40 17.9 40 40zM160 72c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V72zM288 232v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V232c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40zM160 392c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V392zM448 72v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V72c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40zM320 232c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V232zM448 392v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40z" class=""></path></svg></a>
+                                        <a href="javascript:void(0)" onclick="viewStyle('gird')" id="gird-btn" class="border p-2 active-view"><svg aria-hidden="true" focusable="false" width="20px" height="20px" data-prefix="fas" data-icon="grid" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-grid fa-lg icon-vart"><path fill="currentColor" d="M0 72C0 49.9 17.9 32 40 32H88c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V72zM0 232c0-22.1 17.9-40 40-40H88c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V232zM128 392v48c0 22.1-17.9 40-40 40H40c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40H88c22.1 0 40 17.9 40 40zM160 72c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V72zM288 232v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V232c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40zM160 392c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H200c-22.1 0-40-17.9-40-40V392zM448 72v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V72c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40zM320 232c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V232zM448 392v48c0 22.1-17.9 40-40 40H360c-22.1 0-40-17.9-40-40V392c0-22.1 17.9-40 40-40h48c22.1 0 40 17.9 40 40z" class=""></path></svg></a>
 
-                                        <a href="javascript:void(0)" onclick="viewStyle('list')" id="list-btn" class="border p-2"><svg aria-hidden="true" focusable="false" width="20px" height="20px" data-prefix="fas" data-icon="list-ul" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-list-ul fa-lg"><path fill="currentColor" d="M64 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM64 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48-208a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" class=""></path></svg></a>
+                                        <a href="javascript:void(0)" onclick="viewStyle('list')" id="list-btn" class="border p-2"><svg aria-hidden="true" focusable="false" width="20px" height="20px" data-prefix="fas" data-icon="list-ul" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-list-ul fa-lg icon-vart"><path fill="currentColor" d="M64 144a48 48 0 1 0 0-96 48 48 0 1 0 0 96zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM64 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm48-208a48 48 0 1 0 -96 0 48 48 0 1 0 96 0z" class=""></path></svg></a>
 
 <!--                                        Items --><?php //echo count($products);?>
                                     </div>
@@ -138,7 +148,8 @@
                                             <select name="shortBy" onchange="formSubmit()" class="shortBy border">
                                                 <option value="" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == ''))?'selected':''; ?>>Position</option>
                                                 <option value="name" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == 'name'))?'selected':''; ?> >Product Name</option>
-                                                <option value="price" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == 'price'))?'selected':''; ?>>Price</option>
+                                                <option value="price_asc" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == 'price_asc'))?'selected':''; ?>>Price(Low to High)</option>
+                                                <option value="price_desc" <?php echo ((isset($_GET['shortBy'])) && ($_GET['shortBy'] == 'price_desc'))?'selected':''; ?>>Price(High to Low)</option>
                                             </select>
                                         </div>
                                     </div>

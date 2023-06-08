@@ -231,7 +231,66 @@ class Products extends BaseController
             $proDescData['meta_title'] = !empty($this->request->getPost('meta_title'))?$this->request->getPost('meta_title'):null;
             $proDescData['meta_description'] = !empty($this->request->getPost('meta_description'))?$this->request->getPost('meta_description'):null;
             $proDescData['meta_keyword'] = !empty($this->request->getPost('meta_keyword'))?$this->request->getPost('meta_keyword'):null;
+            $proDescData['video'] = !empty($this->request->getPost('video'))?$this->request->getPost('video'):null;
             $proDescData['createdBy'] = $adUserId;
+
+
+
+            if (!empty($_FILES['description_image']['name'])) {
+                $target_dir = FCPATH . '/uploads/products/'.$productId.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                //new image upload
+                $despic = $this->request->getFile('description_image');
+                $namePic = 'des_' .$despic->getRandomName();
+                $despic->move($target_dir, $namePic);
+
+                $proDescData['description_image'] = $namePic;
+            }
+
+            if (!empty($_FILES['documentation_pdf']['name'])) {
+                $target_dir = FCPATH . '/uploads/products/'.$productId.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                //new image upload
+                $docPdf = $this->request->getFile('documentation_pdf');
+                $nameDoc = 'doc_' .$docPdf->getRandomName();
+                $docPdf->move($target_dir, $nameDoc);
+
+                $proDescData['documentation_pdf'] = $nameDoc;
+            }
+
+            if (!empty($_FILES['safety_pdf']['name'])) {
+                $target_dir = FCPATH . '/uploads/products/'.$productId.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                //new image upload
+                $safPdf = $this->request->getFile('safety_pdf');
+                $nameDoc = 'saf_' .$safPdf->getRandomName();
+                $safPdf->move($target_dir, $nameDoc);
+
+                $proDescData['safety_pdf'] = $nameDoc;
+            }
+
+            if (!empty($_FILES['instructions_pdf']['name'])) {
+                $target_dir = FCPATH . '/uploads/products/'.$productId.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                //new image upload
+                $insPdf = $this->request->getFile('instructions_pdf');
+                $nameDoc = 'ins_' .$insPdf->getRandomName();
+                $insPdf->move($target_dir, $nameDoc);
+
+                $proDescData['instructions_pdf'] = $nameDoc;
+            }
 
             $proDescTable = DB()->table('cc_product_description');
             $proDescTable->insert($proDescData);
@@ -327,6 +386,21 @@ class Products extends BaseController
 
 
 
+
+            // product_bought_together table data insert(start)
+            $bought_together = $this->request->getPost('bought_together[]');
+            if (!empty($bought_together)){
+                foreach ($bought_together as $bothp) {
+                    $proBothData['product_id'] = $productId;
+                    $proBothData['related_id'] = $bothp;
+                    $proBothtable = DB()->table('cc_product_bought_together');
+                    $proBothtable->insert($proBothData);
+                }
+            }
+            //product_bought_together table data insert(end)
+
+
+
             DB()->transComplete();
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Create Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('product_create');
@@ -368,6 +442,9 @@ class Products extends BaseController
 
             $tableRel = DB()->table('cc_product_related');
             $data['prodrelated'] = $tableRel->where('product_id', $product_id)->get()->getResult();
+
+            $tableBoth = DB()->table('cc_product_bought_together');
+            $data['prodBothTog'] = $tableBoth->where('product_id', $product_id)->get()->getResult();
 
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -572,7 +649,97 @@ class Products extends BaseController
             $proDescData['meta_title'] = !empty($this->request->getPost('meta_title'))?$this->request->getPost('meta_title'):null;
             $proDescData['meta_description'] = !empty($this->request->getPost('meta_description'))?$this->request->getPost('meta_description'):null;
             $proDescData['meta_keyword'] = !empty($this->request->getPost('meta_keyword'))?$this->request->getPost('meta_keyword'):null;
+            $proDescData['video'] = !empty($this->request->getPost('video'))?$this->request->getPost('video'):null;
 
+
+            if (!empty($_FILES['description_image']['name'])) {
+                $target_dir = FCPATH . '/uploads/products/'.$product_id.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                //unlink
+                $oldImg = get_data_by_id('description_image','cc_product_description','product_id',$product_id);
+                if ((!empty($oldImg)) && (file_exists($target_dir))) {
+                    if (file_exists($target_dir . '/' . $oldImg)) {
+                        unlink($target_dir . '' . $oldImg);
+                    }
+                }
+
+
+                //new image upload
+                $despic = $this->request->getFile('description_image');
+                $namePic = 'des_' .$despic->getRandomName();
+                $despic->move($target_dir, $namePic);
+
+                $proDescData['description_image'] = $namePic;
+            }
+
+            if (!empty($_FILES['documentation_pdf']['name'])) {
+                $target_dir = FCPATH . '/uploads/products/'.$product_id.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                //unlink
+                $oldImg = get_data_by_id('documentation_pdf','cc_product_description','product_id',$product_id);
+                if ((!empty($oldImg)) && (file_exists($target_dir))) {
+                    if (file_exists($target_dir . '/' . $oldImg)) {
+                        unlink($target_dir . '' . $oldImg);
+                    }
+                }
+
+                //new image upload
+                $docPdf = $this->request->getFile('documentation_pdf');
+                $nameDoc = 'doc_' .$docPdf->getRandomName();
+                $docPdf->move($target_dir, $nameDoc);
+
+                $proDescData['documentation_pdf'] = $nameDoc;
+            }
+
+            if (!empty($_FILES['safety_pdf']['name'])) {
+                $target_dir = FCPATH . '/uploads/products/'.$product_id.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                //unlink
+                $oldImg = get_data_by_id('safety_pdf','cc_product_description','product_id',$product_id);
+                if ((!empty($oldImg)) && (file_exists($target_dir))) {
+                    if (file_exists($target_dir . '/' . $oldImg)) {
+                        unlink($target_dir . '' . $oldImg);
+                    }
+                }
+
+                //new image upload
+                $safPdf = $this->request->getFile('safety_pdf');
+                $nameDoc = 'saf_' .$safPdf->getRandomName();
+                $safPdf->move($target_dir, $nameDoc);
+
+                $proDescData['safety_pdf'] = $nameDoc;
+            }
+
+            if (!empty($_FILES['instructions_pdf']['name'])) {
+                $target_dir = FCPATH . '/uploads/products/'.$product_id.'/';
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777);
+                }
+
+                //unlink
+                $oldImg = get_data_by_id('instructions_pdf','cc_product_description','product_id',$product_id);
+                if ((!empty($oldImg)) && (file_exists($target_dir))) {
+                    if (file_exists($target_dir . '/' . $oldImg)) {
+                        unlink($target_dir . '' . $oldImg);
+                    }
+                }
+
+                //new image upload
+                $insPdf = $this->request->getFile('instructions_pdf');
+                $nameDoc = 'ins_' .$insPdf->getRandomName();
+                $insPdf->move($target_dir, $nameDoc);
+
+                $proDescData['instructions_pdf'] = $nameDoc;
+            }
 
             $proDescTable = DB()->table('cc_product_description');
             $proDescTable->where('product_id',$product_id)->update($proDescData);
@@ -665,6 +832,22 @@ class Products extends BaseController
                 }
             }
             //product_related table data insert(end)
+
+
+            // product_bought_together table data insert(start)
+            $bought_together = $this->request->getPost('bought_together[]');
+            if (!empty($bought_together)){
+                $boughtTogetherDel = DB()->table('cc_product_bought_together');
+                $boughtTogetherDel->where('product_id',$product_id)->delete();
+
+                foreach ($bought_together as $bothp) {
+                    $proBothData['product_id'] = $product_id;
+                    $proBothData['related_id'] = $bothp;
+                    $proBothtable = DB()->table('cc_product_bought_together');
+                    $proBothtable->insert($proBothData);
+                }
+            }
+            //product_bought_together table data insert(end)
 
 
 

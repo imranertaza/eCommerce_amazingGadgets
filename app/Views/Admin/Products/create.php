@@ -74,6 +74,11 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
+                                       href="#custom-tabs-four-other" role="tab"
+                                       aria-controls="custom-tabs-four-messages" aria-selected="false">Others</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
                                        href="#custom-tabs-four-image" role="tab"
                                        aria-controls="custom-tabs-four-messages" aria-selected="false">Image</a>
                                 </li>
@@ -206,6 +211,11 @@
                                                 <select class="select2_pro" id="keyword" name="product_related[]" multiple="multiple" style="width: 100%;" ></select>
 
                                             </div>
+
+                                            <div class="form-group category">
+                                                <label>Bought Together Products</label>
+                                                <select class="bought_together_pro" id="keyword2" name="bought_together[]" multiple="multiple" style="width: 100%;" ></select>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -285,6 +295,51 @@
                                                        placeholder="End Date">
                                             </div>
                                         </div>
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="tab-pane fade" id="custom-tabs-four-other" role="tabpanel"
+                                     aria-labelledby="custom-tabs-four-messages-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label>Video </label>
+                                                <input type="text" name="video" class="form-control" placeholder="Video code"
+                                                       >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Documentation Pdf </label>
+                                                <input type="file" name="documentation_pdf" class="form-control" placeholder="Documentation Pdf"
+                                                       >
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>Safety Pdf </label>
+                                                <input type="file" name="safety_pdf" class="form-control" placeholder="Safety Pdf"
+                                                       >
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>Instructions Pdf </label>
+                                                <input type="file" name="instructions_pdf" class="form-control" placeholder="Instructions Pdf"
+                                                       >
+                                            </div>
+
+                                            <label>Description Image </label>
+
+                                            <div id="framessingle"></div><br>
+                                            <input type="file" id="singleimage" name="description_image" class="form-control" >
+
+                                        </div>
+
 
 
                                     </div>

@@ -73,6 +73,12 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
+                                       href="#custom-tabs-four-other" role="tab"
+                                       aria-controls="custom-tabs-four-messages" aria-selected="false">Others</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
                                        href="#custom-tabs-four-image" role="tab"
                                        aria-controls="custom-tabs-four-messages" aria-selected="false">Image</a>
                                 </li>
@@ -211,6 +217,15 @@
                                                     <?php } ?>
                                                 </select>
                                             </div>
+
+                                            <div class="form-group category">
+                                                <label>Bought Together Products</label>
+                                                <select class="bought_together_pro" id="keyword2" name="bought_together[]" multiple="multiple" style="width: 100%;" >
+                                                    <?php foreach ($prodBothTog as $both){ ?>
+                                                        <option value="<?php echo $both->related_id?>" selected ><?php echo get_data_by_id('name','cc_products','product_id',$both->related_id)?> </option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -317,6 +332,64 @@
                                                 <input type="date" name="end_date" class="form-control" placeholder="End Date" value="<?php echo !empty($prodspecial->end_date)?$prodspecial->end_date:'';?>">
                                             </div>
                                         </div>
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="tab-pane fade" id="custom-tabs-four-other" role="tabpanel"
+                                     aria-labelledby="custom-tabs-four-messages-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label>Video </label>
+                                                <input type="text" name="video" class="form-control" placeholder="Video code" value="<?php echo $prod->video;?>" >
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Documentation Pdf </label>
+                                                <input type="file" name="documentation_pdf" class="form-control" placeholder="Documentation Pdf"
+                                                       >
+                                                <?php if (!empty($prod->documentation_pdf)){ ?>
+                                                <a href="<?php echo base_url('uploads/products/'.$prod->product_id.'/'.$prod->documentation_pdf)?>" target="_blank" download >Download PDF</a>
+                                                <?php } ?>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>Safety Pdf </label>
+                                                <input type="file" name="safety_pdf" class="form-control" placeholder="Safety Pdf"
+                                                       >
+                                                <?php if (!empty($prod->safety_pdf)){ ?>
+                                                    <a href="<?php echo base_url('uploads/products/'.$prod->product_id.'/'.$prod->safety_pdf)?>" target="_blank" download >Download PDF</a>
+                                                <?php } ?>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>Instructions Pdf </label>
+                                                <input type="file" name="instructions_pdf" class="form-control" placeholder="Instructions Pdf"
+                                                       >
+                                                <?php if (!empty($prod->instructions_pdf)){ ?>
+                                                    <a href="<?php echo base_url('uploads/products/'.$prod->product_id.'/'.$prod->instructions_pdf)?>" target="_blank" download >Download PDF</a>
+                                                <?php } ?>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6" >
+                                            <div class="form-group"><label>Description Image </label>
+                                                <div id="framessingle"></div><br>
+                                                <input type="file" id="singleimage" name="description_image" class="form-control" >
+                                                <br>
+                                                <?php if (!empty($prod->description_image)){ ?>
+                                                    <?php echo image_view('uploads/products',$prod->product_id,$prod->description_image,'',$class='w-50');?>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+
 
 
                                     </div>

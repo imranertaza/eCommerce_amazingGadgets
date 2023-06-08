@@ -168,6 +168,14 @@
                                                         </select>
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <label>Side Menu</label>
+                                                        <select name="side_menu" class="form-control" >
+                                                            <option value="1" <?php echo ($category->side_menu == 1)?'selected':''; ?> >Yes</option>
+                                                            <option value="0" <?php echo ($category->side_menu == 0)?'selected':''; ?> >No</option>
+                                                        </select>
+                                                    </div>
+
 
                                                 </div>
                                             </div>
