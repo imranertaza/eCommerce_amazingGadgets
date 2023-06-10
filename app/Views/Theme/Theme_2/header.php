@@ -108,7 +108,7 @@
                         <div class="input-group">
                             <div class="input-group-btn search-panel">
 <!--                                <select name="top_category"  class="form-select rounded-0">-->
-                                <select name="cat"  class="form-select rounded-0" required>
+                                <select name="cat"  class="form-select rounded-0" >
                                     <option value="">All Categories</option>
                                     <?php foreach (getParentCategoryArray() as $catTop){ $tCat =  isset($top_category)?$top_category:'';?>
                                     <option value="<?php echo $catTop->prod_cat_id;?>" <?php echo ($tCat == $catTop->prod_cat_id)?'selected':'';?> ><?php echo $catTop->category_name;?></option>
@@ -155,7 +155,7 @@
                             Shop by Categories
                         </button>
                         <ul class="dropdown-menu show border  cat-drop-menu all-cat-menu btn-cat-show" >
-                            <?php foreach (getParentCategoryArray() as $pcat){?>
+                            <?php foreach (getSideMenuArray() as $pcat){?>
                             <li>
                                 <a class="dropdown-item" href="<?php echo base_url('category/'.$pcat->prod_cat_id);?>">
                                     <span class="icon icon-he">
@@ -237,7 +237,7 @@
                                 <div class="input-group">
                                     <div class="input-group-btn search-panel">
                                         <!--                                <select name="top_category"  class="form-select rounded-0">-->
-                                        <select name="cat"  class="form-select rounded-0" required>
+                                        <select name="cat"  class="form-select rounded-0" >
                                             <option value="">All Categories</option>
                                             <?php foreach (getParentCategoryArray() as $catTop){ $tCat =  isset($top_category)?$top_category:'';?>
                                                 <option value="<?php echo $catTop->prod_cat_id;?>" <?php echo ($tCat == $catTop->prod_cat_id)?'selected':'';?> ><?php echo $catTop->category_name;?></option>
@@ -256,7 +256,7 @@
                     </div>
                     <div class="col-6 col-md-3 mb-3 mb-md-0 order-2 order-md-3 d-flex justify-content-end" >
                         <a href="<?php echo base_url('cart')?>" >
-                            <div class="mini-cart d-flex position-relative" id="cartReload">
+                            <div class="mini-cart d-flex position-relative" id="cartReload2">
 
                                 <div class="cart-icon rounded-5 align-items-center justify-content-center p-3 me-3">
                                     <img src="<?php echo base_url() ?>/assets/amazing_gadgets/img/cart.png" alt="" class="img-fluid">
@@ -284,7 +284,7 @@
                                     Shop by Categories
                                 </button>
                                 <ul class="dropdown-menu border cat-drop-menu all-cat-menu" >
-                                    <?php foreach (getParentCategoryArray() as $pcat){?>
+                                    <?php foreach (getSideMenuArray() as $pcat){?>
                                         <li>
                                             <a class="dropdown-item" href="<?php echo base_url('category/'.$pcat->prod_cat_id);?>">
                                     <span class="icon icon-he">

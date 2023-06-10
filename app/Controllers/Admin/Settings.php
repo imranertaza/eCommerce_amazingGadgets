@@ -77,6 +77,7 @@ class Settings extends BaseController
         $data['smtp_timeout'] = $this->request->getPost('smtp_timeout');
         $data['smtp_username'] = $this->request->getPost('smtp_username');
         $data['smtp_password'] = $this->request->getPost('smtp_password');
+        $data['smtp_crypto'] = $this->request->getPost('smtp_crypto');
 
         $data['fb_url'] = $this->request->getPost('fb_url');
         $data['twitter_url'] = $this->request->getPost('twitter_url');

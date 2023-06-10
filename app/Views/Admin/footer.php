@@ -106,6 +106,14 @@
                 $("#framesdef").append('<img src="'+window.URL.createObjectURL(this.files[i])+'" width="150px" height="150px"/>');
             }
         });
+
+        $('#singleimage').change(function(){
+            $("#framessingle").html('');
+            for (var i = 0; i < $(this)[0].files.length; i++) {
+                $("#framessingle").append('<img src="'+window.URL.createObjectURL(this.files[i])+'" width="300px" height=""/>');
+            }
+        });
+
     });
 
 </script>

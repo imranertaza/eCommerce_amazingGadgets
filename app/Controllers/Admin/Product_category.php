@@ -215,6 +215,7 @@ class Product_category extends BaseController
         $data['meta_description'] = $this->request->getPost('meta_description');
         $data['sort_order'] = $this->request->getPost('sort_order');
         $data['header_menu'] = $this->request->getPost('header_menu');
+        $data['side_menu'] = $this->request->getPost('side_menu');
 
 
         $data['updatedBy'] = $this->session->adUserId;

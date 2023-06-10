@@ -44,6 +44,28 @@ class Cart extends BaseController {
         print 'Successfully add to cart';
     }
 
+    public function addToCartGroup(){
+
+        $productId = $this->request->getPost('both_product[]');
+
+        foreach ($productId as $product_id) {
+            $name = get_data_by_id('name', 'cc_products', 'product_id', $product_id);
+            $price = get_data_by_id('price', 'cc_products', 'product_id', $product_id);
+            $specialprice = get_data_by_id('special_price', 'cc_product_special', 'product_id', $product_id);
+            if (!empty($specialprice)) {
+                $price = $specialprice;
+            }
+            $data = array(
+                'id' => $product_id,
+                'name' => strval($name),
+                'qty' => 1,
+                'price' => $price
+            );
+            $this->cart->insert($data);
+        }
+        print 'Successfully add to cart';
+    }
+
     public function updateToCart(){
         $rowid = $this->request->getPost('rowid');
         $qty = $this->request->getPost('qty');

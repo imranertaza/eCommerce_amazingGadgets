@@ -29,7 +29,7 @@ class Products extends BaseController {
         //related product
         $relatedProduct = array();
         $relTable = DB()->table('cc_product_related');
-        $relPro = $relTable->where('product_id',$product_id)->get()->getResult();
+        $relPro = $relTable->where('product_id',$product_id)->limit(5)->get()->getResult();
         foreach ($relPro as $rVal){
             $tableSear = DB()->table('cc_products');
             $rowPro = $tableSear->where('product_id',$rVal->related_id)->get()->getRow();
@@ -51,6 +51,19 @@ class Products extends BaseController {
         //reviews
         $reviewTable = DB()->table('cc_product_feedback');
         $data['review'] = $reviewTable->where('product_id',$product_id)->where('status','Active')->get()->getResult();
+
+
+
+        //bought together products view
+        $bothProduct = array();
+        $bothTable = DB()->table('cc_product_bought_together');
+        $bothPro = $bothTable->where('product_id',$product_id)->orderBy('product_id','DESC')->get()->getResult();
+        foreach ($bothPro as $bVal){
+            $tableboth = DB()->table('cc_products');
+            $rowPro = $tableboth->where('product_id',$bVal->related_id)->get()->getRow();
+            array_push($bothProduct,$rowPro);
+        }
+        $data['bothProducts'] = $bothProduct;
 
 
 
@@ -87,6 +100,17 @@ class Products extends BaseController {
             $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Successfully submitted review</div>');
             return redirect()->to('detail/'. $data['product_id']);
         }
+    }
+
+    public function both_product_price(){
+        $productId = $this->request->getPost('both_product[]');
+        $total = 0;
+        foreach ($productId as $id){
+            $regPric = get_data_by_id('price','cc_products','product_id',$id);
+            $spPric = get_data_by_id('special_price','cc_product_special','product_id',$id);
+            $total += !empty($spPric)?$spPric:$regPric;
+        }
+        print currency_symbol($total);
     }
 
 

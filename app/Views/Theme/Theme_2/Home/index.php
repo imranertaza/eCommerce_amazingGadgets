@@ -5,11 +5,11 @@
                 <div class="swiper bannerSlide">
                     <div class="swiper-wrapper">
                         <?php $sli_1 = get_lebel_by_value_in_theme_settings('slider_1'); ?>
-                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_1, 'noimage.png', 'img-fluid w-100');?></div>
+                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_1, 'noimage.png', 'img-fluid w-100 slider-image-height');?></div>
                         <?php $sli_2 = get_lebel_by_value_in_theme_settings('slider_2'); ?>
-                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_2, 'noimage.png', 'img-fluid w-100');?></div>
+                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_2, 'noimage.png', 'img-fluid w-100 slider-image-height');?></div>
                         <?php $sli_3 = get_lebel_by_value_in_theme_settings('slider_3'); ?>
-                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_3, 'noimage.png', 'img-fluid w-100');?></div>
+                        <div class="swiper-slide"><?php echo image_view('uploads/slider', '', $sli_3, 'noimage.png', 'img-fluid w-100 slider-image-height');?></div>
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
@@ -85,25 +85,19 @@
                                     <div class="border p-3 product-grid h-100 d-flex align-items-stretch flex-column position-relative">
                                         <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                             <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
-
                                                 <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute  mt-2 ms-2"><i class="fa-solid fa-heart"></i>
                                                     <span class="btn-wishlist-text position-absolute  mt-5 ms-2">Favorite</span>
                                                 </a>
-
                                             <?php }else{ ?>
-
                                                 <a href="javascript:void(0)" class="btn-wishlist position-absolute mt-2 ms-2" onclick="addToWishlist(<?php echo $pro->product_id ?>)"><i class="fa-solid fa-heart"></i>
                                                     <span class="btn-wishlist-text position-absolute  mt-5 ms-2">Favorite</span>
                                                 </a>
-
                                             <?php } ?>
                                         <?php } ?>
                                         <?php if (modules_key_by_access('compare') == 1) { ?>
-
                                             <a href="javascript:void(0)" onclick="addToCompare(<?php echo $pro->product_id ?>)" class="btn-compare position-absolute  mt-5 ms-2"><i class="fa-solid fa-code-compare"></i>
                                                 <span class="btn-compare-text position-absolute  mt-5 ms-2">Compare</span>
                                             </a>
-
                                         <?php } ?>
                                         <div class="product-top text-center">
                                             <?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid ')?>
@@ -662,87 +656,7 @@
 
         </div>
 
-        <div class="weekly-deals marg-top-90 shipping mb-5">
-            <div class="row gx-0">
-                <div class="col-lg-3">
-                    <div class="ma-d d-flex ">
-                        <div class="con-ic position-relative">
-                            <svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
-                                <circle cx="28.5" cy="28.5" r="28" stroke="#333333"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ic-om-1" width="22" height="8" viewBox="0 0 22 8" fill="none">
-                                <path d="M7 4H15M15 4L12 1M15 4L12 7M2 3C2.19722 3.00002 2.39004 3.05835 2.5542 3.16767C2.71835 3.27699 2.84652 3.4324 2.92257 3.61437C2.99863 3.79634 3.01917 3.99674 2.98163 4.19036C2.94409 4.38398 2.85013 4.56217 2.71157 4.70253C2.57302 4.84288 2.39605 4.93913 2.20294 4.97917C2.00982 5.01922 1.80918 5.00126 1.62624 4.92756C1.4433 4.85386 1.28624 4.72771 1.17481 4.56498C1.06338 4.40225 1.00256 4.21021 1 4.013C1 3.74778 1.10536 3.49343 1.29289 3.30589C1.48043 3.11836 1.73478 3.013 2 3.013V3ZM20 3C20.1972 3.00002 20.39 3.05835 20.5542 3.16767C20.7184 3.27699 20.8465 3.4324 20.9226 3.61437C20.9986 3.79634 21.0192 3.99674 20.9816 4.19036C20.9441 4.38398 20.8501 4.56217 20.7116 4.70253C20.573 4.84288 20.3961 4.93913 20.2029 4.97917C20.0098 5.01922 19.8092 5.00126 19.6262 4.92756C19.4433 4.85386 19.2862 4.72771 19.1748 4.56498C19.0634 4.40225 19.0026 4.21021 19 4.013C19 3.74778 19.1054 3.49343 19.2929 3.30589C19.4804 3.11836 19.7348 3.013 20 3.013V3Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div class="con-f">
-                            <p class="con-to-mm">BRAND NEW ORIGINAL</p>
-                            <p class="con-to-mmt">Top Products, Great Quality+</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="ma-d d-flex ">
-                        <div class="con-ic position-relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
-                                <circle cx="28.5" cy="28.5" r="28" stroke="#333333"/>
-                            </svg>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ic-om-2" width="22" height="16" viewBox="0 0 22 16" fill="none">
-                                <path d="M5 16C4.16667 16 3.45833 15.7083 2.875 15.125C2.29167 14.5417 2 13.8333 2 13H0V2C0 1.45 0.196 0.979002 0.588 0.587002C0.98 0.195002 1.45067 -0.000664969 2 1.69779e-06H16V4H19L22 8V13H20C20 13.8333 19.7083 14.5417 19.125 15.125C18.5417 15.7083 17.8333 16 17 16C16.1667 16 15.4583 15.7083 14.875 15.125C14.2917 14.5417 14 13.8333 14 13H8C8 13.8333 7.70833 14.5417 7.125 15.125C6.54167 15.7083 5.83333 16 5 16ZM5 14C5.28333 14 5.521 13.904 5.713 13.712C5.905 13.52 6.00067 13.2827 6 13C6 12.7167 5.904 12.479 5.712 12.287C5.52 12.095 5.28267 11.9993 5 12C4.71667 12 4.479 12.096 4.287 12.288C4.095 12.48 3.99933 12.7173 4 13C4 13.2833 4.096 13.521 4.288 13.713C4.48 13.905 4.71733 14.0007 5 14ZM2 11H2.8C3.08333 10.7 3.40833 10.4583 3.775 10.275C4.14167 10.0917 4.55 10 5 10C5.45 10 5.85833 10.0917 6.225 10.275C6.59167 10.4583 6.91667 10.7 7.2 11H14V2H2V11ZM17 14C17.2833 14 17.521 13.904 17.713 13.712C17.905 13.52 18.0007 13.2827 18 13C18 12.7167 17.904 12.479 17.712 12.287C17.52 12.095 17.2827 11.9993 17 12C16.7167 12 16.479 12.096 16.287 12.288C16.095 12.48 15.9993 12.7173 16 13C16 13.2833 16.096 13.521 16.288 13.713C16.48 13.905 16.7173 14.0007 17 14ZM16 9H20.25L18 6H16V9Z" fill="#333333"/>
-                            </svg>
-                        </div>
-                        <div class="con-f">
-                            <p class="con-to-mm">FREE SHIPPING</p>
-                            <p class="con-to-mmt">No Any hidden fee</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="ma-d d-flex ">
-                        <div class="con-ic position-relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
-                                <circle cx="28.5" cy="28.5" r="28" stroke="#333333"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ic-om-3" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M6.5 4L3 7L6.5 10.5" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M3 7H14.497C17.9385 7 20.861 9.81 20.995 13.25C21.137 16.885 18.1335 20 14.497 20H5.999" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </div>
-                        <div class="con-f">
-                            <p class="con-to-mm">RETURN IN 30 DAYS</p>
-                            <p class="con-to-mmt">Shop with confidence</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="ma-d d-flex ">
-                        <div class="con-ic position-relative">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
-                                <circle cx="28.5" cy="28.5" r="28" stroke="#333333"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="ic-om-4" width="22" height="22" viewBox="0 0 22 22" fill="none">
-                                <path d="M20 6.9999C20.5304 6.9999 21.0391 7.21061 21.4142 7.58569C21.7893 7.96076 22 8.46947 22 8.9999V12.9999C22 13.5303 21.7893 14.039 21.4142 14.4141C21.0391 14.7892 20.5304 14.9999 20 14.9999H18.938C18.6942 16.9332 17.7533 18.7111 16.2917 19.9999C14.8302 21.2887 12.9486 21.9999 11 21.9999V19.9999C12.5913 19.9999 14.1174 19.3678 15.2426 18.2425C16.3679 17.1173 17 15.5912 17 13.9999V7.9999C17 6.4086 16.3679 4.88248 15.2426 3.75726C14.1174 2.63204 12.5913 1.9999 11 1.9999C9.4087 1.9999 7.88258 2.63204 6.75736 3.75726C5.63214 4.88248 5 6.4086 5 7.9999V14.9999H2C1.46957 14.9999 0.960859 14.7892 0.585786 14.4141C0.210714 14.039 0 13.5303 0 12.9999V8.9999C0 8.46947 0.210714 7.96076 0.585786 7.58569C0.960859 7.21061 1.46957 6.9999 2 6.9999H3.062C3.30603 5.0668 4.24708 3.28917 5.70857 2.00058C7.17007 0.711979 9.05155 0.000976562 11 0.000976562C12.9484 0.000976562 14.8299 0.711979 16.2914 2.00058C17.7529 3.28917 18.694 5.0668 18.938 6.9999H20ZM6.76 14.7849L7.82 13.0889C8.77308 13.6859 9.87537 14.0017 11 13.9999C12.1246 14.0017 13.2269 13.6859 14.18 13.0889L15.24 14.7849C13.9693 15.581 12.4995 16.0022 11 15.9999C9.50045 16.0023 8.03072 15.5811 6.76 14.7849Z" fill="#333333"/>
-                            </svg>
-                        </div>
-                        <div class="con-f">
-                            <p class="con-to-mm">7/24 CUSTOMER SERVICE</p>
-                            <p class="con-to-mmt">Reply within 24 working hours</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="weekly-newsletter marg-top-90 newsletter mb-5">
-            <div class="row gx-0">
-                <div class="col-lg-6">
-                <div class="input-group" style="width: 79%;">
-                    <input type="text" class="form-control news-sub border-0 rounded-0" placeholder="Enter your Email address" aria-label="Search" aria-describedby="search-addon" />
-                    <button type="button" class="btn bg-black text-white rounded-0 sub-btn">Subscribe Now</button>
-                </div>
-                </div>
-            </div>
-        </div>
 
 
     </div>

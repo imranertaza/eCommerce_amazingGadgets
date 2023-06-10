@@ -3,18 +3,21 @@
 namespace App\Controllers;
 
 use App\Models\CategoryproductsModel;
+use App\Models\ProductsSearchModel;
 
 class Products extends BaseController {
 
     protected $validation;
     protected $session;
     protected $categoryproductsModel;
+    protected $productsSearchModel;
 
     public function __construct()
     {
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
         $this->categoryproductsModel = new CategoryproductsModel();
+        $this->productsSearchModel = new ProductsSearchModel();
     }
 
     public function search(){
@@ -25,6 +28,12 @@ class Products extends BaseController {
 
 
         $shortBy = !empty($this->request->getGetPost('shortBy'))?$this->request->getGetPost('shortBy'):'';
+        if ($shortBy == 'price_asc'){
+            $shortBy = "`cc_products.price` ASC";
+        }
+        if ($shortBy == 'price_desc'){
+            $shortBy = "`cc_products.price` DESC";
+        }
         $categoryWhere = !empty($this->request->getGetPost('category'))? 'category_id = '.$this->request->getGetPost('category'): 'category_id = '.$cat_id;
 
         $brand = explode(',', $this->request->getGetPost('manufacturer'));
@@ -80,24 +89,36 @@ class Products extends BaseController {
 
         $where = "$categoryWhere AND $allOption AND $allbrand AND $allrating AND $firstPrice AND $lastPrice";
 
+        if (empty($cat_id)){
+            $where = "$allOption AND $allbrand AND $allrating AND $firstPrice AND $lastPrice";
+        }
+
+        $searchModel = empty($cat_id) ? 'productsSearchModel' : 'categoryproductsModel';
+
         if(empty($this->request->getGetPost('option'))) {
-            $data['products'] = $this->categoryproductsModel->where($where)->query()->orderBy($shortBy)->paginate(9);
+            $data['products'] = $this->$searchModel->where($where)->query()->orderBy($shortBy)->paginate(9);
         }else{
-            $data['products'] = $this->categoryproductsModel->where($where)->all_join()->orderBy($shortBy)->paginate(9);
+            $data['products'] = $this->$searchModel->where($where)->all_join()->orderBy($shortBy)->paginate(9);
         }
 
         if (!empty($keyword)){
-            $data['products'] = $this->categoryproductsModel->where($where)->like('cc_products.name',$keyword)->query()->orderBy($shortBy)->paginate(9);
+            $data['products'] = $this->$searchModel->where($where)->like('cc_products.name',$keyword)->query()->orderBy($shortBy)->paginate(9);
         }
 
-        $data['pager'] = $this->categoryproductsModel->pager;
+        $data['pager'] = $this->$searchModel->pager;
         $data['links'] = $data['pager']->links('default','custome_link');
 
-//        print $this->categoryproductsModel->getLastQuery();
+//        print $this->$searchModel->getLastQuery();
+
+//        print_r($data['products']);
 //        die();
 
         $table = DB()->table('cc_product_category');
         $data['parent_Cat'] = $table->where('parent_id',$cat_id)->get()->getResult();
+
+        $table = DB()->table('cc_product_category');
+        $data['main_Cat'] = $table->where('parent_id',null)->get()->getResult();
+
 
         $data['prod_cat_id'] = $cat_id;
         $data['page_title'] = 'Category products';
