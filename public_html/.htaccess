@@ -36,6 +36,8 @@ Options All -Indexes
 	# Ensure Authorization header is passed along
 	RewriteCond %{HTTP:Authorization} .
 	RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+
 </IfModule>
 
 <IfModule !mod_rewrite.c>
@@ -47,3 +49,5 @@ Options All -Indexes
 # Disable server signature start
 	ServerSignature Off
 # Disable server signature end
+
+RewriteRule ^/icons/ - [F]
