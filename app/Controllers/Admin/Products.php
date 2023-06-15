@@ -317,6 +317,7 @@ class Products extends BaseController
             $option = $this->request->getPost('option[]');
             $opValue = $this->request->getPost('opValue[]');
             $qty = $this->request->getPost('qty[]');
+            $subtract = $this->request->getPost('subtract[]');
             $price_op = $this->request->getPost('price_op[]');
             if (!empty($qty)){
                 foreach ($qty as $key => $val){
@@ -324,6 +325,7 @@ class Products extends BaseController
                     $optionData['option_id'] = $option[$key];
                     $optionData['option_value_id'] = $opValue[$key];
                     $optionData['quantity'] = $qty[$key];
+                    $optionData['subtract'] = ($subtract[$key] == 'plus')?null:1;
                     $optionData['price'] = $price_op[$key];
 
                     $optionTable = DB()->table('cc_product_option');
@@ -752,6 +754,7 @@ class Products extends BaseController
             $option = $this->request->getPost('option[]');
             $opValue = $this->request->getPost('opValue[]');
             $qty = $this->request->getPost('qty[]');
+            $subtract = $this->request->getPost('subtract[]');
             $price_op = $this->request->getPost('price_op[]');
             if (!empty($qty)){
                 $optionTableDel = DB()->table('cc_product_option');
@@ -761,6 +764,7 @@ class Products extends BaseController
                     $optionData['option_id'] = $option[$key];
                     $optionData['option_value_id'] = $opValue[$key];
                     $optionData['quantity'] = $qty[$key];
+                    $optionData['subtract'] = ($subtract[$key] == 'plus')?null:1;
                     $optionData['price'] = $price_op[$key];
 
                     $optionTable = DB()->table('cc_product_option');

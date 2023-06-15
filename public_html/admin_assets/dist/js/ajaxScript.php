@@ -271,7 +271,7 @@
         var data = '<?php print $dat; ?>';
 
         var new_chq_no = parseInt($('#total_chq').val()) + 1;
-        var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><select name='option[]' onchange='optionVal(this.value,"+new_chq_no+" )'  style='padding: 3px;'><option value=''>Please select</option>"+data+"</select> <select name='opValue[]' id='valId_"+new_chq_no+"' style='padding: 3px;'><option value=''>Please select</option></select> <input type='number' placeholder='Quantity' name='qty[]' required> <input type='number' placeholder='Price' name='price_op[]' required> <a href='javascript:void(0)' onclick='remove_option(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
+        var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><select name='option[]' onchange='optionVal(this.value,"+new_chq_no+" )'  style='padding: 3px;'><option value=''>Please select</option>"+data+"</select> <select name='opValue[]' id='valId_"+new_chq_no+"' style='padding: 3px;'><option value=''>Please select</option></select><select name='subtract[]' style='padding: 3px;'><option value='plus'>Plus</option><option value='minus'>Minus</option></select><input type='number' placeholder='Quantity' name='qty[]' required> <input type='number' placeholder='Price' name='price_op[]' required> <a href='javascript:void(0)' onclick='remove_option(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
 
         $('#new_chq').append(new_input);
         $('#total_chq').val(new_chq_no);

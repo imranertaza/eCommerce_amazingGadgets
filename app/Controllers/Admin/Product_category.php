@@ -250,6 +250,18 @@ class Product_category extends BaseController
             }
         }
 
+        $checkProCat = is_exists('cc_product_to_category','category_id',$prod_cat_id);
+        if($checkProCat == false){
+            $tableproCat = DB()->table('cc_product_to_category');
+            $tableproCat->where('category_id', $prod_cat_id)->delete();
+        }
+
+        $checkPopuCat = is_exists('cc_product_category_popular','prod_cat_id',$prod_cat_id);
+        if($checkPopuCat == false){
+            $tablePopuCat = DB()->table('cc_product_category_popular');
+            $tablePopuCat->where('prod_cat_id', $prod_cat_id)->delete();
+        }
+
 
         $table = DB()->table('cc_product_category');
         $table->where('prod_cat_id', $prod_cat_id)->delete();

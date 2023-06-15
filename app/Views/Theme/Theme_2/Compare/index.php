@@ -30,7 +30,7 @@
                                     <?php echo product_id_by_rating($pro->product_id,'1');?>
                                 </span>
                         </div>
-                        <p><a href="javascript:void(0)" onclick="addToCart(<?php echo $pro->product_id ?>)" class="btn btn-cart rounded-0 mt-3 bg-black text-white">Add to Cart</a></p>
+                        <p><?php echo addToCartBtn($pro->product_id);?></p>
                     </td>
                     <?php } ?>
                 </tr>

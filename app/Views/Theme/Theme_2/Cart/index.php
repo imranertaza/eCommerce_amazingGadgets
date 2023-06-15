@@ -33,7 +33,7 @@
                             <a href="#"><?php echo $val['name'];?></a>
                         </td>
 
-                        <td class="product-price">
+                        <td class="product-price" width="100">
                             <span class="price"><?php echo currency_symbol($val['price']);?></span>
                         </td>
 

@@ -126,16 +126,6 @@
                         <div class="tab-pane fade" id="more-tab-pane" role="tabpanel" aria-labelledby="more-tab" tabindex="0">
                             <h2 class="mb-5"><?php echo $products->name;?></h2>
                             <table class="table table-hover">
-<!--                                <tr>-->
-<!--                                    <th>WHAT'S IN THE BOX</th>-->
-<!--                                    <td>-->
-<!--                                        OnePlus Bullets<br>-->
-<!--                                        Wireless Z2 E305A Earphones<br>-->
-<!--                                        3x Silicone eartips (S, M, L)<br>-->
-<!--                                        USB charging cable<br>-->
-<!--                                        e-Manual-->
-<!--                                    </td>-->
-<!--                                </tr>-->
                                 <tr>
                                     <th>SPECIFICATION</th>
                                     <td>

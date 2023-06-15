@@ -67,11 +67,43 @@ class Products extends BaseController {
 
 
 
+        $data['option'] = $this->optionView($product_id);
+
         $data['page_title'] = 'Product Detail';
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Product/detail');
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
+
+    public function optionPriceCalculate(){
+
+        $product_id = $this->request->getPost('product_id');
+
+        $totalOptionPrice = 0;
+        foreach(get_all_data_array('cc_option') as $vl) {
+            $data[strtolower($vl->name)] = $this->request->getPost(strtolower($vl->name));
+
+            $table = DB()->table('cc_product_option');
+            $option = $table->where('option_value_id',$data[strtolower($vl->name)])->where('product_id',$product_id)->get()->getRow();
+
+            if (!empty($option)) {
+                if (empty($option->subtract)){
+                    $totalOptionPrice = $totalOptionPrice + $option->price;
+                }else{
+                    $totalOptionPrice = $totalOptionPrice - $option->price;
+                }
+            }
+        }
+
+        $proPrice = get_data_by_id('price','cc_products','product_id',$product_id);
+        $specialprice = get_data_by_id('special_price','cc_product_special','product_id',$product_id);
+        if (!empty($specialprice)){
+            $proPrice = $specialprice;
+        }
+
+        print currency_symbol($proPrice + $totalOptionPrice);
+    }
+
 
     public function review(){
         $data['product_id'] = $this->request->getPost('product_id');
@@ -111,6 +143,67 @@ class Products extends BaseController {
             $total += !empty($spPric)?$spPric:$regPric;
         }
         print currency_symbol($total);
+    }
+
+    private function optionView($product_id){
+        $productOption = DB()->table('cc_product_option');
+        $allOptionsGroup = $productOption->where('product_id',$product_id)->groupBy('option_id')->get()->getResult();
+
+        $view ='';
+        foreach ($allOptionsGroup as $gro) {
+            $type = get_data_by_id('type', 'cc_option', 'option_id', $gro->option_id);
+            $name = get_data_by_id('name', 'cc_option', 'option_id', $gro->option_id);
+            $view .= '<p class="tit-op " >' . $name . ' <span class="mess-alert  ' . strtolower($name) . '"></span></p>';
+            $view .= $this->optionType($type,$gro->option_id,$product_id,$name);
+        }
+
+        return $view;
+    }
+
+    private function optionType($type,$option_id,$product_id,$name){
+        if ($type == 'radio'){
+            return $this->typeRadio($option_id,$product_id,$name);
+        }
+        if ($type == 'select'){
+            return $this->typeSelect($option_id,$product_id,$name);
+        }
+
+    }
+
+    private function typeRadio($option_id,$product_id,$name){
+        $table = DB()->table('cc_product_option');
+        $data = $table->where('option_id',$option_id)->where('product_id',$product_id)->get()->getResult();
+        $view = '<ul class="list-unstyled filter-items mb-3">';
+        foreach($data as $key=> $opVal){
+            $view .='<li class="mt-2"><input type="radio" class="btn-check" oninput="optionPriceCalculate('.$product_id.')"  name="'.strtolower($name).'" id="option_'.$opVal->option_value_id.'" value="'.$opVal->option_value_id.'"  autocomplete="off" required>';
+
+                $nameVal = get_data_by_id('name','cc_option_value','option_value_id',$opVal->option_value_id);
+                $firstCar =  mb_substr($nameVal, 0, 1); $length = strlen($nameVal);
+                $isColor = (($firstCar == '#') && ($length == 7))?'':$nameVal;
+                $nameOp = !empty($isColor)?$isColor:'';
+                $style = empty($isColor)?"background-color: $nameVal;padding: 15px 18px; border: unset;":"";
+
+            $view .='<label class="btn btn-outline-secondary pd-new"  style="'.$style.' border-radius: unset; margin-left:8px;"  for="option_'.$opVal->option_value_id.'">
+                '.$nameOp.'</label></li>';
+        }
+        $view .='</ul>';
+        return $view;
+    }
+
+    private function typeSelect($option_id,$product_id,$name){
+        $table = DB()->table('cc_product_option');
+        $data = $table->where('option_id',$option_id)->where('product_id',$product_id)->get()->getResult();
+        $view = '<select name="'.strtolower($name).'"  onchange="optionPriceCalculate('.$product_id.')" class="form-control my-2" required><option value="" >Please select</option>';
+        foreach($data as $key=> $opVal){
+            $nameVal = get_data_by_id('name','cc_option_value','option_value_id',$opVal->option_value_id);
+            $firstCar =  mb_substr($nameVal, 0, 1); $length = strlen($nameVal);
+            $isColor = (($firstCar == '#') && ($length == 7))?'':$nameVal;
+            $nameOp = !empty($isColor)?$isColor:'';
+            $style = empty($isColor)?"background-color: $nameVal;padding: 15px 18px; border: unset;":"";
+            $view .='<option value="'.$opVal->option_value_id.'" style="'.$style.'" >'.$nameVal.'</option>';
+        }
+        $view .='</select>';
+        return $view;
     }
 
 

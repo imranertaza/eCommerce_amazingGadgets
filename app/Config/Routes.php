@@ -218,7 +218,9 @@ $routes->post('/newsletter_action', 'Customer\Profile::newsletter_action');
 
 //cart routes
 $routes->get('/cart', 'Cart\Cart::index');
+$routes->post('/checkoption', 'Cart\Cart::checkoption');
 $routes->post('/addtocart', 'Cart\Cart::addToCart');
+$routes->post('/addtocartdetail', 'Cart\Cart::addtocartdetail');
 $routes->post('/addtocartgroup', 'Cart\Cart::addToCartGroup');
 $routes->post('/updateToCart', 'Cart\Cart::updateToCart');
 $routes->post('/removeToCart', 'Cart\Cart::removeToCart');
@@ -246,6 +248,7 @@ $routes->get('/page/(:any)', 'Pages\Pages::page/$1');
 $routes->get('/detail/(:num)', 'Products\Products::detail/$1');
 $routes->post('/review', 'Products\Products::review');
 $routes->post('/both_product_price', 'Products\Products::both_product_price');
+$routes->post('/optionPriceCalculate', 'Products\Products::optionPriceCalculate');
 
 $routes->get('/featuredproducts', 'Featuredproducts::index');
 

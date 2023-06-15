@@ -808,3 +808,52 @@ function getSideMenuArray()
     $query = $table->where('side_menu',1)->get()->getResult();
     return $query;
 }
+
+function addToCartBtn($product_id){
+    $qtyCheck = get_data_by_id('quantity','cc_products','product_id',$product_id);
+    $optionCheck = is_exists('cc_product_option','product_id',$product_id);
+    $btn = '';
+    if (!empty($qtyCheck)){
+        if ($optionCheck == true){
+            $btn = '<a href="javascript:void(0)" onclick="addToCart('.$product_id.')" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>';
+        }else{
+            $url = base_url('detail/'.$product_id);
+            $btn = '<a href="'.$url.'"  class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>';
+        }
+
+    }else{
+        $btn = '<a href="javascript:void(0)"  class="btn btn-cart w-100 rounded-0 mt-3">Out of Stock</a>';
+    }
+    return $btn;
+}
+
+function addToCartBtnIcon($product_id){
+    $qtyCheck = get_data_by_id('quantity','cc_products','product_id',$product_id);
+    $optionCheck = is_exists('cc_product_option','product_id',$product_id);
+    $icon = '<svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none"><path d="M14.55 11C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C19.9643 3.32843 20.0075 3.15747 20.0054 2.98406C20.0034 2.81064 19.956 2.64077 19.8681 2.49126C19.7803 2.34175 19.6549 2.21778 19.5043 2.13162C19.3538 2.04545 19.1834 2.00009 19.01 2H4.21L3.27 0H0V2H2L5.6 9.59L4.25 12.03C3.52 13.37 4.48 15 6 15H18V13H6L7.1 11H14.55ZM5.16 4H17.31L14.55 9H7.53L5.16 4ZM6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" fill="white"/></svg>';
+    $btn = '';
+    if (!empty($qtyCheck)){
+        if ($optionCheck == true){
+            $btn = '<a href="javascript:void(0)" onclick="addToCart('.$product_id.')" class="btn btn-cart bg-black text-white rounded-0 mt-3">'.$icon.'</a>';
+        }else{
+            $url = base_url('detail/'.$product_id);
+            $btn = '<a href="'.$url.'"  class="btn btn-cart bg-black text-white rounded-0 mt-3">'.$icon.'</a>';
+        }
+
+    }else{
+        $btn = '<a href="javascript:void(0)"  class="btn btn-cart bg-black text-white rounded-0 mt-3">'.$icon.'</a>';
+    }
+    return $btn;
+}
+
+function option_id_or_product_id_by_option_value($option_id,$product_id){
+    $table = DB()->table('cc_product_option');
+    $data = $table->where('option_id',$option_id)->where('product_id',$product_id)->get()->getResult();
+    return $data;
+}
+
+function order_iten_id_by_order_options($order_item_id){
+    $table = DB()->table('cc_order_option');
+    $data = $table->where('order_item_id',$order_item_id)->get()->getResult();
+    return $data;
+}

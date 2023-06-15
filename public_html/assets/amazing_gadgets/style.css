@@ -1007,8 +1007,8 @@ a {
 }
 .icon-cat-main{
     position: absolute;
-    left: 68px;
-    top: 44px;
+    left: 41%;
+    top: 27%;
 }
 .icon-cat-main svg{
     width: 30px !important;
@@ -1276,9 +1276,10 @@ a {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 10px;
     line-height: 16px;
     text-transform: capitalize;
+    padding:5px 1px;
 
     color: #444444;
 }
@@ -1603,9 +1604,9 @@ p {
 }
 .play-image{
     position:absolute;
-    width: 40px;
-    top: 28px;
-    left: 26px;
+    width: 25px;
+    top: 30%;
+    left: 30%;
     background-color: #8b8b8b;
 }
 .slider-image-height{
@@ -1613,4 +1614,128 @@ p {
 }
 .icon-vart{
     vertical-align:-4px !important;
+}
+.slider-cus-css .slider-banner-image{
+    width:unset !important;
+    margin-top:25px;
+}
+.des .nav-link{
+    padding-left: 0px !important;
+    font-size:15px !important;
+}
+.feed-text{
+    font-size: 12px;
+    margin-top: 10px;
+}
+.about-title{
+    font-size: 16px;
+    font-weight: 500;
+}
+.about-sub-title{
+    font-size: 15px !important;
+}
+
+.footer-bottom{
+    background-color:#0d6efd;
+    border: none;
+    color: #ffffff !important;
+    padding: 5px 40px;
+    /*border-radius: 5px;*/
+}
+.top-div{
+    background-color:#008C44;
+    padding: 15px;
+}
+.free-text{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #FFFFFF;
+
+}
+.free-text-2{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #FFFFFF;
+    margin-top:5px;
+}
+.icon-top-det{
+    margin-top:-8px;
+}
+.td-pd{
+    padding:10px;
+    font-size: 13px;
+}
+.tit-op{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #2E2E2E;
+}
+.qty-tab{
+    width:40%;
+    float: left;
+}
+.price-tab-d{
+    width:60%;
+    float: left;
+    text-align: right;
+}
+.item_count{
+    height:40px;
+}
+.btn-q{
+    border: 1px solid #ced4da;
+}
+.btn-see{
+    margin-left: 7px;
+}
+.pd-new{
+    padding: 4px 7px;
+}
+.capQty{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index:100;
+}
+.toggle-body{
+    background-color: #ffffff;
+}
+.mid-filed{
+    border-left: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+}
+.h-120{
+    min-height:85px;
+}
+.ft-price{
+    color:#fa2c2c;
+}
+.ft-count{
+    float: right;
+}
+.pro-img-ft{
+    width:65px;
+    height:65px;
+}
+.pro-item{
+    width: 10%;
+    float:none;
+}
+.navbar-ft{
+    overflow-y: hidden;
+}
+.scroll-ft{
+    display: -webkit-box; width: 100%;
+}
+.mess-alert{
+    color:red;
 }

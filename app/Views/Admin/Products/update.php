@@ -242,7 +242,7 @@
                                         </div>
 
                                         <div id="new_chq">
-                                            <?php $i = 1; $j = 1; $k = 1; foreach ($prodOption as $opt){ ?>
+                                            <?php $i = 180; $j = 180; $k = 1; foreach ($prodOption as $opt){ ?>
                                             <div class="col-md-12 mt-3" id="new_<?php echo $k++;?>">
                                                 <select name="option[]" onchange="optionVal(this.value,<?php echo $i++;?> )" style="padding: 3px;">
                                                     <option value="">Please select</option>
@@ -251,6 +251,10 @@
                                                 <select name="opValue[]" id="valId_<?php echo $j++;?>" style="padding: 3px;">
                                                     <option value="">Please select</option>
                                                     <?php echo getIdByListInOption($opt->option_value_id, 'option_value_id', 'name', 'cc_option_value','option_id',$opt->option_id);?>
+                                                </select>
+                                                <select name="subtract[]" style="padding: 3px;">
+                                                    <option value="plus" <?php echo empty($opt->subtract)?'selected':'';  ?> >Plus</option>
+                                                    <option value="minus" <?php echo !empty($opt->subtract)?'selected':'';  ?>>Minus</option>
                                                 </select>
                                                 <input type="number" placeholder="Quantity" name="qty[]" required value="<?php echo $opt->quantity;?>" >
                                                 <input type="number" placeholder="Price" name="price_op[]" required value="<?php echo $opt->price;?>" >

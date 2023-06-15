@@ -178,7 +178,7 @@
                         </ul>
                     </div>
                     <?php }else{ ?>
-                    <div class="breadcrumb mb-0 mt-3 d-flex align-items-center">
+                    <div class="breadcrumb mb-0 mt-3 d-flex align-items-center text-uppercase">
                             <a href="<?php echo base_url();?>">Home</a>
                             <i class="fa fa-angle-right mx-2"></i>
                             <?php echo (isset($page_title))?$page_title:'';?>
@@ -193,7 +193,7 @@
                             </button>
                             <div class="collapse w-100  nav-menu-collapse" id="navbarNav">
                                 <button type="button" class="btn-close d-xl-none"id="navClose" aria-label="Close"></button>
-                                <ul class="navbar-nav d-flex justify-content-between  ">
+                                <ul class="navbar-nav d-flex justify-content-between  text-uppercase ">
                                     <li class="nav-item">
                                         <a class="nav-link" aria-current="page" href="<?php echo base_url()?>">Home</a>
                                     </li>
@@ -307,7 +307,7 @@
                                 </ul>
                             </div>
                         <?php }else{ ?>
-                            <div class="breadcrumb mb-0 mt-3 d-flex align-items-center">
+                            <div class="breadcrumb mb-0 mt-3 d-flex align-items-center text-uppercase">
                                 <a href="<?php echo base_url();?>">Home</a>
                                 <i class="fa fa-angle-right mx-2"></i>
                                 <?php echo (isset($page_title))?$page_title:'';?>
@@ -322,7 +322,7 @@
                                 </button>
                                 <div class="collapse w-100  nav-menu-collapse" id="navbarNav">
                                     <button type="button" class="btn-close d-xl-none"id="navClose" aria-label="Close"></button>
-                                    <ul class="navbar-nav d-flex justify-content-between  ">
+                                    <ul class="navbar-nav d-flex justify-content-between  text-uppercase ">
                                         <li class="nav-item">
                                             <a class="nav-link" aria-current="page" href="<?php echo base_url()?>">Home</a>
                                         </li>

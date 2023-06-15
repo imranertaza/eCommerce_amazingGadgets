@@ -23,10 +23,24 @@ class Cart extends BaseController {
         echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
     }
 
+    public function checkoption(){
+        $product_id = $this->request->getPost('product_id');
+        $table = DB()->table('cc_product_option');
+        $check = $table->where('product_id',$product_id)->countAllResults();
+        if (!empty($check)){
+            print false;
+        }else{
+            print true;
+        }
+    }
+
     public function addToCart(){
 
         $product_id = $this->request->getPost('product_id');
         $qty = $this->request->getPost('qtyall');
+
+        $size = $this->request->getPost('size');
+        $color = $this->request->getPost('color');
 
         $name = get_data_by_id('name','cc_products','product_id',$product_id);
         $price = get_data_by_id('price','cc_products','product_id',$product_id);
@@ -38,8 +52,52 @@ class Cart extends BaseController {
             'id' => $product_id,
             'name' => strval($name),
             'qty' => $qty,
-            'price' => $price
+            'price' => $price,
+            'color' => $color,
+            'size' => $size,
         );
+        $this->cart->insert($data);
+        print 'Successfully add to cart';
+    }
+
+    public function addtocartdetail(){
+        $product_id = $this->request->getPost('product_id');
+        $qty = $this->request->getPost('qty');
+
+        $totalOptionPrice = 0;
+        foreach(get_all_data_array('cc_option') as $vl) {
+            $data[strtolower($vl->name)] = $this->request->getPost(strtolower($vl->name));
+
+            $table = DB()->table('cc_product_option');
+            $option = $table->where('option_value_id',$data[strtolower($vl->name)])->where('product_id',$product_id)->get()->getRow();
+
+            if (!empty($option)) {
+                if (empty($option->subtract)){
+                    $totalOptionPrice = $totalOptionPrice + $option->price;
+                }else{
+                    $totalOptionPrice = $totalOptionPrice - $option->price;
+                }
+            }
+        }
+
+        $name = get_data_by_id('name','cc_products','product_id',$product_id);
+        $price = get_data_by_id('price','cc_products','product_id',$product_id);
+        $specialprice = get_data_by_id('special_price','cc_product_special','product_id',$product_id);
+        if (!empty($specialprice)){
+            $price = $specialprice;
+        }
+
+        $totalPrice = $price + $totalOptionPrice;
+        $data = array(
+            'id' => $product_id,
+            'name' => strval($name),
+            'qty' => $qty,
+            'price' => $totalPrice,
+        );
+
+        foreach(get_all_data_array('cc_option') as $v) {
+            $data[strtolower($v->name)] = $this->request->getPost(strtolower($v->name));
+        }
         $this->cart->insert($data);
         print 'Successfully add to cart';
     }

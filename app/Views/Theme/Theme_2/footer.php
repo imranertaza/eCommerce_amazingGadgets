@@ -156,6 +156,7 @@
         </div>
     </div>
 </section>
+
 <section class="banner">
     <div class="container py-2">
         <div class="row mt-3">
@@ -258,8 +259,54 @@
             </div>
         </div>
     </div>
+
 </section>
 
+
+    <div class=" capQty">
+        <a class="footer-bottom  " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <span class="btn-count"><?php echo count(Cart()->contents()); ?> item(s) in your cart</span>
+        </a>
+        <div class="collapse toggle-body  <?php echo !empty(Cart()->contents())?'show':'';?> " id="collapseExample" >
+            <div class="row body-count">
+                <div class="col-lg-7 p-2 h-120 " >
+                    <div class="navbar-ft " >
+                        <div class="scroll-ft" >
+                            <?php foreach (Cart()->contents() as $val) { ?>
+                            <div class="pro-item">
+                                <div class="pro-imh-ct">
+                                    <?php
+                                    $img = get_data_by_id('image', 'cc_products', 'product_id', $val['id']);
+                                    ?>
+                                    <?php echo image_view('uploads/products', $val['id'], '100_' . $img, 'noimage.png', 'img-fluid pro-img-ft') ?>
+                                </div>
+                            </div>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 mid-filed h-120 d-flex align-items-center pe-5">
+                    <div class="d-flex justify-content-between w-100">
+                        <div>
+                            <?php if (!empty(Cart()->contents())){?>
+                            <span>Total Item</span><br>
+                            <?php } ?>
+                            <span>Subtotal</span>
+
+                        </div>
+                        <div>
+                            <span class="ft-count"><?php echo count(Cart()->contents()); ?></span><br>
+                            <span class="ft-price"><?php echo currency_symbol(Cart()->total()) ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 h-120 d-flex align-items-center pe-5">
+                    <a href="<?php echo base_url('checkout')?>" class="btn btn-outline-primary w-100 ">Go to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 <script src="<?php echo base_url() ?>/assets/amazing_gadgets/jquery-3.6.0.js"></script>
@@ -273,6 +320,23 @@
 <script src="<?php echo base_url() ?>/assets/amazing_gadgets/slick/slick.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo base_url() ?>/assets/amazing_gadgets/owl.carousel.js"></script>
 <script>
+
+    function myFunction() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var btnText = document.getElementById("myBtn");
+
+        if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "See more";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "See less";
+            moreText.style.display = "inline";
+        }
+    }
+
     $('.slider-for').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -555,24 +619,101 @@
         });
     }
 
+
+
     function addToCart(pro_id){
+        var size = $("input[name='size']:checked").val();
+        var color = $("input[name='color']:checked").val();
+
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('checkoption') ?>",
+            data: {product_id:pro_id },
+            success: function(response){
+                if (response == true){
+                    adtocartAction(pro_id);
+                }else{
+                    if (size == null  ||  color == null){
+                        $('.mes-1').html('Required field');
+                        $('.mes-2').html('Required field');
+                    }else{
+                        $('.mes-1').html('');
+                        $('.mes-2').html('');
+                        adtocartAction(pro_id);
+                    }
+                }
+            }
+        });
+    }
+    function adtocartAction(pro_id){
         var qty = $('#qty_input').val();
         if (qty == null){
             qty = '1';
         }
+        var size = $("input[name='size']:checked").val();
+        if (size == null){
+            size = '';
+        }
+        var color = $("input[name='color']:checked").val();
+        if (color == null){
+            color = '';
+        }
         $.ajax({
             method: "POST",
             url: "<?php echo base_url('addtocart') ?>",
-            data: {product_id:pro_id,qtyall:qty },
+            data: {product_id:pro_id,qtyall:qty,size:size,color:color },
             success: function(response){
                 $('#cartReload').load(location.href + " #cartReload");
                 $('#cartReload2').load(location.href + " #cartReload2");
                 $('#mesVal').html(response);
+                $('.btn-count').load(location.href + " .btn-count");
+                $('.body-count').load(location.href + " .body-count");
+                $( '#collapseExample' ).addClass('show');
                 $('.message_alert').show();
                 setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
             }
         });
     }
+
+    function addToCartdetail(){
+        $("#addto-cart-form").on('submit', (function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: $(this).attr('action'),
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response) {
+                    $('#cartReload').load(location.href + " #cartReload");
+                    $('#cartReload2').load(location.href + " #cartReload2");
+                    $('#mesVal').html(response);
+                    $('.btn-count').load(location.href + " .btn-count");
+                    $('.body-count').load(location.href + " .body-count");
+                    $( '#collapseExample' ).addClass('show');
+                    $('.message_alert').show();
+                    setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
+
+                }
+            });
+        }));
+    };
+
+    function checkoption(pro_id){
+        var result;
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('checkoption') ?>",
+            data: {product_id:pro_id },
+            success: function(response){
+                result = response;
+            }
+        });
+        return result;
+    }
+
+
 
     function minusItem(rowid){
         var quantity = parseInt($('.item_'+rowid).val());
@@ -600,6 +741,9 @@
                 $('#tableReload').load(location.href + " #tableReload");
                 $('#cartReload2').load(location.href + " #cartReload2");
                 $('#mesVal').html(response);
+                $('.btn-count').load(location.href + " .btn-count");
+                $('.body-count').load(location.href + " .body-count");
+                $( '#collapseExample' ).addClass('show');
                 $('.message_alert').show();
                 setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
             }
@@ -616,6 +760,9 @@
                 $('#cartReload2').load(location.href + " #cartReload2");
                 $('#tableReload').load(location.href + " #tableReload");
                 $('#mesVal').html(response);
+                $('.btn-count').load(location.href + " .btn-count");
+                $('.body-count').load(location.href + " .body-count");
+                $( '#collapseExample' ).addClass('show');
                 $('.message_alert').show();
                 setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
             }
@@ -764,6 +911,27 @@
                 }
             });
         }
+    }
+
+    function optionPriceCalculate(product_id){
+        <?php foreach(get_all_data_array('cc_option') as $v) { if ($v->type == 'radio'){ ?>
+        var <?php echo strtolower($v->name); ?> = $('input[name="<?php echo strtolower($v->name); ?>"]:checked').val();
+        <?php } if ($v->type == 'select'){ ?>
+        var <?php echo strtolower($v->name); ?> =  $('[name="<?php echo strtolower($v->name); ?>"]').val();
+        <?php } } ?>
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('optionPriceCalculate') ?>",
+            data: {
+                product_id:product_id,
+                <?php foreach(get_all_data_array('cc_option') as $vl) { ?>
+                    <?php echo strtolower($vl->name); ?>: <?php echo strtolower($vl->name); ?>,
+                <?php } ?>
+            },
+            success: function (data) {
+                $('#priceVal').html(data);
+            }
+        });
     }
 
 

@@ -38,7 +38,7 @@
 
                                         <?php } ?>
                                         <div class="product-top">
-                                            <?php echo image_view('uploads/products',$pro['product_id'],'191_'.$pro['image'],'noimage.png','img-fluid w-100')?>
+                                            <a href="<?php echo base_url('detail/'.$pro['product_id'])?>"><?php echo image_view('uploads/products',$pro['product_id'],'191_'.$pro['image'],'noimage.png','img-fluid w-100')?></a>
                                             <div class="rating text-center my-2">
                                                 <?php echo product_id_by_rating($pro['product_id']);?>
                                             </div>
@@ -57,7 +57,7 @@
                                                     <small> <del><?php echo currency_symbol($pro['price']);?></del></small>/<?php echo currency_symbol($spPric);?>
                                                 <?php } ?>
                                             </div>
-                                            <a href="javascript:void(0)" onclick="addToCart(<?php echo $pro['product_id'] ?>)" class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
+                                            <?php echo addToCartBtn($pro['product_id']);?>
                                         </div>
                                     </div>
                                 </div>
