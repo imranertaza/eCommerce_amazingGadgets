@@ -37,12 +37,19 @@ class AddDescriptionImage extends Migration
                 'default' => null,
                 'after' => 'safety_pdf',
             ],
+            'video' => [
+                'type'           => 'varchar',
+                'constraint'     => 225,
+                'null' => true,
+                'default' => null,
+                'after' => 'instructions_pdf',
+            ],
         ];
         $this->forge->addColumn('cc_product_description', $fields);
     }
 
     public function down()
     {
-        $this->forge->dropColumn('cc_product_description', ['description_image', 'documentation_pdf', 'safety_pdf', 'instructions_pdf']);
+        $this->forge->dropColumn('cc_product_description', ['description_image', 'documentation_pdf', 'safety_pdf', 'instructions_pdf', 'video']);
     }
 }

@@ -212,6 +212,13 @@ class Settings extends Seeder
                 'value' => 'https://www.instagram.com/',
                 'createdBy' => 1,
             ],
+            [
+                'settings_id' => 31,
+                'label' => 'smtp_crypto',
+                'title' => 'SMTP Crypto',
+                'value' => 'ssl',
+                'createdBy' => 1,
+            ],
         ];
         // Using Query Builder
         $this->db->table('cc_settings')->insertBatch($data);
