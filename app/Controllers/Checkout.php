@@ -29,13 +29,17 @@ class Checkout extends BaseController {
     }
 
     public function index(){
-        $table = DB()->table('cc_customer');
-        $data['customer'] = $table->where('customer_id',$this->session->cusUserId)->get()->getRow();
+        if(!empty($this->cart->contents())) {
+            $table = DB()->table('cc_customer');
+            $data['customer'] = $table->where('customer_id', $this->session->cusUserId)->get()->getRow();
 
-        $data['page_title'] = 'Checkout';
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/header',$data);
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/Checkout/index',$data);
-        echo view('Theme/'.get_lebel_by_value_in_settings('Theme').'/footer');
+            $data['page_title'] = 'Checkout';
+            echo view('Theme/' . get_lebel_by_value_in_settings('Theme') . '/header', $data);
+            echo view('Theme/' . get_lebel_by_value_in_settings('Theme') . '/Checkout/index', $data);
+            echo view('Theme/' . get_lebel_by_value_in_settings('Theme') . '/footer');
+        }else{
+            return redirect()->to('cart');
+        }
     }
 
     public function coupon_action(){
@@ -216,7 +220,7 @@ class Checkout extends BaseController {
                 $tablePro->where('product_id',$val['id'])->update($newqty);
 
                 foreach(get_all_data_array('cc_option') as $vl) {
-                    $data[strtolower($vl->name)] = $val[strtolower($vl->name)];
+                    $data[strtolower($vl->name)] = $val['op_'.strtolower($vl->name)];
 
                     $table = DB()->table('cc_product_option');
                     $option = $table->where('option_value_id',$data[strtolower($vl->name)])->where('product_id',$val['id'])->get()->getRow();

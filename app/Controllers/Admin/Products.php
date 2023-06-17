@@ -756,9 +756,12 @@ class Products extends BaseController
             $qty = $this->request->getPost('qty[]');
             $subtract = $this->request->getPost('subtract[]');
             $price_op = $this->request->getPost('price_op[]');
+
+            $optionTableDel = DB()->table('cc_product_option');
+            $optionTableDel->where('product_id',$product_id)->delete();
+
             if (!empty($qty)){
-                $optionTableDel = DB()->table('cc_product_option');
-                $optionTableDel->where('product_id',$product_id)->delete();
+
                 foreach ($qty as $key => $val){
                     $optionData['product_id'] = $product_id;
                     $optionData['option_id'] = $option[$key];

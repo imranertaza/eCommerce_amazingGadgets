@@ -96,7 +96,7 @@ class Cart extends BaseController {
         );
 
         foreach(get_all_data_array('cc_option') as $v) {
-            $data[strtolower($v->name)] = $this->request->getPost(strtolower($v->name));
+            $data['op_'.strtolower($v->name)] = $this->request->getPost(strtolower($v->name));
         }
         $this->cart->insert($data);
         print 'Successfully add to cart';
