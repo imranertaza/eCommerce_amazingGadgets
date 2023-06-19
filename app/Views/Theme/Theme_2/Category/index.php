@@ -22,7 +22,7 @@
 
                                 <div class="product-filter">
                                     <?php if(!empty($parent_Cat)){ ?>
-                                    <p>Sub Category</p>
+                                    <p class="mb-2">Sub Category</p>
                                     <input type="hidden" name="prod_cat_id" value="<?php echo $prod_cat_id?>">
                                     <input type="hidden" name="cat" value="<?php echo $prod_cat_id?>">
                                     <ul class="list-unstyled lh-lg">
@@ -49,7 +49,7 @@
                                     <?php } }?>
                                 </div>
                                 <div class="product-filter">
-                                    <p>Filter Price</p>
+                                    <p class="mb-2">Filter Price</p>
                                     <p>
                                         <input type="text" id="amount"  readonly style="border:0;">
                                         <input type="hidden" name="price" id="price"  >
@@ -71,7 +71,7 @@
                                 <?php $i++; } ?>
 
                                 <div class="product-filter">
-                                    <p>Manufacturer</p>
+                                    <p class="mb-2">Manufacturer</p>
                                     <?php foreach(get_all_data_array('cc_brand') as $bra){ ?>
                                     <label class="w-100 mb-2">
                                         <input type="checkbox" onclick="formSubmit()" name="manufacturer[]" <?php foreach ($brandval as $bSel){ echo ($bSel == $bra->brand_id)?'checked':'';} ?>  value="<?php echo $bra->brand_id?>"> <?php echo $bra->name?>
@@ -80,7 +80,7 @@
                                 </div>
 
                                 <div class="product-filter">
-                                    <p>Rating</p>
+                                    <p class="mb-2">Rating</p>
                                     <label class="w-100 mb-2">
                                         <input type="checkbox" onclick="formSubmit()" <?php foreach ($ratingval as $retSel){ echo ($retSel == '5')?'checked':'';} ?> name="rating[]" id="" value="5">
                                         <i class="fa-solid fa-star"></i>
@@ -183,7 +183,7 @@
 
                                                 <?php } ?>
 
-                                                <div class="product-top">
+                                                <div class="product-top text-center">
                                                     <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid ')?></a>
                                                     <div class="rating text-center my-2">
                                                         <?php echo product_id_by_rating($pro->product_id);?>
@@ -238,7 +238,7 @@
 
                                                 <?php } ?>
 
-                                                <div class="product-top" style="width:40%;float:left; " >
+                                                <div class="product-top text-center" style="width:40%;float:left; " >
                                                     <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo image_view('uploads/products',$pro->product_id,'198_'.$pro->image,'noimage.png','img-fluid ')?></a>
 
                                                 </div>

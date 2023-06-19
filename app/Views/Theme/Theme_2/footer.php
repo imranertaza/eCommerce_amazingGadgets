@@ -302,7 +302,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 h-120 d-flex align-items-center pe-5">
-                    <a href="<?php echo base_url('checkout')?>" class="btn btn-outline-primary w-100 ">Go to Checkout</a>
+                    <a href="<?php echo base_url('checkout')?>" class="btn btn-outline-dark w-100 ">Go to Checkout</a>
                 </div>
             </div>
         </div>
@@ -442,11 +442,14 @@
 
     function shippingAddress() {
         var shipping = document.getElementById('shipping_address');
+        var shippingicon = document.getElementById('shippingicon2');
 
         if (shipping.style.display === "none") {
             shipping.style.display = "block";
+            shippingicon.style.transform = "rotate(90deg)";
         } else {
             shipping.style.display = "none";
+            shippingicon.style.transform = "rotate(0deg)";
         }
     }
 
@@ -810,7 +813,7 @@
         var cityId = $('#stateView').val();
         var totalAmount = $('#totalamo').val();
         var shipcityId = $('#sh_stateView').val();
-
+        <?php  $symbol = get_lebel_by_value_in_settings('currency_symbol'); ?>
         $.ajax({
             method: "POST",
             url: "<?php echo base_url('shipping_rate') ?>",
@@ -821,8 +824,8 @@
                 var total = Number(totalAmount);
                 var amount = total+charge;
 
-                $('#chargeShip').html(data.charge);
-                $('#total').html(amount);
+                $('#chargeShip').html('<?php echo $symbol;?> '+data.charge);
+                $('#total').html('<?php echo $symbol;?> '+amount);
                 $('#shipping_charge').val(charge);
             }
         });
@@ -882,6 +885,9 @@
                 $('#cartReload').load(location.href + " #cartReload");
                 $('#cartReload2').load(location.href + " #cartReload2");
                 $('#mesVal').html(response);
+                $('.btn-count').load(location.href + " .btn-count");
+                $('.body-count').load(location.href + " .body-count");
+                $( '#collapseExample' ).addClass('show');
                 $('.message_alert').show();
                 setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
             }
@@ -934,6 +940,48 @@
         });
     }
 
+    function video_close(){
+        $("#sample_video")[0].src += "?autoplay=0";
+    }
+
+    function topSearchValidation(formId,catId,keyId,validId){
+
+        var cat = $('#'+catId).val();
+        var key = $('#'+keyId).val();
+
+        if ((cat == '') && (key == '')){
+            $('#'+validId).css('border','1px solid #ff0000');
+            $('#'+keyId).attr("placeholder", "Please type something to search....");
+        }else{
+            $('#'+formId).submit();
+        }
+
+        // border: 1px solid red;
+    }
+
+    function livenameView(newVal,viewId){
+        var f = $('#fname').val();
+        var l = $('#lname').val();
+        $('#'+viewId).html(f+' '+l);
+    }
+
+    function livename1View(newVal,viewId){
+        var f = $('#fname1').val();
+        var l = $('#lname1').val();
+        $('#'+viewId).html(f+' '+l);
+    }
+
+    function liveTextView(newVal,viewId){
+
+        $('#'+viewId).html(newVal);
+
+    }
+
+    function liveView(val,viewId){
+        // var data = $(val).attr(option);
+        var data = $(val).find('option:selected').html();
+        $('#'+viewId).html(data);
+    }
 
 </script>
 

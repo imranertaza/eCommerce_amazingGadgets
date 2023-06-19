@@ -104,20 +104,20 @@
                 </div>
                 <div class="col-12 col-md-6 order-3 order-md-2 mb-3 mb-md-0 sear-pd" >
                     <?php if (modules_key_by_access('top_search') == 1) { ?>
-                    <form action="<?php echo base_url('products/search');?>" class="mini-search" method="GET">
-                        <div class="input-group">
+                    <form id="first-form-top" action="<?php echo base_url('products/search');?>" class="mini-search" method="GET">
+                        <div class="input-group" id="first-valid">
                             <div class="input-group-btn search-panel">
 <!--                                <select name="top_category"  class="form-select rounded-0">-->
-                                <select name="cat"  class="form-select rounded-0" >
+                                <select name="cat" id="first-cat"  class="form-select rounded-0" >
                                     <option value="">All Categories</option>
                                     <?php foreach (getParentCategoryArray() as $catTop){ $tCat =  isset($top_category)?$top_category:'';?>
                                     <option value="<?php echo $catTop->prod_cat_id;?>" <?php echo ($tCat == $catTop->prod_cat_id)?'selected':'';?> ><?php echo $catTop->category_name;?></option>
                                     <?php } ?>
                                 </select>
                             </div>
-                            <input type="text" class="form-control" name="keywordTop" placeholder="Search item..." value="<?php echo isset($keywordTop)?$keywordTop:'';?>" required>
+                            <input type="text" class="form-control" id="first-keywordTop" name="keywordTop" placeholder="Search item..." value="<?php echo isset($keywordTop)?$keywordTop:'';?>" >
                             <span class="input-group-btn">
-                                <button class="btn btn-default border rounded-0 bg-black text-white" type="submit">
+                                <button class="btn btn-default border rounded-0 bg-black text-white" onclick="topSearchValidation('first-form-top','first-cat','first-keywordTop','first-valid')"  type="button">
                                     <i class="fa-solid fa-search"></i>
                                 </button>
                             </span>
@@ -233,20 +233,20 @@
                     </div>
                     <div class="col-12 col-md-6 order-3 order-md-2 mb-3 mb-md-0 sear-pd" >
                         <?php if (modules_key_by_access('top_search') == 1) { ?>
-                            <form action="<?php echo base_url('products/search');?>" class="mini-search" method="GET">
-                                <div class="input-group">
+                            <form id="second-form-top" action="<?php echo base_url('products/search');?>" class="mini-search" method="GET">
+                                <div class="input-group" id="second-valid">
                                     <div class="input-group-btn search-panel">
                                         <!--                                <select name="top_category"  class="form-select rounded-0">-->
-                                        <select name="cat"  class="form-select rounded-0" >
+                                        <select name="cat" id="second-cat"  class="form-select rounded-0" >
                                             <option value="">All Categories</option>
                                             <?php foreach (getParentCategoryArray() as $catTop){ $tCat =  isset($top_category)?$top_category:'';?>
                                                 <option value="<?php echo $catTop->prod_cat_id;?>" <?php echo ($tCat == $catTop->prod_cat_id)?'selected':'';?> ><?php echo $catTop->category_name;?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <input type="text" class="form-control" name="keywordTop" placeholder="Search item..." value="<?php echo isset($keywordTop)?$keywordTop:'';?>" required>
+                                    <input type="text" class="form-control" id="second-keywordTop" name="keywordTop" placeholder="Search item..." value="<?php echo isset($keywordTop)?$keywordTop:'';?>" >
                                     <span class="input-group-btn">
-                                <button class="btn btn-default border rounded-0 bg-black text-white" type="submit">
+                                <button class="btn btn-default border rounded-0 bg-black text-white" onclick="topSearchValidation('second-form-top','second-cat','second-keywordTop','second-valid')" type="button">
                                     <i class="fa-solid fa-search"></i>
                                 </button>
                             </span>

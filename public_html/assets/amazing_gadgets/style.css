@@ -1636,14 +1636,14 @@ p {
 }
 
 .footer-bottom{
-    background-color:#0d6efd;
+    background-color:#231f20;
     border: none;
     color: #ffffff !important;
     padding: 5px 40px;
     /*border-radius: 5px;*/
 }
 .top-div{
-    background-color:#008C44;
+    background-color:#595657;
     padding: 15px;
 }
 .free-text{
@@ -1738,4 +1738,72 @@ p {
 }
 .mess-alert{
     color:red;
+}
+.thumb-image .slick-current{
+    width: 68px !important;
+    border: 1px solid #cacaca !important;
+}
+.pd-te-ch{
+    padding-top:24px;
+    padding-bottom: 24px;
+}
+.check-btn-custom{
+    background-color: #000000;
+    color: #ffffff;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+}
+.title-checkout label{
+    text-align:left !important;
+}
+.text-label{
+    margin-left: 10px;
+}
+.check-title{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    text-transform: capitalize;
+    color: #231F20;
+    margin-bottom: 30px;
+}
+.checkout-items{
+    border: 1px solid #757575;
+    padding:10px;
+}
+.pro-bg-check{
+    background-color: #F1F0F5;
+    border-radius: 5px;
+}
+.group-check{
+    border: 1px solid #757575 !important;
+    padding:10px;
+}
+.name-ch{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    color: #231F20;
+}
+.table-ship-add{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    text-transform: capitalize;
+    color: #231F20;
+}
+
+input[type='radio']:checked{
+    background-color: #000000 !important;
+    border: unset;
+}
+.payment-method svg{
+    margin-top: -6px;
 }
