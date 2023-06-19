@@ -129,14 +129,16 @@
                     <a href="<?php echo base_url('cart')?>" >
                     <div class="mini-cart d-flex position-relative" id="cartReload">
 
-                        <div class="cart-icon rounded-5 align-items-center justify-content-center p-3 me-3">
-                            <img src="<?php echo base_url() ?>/assets/amazing_gadgets/img/cart.png" alt="" class="img-fluid">
-                        </div>
-                        <span class="cart-item position-absolute rounded-5 d-flex align-items-center justify-content-center"><?php echo count(Cart()->contents()); ?></span>
+
                         <div class="cart-content d-flex flex-column">
                             <span class="w-100">My Cart</span>
                             <span class="total"> <?php echo currency_symbol(Cart()->total()) ?></span>
                         </div>
+
+                        <div class="cart-icon rounded-5 align-items-center justify-content-center p-3 me-3">
+                            <img src="<?php echo base_url() ?>/assets/amazing_gadgets/img/cart.png" alt="" class="img-fluid">
+                        </div>
+                        <span class="cart-item position-absolute rounded-5 d-flex align-items-center justify-content-center"><?php echo count(Cart()->contents()); ?></span>
 
                     </div>
                     </a>
@@ -258,14 +260,17 @@
                         <a href="<?php echo base_url('cart')?>" >
                             <div class="mini-cart d-flex position-relative" id="cartReload2">
 
-                                <div class="cart-icon rounded-5 align-items-center justify-content-center p-3 me-3">
-                                    <img src="<?php echo base_url() ?>/assets/amazing_gadgets/img/cart.png" alt="" class="img-fluid">
-                                </div>
-                                <span class="cart-item position-absolute rounded-5 d-flex align-items-center justify-content-center"><?php echo count(Cart()->contents()); ?></span>
+
+
                                 <div class="cart-content d-flex flex-column">
                                     <span class="w-100">My Cart</span>
                                     <span class="total"> <?php echo currency_symbol(Cart()->total()) ?></span>
                                 </div>
+
+                                <div class="cart-icon rounded-5 align-items-center justify-content-center p-3 me-3">
+                                    <img src="<?php echo base_url() ?>/assets/amazing_gadgets/img/cart.png" alt="" class="img-fluid">
+                                </div>
+                                <span class="cart-item position-absolute rounded-5 d-flex align-items-center justify-content-center"><?php echo count(Cart()->contents()); ?></span>
 
                             </div>
                         </a>

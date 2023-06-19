@@ -206,6 +206,7 @@ $routes->post('/addtoWishlist', 'Customer\Dashboard::addtoWishlist');
 
 
 $routes->get('/favorite', 'Customer\Favorite::index');
+$routes->post('/removeToWishlist', 'Customer\Favorite::removeToWishlist');
 $routes->get('/my_order', 'Customer\Order::index');
 $routes->get('/invoice/(:num)', 'Customer\Order::invoice/$1');
 

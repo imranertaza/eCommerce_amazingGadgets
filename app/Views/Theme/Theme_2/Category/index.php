@@ -60,11 +60,19 @@
                                 $i=1;
                                 foreach(get_all_data_array('cc_option') as $op){  ?>
                                 <div class="product-filter">
-                                    <p><?php echo $op->name;?></p>
+                                    <p class="mb-2"><?php echo $op->name;?></p>
                                     <ul class="list-unstyled filter-items">
-                                        <?php foreach(get_array_data_by_id('cc_option_value','option_id',$op->option_id) as $key=>$opVal){ ?>
+                                        <?php foreach(get_array_data_by_id('cc_option_value','option_id',$op->option_id) as $key=>$opVal){
+
+                                            $nameVal = get_data_by_id('name','cc_option_value','option_value_id',$opVal->option_value_id);
+                                            $firstCar =  mb_substr($nameVal, 0, 1); $length = strlen($nameVal);
+                                            $isColor = (($firstCar == '#') && ($length == 7))?'':$nameVal;
+                                            $nameOp = !empty($isColor)?$isColor:'';
+                                            $style = empty($isColor)?"background-color: $nameVal;padding: 15px; border: unset;":"";
+                                        ?>
+
                                         <li class="mt-2"><input type="checkbox" onclick="formSubmit()"  class="btn-check" <?php foreach ($optionval as $vSel){ echo ($vSel == $opVal->option_value_id)?'checked':'';} ?> name="options[]" id="option_<?php echo $opVal->name; ?>" value="<?php echo $opVal->option_value_id?>"  autocomplete="off">
-                                            <label class="btn btn-outline-secondary" <?php  echo ($op->name == 'Color')?'style="background-color:'. $opVal->name.'; padding: 15px;border: unset;"':''; ?>  for="option_<?php echo $opVal->name; ?>"><?php  echo ($op->name == 'Color')?'':$opVal->name; ?></label></li>
+                                            <label class="btn btn-outline-secondary" style="<?php echo $style;?>"   for="option_<?php echo $opVal->name; ?>"><?php  echo $nameOp; ?></label></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -194,7 +202,7 @@
                                                         Categorie
                                                     </div>
                                                     <div class="product-title mb-2">
-                                                        <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
+                                                        <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                     </div>
                                                     <div class="price mb-3">
                                                         <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>

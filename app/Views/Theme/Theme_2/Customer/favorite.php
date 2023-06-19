@@ -1,4 +1,4 @@
-<section class="main-container my-5">
+<section class="main-container my-5" id="reloadDiv">
     <div class="container">
         <div class="popular-category mb-5">
 
@@ -13,7 +13,7 @@
                                 <?php foreach ($allProd as $pro){ ?>
                                 <div class="col border p-2">
                                     <div class="product-grid h-100 d-flex align-items-stretch flex-column position-relative">
-
+                                        <a href="javascript:void(0)" class="remove_wishlist_btn" onclick="removeToWishlist(<?php echo $pro['product_id'] ?>)"><i class="fa-solid fa-close"></i></a>
 
                                         <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                             <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
@@ -37,6 +37,8 @@
                                             </a>
 
                                         <?php } ?>
+                                        
+                                        
                                         <div class="product-top">
                                             <a href="<?php echo base_url('detail/'.$pro['product_id'])?>"><?php echo image_view('uploads/products',$pro['product_id'],'191_'.$pro['image'],'noimage.png','img-fluid w-100')?></a>
                                             <div class="rating text-center my-2">
@@ -48,7 +50,7 @@
                                                 Categorie
                                             </div>
                                             <div class="product-title mb-2">
-                                                <a href="<?php echo base_url('detail/'.$pro['product_id'])?>"><?php echo $pro['name'];?></a>
+                                                <a href="<?php echo base_url('detail/'.$pro['product_id'])?>"><?php echo substr($pro['name'],0,60);?></a>
                                             </div>
                                             <div class="price mb-3">
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro['product_id']);  if (empty($spPric)){ ?>

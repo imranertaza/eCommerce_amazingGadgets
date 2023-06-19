@@ -264,8 +264,11 @@
 
 
     <div class=" capQty">
-        <a class="footer-bottom  " data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <a class="footer-bottom ft-cart-btn " onclick="iconRotate()" data-bs-toggle="collapse" href="#collapseExample" role="button" <?php echo !empty(Cart()->contents())?'aria-expanded="true"':'aria-expanded="false"';?>  aria-controls="collapseExample">
             <span class="btn-count"><?php echo count(Cart()->contents()); ?> item(s) in your cart</span>
+            <svg id="carticon2" style="transition: width 2s ease 0s, height 2s ease 0s, transform 0.2s ease 0s;" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.75 14L10.25 9.5L5.75 5L7.25 3.5L13.25 9.5L7.25 15.5L5.75 14Z" fill="white"/>
+            </svg>
         </a>
         <div class="collapse toggle-body  <?php echo !empty(Cart()->contents())?'show':'';?> " id="collapseExample" >
             <div class="row body-count">
@@ -388,6 +391,7 @@
 <script>
 
     $(document).ready(function() {
+        iconRotate();
 
         $('.owl-carousel').owlCarousel({
             loop: true,
@@ -450,6 +454,16 @@
         } else {
             shipping.style.display = "none";
             shippingicon.style.transform = "rotate(0deg)";
+        }
+    }
+
+    function iconRotate(){
+        var cart = document.getElementById('carticon2');
+        var attVal = $('.ft-cart-btn').attr('aria-expanded');
+        if (attVal == 'true'){
+            cart.style.transform = "rotate(90deg)";
+        }else{
+            cart.style.transform = "rotate(0deg)";
         }
     }
 
@@ -622,6 +636,20 @@
         });
     }
 
+    function removeToWishlist(proId){
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('removeToWishlist') ?>",
+            data: {product_id:proId},
+            success: function(response){
+                $('#reloadDiv').load(location.href + " #reloadDiv");
+                $('#mesVal').html(response);
+                $('.message_alert').show();
+                setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
+            }
+        });
+    }
+
 
 
     function addToCart(pro_id){
@@ -671,6 +699,7 @@
                 $('#mesVal').html(response);
                 $('.btn-count').load(location.href + " .btn-count");
                 $('.body-count').load(location.href + " .body-count");
+                $('#carticon2').css('transform','rotate(90deg)');
                 $( '#collapseExample' ).addClass('show');
                 $('.message_alert').show();
                 setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
@@ -694,7 +723,9 @@
                     $('#mesVal').html(response);
                     $('.btn-count').load(location.href + " .btn-count");
                     $('.body-count').load(location.href + " .body-count");
+                    $('#carticon2').css('transform','rotate(90deg)');
                     $( '#collapseExample' ).addClass('show');
+
                     $('.message_alert').show();
                     setTimeout(function(){ $("#messAlt").fadeOut(1500);}, 600);
 
