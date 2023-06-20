@@ -64,7 +64,7 @@
                         <div class="product-info-det p-3" >
 
                             <form id="addto-cart-form" action="<?php echo base_url('addtocartdetail') ?>"  method="post" >
-                            <p class="mb-3"><?php echo $products->name; ?></p>
+                            <p class="mb-3 pro-t"><?php echo $products->name; ?></p>
                             <?php $stock = get_data_by_id('quantity', 'cc_products', 'product_id', $products->product_id) ?>
 
                             <div class="rating mb-3">
@@ -464,7 +464,7 @@
                                                                     if (empty($spPric)) { ?>
                                                                         <?php echo currency_symbol($both->price); ?>
                                                                     <?php } else { ?>
-                                                                        <?php echo currency_symbol($spPric); ?>sp
+                                                                        <?php echo currency_symbol($spPric); ?>
                                                                     <?php } ?>
                                                                 </div>
                                                             </div>

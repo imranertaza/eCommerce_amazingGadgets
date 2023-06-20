@@ -78,7 +78,7 @@
                         <?php } ?>
                         <span class="fs-4 fw-bold">Total</span>
                     </td>
-                    <td style="text-align:left;">
+                    <td style="text-align:left; width: 170px">
                         <?php if (isset(newSession()->coupon_discount)){ $disc = round((Cart()->total() *newSession()->coupon_discount)/100); ?>
                         <span class=" fs-4"><?php echo currency_symbol(Cart()->total()) ?></span><br>
                         <span class=" fs-4"><?php echo currency_symbol($disc) ?></span><br>

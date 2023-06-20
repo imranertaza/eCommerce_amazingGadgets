@@ -161,7 +161,7 @@
     <div class="container py-2">
         <div class="row mt-3">
             <div class="col-md-3">
-                <span class="copyright">Copyright @ Dnationsoft.com</span>
+                <span class="copyright">Copyright@<a href="https://dnationsoft.com/" target="_blank">DNationSoft</a></span>
             </div>
             <div class="col-md-5 ft-link">
                 <a target="_blank" href="<?php echo get_lebel_by_value_in_settings('fb_url'); ?>"><i

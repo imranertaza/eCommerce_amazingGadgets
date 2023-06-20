@@ -50,7 +50,7 @@ a {
 .mini-search .form-control,
 .mini-search .btn,
 .mini-search .form-select {
-    height: 50px;
+    height: 40px;
 }
 .mini-search .form-select option {
     padding: 5px;
@@ -1126,7 +1126,7 @@ a {
     margin-right: 10px;
 }
 .marg-top-90{
-    margin-top:90px !important;
+    margin-top:50px !important;
 }
 .form-control:focus {
     background: rgb(218 218 218 / 44%) !important;
@@ -1814,4 +1814,7 @@ input[type='radio']:checked{
 .remove_wishlist_btn{
     position: absolute;
     right: 0px;
+}
+.pro-t{
+    font-size: 18px;
 }

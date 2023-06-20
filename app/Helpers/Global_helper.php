@@ -581,7 +581,10 @@ function email_send($to,$subject,$message){
 function currency_symbol($amount){
     $symbol = get_lebel_by_value_in_settings('currency_symbol');
     $cur = !empty($amount)?$amount:0;
-    $result = $symbol.' '.$cur;
+    $split = explode('.',$cur);
+    $flot = empty($split[1])?'00':$split[1];
+    $result = $symbol.' '.$split[0].'<sup>'.$flot.'</sup>';
+
     return $result;
 }
 
