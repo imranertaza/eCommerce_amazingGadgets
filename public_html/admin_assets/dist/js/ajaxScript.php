@@ -265,17 +265,7 @@
         }
     }
 
-    //option
-    function add_option() {
-        <?php $dat = getListInOption('', 'option_id', 'name', 'cc_option'); ?>
-        var data = '<?php print $dat; ?>';
 
-        var new_chq_no = parseInt($('#total_chq').val()) + 1;
-        var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><select name='option[]' onchange='optionVal(this.value,"+new_chq_no+" )'  style='padding: 3px;'><option value=''>Please select</option>"+data+"</select> <select name='opValue[]' id='valId_"+new_chq_no+"' style='padding: 3px;'><option value=''>Please select</option></select><select name='subtract[]' style='padding: 3px;'><option value='plus'>Plus</option><option value='minus'>Minus</option></select><input type='number' placeholder='Quantity' name='qty[]' required> <input type='number' placeholder='Price' name='price_op[]' required> <a href='javascript:void(0)' onclick='remove_option(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
-
-        $('#new_chq').append(new_input);
-        $('#total_chq').val(new_chq_no);
-    }
     function  remove_option(data){
         $(data).parent().remove();
     }
@@ -472,6 +462,76 @@
             }
 
         });
+    }
+
+    function searchOptionUp(key){
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('product_option_search')?>",
+            data: {key:key},
+            beforeSend: function () {
+                $("#loading-image").show();
+            },
+            success: function (data) {
+                $('#dataView').html(data);
+            }
+
+        });
+    }
+
+    function optionViewPro(option_id,name){
+        var n = "'"+name+"_op'";
+        var rl = "'"+name+"_remove'";
+        var nr = "'"+name+"'";
+        var link = '<a class="nav-link active text-dark" id="'+name+'_remove"  data-toggle="pill" href="#'+name+'" role="tab" aria-controls="vert-tabs-home" aria-selected="true">'+name+'<button type="button" class="btn btn-sm" onclick="remove_option_new_ajax('+rl+','+nr+')"><i class="fa fa-trash text-danger"></i></button></a>';
+        var con = '<div class="tab-pane text-left fade  show active" id="'+name+'" role="tabpanel" aria-labelledby="vert-tabs-home-tab"><div class="col-md-12 mt-2"> <h5>Click on add option</h5></div><hr><div id="'+name+'_op"></div><input type="hidden" value="1" id="total_chq"><div class="col-md-12 mt-2" ><a href="javascript:void(0)" style="float: right;    margin-right: 150px;" onclick="add_option_new_ajax('+n+','+option_id+');"class="btn btn-sm btn-primary">Add option</a></div></div>';
+
+        $( ".tab-link-ajax a" ).removeClass( 'active');
+        $( ".tab-content-ajax .tab-pane" ).removeClass( 'active');
+        $('.keyoption').val('');
+        $('#dataView').html('');
+        $('.tab-link-ajax').append(link);
+        $('.tab-content-ajax').append(con);
+
+    }
+
+    //option
+    function add_option_new_ajax(id,option_id) {
+        // var data = '';
+        $.ajax({
+            method: "POST",
+            url: "<?php echo base_url('product_option_value_search')?>",
+            data: {option_id:option_id},
+            success: function (val) {
+                var data = val;
+
+                var new_chq_no = parseInt($('#total_chq').val()) + 1;
+                var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><input type='hidden' name='option[]' value='"+option_id+"' ><select name='opValue[]' id='valId_"+new_chq_no+"' style='padding: 3px;'><option value=''>Please select</option>"+data+"</select><select name='subtract[]' style='padding: 3px;'><option value='plus'>Plus</option><option value='minus'>Minus</option></select><input type='number' placeholder='Quantity' name='qty[]' required> <input type='number' placeholder='Price' name='price_op[]' required> <a href='javascript:void(0)' onclick='remove_option(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
+
+                $('#'+id).append(new_input);
+                $('#total_chq').val(new_chq_no);
+            }
+
+        });
+
+
+
+    }
+
+    function  remove_option_new_ajax(link,data){
+        $('#'+link).remove();
+        $('#'+data).remove();
+    }
+
+    function add_option() {
+        <?php $dat = getListInOption('', 'option_id', 'name', 'cc_option'); ?>
+        var data = '<?php print $dat; ?>';
+
+        var new_chq_no = parseInt($('#total_chq').val()) + 1;
+        var new_input = "<div class='col-md-12 mt-3' id='new_" + new_chq_no + "' ><select name='option[]' onchange='optionVal(this.value,"+new_chq_no+" )'  style='padding: 3px;'><option value=''>Please select</option>"+data+"</select> <select name='opValue[]' id='valId_"+new_chq_no+"' style='padding: 3px;'><option value=''>Please select</option></select><select name='subtract[]' style='padding: 3px;'><option value='plus'>Plus</option><option value='minus'>Minus</option></select><input type='number' placeholder='Quantity' name='qty[]' required> <input type='number' placeholder='Price' name='price_op[]' required> <a href='javascript:void(0)' onclick='remove_option(this)' class='btn btn-sm btn-danger' style='margin-top: -5px;'>X</a></div>";
+
+        $('#new_chq').append(new_input);
+        $('#total_chq').val(new_chq_no);
     }
 
 </script>

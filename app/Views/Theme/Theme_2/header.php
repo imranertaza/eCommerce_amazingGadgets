@@ -38,12 +38,12 @@
 <header class="header bg-white">
     <div class="topbar">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center" >
                 <div class="col-md-6 text-center text-md-start">
                     <span class="me-1"><a href="">Free delivery in dhaka</a></span>
                     <span><a href="<?php echo base_url('page/returns-policy')?>">Returns Policy</a></span>
                 </div>
-                <div class="col-md-6 text-md-start-2  d-flex justify-content-end align-items-center ddd">
+                <div class="col-md-6 text-md-start-2  d-flex justify-content-end align-items-center top-bar-height" >
                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
                     <a class="me-3 d-flex" href="<?php echo base_url('favorite')?>">
                         <span><i class="fa-solid fa-heart me-1"></i></span>
@@ -59,10 +59,11 @@
                     <?php } ?>
 
                     <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
-                    <a class="me-3 py-3 pe-3 border-end d-flex" href="<?php echo base_url('register')?>">
+                    <a class="me-3 py-3 pe-3  d-flex no-pd" href="<?php echo base_url('register')?>">
                         <span><i class="fa-solid fa-user me-1"></i></span>
-                        <span class="d-none d-sm-block">Create an account</span>
+                        <span class=" d-sm-block">Create an account</span>
                     </a>
+                        <div class="left-bor" style=""></div>
                     <a class="" href="<?php echo base_url('login')?>"><i class="fa-solid fa-arrow-right-to-bracket me-1"></i> Sign In</a>
 <!--                    <a class="btn btn-signin text-white bg-black" href="--><?php //echo base_url('login')?><!--"><i class="fa-solid fa-arrow-right-to-bracket me-1"></i> Sign In</a>-->
                     <?php }else{ ?>
@@ -90,7 +91,6 @@
             </div>
         </div>
     </div>
-    <div class="sticky-menu menu-show">
     <div class="header-main py-1">
         <div class="container">
             <div class="row align-items-center">
@@ -153,7 +153,7 @@
                     <?php if(isset($home_menu)){  ?>
                     <div class="allcategory h-100 " style="width:94%;">
                         <button class="cat-btn-h btn bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-bars me-3"></i>
+                            <i class="fa-solid fa-bars me-3 no-mg"></i>
                             Shop by Categories
                         </button>
                         <ul class="dropdown-menu show border  cat-drop-menu all-cat-menu btn-cat-show" >
@@ -193,7 +193,7 @@
                             <button class="navbar-toggler" id="navbarPopUp" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            <div class="collapse w-100  nav-menu-collapse" id="navbarNav">
+                            <div class="collapse w-100 show nav-menu-collapse" id="navbarNav">
                                 <button type="button" class="btn-close d-xl-none"id="navClose" aria-label="Close"></button>
                                 <ul class="navbar-nav d-flex justify-content-between  text-uppercase ">
                                     <li class="nav-item">
@@ -218,7 +218,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div class="sticky-menu sticky-menu-class menu-show-hide" >
@@ -285,7 +284,7 @@
                         <?php if(isset($home_menu)){  ?>
                             <div class="allcategory h-100 " style="width:94%;">
                                 <button class="cat-btn-h btn bg-black text-white text-uppercase fw-semibold dropdown-toggle rounded-0 h-100 border-0 text-center w-100 btn-click" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-bars me-3"></i>
+                                    <i class="fa-solid fa-bars me-3 no-mg"></i>
                                     Shop by Categories
                                 </button>
                                 <ul class="dropdown-menu border cat-drop-menu all-cat-menu" >
@@ -325,9 +324,9 @@
                                 <button class="navbar-toggler" id="navbarPopUp" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
-                                <div class="collapse w-100  nav-menu-collapse" id="navbarNav">
+                                <div class="collapse w-100 show  nav-menu-collapse " id="navbarNav">
                                     <button type="button" class="btn-close d-xl-none"id="navClose" aria-label="Close"></button>
-                                    <ul class="navbar-nav d-flex justify-content-between  text-uppercase ">
+                                    <ul class="navbar-nav d-flex justify-content-between  text-uppercase mobile-css">
                                         <li class="nav-item">
                                             <a class="nav-link" aria-current="page" href="<?php echo base_url()?>">Home</a>
                                         </li>

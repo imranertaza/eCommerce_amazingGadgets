@@ -86,6 +86,8 @@ $routes->post('/product_image_delete', 'Admin\Products::image_delete');
 $routes->get('/product_update/(:num)', 'Admin\Products::update/$1');
 $routes->get('/product_delete/(:num)', 'Admin\Products::delete/$1');
 $routes->get('/related_product', 'Admin\Products::related_product');
+$routes->post('/product_option_search', 'Admin\Products::product_option_search');
+$routes->post('/product_option_value_search', 'Admin\Products::product_option_value_search');
 
 //User
 $routes->get('/user', 'Admin\User::index');

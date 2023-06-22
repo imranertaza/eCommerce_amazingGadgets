@@ -225,22 +225,21 @@
                                 <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
                                      aria-labelledby="custom-tabs-four-messages-tab">
                                     <div class="row">
-                                        <div class="col-5 col-sm-3 h-100">
-                                            <div class="nav flex-column nav-tabs h-100 text-right font-weight-bolder tab-link-ajax" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
-                                            </div>
-
-                                            <div class=" flex-column search mt-2 h-100">
-                                                <input type="text" class="form-control keyoption" name="keyoption" oninput="searchOptionUp(this.value)" >
-                                                <span id="dataView"></span>
-                                            </div>
-
+                                        <div class="col-md-6">
+                                            <h3>Option</h3>
                                         </div>
-                                        <div class="col-7 col-sm-9">
-                                            <div class="tab-content tab-content-ajax" id="vert-tabs-tabContent">
-                                            </div>
+                                        <div class="col-md-6">
                                         </div>
 
+                                        <div id="new_chq"></div>
+                                        <input type="hidden" value="1" id="total_chq">
 
+                                        <div class="col-md-6">
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <a href="javascript:void(0)" onclick="add_option();"
+                                               class="btn btn-sm btn-primary">Add option</a>
+                                        </div>
 
 
                                     </div>

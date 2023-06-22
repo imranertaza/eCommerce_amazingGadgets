@@ -458,7 +458,7 @@ a {
     }
     .cart-table tr td, .cart-table tr td {
         display: block;
-        text-align: right!important;
+        /*text-align: right!important;*/
     }
 
     .header-bottom{
@@ -471,7 +471,150 @@ a {
         padding-top:15px;
         padding-bottom:15px;
     }
+    .btn-cat-show{
+        display:none;
+    }
+
+    .mobile-css{
+        display:none !important;
+    }
+    .fot-about{
+        display:block !important;
+    }
+    .copy-fot{
+        text-align: center;
+    }
+    .fot-sepp{
+        /*display:block !important;*/
+        margin-top: 20px;
+    }
+    .mob-text-center{
+        text-align: center !important;
+    }
+
 }
+@media (max-width: 767px) {
+    .title-shadow {
+        font-size: 6rem;
+    }
+    .btn-cat-show{
+        display:none;
+    }
+    .weekly-footer{
+        text-align: center !important;
+    }
+    .weekly-newsletter-foot{
+        width:100% !important;
+    }
+
+    .mobile-css {
+        display:none !important;
+    }
+    .fot-about{
+        display:block !important;
+    }
+    .copy-fot{
+        text-align: center;
+    }
+    .fot-sepp{
+        /*display:block !important;*/
+        margin-top: 20px;
+    }
+
+
+    .left-bor{
+        display:none !important;
+    }
+    .no-pd{
+        padding: unset !important;
+    }
+    .no-mg{
+        margin: unset !important;
+    }
+    .top-bar-height a{
+        margin-right: 3px !important;
+    }
+    .top-bar-height{
+        border-top: 1px solid #CDCDCD;
+    }
+    .sear-pd{
+        padding-left: 10px !important;
+    }
+    .navbar-toggler-icon{
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .btn-close{
+        /*display:none !important;*/
+        margin-top: 7px !important;
+    }
+    .navbar-toggler{
+        margin-top: 7px !important;
+    }
+    .mo-text-center{
+        text-align: center !important;
+    }
+    .mo-m-r-0{
+        margin-right: 0px !important;
+    }
+    .mo-p-r-0{
+        padding-right: 0px !important;
+    }
+    .f-title{
+        margin-top:25px;
+    }
+    .nav-tabs .nav-link{
+        font-size: 13px;
+    }
+    .owl-theme .owl-nav{
+        margin-top: 20px !important;
+    }
+    .owl-nav button{
+        font-size:30px !important;
+    }
+    .brand-item{
+        text-align: center;
+        margin-bottom:20px;
+    }
+    .cat-pro-mob{
+        text-align: center !important;
+    }
+    .both-pro-mob img{
+        width:auto !important;
+    }
+    .product-price{
+        width:100%;
+    }
+    .product-quantity{
+        width:100%;
+    }
+    .mo-amount{
+        width:100% !important;
+    }
+
+}
+@media (max-width: 480px) {
+    .title-shadow {
+        font-size: 4.5rem;
+    }
+    .btn-cat-show{
+        display:none;
+    }
+    .mobile-css {
+        display:none !important;
+    }
+    .fot-about{
+        display:block !important;
+    }
+    .copy-fot{
+        text-align: center;
+    }
+    .fot-sepp{
+        /*display:block !important;*/
+        margin-top: 20px;
+    }
+}
+
 .btn.btn-checkout {
     font-size: 18px;
     width: 230px;
@@ -517,16 +660,8 @@ a {
     color: var(--color-secondary);
     text-transform: uppercase;
 }
-@media (max-width: 767px) {
-    .title-shadow {
-        font-size: 6rem;
-    }
-}
-@media (max-width: 480px) {
-    .title-shadow {
-        font-size: 4.5rem;
-    }
-}
+
+
 .contact-form .form-control {
     min-height: 45px;
 }
@@ -1118,7 +1253,7 @@ a {
     color: #707070;
 }
 .pro-s-height{
-    height: 447px !important;
+    height: 100%;
 }
 .title{padding: 13px 14px !important;
 }
@@ -1159,10 +1294,12 @@ a {
     margin-right: 10px !important;
     color: #000000 !important;
 }
-
+.top-bar-height{
+    height:35px;
+}
 .left-bor{
     border:1px solid #dee2e6;
-    height: 48px;
+    height: 35px;
     margin-right: 25px;
 }
 
@@ -1179,7 +1316,7 @@ a {
     width: 30px !important;
 }
 .sear-pd{
-    padding-left: 5px !important;
+    padding-left: 5px;
 }
 .all-cat-menu{
     margin-top: -2px !important;
@@ -1191,9 +1328,9 @@ a {
 .nav-menu-main{
     width:100% !important;
 }
-.nav-menu-collapse{
-    display: block !important;
-}
+/*.nav-menu-collapse{*/
+/*    display: block;*/
+/*}*/
 .dropdown-item {
     padding: 10px !important;
     font-size:14px;
@@ -1818,3 +1955,11 @@ input[type='radio']:checked{
 .pro-t{
     font-size: 18px;
 }
+ .special-tab .nav-link.active{
+    background-color:#000000 !important;
+    color: #ffffff !important;
+}
+ .brand-img{
+     width:134px;
+     height:80px;
+ }

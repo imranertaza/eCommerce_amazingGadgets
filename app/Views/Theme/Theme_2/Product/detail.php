@@ -442,7 +442,7 @@
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <div class="products h-100">
-                                            <div class="row ">
+                                            <div class="row mo-text-center both-pro-mob">
                                                 <?php $totalPrice = 0;
                                                 $i = 1;
                                                 foreach ($bothProducts as $key => $both) { ?>
@@ -525,7 +525,7 @@
                 </div>
                 <div class="card-body pb-3">
                     <div class="products h-100">
-                        <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-5 h-100">
+                        <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-5 h-100 mo-text-center">
                             <?php if (!empty($relProd)) {
                                 foreach ($relProd as $rPro) { ?>
                                     <div class="col border p-2">
@@ -600,7 +600,7 @@
         <?php } ?>
 
         <div class="row mb-4">
-            <div class="col-lg-12 p-3 product-guides">
+            <div class="col-lg-12 p-3 product-guides mo-text-center">
                 <p class="product-guides-title text-uppercase">Product guides and Documents</p><br>
                 <?php if (!empty($products->documentation_pdf)) { ?>
                     <a href="<?php echo base_url('uploads/products/' . $products->product_id . '/' . $products->documentation_pdf) ?>"
@@ -624,7 +624,7 @@
                 </div>
                 <div class="card-body pb-3">
                     <div class="products h-100">
-                        <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-5 h-100">
+                        <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-5 h-100 mo-text-center">
                             <?php if (!empty($relProd)) {
                                 foreach ($relProd as $rPro) { ?>
                                     <div class="col border p-2">

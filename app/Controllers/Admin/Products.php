@@ -431,7 +431,7 @@ class Products extends BaseController
             $data['free_delivery'] = $tablefreeDel->where('product_id', $product_id)->countAllResults();
 
             $tableOpti = DB()->table('cc_product_option');
-            $data['prodOption'] = $tableOpti->where('product_id', $product_id)->get()->getResult();
+            $data['prodOption'] = $tableOpti->where('product_id', $product_id)->groupBy('option_id')->get()->getResult();
 
             $tableAttr = DB()->table('cc_product_attribute');
             $data['prodattribute'] = $tableAttr->where('product_id', $product_id)->get()->getResult();
@@ -950,6 +950,33 @@ class Products extends BaseController
 
         $table->where('product_image_id', $product_image_id)->delete();
         print '<div class="alert alert-success alert-dismissible" role="alert">Delete Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+    }
+
+    public function product_option_search(){
+        $keyword = $this->request->getPost('key');
+        $table = DB()->table('cc_option');
+        $option = $table->like('name', $keyword)->get()->getResult();
+
+        $view = '<ul class="list-unstyled list-op-aj" >';
+        foreach ($option as $op){
+            $optionname = "'$op->name'";
+            $view .= '<li><a href="#" onclick="optionViewPro('.$op->option_id.','.$optionname.')" >'.$op->name.'</a></li>';
+        }
+        $view .= '</ul>';
+
+        print $view;
+    }
+
+    public function product_option_value_search(){
+        $option_id = $this->request->getPost('option_id');
+        $table = DB()->table('cc_option_value');
+        $data = $table->where('option_id',$option_id)->get()->getResult();
+        $view = '';
+        foreach ($data as $item) {
+            $view .= '<option value="'.$item->option_value_id.'">'.$item->name.'</option>';
+        }
+//        print_r($data);
+        print $view;
     }
 
 }

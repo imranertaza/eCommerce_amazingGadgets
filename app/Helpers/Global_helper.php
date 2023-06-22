@@ -860,3 +860,11 @@ function order_iten_id_by_order_options($order_item_id){
     $data = $table->where('order_item_id',$order_item_id)->get()->getResult();
     return $data;
 }
+
+function get_all_row_data_by_id($table, $whereCol, $whereInfo)
+{
+    $db = \Config\Database::connect();
+    $tabledta = $db->table($table);
+    $result = $tabledta->where($whereCol, $whereInfo)->get()->getRow();
+    return $result;
+}

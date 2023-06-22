@@ -33,3 +33,6 @@
 .select2-container--bootstrap4 .select2-selection--multiple .select2-selection__choice {
     padding: 0px 5px !important;
 }
+.list-op-aj{
+    float: left;
+}

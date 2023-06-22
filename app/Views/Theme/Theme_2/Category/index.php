@@ -163,7 +163,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="products">
+                            <div class="products cat-pro-mob">
                                 <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-md-3 h-100 " id="grid-view" >
                                     <?php if (!empty($products)){foreach ($products as $pro){ ?>
                                         <div class="col border p-2">
