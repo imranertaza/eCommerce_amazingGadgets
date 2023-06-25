@@ -38,12 +38,12 @@
 <header class="header bg-white">
     <div class="topbar">
         <div class="container">
-            <div class="row align-items-center" >
-                <div class="col-md-6 text-center text-md-start">
+            <div class="row align-items-center m-t-h" >
+                <div class="col-sm-3 col-12 text-center text-md-start">
                     <span class="me-1"><a href="">Free delivery in dhaka</a></span>
                     <span><a href="<?php echo base_url('page/returns-policy')?>">Returns Policy</a></span>
                 </div>
-                <div class="col-md-6 text-md-start-2  d-flex justify-content-end align-items-center top-bar-height" >
+                <div class="col-sm-9 col-12 text-md-start-2  d-flex justify-content-end align-items-center top-bar-height" >
                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
                     <a class="me-3 d-flex" href="<?php echo base_url('favorite')?>">
                         <span><i class="fa-solid fa-heart me-1"></i></span>
@@ -93,7 +93,7 @@
     </div>
     <div class="header-main py-1">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center m-t-h">
                 <div class="col-6 col-md-3 order-1 mb-3 mb-md-0">
                     <div class="logo">
                         <a href="<?php echo base_url()?>">
@@ -149,7 +149,7 @@
     <div class="header-bottom">
         <div class="container">
             <div class="row gx-0">
-                <div class="col-xl-3 col-lg-4 col-md-6 col-8">
+                <div class="col-sm-3 col-8">
                     <?php if(isset($home_menu)){  ?>
                     <div class="allcategory h-100 " style="width:94%;">
                         <button class="cat-btn-h btn bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -187,15 +187,13 @@
                         </div>
                     <?php } ?>
                 </div>
-                <div class="col-xl-9 col-lg-8 col-md-6 col-4 d-flex align-items-center">
-                    <nav class="navbar-primary navbar navbar-expand-xl nav-menu-main">
+                <div class="col-sm-9 col-4 d-flex align-items-center">
+                    <nav class="navbar-primary navbar  nav-menu-main">
                         <div class="container-fluid  main-menu-but" >
-                            <button class="navbar-toggler" id="navbarPopUp" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse w-100 show nav-menu-collapse" id="navbarNav">
-                                <button type="button" class="btn-close d-xl-none"id="navClose" aria-label="Close"></button>
-                                <ul class="navbar-nav d-flex justify-content-between  text-uppercase ">
+
+
+                            <div class=" w-100 show " id="navbarNav">
+                                <ul class="navbar d-flex justify-content-between  text-uppercase ">
                                     <li class="nav-item">
                                         <a class="nav-link" aria-current="page" href="<?php echo base_url()?>">Home</a>
                                     </li>
@@ -280,7 +278,7 @@
         <div class="header-bottom border-bottom">
             <div class="container">
                 <div class="row gx-0">
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-8">
+                    <div class="col-sm-3 col-8">
                         <?php if(isset($home_menu)){  ?>
                             <div class="allcategory h-100 " style="width:94%;">
                                 <button class="cat-btn-h btn bg-black text-white text-uppercase fw-semibold dropdown-toggle rounded-0 h-100 border-0 text-center w-100 btn-click" type="button" data-bs-toggle="dropdown" aria-expanded="false">
