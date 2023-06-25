@@ -1,7 +1,8 @@
 <section class="banner-m">
     <div class="container">
         <div class="row gx-0">
-            <div class="col-lg-9 offset-lg-3">
+
+            <div class="col-sm-9 col-12 offset-sm-3 offset-0">
                 <div class="swiper bannerSlide">
                     <div class="swiper-wrapper">
                         <?php $sli_1 = get_lebel_by_value_in_theme_settings('slider_1'); ?>
@@ -23,7 +24,7 @@
 
         <div class="weekly-deals marg-top-90 Hot-Deals  mb-5">
             <div class="row  gx-0">
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
                         <div class="title bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Hot Deals</span>
@@ -78,11 +79,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-sm-9 col-12">
                     <div class="products h-100">
-                        <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-md-3 h-100 mo-text-center">
+                        <div class="row gx-0  h-100 mo-text-center">
                             <?php foreach ($hotProlimit as $pro){ ?>
-                                <div class="col pe-3 each_pro mo-p-r-0">
+                                <div class="col-sm-4 col-12 pe-3 each_pro mo-p-r-0">
                                     <div class="border p-3 product-grid h-100 d-flex align-items-stretch flex-column position-relative">
                                         <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                             <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
@@ -137,7 +138,7 @@
 
         <div class="weekly-deals marg-top-90 Trending  mb-5">
                 <div class="row  gx-0">
-                    <div class="col-lg-3">
+                    <div class="col-sm-3 col-12">
                         <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
                             <div class="title  bg-black text-white d-flex justify-content-between ">
                                     <span class="title-hot">Trending Collection</span>
@@ -188,7 +189,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-9">
+                    <div class="col-sm-9 col-12">
                         <div class="video h-100">
                             <iframe class="h-100 w-100" src="<?php echo get_lebel_by_value_in_theme_settings('trending_youtube_video');?>" title="My sunconure flock flewed high in sky for more then 5min||sunconure freefly training in india||" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
@@ -199,7 +200,7 @@
 
         <div class="weekly-deals marg-top-90 special-products  mb-5">
             <div class="row gx-0">
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
                         <div class="title  bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Special products</span>
@@ -229,7 +230,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 ">
+                <div class="col-sm-9 col-12 ">
                     <div class="h-100">
                         <div class="banner">
                             <?php
@@ -429,7 +430,7 @@
 
         <div class="weekly-deals marg-top-90 etc mb-5">
             <div class="row gx-0">
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
                         <div class="regular-4 w-100">
                             <div class="carousel-item w-100">
@@ -454,11 +455,11 @@
 
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-sm-9 col-12">
                     <div class="products h-100">
-                        <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-md-3 h-100 mo-text-center">
+                        <div class="row gx-0  h-100 mo-text-center">
                             <?php foreach ($productsetc as $pro){ ?>
-                                <div class="col  pe-3 each_pro mo-p-r-0">
+                                <div class=" col-sm-4 col-12  pe-3 each_pro mo-p-r-0">
                                     <div class="border p-3 product-grid h-100 d-flex align-items-stretch flex-column position-relative">
                                         <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                             <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
@@ -518,7 +519,7 @@
 
         <div class="weekly-deals marg-top-90 Brand mb-5">
             <div class="row gx-0">
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
                         <div class="title p-2 bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Brands</span>
@@ -573,7 +574,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-sm-9 col-12">
                     <div class="video h-100">
                         <iframe class="h-100 w-100" style="min-height:370px;" src="<?php echo get_lebel_by_value_in_theme_settings('brands_youtube_video');?>" title="My sunconure flock flewed high in sky for more then 5min||sunconure freefly training in india||" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
@@ -583,7 +584,7 @@
 
         <div class="weekly-deals marg-top-90 popular_categories mb-5">
             <div class="row gx-0">
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="deal-box border  position-relative  h-100 me-3 mo-m-r-0">
                         <div class="title  bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Popular Categories</span>
@@ -607,9 +608,6 @@
                         <div class="products carousel-item  <?php echo ($key == '0')?'active':'';?> p-4  text-center" style="height: 290px;">
                             <div class="ic-pp text-center position-relative p-4 ">
 
-                                <svg xmlns="http://www.w3.org/2000/svg" class="bac-round" width="69" height="69" viewBox="0 0 69 69" fill="none">
-                                    <circle cx="34.5" cy="34.5" r="34.5" fill="#EDEDED"/>
-                                </svg>
                                 <span class="icon-in-rou"><?php echo $icon; ?></span>
                             </div>
 
@@ -630,7 +628,7 @@
 
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-sm-9 col-12">
                     <div class="products border h-100">
                         <div class="row gx-0 row-cols-2 row-cols-sm-4 row-cols-lg-5 text-center">
                             <?php
@@ -641,9 +639,9 @@
                                 <div class="col  p-3 border position-relative">
                                     <a href="<?php echo base_url('category/'.$catPop->prod_cat_id);?>">
                                         <span class="icon-cat-main"><?php echo $icon; ?></span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="85" height="85" viewBox="0 0 85 85" fill="none">
-                                            <circle cx="42.5" cy="42.5" r="42.5" fill="#EDEDED"/>
-                                        </svg>
+<!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="85" height="85" viewBox="0 0 85 85" fill="none">-->
+<!--                                            <circle cx="42.5" cy="42.5" r="42.5" fill="#EDEDED"/>-->
+<!--                                        </svg>-->
                                         <h5 class="mt-4 cat-name"><a href="#"><?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$catPop->prod_cat_id);?></a></h5>
                                     </a>
                                 </div>

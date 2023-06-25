@@ -6,7 +6,7 @@
 
         <div class="weekly-deals marg-top-90 shipping mb-5">
             <div class="row gx-0">
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-sm-3 col-12">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -77,7 +77,7 @@
 
         <div class="weekly-newsletter marg-top-90 newsletter mb-5">
             <div class="row gx-0">
-                <div class="col-lg-6">
+                <div class="col-md-6 col-12">
                     <div class="input-group weekly-newsletter-foot" style="width: 79%;">
                         <input type="text" name="subscribe_email" id="subscribe_email" class="form-control news-sub border-0 rounded-0" placeholder="Enter your Email address" aria-label="Search" aria-describedby="search-addon" />
                         <button type="button" class="btn bg-black text-white rounded-0 sub-btn" onclick="subscribe()" >Subscribe Now</button>
@@ -90,7 +90,7 @@
 
         <div class="weekly-footer marg-top-90 menu mb-5">
             <div class="row gx-0">
-                <div class="col-md-3">
+                <div class="col-sm-3 col-12">
                     <h4 class="f-title">Our company</h4>
                     <ul class="list-unstyled ul-link mt-4">
                         <li><a href="<?php echo base_url('page/about-us')?>">About us</a></li>
@@ -99,7 +99,7 @@
                         <li><a href="<?php echo base_url('page/terms-and-conditions')?>">Terms & conditions</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
+                <div class="col-sm-3 col-12">
                     <h4 class="f-title">Account</h4>
                     <ul class="list-unstyled ul-link mt-4">
                         <li><a href="<?php echo base_url('login')?>">Login</a></li>
@@ -109,7 +109,7 @@
                         <li><a href="<?php echo base_url('my_order');?>">Tracking</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
+                <div class="col-sm-3 col-12">
                     <h4 class="f-title">Information</h4>
                     <ul class="list-unstyled ul-link mt-4">
                         <li><a href="#">FAQ</a></li>
@@ -119,7 +119,7 @@
                         <li><a href="#">Warranty</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
+                <div class="col-sm-3 col-12">
                     <h4 class="f-title">About amazing gadget</h4>
                     <ul class="list-unstyled ul-link-2 mt-4">
                         <li class="d-flex fot-about">
@@ -160,10 +160,10 @@
 <section class="banner">
     <div class="container py-2">
         <div class="row mt-3 copy-fot">
-            <div class="col-md-3">
+            <div class="col-sm-3 col-12">
                 <span class="copyright">Copyright@<a href="https://dnationsoft.com/" target="_blank">DNationSoft</a></span>
             </div>
-            <div class="col-md-5 ft-link">
+            <div class="col-sm-5 col-12 ft-link">
                 <a target="_blank" href="<?php echo get_lebel_by_value_in_settings('fb_url'); ?>"><i
                             class="fa-brands fa-facebook-f"></i></a>
                 <a class="ms-4" target="_blank" href="<?php echo get_lebel_by_value_in_settings('twitter_url'); ?>"><i
@@ -173,7 +173,7 @@
                 <a class="ms-4" target="_blank" href="<?php echo get_lebel_by_value_in_settings('instagram_url'); ?>"><i
                             class="fa-brands fa-instagram"></i></a>
             </div>
-            <div class="col-md-4 text-right">
+            <div class="col-sm-4 col-12 text-right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="333" height="35" viewBox="0 0 333 35" fill="none">
                     <mask id="mask0_950_6904" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="6" y="10" width="41" height="15">
                         <path d="M27.2004 15.1485C27.1771 16.9651 28.8347 17.9789 30.0834 18.5816C31.3664 19.2001 31.7973 19.5967 31.7925 20.1496C31.7827 20.9961 30.769 21.3696 29.8202 21.3841C28.1651 21.4096 27.2028 20.9415 26.4377 20.5874L25.8415 23.3511C26.6091 23.7016 28.0304 24.0072 29.5044 24.0205C32.964 24.0205 35.2276 22.3288 35.2399 19.7058C35.2533 16.377 30.5915 16.1927 30.6233 14.7047C30.6343 14.2536 31.0689 13.7722 32.0214 13.6497C32.4927 13.5878 33.7941 13.5405 35.2693 14.2136L35.8483 11.5396C35.055 11.2534 34.0352 10.9794 32.7657 10.9794C29.5093 10.9794 27.2187 12.6941 27.2004 15.1485ZM41.4124 11.2098C40.7807 11.2098 40.2482 11.5748 40.0107 12.135L35.0685 23.8241H38.5257L39.2137 21.9408H43.4385L43.8376 23.8241H46.8847L44.2257 11.2098H41.4124ZM41.896 14.6174L42.8938 19.3541H40.1613L41.896 14.6174ZM23.0086 11.2098L20.2835 23.8241H23.5779L26.3018 11.2098H23.0086ZM18.135 11.2098L14.7059 19.7955L13.3188 12.4952C13.156 11.6803 12.5133 11.2098 11.7996 11.2098H6.19384L6.11548 11.576C7.26625 11.8234 8.57373 12.2224 9.3658 12.6492C9.8506 12.9099 9.98893 13.1379 10.1481 13.7576L12.7753 23.8241H16.257L21.5946 11.2098H18.135Z" fill="white"/>
@@ -427,21 +427,12 @@
     $(document).scroll(function() {
       var y = $(this).scrollTop();
       if (y > 200) {
-          $(".btn-cat-show").removeClass("show");
-        //   $(".sticky-menu").addClass("sticky-header");
-        // $(".sticky-menu").addClass("sticky-menu-class");
-        // $(".header-bottom").addClass("border-bottom");
-        // $(".side_logo").addClass("img-30");
-        // $(".menu-show").hide();
-          $(".menu-show-hide").slideDown(200);
+          // $(".btn-cat-show").removeClass("show");
+          // $(".menu-show-hide").slideDown(200);
 
       } else if (y < 200) {
-            // $(".sticky-menu").removeClass("sticky-menu-class");
-            // $(".header-bottom").removeClass("border-bottom");
-            // $(".side_logo").removeClass("img-30");
-            $(".btn-cat-show").addClass("show");
-          $(".menu-show-hide").slideUp(200);
-          // $(".menu-show").show();
+            // $(".btn-cat-show").addClass("show");
+          // $(".menu-show-hide").slideUp(200);
       }
     });
 
