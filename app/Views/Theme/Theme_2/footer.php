@@ -6,7 +6,7 @@
 
         <div class="weekly-deals marg-top-90 shipping mb-5">
             <div class="row gx-0">
-                <div class="col-sm-3 col-12">
+                <div class="col-sm-6 col-md-3 col-12 mb-4 mb-md-0">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 col-12">
+                <div class="col-sm-6 col-md-3 col-12 mb-4 mb-md-0">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 col-12">
+                <div class="col-sm-6 col-md-3 col-12 mb-4 mb-md-0">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3 col-12">
+                <div class="col-sm-6 col-md-3 col-12 mb-4 mb-md-0">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -90,66 +90,76 @@
 
         <div class="weekly-footer marg-top-90 menu mb-5">
             <div class="row gx-0">
-                <div class="col-sm-3 col-12">
-                    <h4 class="f-title">Our company</h4>
-                    <ul class="list-unstyled ul-link mt-4">
-                        <li><a href="<?php echo base_url('page/about-us')?>">About us</a></li>
-                        <li><a href="<?php echo base_url('page/contact-us')?>">Contact us</a></li>
-                        <li><a href="<?php echo base_url('page/privacy-policy')?>">privacy policy</a></li>
-                        <li><a href="<?php echo base_url('page/terms-and-conditions')?>">Terms & conditions</a></li>
-                    </ul>
+                <div class="col-md-3 col-12">
+                    <h4 class="mb-0 f-title toggleButton">Our company</h4>
+                    <div class="elementToToggle d-none d-md-block">
+                        <ul class="list-unstyled ul-link mt-4">
+                            <li><a href="<?php echo base_url('page/about-us')?>">About us</a></li>
+                            <li><a href="<?php echo base_url('page/contact-us')?>">Contact us</a></li>
+                            <li><a href="<?php echo base_url('page/privacy-policy')?>">privacy policy</a></li>
+                            <li><a href="<?php echo base_url('page/terms-and-conditions')?>">Terms & conditions</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-sm-3 col-12">
-                    <h4 class="f-title">Account</h4>
-                    <ul class="list-unstyled ul-link mt-4">
-                        <li><a href="<?php echo base_url('login')?>">Login</a></li>
-                        <li><a href="<?php echo base_url('dashboard')?>">My Account</a></li>
-                        <li><a href="<?php echo base_url('favorite');?>">My Wishlist</a></li>
-                        <li><a href="<?php echo base_url('my_order');?>">Order history</a></li>
-                        <li><a href="<?php echo base_url('my_order');?>">Tracking</a></li>
-                    </ul>
+                <div class="col-md-3 col-12">
+                    <h4 class="mb-0 f-title toggleButton">Account</h4>
+                    <div class="elementToToggle d-none d-md-block">
+                        <ul class="list-unstyled ul-link mt-4">
+                            <li><a href="<?php echo base_url('login')?>">Login</a></li>
+                            <li><a href="<?php echo base_url('dashboard')?>">My Account</a></li>
+                            <li><a href="<?php echo base_url('favorite');?>">My Wishlist</a></li>
+                            <li><a href="<?php echo base_url('my_order');?>">Order history</a></li>
+                            <li><a href="<?php echo base_url('my_order');?>">Tracking</a></li>
+                        </ul>
+                    </div>                    
                 </div>
-                <div class="col-sm-3 col-12">
-                    <h4 class="f-title">Information</h4>
-                    <ul class="list-unstyled ul-link mt-4">
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Payment</a></li>
-                        <li><a href="<?php echo base_url('page/returns-policy')?>">Return</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Warranty</a></li>
-                    </ul>
+                <div class="col-md-3 col-12">
+                    <h4 class="mb-0 f-title toggleButton">Information</h4>
+                    <div class="elementToToggle d-none d-md-block">
+                        <ul class="list-unstyled ul-link mt-4">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Payment</a></li>
+                            <li><a href="<?php echo base_url('page/returns-policy')?>">Return</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Warranty</a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
-                <div class="col-sm-3 col-12">
-                    <h4 class="f-title">About amazing gadget</h4>
-                    <ul class="list-unstyled ul-link-2 mt-4">
-                        <li class="d-flex fot-about">
-                            <span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
+                <div class="col-md-3 col-12">
+                    <h4 class="mb-0 f-title toggleButton">About amazing gadget</h4>
+                    <div class="elementToToggle d-none d-md-block">
+                        <ul class="list-unstyled ul-link-2 mt-4">
+                            <li class="d-flex fot-about">
+                                <span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
+                                            fill="none">
+                                    <path d="M8 10C8.55 10 9.021 9.804 9.413 9.412C9.80433 9.02067 10 8.55 10 8C10 7.45 9.80433 6.979 9.413 6.587C9.021 6.19567 8.55 6 8 6C7.45 6 6.97933 6.19567 6.588 6.587C6.196 6.979 6 7.45 6 8C6 8.55 6.196 9.02067 6.588 9.412C6.97933 9.804 7.45 10 8 10ZM8 17.35C10.0333 15.4833 11.5417 13.7873 12.525 12.262C13.5083 10.7373 14 9.38333 14 8.2C14 6.38333 13.4207 4.89567 12.262 3.737C11.104 2.579 9.68333 2 8 2C6.31667 2 4.89567 2.579 3.737 3.737C2.579 4.89567 2 6.38333 2 8.2C2 9.38333 2.49167 10.7373 3.475 12.262C4.45833 13.7873 5.96667 15.4833 8 17.35ZM8 20C5.31667 17.7167 3.31267 15.5957 1.988 13.637C0.662666 11.679 0 9.86667 0 8.2C0 5.7 0.804333 3.70833 2.413 2.225C4.021 0.741667 5.88333 0 8 0C10.1167 0 11.979 0.741667 13.587 2.225C15.1957 3.70833 16 5.7 16 8.2C16 9.86667 15.3377 11.679 14.013 13.637C12.6877 15.5957 10.6833 17.7167 8 20Z"
+                                        fill="#939393"/>
+                                </svg> </span>
+                                <span class="f-text-add">
+                                    <strong>Bangladesh office:</strong><br>
+                                <?php echo get_lebel_by_value_in_settings('address');?>
+                                </span>
+                            </li>
+                            <li class="d-flex fot-about">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                                         fill="none">
-                                <path d="M8 10C8.55 10 9.021 9.804 9.413 9.412C9.80433 9.02067 10 8.55 10 8C10 7.45 9.80433 6.979 9.413 6.587C9.021 6.19567 8.55 6 8 6C7.45 6 6.97933 6.19567 6.588 6.587C6.196 6.979 6 7.45 6 8C6 8.55 6.196 9.02067 6.588 9.412C6.97933 9.804 7.45 10 8 10ZM8 17.35C10.0333 15.4833 11.5417 13.7873 12.525 12.262C13.5083 10.7373 14 9.38333 14 8.2C14 6.38333 13.4207 4.89567 12.262 3.737C11.104 2.579 9.68333 2 8 2C6.31667 2 4.89567 2.579 3.737 3.737C2.579 4.89567 2 6.38333 2 8.2C2 9.38333 2.49167 10.7373 3.475 12.262C4.45833 13.7873 5.96667 15.4833 8 17.35ZM8 20C5.31667 17.7167 3.31267 15.5957 1.988 13.637C0.662666 11.679 0 9.86667 0 8.2C0 5.7 0.804333 3.70833 2.413 2.225C4.021 0.741667 5.88333 0 8 0C10.1167 0 11.979 0.741667 13.587 2.225C15.1957 3.70833 16 5.7 16 8.2C16 9.86667 15.3377 11.679 14.013 13.637C12.6877 15.5957 10.6833 17.7167 8 20Z"
-                                      fill="#939393"/>
-                            </svg> </span>
-                            <span class="f-text-add">
-                                <strong>Bangladesh office:</strong><br>
-                            <?php echo get_lebel_by_value_in_settings('address');?>
-                            </span>
-                        </li>
-                        <li class="d-flex fot-about">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
-                                       fill="none">
-                                <path d="M16.95 18C14.8 18 12.7043 17.5207 10.663 16.562C8.621 15.604 6.81267 14.3373 5.238 12.762C3.66267 11.1873 2.396 9.379 1.438 7.337C0.479334 5.29567 0 3.2 0 1.05C0 0.75 0.0999999 0.5 0.3 0.3C0.5 0.0999999 0.75 0 1.05 0H5.1C5.33333 0 5.54167 0.0749999 5.725 0.225C5.90833 0.375 6.01667 0.566667 6.05 0.8L6.7 4.3C6.73333 4.53333 6.72933 4.74567 6.688 4.937C6.646 5.129 6.55 5.3 6.4 5.45L3.975 7.9C4.675 9.1 5.55433 10.225 6.613 11.275C7.671 12.325 8.83333 13.2333 10.1 14L12.45 11.65C12.6 11.5 12.796 11.3873 13.038 11.312C13.2793 11.2373 13.5167 11.2167 13.75 11.25L17.2 11.95C17.4333 12 17.625 12.1123 17.775 12.287C17.925 12.4623 18 12.6667 18 12.9V16.95C18 17.25 17.9 17.5 17.7 17.7C17.5 17.9 17.25 18 16.95 18ZM3.025 6L4.675 4.35L4.25 2H2.025C2.10833 2.68333 2.225 3.35833 2.375 4.025C2.525 4.69167 2.74167 5.35 3.025 6ZM11.975 14.95C12.625 15.2333 13.2877 15.4583 13.963 15.625C14.6377 15.7917 15.3167 15.9 16 15.95V13.75L13.65 13.275L11.975 14.95Z"
-                                      fill="#939393"/>
-                                </svg></span>
-                            <span class="f-text-add"><strong>Hotline:</strong><br> +88<?php echo get_lebel_by_value_in_settings('phone');?></span>
-                        </li>
-                        <li class="d-flex fot-about">
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16"
-                                       fill="none">
-                                <path d="M20 2C20 0.9 19.1 0 18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2ZM18 2L10 7L2 2H18ZM18 14H2V4L10 9L18 4V14Z"
-                                      fill="#939393"/>
-                                </svg></span>
-                            <span class="f-text-add"><?php echo get_lebel_by_value_in_settings('email');?></span>
-                        </li>
-                    </ul>
+                                    <path d="M16.95 18C14.8 18 12.7043 17.5207 10.663 16.562C8.621 15.604 6.81267 14.3373 5.238 12.762C3.66267 11.1873 2.396 9.379 1.438 7.337C0.479334 5.29567 0 3.2 0 1.05C0 0.75 0.0999999 0.5 0.3 0.3C0.5 0.0999999 0.75 0 1.05 0H5.1C5.33333 0 5.54167 0.0749999 5.725 0.225C5.90833 0.375 6.01667 0.566667 6.05 0.8L6.7 4.3C6.73333 4.53333 6.72933 4.74567 6.688 4.937C6.646 5.129 6.55 5.3 6.4 5.45L3.975 7.9C4.675 9.1 5.55433 10.225 6.613 11.275C7.671 12.325 8.83333 13.2333 10.1 14L12.45 11.65C12.6 11.5 12.796 11.3873 13.038 11.312C13.2793 11.2373 13.5167 11.2167 13.75 11.25L17.2 11.95C17.4333 12 17.625 12.1123 17.775 12.287C17.925 12.4623 18 12.6667 18 12.9V16.95C18 17.25 17.9 17.5 17.7 17.7C17.5 17.9 17.25 18 16.95 18ZM3.025 6L4.675 4.35L4.25 2H2.025C2.10833 2.68333 2.225 3.35833 2.375 4.025C2.525 4.69167 2.74167 5.35 3.025 6ZM11.975 14.95C12.625 15.2333 13.2877 15.4583 13.963 15.625C14.6377 15.7917 15.3167 15.9 16 15.95V13.75L13.65 13.275L11.975 14.95Z"
+                                        fill="#939393"/>
+                                    </svg></span>
+                                <span class="f-text-add"><strong>Hotline:</strong><br> +88<?php echo get_lebel_by_value_in_settings('phone');?></span>
+                            </li>
+                            <li class="d-flex fot-about">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16"
+                                        fill="none">
+                                    <path d="M20 2C20 0.9 19.1 0 18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2ZM18 2L10 7L2 2H18ZM18 14H2V4L10 9L18 4V14Z"
+                                        fill="#939393"/>
+                                    </svg></span>
+                                <span class="f-text-add"><?php echo get_lebel_by_value_in_settings('email');?></span>
+                            </li>
+                        </ul>
+                    </div>
+                    
                 </div>
 
             </div>
@@ -534,7 +544,7 @@
     });
     var swiper = new Swiper(".trendSlide", {
         slidesPerView: 3,
-        spaceBetween: 30,
+        spaceBetween: 15,
         loop: true,
         navigation: {
             nextEl: ".trend-button-next",
@@ -543,24 +553,141 @@
         breakpoints: {
             992: {
                 slidesPerView: 3,
-                spaceBetween: 31,
+                spaceBetween: 15,
             },
             768: {
                 slidesPerView: 2,
-                spaceBetween: 30,
+                spaceBetween: 15,
             },
             0: {
                 slidesPerView: 1,
-                spaceBetween: 30,
+                spaceBetween: 15,
             },
         },
     });
-    document.querySelector('.trend-button-prev').addEventListener('click', function () {
-        swiper.slidePrev();
+    // document.querySelector('.trend-button-prev').addEventListener('click', function () {
+    //     swiper.slidePrev();
+    // });
+
+    // document.querySelector('.trend-button-next').addEventListener('click', function () {
+    //     swiper.slideNext();
+    // });
+    
+
+    var swiper = new Swiper("#hotDells", {
+      slidesPerView: 1,
+      spaceBetween: 15,
+      responsive: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".hotdeal-button-next",
+        prevEl: ".hotdeal-button-prev",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 15,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 15,
+        },
+        768: {
+          slidesPerView: 1,
+          spaceBetween: 15,
+        },
+      },
     });
 
-    document.querySelector('.trend-button-next').addEventListener('click', function () {
-        swiper.slideNext();
+    var swiper = new Swiper("#trandCol", {
+      slidesPerView: 1,
+      spaceBetween: 15,
+      responsive: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".trend-button-next",
+        prevEl: ".trend-button-prev",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 15,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 15,
+        },
+        768: {
+          slidesPerView: 1,
+          spaceBetween: 15,
+        },
+      },
+    });
+
+    var swiper = new Swiper("#brands", {
+      slidesPerView: 2,
+      slidesPerColumn: 2,
+      spaceBetween: 15,
+      responsive: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".brands-button-next",
+        prevEl: ".brands-button-prev",
+      },
+      breakpoints: {
+        0: {          
+          slidesPerView: 2,
+          slidesPerColumn: 2,
+          spaceBetween: 20,
+        },
+        480: {         
+          slidesPerView: 4,
+          slidesPerColumn: 2,
+          spaceBetween: 15,
+        },
+        768: {         
+          slidesPerView: 2,
+          slidesPerColumn: 2,
+          spaceBetween: 15,
+        },
+      },
+    });
+
+    var swiper = new Swiper("#populatCat", {
+      slidesPerView: 1,
+      spaceBetween: 15,
+      responsive: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".popcat-button-next",
+        prevEl: ".popcat-button-prev",
+      },
+      breakpoints: {
+        0: {          
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        480: {         
+          slidesPerView: 2,
+          spaceBetween: 15,
+        },
+        768: {         
+          slidesPerView: 1,
+          spaceBetween: 15,
+        },
+      },
     });
 
     $(document).ready(function(){
@@ -1015,6 +1142,15 @@
         var data = $(val).find('option:selected').html();
         $('#'+viewId).html(data);
     }
+
+
+    $(document).ready(function() {
+        $('.toggleButton').click(function() {
+            $(this).toggleClass('active');
+            $(this).siblings('.elementToToggle').slideToggle();
+            $(this).siblings('.elementToToggle').removeClass('d-none');
+        });
+    });
 
 </script>
 
