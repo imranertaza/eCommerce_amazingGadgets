@@ -745,12 +745,13 @@ a {
 
 .title-text {
     position: absolute;
-    top: 45%;
-    left: 10px;
+    top: 50%;
+    left: 5%;
     text-transform: uppercase;
+    transform: translate(-50%, -50%);
 }
 .text-center .title-text {
-    left: 48%;
+    left: 50%;
 }
 .history {
     padding: 65px 0;
@@ -1980,12 +1981,26 @@ input[type='radio']:checked{
     padding: 10px 0;
 }
 .foot .ul-link li {margin: 0;}
+
+
+@media(min-width:768px) and (max-width:1199px) {
+    .product-filter,.product-filter label {
+        font-size: 12px;
+    }
+    .breadcrumb {
+        font-size: 11px;
+    }
+}
  @media (min-width:768px) {
     .allcategory .dropdown-menu {
         display: block;
     }
     .allcategory .dropdown-menu.show {
         border-top: 0 !important;
+    }
+    .filter-desktop {
+        display: block !important;
+        opacity: 1;
     }
  }
  @media (max-width:767px) {
@@ -2003,7 +2018,12 @@ input[type='radio']:checked{
     }
     .navbar-primary {padding: 0;}
     .cat-drop-menu {height: auto;}
-    
+    .title-shadow {
+        font-size: 4rem;
+    }
+    .sing-up {
+        margin: 0 auto;
+    }
     .f-title{
         margin-top:25px;
     }
