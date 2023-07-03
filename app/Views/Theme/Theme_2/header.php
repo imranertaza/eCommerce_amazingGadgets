@@ -39,11 +39,11 @@
     <div class="topbar">
         <div class="container">
             <div class="row align-items-center m-t-h" >
-                <div class="col-sm-3 col-12 text-center text-md-start">
+                <div class="col-sm-5 col-12 text-center text-sm-start">
                     <span class="me-1"><a href="">Free delivery in dhaka</a></span>
                     <span><a href="<?php echo base_url('page/returns-policy')?>">Returns Policy</a></span>
                 </div>
-                <div class="col-sm-9 col-12 text-md-start-2  d-flex justify-content-end align-items-center top-bar-height" >
+                <div class="col-sm-7 col-12 text-md-start-2  d-flex justify-content-center justify-content-md-end align-items-center top-bar-height" >
                     <?php if (modules_key_by_access('wishlist') == 1) { ?>
                     <a class="me-3 d-flex" href="<?php echo base_url('favorite')?>">
                         <span><i class="fa-solid fa-heart me-1"></i></span>
@@ -59,7 +59,7 @@
                     <?php } ?>
 
                     <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
-                    <a class="me-3 py-3 pe-3  d-flex no-pd" href="<?php echo base_url('register')?>">
+                    <a class="me-1 me-md-3 py-3 pe-1 pe-md-3 d-flex no-pd" href="<?php echo base_url('register')?>">
                         <span><i class="fa-solid fa-user me-1"></i></span>
                         <span class=" d-sm-block">Create an account</span>
                     </a>
@@ -94,15 +94,20 @@
     <div class="header-main py-1">
         <div class="container">
             <div class="row align-items-center m-t-h">
-                <div class="col-6 col-md-3 order-1 mb-3 mb-md-0">
-                    <div class="logo">
+                <div class="col-4 order-1 d-md-none">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                </div>
+                <div class="col-4 order-2 col-md-3 order-1 mb-3 mb-md-0">
+                    <div class="logo text-center text-md-start">
                         <a href="<?php echo base_url()?>">
                             <?php $logoImg = get_lebel_by_value_in_theme_settings('side_logo');
                             echo image_view('uploads/logo','',$logoImg,'noimage.png','img-fluid side_logo');?>
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 order-3 order-md-2 mb-3 mb-md-0 sear-pd" >
+                <div class="col-12 order-4 order-md-2 col-md-6 order-3 order-md-2 mb-3 mb-md-0 sear-pd" >
                     <?php if (modules_key_by_access('top_search') == 1) { ?>
                     <form id="first-form-top" action="<?php echo base_url('products/search');?>" class="mini-search" method="GET">
                         <div class="input-group" id="first-valid">
@@ -125,12 +130,12 @@
                     </form>
                     <?php } ?>
                 </div>
-                <div class="col-6 col-md-3 mb-3 mb-md-0 order-2 order-md-3 d-flex justify-content-end" >
+                <div class="col-4 order-3 col-md-3 mb-3 mb-md-0 order-2 order-md-3 d-flex justify-content-end" >
                     <a href="<?php echo base_url('cart')?>" >
                     <div class="mini-cart d-flex position-relative" id="cartReload">
 
 
-                        <div class="cart-content d-flex flex-column">
+                        <div class="cart-content d-none d-md-flex flex-column">
                             <span class="w-100">My Cart</span>
                             <span class="total"> <?php echo currency_symbol(Cart()->total()) ?></span>
                         </div>
@@ -146,17 +151,17 @@
             </div>
         </div>
     </div>
-    <div class="header-bottom">
+    <div class="header-bottom py-3 py-md-0">
         <div class="container">
             <div class="row gx-0">
-                <div class="col-sm-3 col-8">
+                <div class="col-md-3">
                     <?php if(isset($home_menu)){  ?>
-                    <div class="allcategory h-100 " style="width:94%;">
-                        <button class="cat-btn-h btn bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="allcategory h-100 me-md-3">
+                        <button class="cat-btn-h btn py-3 bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-bars me-3 no-mg"></i>
                             Shop by Categories
                         </button>
-                        <ul class="dropdown-menu show border  cat-drop-menu all-cat-menu btn-cat-show" >
+                        <ul class="dropdown-menu border  cat-drop-menu all-cat-menu btn-cat-show" >
                             <?php foreach (getSideMenuArray() as $pcat){?>
                             <li>
                                 <a class="dropdown-item" href="<?php echo base_url('category/'.$pcat->prod_cat_id);?>">
@@ -187,13 +192,14 @@
                         </div>
                     <?php } ?>
                 </div>
-                <div class="col-sm-9 col-4 d-flex align-items-center">
-                    <nav class="navbar-primary navbar  nav-menu-main">
-                        <div class="container-fluid  main-menu-but" >
-
-
-                            <div class=" w-100 show " id="navbarNav">
-                                <ul class="navbar d-flex justify-content-between  text-uppercase ">
+                <div class="col-md-9 d-flex align-items-md-center">
+                    <nav class="navbar-primary navbar navbar-expand-md">
+                        <div class="offcanvas offcanvas-start " id="navbarNav">
+                            <div class="offcanvas-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body w-100">
+                                <ul class="navbar d-flex flex-column flex-md-row align-items-start justify-content-md-between  text-uppercase mb-0">
                                     <li class="nav-item">
                                         <a class="nav-link" aria-current="page" href="<?php echo base_url()?>">Home</a>
                                     </li>
@@ -212,6 +218,7 @@
                                 </ul>
                             </div>
                         </div>
+                        
                     </nav>
                 </div>
             </div>
@@ -259,7 +266,7 @@
 
 
 
-                                <div class="cart-content d-flex flex-column">
+                                <div class="cart-content d-none d-md-flex flex-column">
                                     <span class="w-100">My Cart</span>
                                     <span class="total"> <?php echo currency_symbol(Cart()->total()) ?></span>
                                 </div>

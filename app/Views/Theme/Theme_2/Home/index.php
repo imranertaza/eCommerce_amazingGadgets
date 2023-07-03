@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row gx-0">
 
-            <div class="col-sm-9 col-12 offset-sm-3 offset-0">
+            <div class="col-md-9 offset-md-3">
                 <div class="swiper bannerSlide">
                     <div class="swiper-wrapper">
                         <?php $sli_1 = get_lebel_by_value_in_theme_settings('slider_1'); ?>
@@ -24,62 +24,56 @@
 
         <div class="weekly-deals marg-top-90 Hot-Deals  mb-5">
             <div class="row  gx-0">
-                <div class="col-sm-3 col-12">
-                    <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
+                <div class="col-md-3 col-12 mb-3 mb-md-0">
+                    <div class="deal-box border position-relative  h-100 me-md-3 mo-m-r-0">
                         <div class="title bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Hot Deals</span>
                             <span class="icon-mt" >
-                                <svg xmlns="http://www.w3.org/2000/svg" class="left-arr" width="8" height="12" viewBox="0 0 8 12" fill="none" data-bs-target="#hotDells" data-bs-slide="prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="hotdeal-button-prev left-arr" width="8" height="12" viewBox="0 0 8 12" fill="none">
                                     <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB"/>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none" data-bs-target="#hotDells" data-bs-slide="next">
+                                <svg class="hotdeal-button-next" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
                                     <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB"/>
                                 </svg>
                             </span>
                         </div>
-                        <div class="products h-100">
-                            <div class="row gx-0 ">
-                                <div id="hotDells" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                <?php foreach ($hotProSide as $key => $pro){ ?>
-                                        <div class="carousel-item  <?php echo ($key == '0')?'active':'';?>" >
-                                    <div class="col pro-pd-hot">
-                                        <div class="product-grid   d-flex align-items-stretch flex-column position-relative text-center">
+                        <div class="p-3 h-100">
+                            <div id="hotDells" class="swiper">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($hotProSide as $key => $pro){ ?>
+                                            <div class="swiper-slide">
+                                                <div class="product-grid d-flex align-items-stretch flex-column position-relative text-center">
+                                                    <div class="product-top">
+                                                        <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo image_view('uploads/products',$pro->product_id,'100_'.$pro->image,'noimage.png','img-fluid')?></a>
+                                                        <div class="rating text-center my-2">
+                                                            <?php echo product_id_by_rating($pro->product_id);?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-bottom ">
+                                                        <div class="product-title-hot height-40 mb-2 text-capitalize">
+                                                            <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
+                                                        </div>
+                                                        <div class="price-hot mb-3">
+                                                            <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
+                                                                <?php echo currency_symbol($pro->price);?>
+                                                            <?php }else{ ?>
+                                                                <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                            <?php } ?>
+                                                        </div>
 
-                                            <div class="product-top">
-                                                <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo image_view('uploads/products',$pro->product_id,'100_'.$pro->image,'noimage.png','img-fluid')?></a>
-                                                <div class="rating text-center my-2">
-                                                    <?php echo product_id_by_rating($pro->product_id);?>
+
+                                                        <?php echo addToCartBtnIcon($pro->product_id);?>
+
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="product-bottom ">
-                                                <div class="product-title-hot height-40 mb-2 text-capitalize">
-                                                    <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
-                                                </div>
-                                                <div class="price-hot mb-3">
-                                                    <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
-                                                        <?php echo currency_symbol($pro->price);?>
-                                                    <?php }else{ ?>
-                                                        <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
-                                                    <?php } ?>
-                                                </div>
-
-
-                                                <?php echo addToCartBtnIcon($pro->product_id);?>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                        </div>
-                                <?php } ?>
-                                    </div>
+                                    <?php } ?>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-9 col-12">
+                <div class="col-md-9 col-12">
                     <div class="products h-100">
                         <div class="row gx-0  h-100 mo-text-center">
                             <?php foreach ($hotProlimit as $pro){ ?>
@@ -138,58 +132,53 @@
 
         <div class="weekly-deals marg-top-90 Trending  mb-5">
                 <div class="row  gx-0">
-                    <div class="col-sm-3 col-12">
+                    <div class="col-md-3 col-12 mb-3 mb-md-0">
                         <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
-                            <div class="title  bg-black text-white d-flex justify-content-between ">
+                            <div class="title bg-black text-white d-flex justify-content-between ">
                                     <span class="title-hot">Trending Collection</span>
                                     <span class="icon-mt">
-                                        <svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none" data-bs-target="#trandCol" data-bs-slide="prev">
+                                        <svg class="trend-button-prev left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB"/>
 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none" data-bs-target="#trandCol" data-bs-slide="next">
+                                <svg class="trend-button-next" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB"/>
 </svg>
                                     </span>
                                 </div>
-                            <div class="products h-100">
-                                <div class="row gx-0 ">
-                                    <div id="trandCol" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-inner">
-                                    <?php foreach ($tranPro as $key => $pro){ ?>
-                                        <div class="col carousel-item  <?php echo ($key == '0')?'active':'';?> pro-pd-hot">
-                                            <div class="product-grid   d-flex align-items-stretch flex-column position-relative text-center">
-
-                                                <div class="product-top">
-                                                    <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo image_view('uploads/products',$pro->product_id,'100_'.$pro->image,'noimage.png','img-fluid')?></a>
-                                                    <div class="rating text-center my-2">
-                                                        <?php echo product_id_by_rating($pro->product_id);?>
+                            <div class="p-3 h-100">
+                            <div id="trandCol" class="swiper">
+                                        <div class="swiper-wrapper">
+                                            <?php foreach ($tranPro as $key => $pro){ ?>
+                                                <div class="swiper-slide">
+                                                    <div class="product-grid d-flex align-items-stretch flex-column position-relative text-center">
+                                                        <div class="product-top">
+                                                            <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo image_view('uploads/products',$pro->product_id,'100_'.$pro->image,'noimage.png','img-fluid')?></a>
+                                                            <div class="rating text-center my-2">
+                                                                <?php echo product_id_by_rating($pro->product_id);?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-bottom ">
+                                                            <div class="product-title-hot height-40 mb-2 text-capitalize">
+                                                                <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
+                                                            </div>
+                                                            <div class="price-hot mb-3">
+                                                                <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
+                                                                    <?php echo currency_symbol($pro->price);?>
+                                                                <?php }else{ ?>
+                                                                    <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <?php echo addToCartBtnIcon($pro->product_id);?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="product-bottom ">
-                                                    <div class="product-title-hot height-40 mb-2 text-capitalize">
-                                                        <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
-                                                    </div>
-                                                    <div class="price-hot mb-3">
-                                                        <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
-                                                            <?php echo currency_symbol($pro->price);?>
-                                                        <?php }else{ ?>
-                                                            <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
-                                                        <?php } ?>
-                                                    </div>
-                                                    <?php echo addToCartBtnIcon($pro->product_id);?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
+                                            <?php } ?>
                                         </div>
                                     </div>
-
-
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-9 col-12">
+                    <div class="col-md-9 col-12">
                         <div class="video h-100">
                             <iframe class="h-100 w-100" src="<?php echo get_lebel_by_value_in_theme_settings('trending_youtube_video');?>" title="My sunconure flock flewed high in sky for more then 5min||sunconure freefly training in india||" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
@@ -200,8 +189,8 @@
 
         <div class="weekly-deals marg-top-90 special-products  mb-5">
             <div class="row gx-0">
-                <div class="col-sm-3 col-12">
-                    <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
+                <div class="col-md-3 col-12 mb-3 mb-md-3">
+                    <div class="deal-box border position-relative  h-100 me-md-3 mo-m-r-0">
                         <div class="title  bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Special products</span>
                             <span>
@@ -210,10 +199,10 @@
                         <div class="products h-100 p-2 mo-text-center">
                             <?php foreach ($specialPro as $pro){ ?>
                                 <div class="row border-top mt-3 pt-1 pb-1" style="margin-left: -8px !important;margin-right: -8px !important;margin-top: -8px !important;">
-                                        <div class="col-md-4 p-2" >
+                                        <div class="col-2 col-md-4 p-2" >
                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid  ')?></a>
                                         </div>
-                                        <div class="col-md-8 p-2">
+                                        <div class="col-10 col-md-8 p-2">
                                             <div class="product-title-special height-40 mb-2 text-capitalize">
                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
                                             </div>
@@ -230,7 +219,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-9 col-12 ">
+                <div class="col-md-9 col-12 ">
                     <div class="h-100">
                         <div class="banner">
                             <?php
@@ -519,23 +508,21 @@
 
         <div class="weekly-deals marg-top-90 Brand mb-5">
             <div class="row gx-0">
-                <div class="col-sm-3 col-12">
-                    <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
+                <div class="col-md-3 col-12 mb-3 mb-md-0">
+                    <div class="deal-box border position-relative  h-100 me-md-3 mo-m-r-0">
                         <div class="title p-2 bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Brands</span>
                             <span class="icon-mt">
-                                <a href="javascript:void(0)"><svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-<path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB" data-bs-target="#brand" data-bs-slide="prev" /></a>
+                                <svg class="brands-button-prev left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+<path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB" data-bs-target="#brand" data-bs-slide="prev" />
 </svg>
-                                <a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-<path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB" data-bs-target="#brand" data-bs-slide="next" /></a>
+                                <svg class="brands-button-next" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+<path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB">
 </svg>
                             </span>
                         </div>
-                        <div id="brand" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-
-
+                        <div id="brands" class="swiper">
+                            <div class="swiper-wrapper">
                                 <?php
                                     $perPageShow = 6;
                                     $count = count($brand)/$perPageShow;
@@ -543,15 +530,13 @@
                                     for ($i=1; $i<=$count; $i++){
                                         $l = $i*$perPageShow;
                                         $act = ($l == $perPageShow)?'active':'';
-                                    print '<div class="carousel-item '.$act.'"> <div class="row px-2">';
                                     while($j<=$l){
                                             if (array_key_exists($j-1, $brand)) {
-                                                echo '<div class="col-md-6 brand-item  mt-2  no-padding">'.image_view('uploads/brand', '', $brand[$j-1]->image, 'noimage.png', 'brand-img ').'</div>';
+                                                echo '<div class="swiper-slide">'.image_view('uploads/brand', '', $brand[$j-1]->image, 'noimage.png', 'brand-img w-100').'</div>';
                                             }
                                             $j++;
-                                        }
-                                        print ' </div> </div>';
                                      }
+                                    }
                                 ?>
 
 
@@ -574,7 +559,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-9 col-12">
+                <div class="col-md-9 col-12">
                     <div class="video h-100">
                         <iframe class="h-100 w-100" style="min-height:370px;" src="<?php echo get_lebel_by_value_in_theme_settings('brands_youtube_video');?>" title="My sunconure flock flewed high in sky for more then 5min||sunconure freefly training in india||" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
@@ -584,28 +569,29 @@
 
         <div class="weekly-deals marg-top-90 popular_categories mb-5">
             <div class="row gx-0">
-                <div class="col-sm-3 col-12">
-                    <div class="deal-box border  position-relative  h-100 me-3 mo-m-r-0">
+                <div class="col-md-3 col-12 mb-3 mb-md-0">
+                    <div class="deal-box border position-relative h-100 me-md-3 mo-m-r-0">
                         <div class="title  bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Popular Categories</span>
                             <span class="icon-mt">
-                                        <svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none" data-bs-target="#popu-cat" data-bs-slide="prev">
+                                        <svg class="popcat-button-prev left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none" data-bs-target="#popu-cat" data-bs-slide="prev">
 <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB"/>
 </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none" data-bs-target="#popu-cat" data-bs-slide="next">
+                                        <svg class="popcat-button-next" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
 <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB"/>
 </svg>
                                     </span>
                         </div>
 
-                        <div id="popu-cat" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
+                        <div id="populatCat" class="swiper">
+                        <div class="swiper-wrapper">
                         <?php
                         foreach ($populerCat as $key => $catPop){
                         $icon_id = get_data_by_id('icon_id','cc_product_category','prod_cat_id',$catPop->prod_cat_id);
                         $icon = get_data_by_id('code','cc_icons','icon_id',$icon_id);
                         ?>
-                        <div class="products carousel-item  <?php echo ($key == '0')?'active':'';?> p-4  text-center" style="height: 290px;">
+                        <div class="swiper-slide">
+                        <div class="products  <?php echo ($key == '0')?'active':'';?> p-4  text-center" style="height: 290px;">
                             <div class="ic-pp text-center position-relative p-4 ">
 
                                 <span class="icon-in-rou"><?php echo $icon; ?></span>
@@ -620,7 +606,7 @@
                                     </svg></a>
                             </div>
 
-                        </div>
+                        </div></div>
                         <?php } ?>
                             </div>
                         </div>
@@ -628,7 +614,7 @@
 
                     </div>
                 </div>
-                <div class="col-sm-9 col-12">
+                <div class="col-md-9 col-12">
                     <div class="products border h-100">
                         <div class="row gx-0 row-cols-2 row-cols-sm-4 row-cols-lg-5 text-center">
                             <?php
