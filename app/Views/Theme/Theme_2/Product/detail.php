@@ -64,7 +64,7 @@
                         <div class="product-info-det p-3" >
 
                             <form id="addto-cart-form" action="<?php echo base_url('addtocartdetail') ?>"  method="post" >
-                            <p class="mb-3 pro-t"><?php echo $products->name; ?></p>
+                            <h5 class="mb-3 pro-t"><?php echo $products->name; ?></h5>
                             <?php $stock = get_data_by_id('quantity', 'cc_products', 'product_id', $products->product_id) ?>
 
                             <div class="rating mb-3">
@@ -317,7 +317,7 @@
 
         <div class="product-about ">
             <div class="row mb-4 mt-5">
-                <div class="col-lg-8">
+                <div class="col-lg-8 mb-3">
                     <ul class="nav nav-tabs list-unstyled mb-5 border-0 border-bottom custom-tab-up  des " id="myTab"
                         role="tablist">
                         <li class="nav-item" role="presentation">
@@ -414,7 +414,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-3">
                     <?php echo image_view('uploads/products', $products->product_id, '437_' . $products->image, 'noimage.png', 'img-fluid w-100') ?>
                 </div>
             </div>
@@ -520,7 +520,7 @@
 
         <div class="row mb-4 related-products-oth">
             <div class="col-lg-12  p-4 rounded-0 border-bottom border-top">
-                <div class=" py-3 bg-white">
+                <div class="px-2 py-3 mb-3 bg-white">
                     <h4 class="text-uppercase">Related Product</h4>
                 </div>
                 <div class="card-body pb-3">
@@ -619,7 +619,7 @@
 
         <div class="row mb-4 ">
             <div class="col-lg-12  p-4 rounded-0 border-bottom border-top">
-                <div class=" py-3 bg-white">
+                <div class="px-2 py-3 mb-3 bg-white">
                     <h4 class="text-uppercase">WE FOUND OTHER PRODUCTS YOU MIGHT LIKE!</h4>
                 </div>
                 <div class="card-body pb-3">

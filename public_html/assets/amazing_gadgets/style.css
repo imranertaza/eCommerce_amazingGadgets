@@ -1681,9 +1681,10 @@ p {
 .slider-banner-image {
     /*height: 610px;*/
 }
-.banner-slider .slider.slider-nav {
+
+/* .banner-slider .slider.slider-nav {
     padding: 20px 0 0;
-}
+} */
 .slider-nav .slick-slide.thumbnail-image .thumbImg{
     max-width: 178px;
     height: 110px;
@@ -1765,10 +1766,10 @@ p {
 .icon-vart{
     vertical-align:-4px !important;
 }
-.slider-cus-css .slider-banner-image{
+/* .slider-cus-css .slider-banner-image{
     width:unset !important;
     margin-top:25px;
-}
+} */
 .des .nav-link{
     padding-left: 0px !important;
     font-size:15px !important;
@@ -1889,9 +1890,10 @@ p {
 .mess-alert{
     color:red;
 }
+.thumb-image .slick-slide {width: 100% !important;}
+.thumb-image .slick-slide .thumbnail-image {display: block !important;}
 .thumb-image .slick-current{
-    width: 68px !important;
-    border: 1px solid #cacaca !important;
+    border: 2px solid #cacaca !important;
 }
 .pd-te-ch{
     padding-top:24px;
@@ -1983,6 +1985,20 @@ input[type='radio']:checked{
 .foot .ul-link li {margin: 0;}
 
 
+.brand-nav .carousel-control-prev {
+    right: 25px;
+    left: auto;
+    top: 10px;
+    opacity: 1;
+}
+
+.brand-nav .carousel-control-next {
+    right: 15px;
+    top: 10px;
+    opacity: 1;
+}
+
+
 @media(min-width:768px) and (max-width:1199px) {
     .product-filter,.product-filter label {
         font-size: 12px;
@@ -2042,4 +2058,56 @@ input[type='radio']:checked{
     .foot .toggleButton.active::after {
         transform: rotate(-180deg);
     }
+    .icon-cat-main,
+    .icon-in-rou {
+        padding: 5px;
+        width: 40px;
+        height: 40px;
+        line-height: 30px;
+    }
+    .icon-cat-main svg,
+    .icon-in-rou svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .con-to-mm {margin-top: 8px;}
+    .con-ic svg {
+        width: 40px;
+    }
+    .con-ic .ic-om-1,
+    .con-ic .ic-om-2,
+    .con-ic .ic-om-3,
+    .con-ic .ic-om-4 {
+        left: 0;
+    }
+    .ic-pp {min-height: auto;}
+    .ic-pp-btn svg {width: 20px;}
+    .sub-btn {
+        padding: 8px 25px !important;
+    }
+    .marg-top-90 {
+        margin-top: 1rem !important;
+    }
+    .f-title {
+        margin-top: 10px;
+    }
+    .box-order {
+        padding: 0;
+    }
+    .product-title-new {
+        height: auto;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+ }
+ @media (max-width:575px) {
+    .banner-slider .slider.slider-nav,
+    .banner-slider .slider.slider-for {max-width: 100%;}
+    .thumb-image .slick-slide {
+        width: 50px !important;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+    
  }

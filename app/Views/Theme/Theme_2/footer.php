@@ -4,9 +4,9 @@
 <section class="foot ">
     <div class="container">
 
-        <div class="weekly-deals marg-top-90 shipping mb-5">
+        <div class="weekly-deals marg-top-90 shipping mb-3 mb-md-5">
             <div class="row gx-0">
-                <div class="col-sm-6 col-md-3 col-12 mb-4 mb-md-0">
+                <div class="col-sm-6 col-md-3 col-12 mb-sm-3 mb-md-0">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg class="left-arr" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3 col-12 mb-4 mb-md-0">
+                <div class="col-sm-6 col-md-3 col-12 mb-sm-3 mb-md-0">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3 col-12 mb-4 mb-md-0">
+                <div class="col-sm-6 col-md-3 col-12 mb-sm-3 mb-md-0">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3 col-12 mb-4 mb-md-0">
+                <div class="col-sm-6 col-md-3 col-12 mb-sm-3 mb-md-0">
                     <div class="ma-d d-flex fot-sepp">
                         <div class="con-ic position-relative">
                             <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <div class="weekly-newsletter marg-top-90 newsletter mb-5">
+        <div class="weekly-newsletter marg-top-90 newsletter mb-3 mb-md-5">
             <div class="row gx-0">
                 <div class="col-md-6 col-12">
                     <div class="input-group weekly-newsletter-foot" style="width: 79%;">
@@ -88,12 +88,12 @@
 
 
 
-        <div class="weekly-footer marg-top-90 menu mb-5">
+        <div class="weekly-footer marg-top-90 menu mb-3 mb-md-5">
             <div class="row gx-0">
                 <div class="col-md-3 col-12">
                     <h4 class="mb-0 f-title toggleButton">Our company</h4>
                     <div class="elementToToggle d-none d-md-block">
-                        <ul class="list-unstyled ul-link mt-4">
+                        <ul class="list-unstyled ul-link mt-md-4">
                             <li><a href="<?php echo base_url('page/about-us')?>">About us</a></li>
                             <li><a href="<?php echo base_url('page/contact-us')?>">Contact us</a></li>
                             <li><a href="<?php echo base_url('page/privacy-policy')?>">privacy policy</a></li>
@@ -104,7 +104,7 @@
                 <div class="col-md-3 col-12">
                     <h4 class="mb-0 f-title toggleButton">Account</h4>
                     <div class="elementToToggle d-none d-md-block">
-                        <ul class="list-unstyled ul-link mt-4">
+                        <ul class="list-unstyled ul-link mt-md-4">
                             <li><a href="<?php echo base_url('login')?>">Login</a></li>
                             <li><a href="<?php echo base_url('dashboard')?>">My Account</a></li>
                             <li><a href="<?php echo base_url('favorite');?>">My Wishlist</a></li>
@@ -116,7 +116,7 @@
                 <div class="col-md-3 col-12">
                     <h4 class="mb-0 f-title toggleButton">Information</h4>
                     <div class="elementToToggle d-none d-md-block">
-                        <ul class="list-unstyled ul-link mt-4">
+                        <ul class="list-unstyled ul-link mt-md-4">
                             <li><a href="#">FAQ</a></li>
                             <li><a href="#">Payment</a></li>
                             <li><a href="<?php echo base_url('page/returns-policy')?>">Return</a></li>
@@ -129,7 +129,7 @@
                 <div class="col-md-3 col-12">
                     <h4 class="mb-0 f-title toggleButton">About amazing gadget</h4>
                     <div class="elementToToggle d-none d-md-block">
-                        <ul class="list-unstyled ul-link-2 mt-4">
+                        <ul class="list-unstyled ul-link-2 mt-md-4">
                             <li class="d-flex fot-about">
                                 <span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
                                             fill="none">
@@ -273,16 +273,16 @@
 </section>
 
 
-    <div class=" capQty">
-        <a class="footer-bottom ft-cart-btn " onclick="iconRotate()" data-bs-toggle="collapse" href="#collapseExample" role="button" <?php echo !empty(Cart()->contents())?'aria-expanded="true"':'aria-expanded="false"';?>  aria-controls="collapseExample">
+    <div class="capQty">
+        <a class="footer-bottom ft-cart-btn" onclick="iconRotate()" data-bs-toggle="collapse" href="#miniCart" role="button" aria-expanded="false"  aria-controls="miniCart">
             <span class="btn-count"><?php echo count(Cart()->contents()); ?> item(s) in your cart</span>
             <svg id="carticon2" style="transition: width 2s ease 0s, height 2s ease 0s, transform 0.2s ease 0s;" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.75 14L10.25 9.5L5.75 5L7.25 3.5L13.25 9.5L7.25 15.5L5.75 14Z" fill="white"/>
             </svg>
         </a>
-        <div class="collapse toggle-body  <?php echo !empty(Cart()->contents())?'show':'';?> " id="collapseExample" >
-            <div class="row body-count">
-                <div class="col-lg-7 p-2 h-120 " >
+        <div class="collapse toggle-body" id="miniCart">
+            <div class="row body-count p-3">
+                <div class="col-lg-7 col-md-5 col-4 col-sm-6 p-2 h-120 " >
                     <div class="navbar-ft " >
                         <div class="scroll-ft" >
                             <?php foreach (Cart()->contents() as $val) { ?>
@@ -299,7 +299,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 mid-filed h-120 d-flex align-items-center pe-5">
+                <div class="col-lg-3 col-md-4 col-6 col-sm-4 mid-filed h-120 d-flex align-items-center">
                     <div class="d-flex justify-content-between w-100">
                         <div>
                             <?php if (!empty(Cart()->contents())){?>
@@ -314,8 +314,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 h-120 d-flex align-items-center pe-5">
-                    <a href="<?php echo base_url('checkout')?>" class="btn btn-outline-dark w-100 ">Go to Checkout</a>
+                <div class="col-lg-2 col-md-3 col-2 h-120 d-flex align-items-center">
+                    <a href="<?php echo base_url('checkout')?>">
+                        <span class="d-none d-md-block btn btn-outline-dark w-100">Go to Checkout</span>
+                        <span class="d-block d-md-none"><i class="fa-solid fa-cart-shopping"></i></span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -604,6 +607,47 @@
       },
     });
 
+    var swiper = new Swiper("#hotPro", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      responsive: true,
+      navigation: {
+        nextEl: ".hotpro-button-next",
+        prevEl: ".hotpro-button-prev",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        576: {
+          slidesPerView: 3,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+      },
+    });
+    var swiper = new Swiper("#etcPro", {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      responsive: true,
+      navigation: {
+        nextEl: ".etcpro-button-next",
+        prevEl: ".etcpro-button-prev",
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        576: {
+          slidesPerView: 3,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+      },
+    });
+
     var swiper = new Swiper("#trandCol", {
       slidesPerView: 1,
       spaceBetween: 15,
@@ -632,9 +676,11 @@
       },
     });
 
+
+
     var swiper = new Swiper("#brands", {
-      slidesPerView: 2,
-      slidesPerColumn: 2,
+      slidesPerView: 6,
+      slidesPerColumn: 3,
       spaceBetween: 15,
       responsive: true,
       autoplay: {
@@ -647,17 +693,17 @@
       },
       breakpoints: {
         0: {          
-          slidesPerView: 2,
+          slidesPerView: 6,
           slidesPerColumn: 2,
           spaceBetween: 20,
         },
         480: {         
-          slidesPerView: 4,
+          slidesPerView: 6,
           slidesPerColumn: 2,
           spaceBetween: 15,
         },
         768: {         
-          slidesPerView: 2,
+          slidesPerView: 6,
           slidesPerColumn: 2,
           spaceBetween: 15,
         },
@@ -1153,6 +1199,22 @@
             $(this).siblings('.elementToToggle').removeClass('d-none');
         });
     });
+
+
+    
+    var btnCartElements = document.getElementsByClassName('btn-cart');
+  // Get the Mini Cart element
+  var miniCart = document.getElementById('miniCart');
+  for (var i = 0; i < btnCartElements.length; i++) {
+    var btnCartElement = btnCartElements[i];
+    btnCartElement.addEventListener('click', function() {
+      // Show the Mini Cart
+      miniCart.classList.add('show');
+      setTimeout(function() {
+        miniCart.classList.remove('show');
+      }, 5000);
+    });
+  }
 
 </script>
 

@@ -157,9 +157,9 @@
                 <div class="col-md-3">
                     <?php if(isset($home_menu)){  ?>
                     <div class="allcategory h-100 me-md-3">
-                        <button class="cat-btn-h btn py-3 bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-bars me-3 no-mg"></i>
-                            Shop by Categories
+                        <button class="cat-btn-h d-flex d-md-inline justify-content-between justify-content-md-start gap-1 btn py-3 bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid order-2 order-md-1 fa-bars me-3 no-mg"></i>
+                            <span class="order-1 order-md-2">Shop by Categories</span>
                         </button>
                         <ul class="dropdown-menu border  cat-drop-menu all-cat-menu btn-cat-show" >
                             <?php foreach (getSideMenuArray() as $pcat){?>
@@ -288,9 +288,9 @@
                     <div class="col-sm-3 col-8">
                         <?php if(isset($home_menu)){  ?>
                             <div class="allcategory h-100 " style="width:94%;">
-                                <button class="cat-btn-h btn bg-black text-white text-uppercase fw-semibold dropdown-toggle rounded-0 h-100 border-0 text-center w-100 btn-click" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-bars me-3 no-mg"></i>
-                                    Shop by Categories
+                                <button class="cat-btn-h d-flex d-md-inline justify-content-between justify-content-md-start gap-1  btn bg-black text-white text-uppercase fw-semibold dropdown-toggle rounded-0 h-100 border-0 text-center w-100 btn-click" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid order-2 order-md-1 fa-bars me-3 no-mg"></i>
+                                    <span class="order-1 order-md-2">Shop by Categories</span>
                                 </button>
                                 <ul class="dropdown-menu border cat-drop-menu all-cat-menu" >
                                     <?php foreach (getSideMenuArray() as $pcat){?>
