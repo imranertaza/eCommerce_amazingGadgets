@@ -8,7 +8,7 @@
                     </div>
                     <div class="card-body">
                         <div class="products h-100">
-                            <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-5 h-100">
+                            <div class="row gx-0 row-cols-1 row-cols-sm-3 row-cols-lg-3 row-cols-xl-5 h-100">
 
                                 <?php foreach ($allProd as $pro){ ?>
                                 <div class="col border p-2">

@@ -50,10 +50,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-bottom ">
-                                                        <div class="product-title-hot height-40 mb-2 text-capitalize">
+                                                        <div class="product-title-hot height-40 mb-md-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
                                                         </div>
-                                                        <div class="price-hot mb-3">
+                                                        <div class="price-hot mb-md-3">
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
@@ -75,9 +75,18 @@
                 </div>
                 <div class="col-md-9 col-12">
                     <div class="products h-100">
-                        <div class="row gx-0  h-100 mo-text-center">
+                        <div id="hotPro" class="swiper hotpro mo-text-center">
+                            <div class="hotpro-nav position-absolute top-50 w-100" style="z-index:99">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="hotpro-button-prev left-arr float-start ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                        <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#DEE2E6"/>
+                                </svg>
+                                <svg class="hotpro-button-next float-end me-2" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                    <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#DEE2E6"/>
+                                </svg>
+                            </div>
+                        <div class="swiper-wrapper">
                             <?php foreach ($hotProlimit as $pro){ ?>
-                                <div class="col-sm-4 col-12 pe-3 each_pro mo-p-r-0">
+                                <div class="swiper-slide h-auto pe-3 each_pro mo-p-r-0">
                                     <div class="border p-3 product-grid h-100 d-flex align-items-stretch flex-column position-relative">
                                         <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                             <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
@@ -105,10 +114,10 @@
                                             <div class="category-new">
                                                 Categorie
                                             </div>
-                                            <div class="product-title-new mb-2 text-capitalize">
+                                            <div class="product-title-new mb-md-2 text-capitalize">
                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                             </div>
-                                            <div class="price-new mb-3">
+                                            <div class="price-new mb-md-3">
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                     <?php echo currency_symbol($pro->price);?>
                                                 <?php }else{ ?>
@@ -121,8 +130,7 @@
                                     </div>
                                 </div>
                             <?php } ?>
-
-
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -446,9 +454,18 @@
                 </div>
                 <div class="col-sm-9 col-12">
                     <div class="products h-100">
-                        <div class="row gx-0  h-100 mo-text-center">
+                        <div id="etcPro" class="swiper etcpro mo-text-center">
+                        <div class="etcpro-nav position-absolute top-50 w-100" style="z-index:99">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="etcpro-button-prev left-arr float-start ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                        <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#DEE2E6"/>
+                                </svg>
+                                <svg class="etcpro-button-next float-end me-2" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                    <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#DEE2E6"/>
+                                </svg>
+                            </div>
+                        <div class="swiper-wrapper">
                             <?php foreach ($productsetc as $pro){ ?>
-                                <div class=" col-sm-4 col-12  pe-3 each_pro mo-p-r-0">
+                                <div class="swiper-slide h-auto pe-3 each_pro mo-p-r-0">
                                     <div class="border p-3 product-grid h-100 d-flex align-items-stretch flex-column position-relative">
                                         <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                             <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
@@ -485,7 +502,7 @@
                                             <div class="product-title-new mb-2 text-capitalize">
                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                             </div>
-                                            <div class="price-new mb-3">
+                                            <div class="price-new mb-md-3">
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                     <?php echo currency_symbol($pro->price);?>
                                                 <?php }else{ ?>
@@ -498,7 +515,7 @@
                                 </div>
                             <?php } ?>
 
-
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -512,17 +529,21 @@
                     <div class="deal-box border position-relative  h-100 me-md-3 mo-m-r-0">
                         <div class="title p-2 bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Brands</span>
-                            <span class="icon-mt">
-                                <svg class="brands-button-prev left-arr" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-<path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB" data-bs-target="#brand" data-bs-slide="prev" />
-</svg>
-                                <svg class="brands-button-next" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-<path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB">
-</svg>
+                            <span class="icon-mt brand-nav">
+                                
+                            <span data-bs-target="#brand" data-bs-slide="prev"><svg class="left-arr carousel-control-prev" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#FFFBFB" /></span>
+                                </svg>
+                                <span data-bs-target="#brand" data-bs-slide="next"><svg class="carousel-control-next" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#FFFBFB" />
+                                </svg>
+                            </span>
                             </span>
                         </div>
-                        <div id="brands" class="swiper">
-                            <div class="swiper-wrapper">
+                        <div id="brand" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+
+
                                 <?php
                                     $perPageShow = 6;
                                     $count = count($brand)/$perPageShow;
@@ -530,13 +551,15 @@
                                     for ($i=1; $i<=$count; $i++){
                                         $l = $i*$perPageShow;
                                         $act = ($l == $perPageShow)?'active':'';
+                                    print '<div class="carousel-item '.$act.'"> <div class="row px-2">';
                                     while($j<=$l){
                                             if (array_key_exists($j-1, $brand)) {
-                                                echo '<div class="swiper-slide">'.image_view('uploads/brand', '', $brand[$j-1]->image, 'noimage.png', 'brand-img w-100').'</div>';
+                                                echo '<div class="col-6 brand-item  mt-2  no-padding">'.image_view('uploads/brand', '', $brand[$j-1]->image, 'noimage.png', 'brand-img px-2 ').'</div>';
                                             }
                                             $j++;
+                                        }
+                                        print ' </div> </div>';
                                      }
-                                    }
                                 ?>
 
 
@@ -591,13 +614,13 @@
                         $icon = get_data_by_id('code','cc_icons','icon_id',$icon_id);
                         ?>
                         <div class="swiper-slide">
-                        <div class="products  <?php echo ($key == '0')?'active':'';?> p-4  text-center" style="height: 290px;">
-                            <div class="ic-pp text-center position-relative p-4 ">
+                        <div class="products  <?php echo ($key == '0')?'active':'';?> p-md-4  text-center">
+                            <div class="ic-pp text-center position-relative p-2 p-md-4 ">
 
                                 <span class="icon-in-rou"><?php echo $icon; ?></span>
                             </div>
 
-                            <div class="text ">
+                            <div class="text ic-pp-btn">
                                 <p class="cat-title-side"><?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$catPop->prod_cat_id);?></p>
                                 <p class="cat-text-side" ><?php echo substr(get_data_by_id('description','cc_product_category','prod_cat_id',$catPop->prod_cat_id) ,0,30);?></p>
                                 <a href="#"  ><svg class="mt-2" xmlns="http://www.w3.org/2000/svg" width="40" height="39" viewBox="0 0 40 39" fill="none">
@@ -616,19 +639,19 @@
                 </div>
                 <div class="col-md-9 col-12">
                     <div class="products border h-100">
-                        <div class="row gx-0 row-cols-2 row-cols-sm-4 row-cols-lg-5 text-center">
+                        <div class="row gx-0 row-cols-2 row-cols-sm-5 row-cols-lg-5 text-center">
                             <?php
                             foreach ($populerCat as $catPop){
                                 $icon_id = get_data_by_id('icon_id','cc_product_category','prod_cat_id',$catPop->prod_cat_id);
                                 $icon = get_data_by_id('code','cc_icons','icon_id',$icon_id);
                                 ?>
-                                <div class="col  p-3 border position-relative">
+                                <div class="col p-2 p-md-3 border position-relative">
                                     <a href="<?php echo base_url('category/'.$catPop->prod_cat_id);?>">
                                         <span class="icon-cat-main"><?php echo $icon; ?></span>
 <!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="85" height="85" viewBox="0 0 85 85" fill="none">-->
 <!--                                            <circle cx="42.5" cy="42.5" r="42.5" fill="#EDEDED"/>-->
 <!--                                        </svg>-->
-                                        <h5 class="mt-4 cat-name"><a href="#"><?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$catPop->prod_cat_id);?></a></h5>
+                                        <h5 class="mt-2 mt-md-4 cat-name"><a href="#"><?php echo get_data_by_id('category_name','cc_product_category','prod_cat_id',$catPop->prod_cat_id);?></a></h5>
                                     </a>
                                 </div>
                             <?php } ?>

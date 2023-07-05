@@ -4,6 +4,7 @@
         <div class="card p-3 rounded-0">
 <!--            <p class="text-end"><a href="#">Print This Page</a></p>-->
             <?php if (!empty($products)){ ?>
+                <div class="table-responsive">
             <table class="table table-bordered table-hover" id="compReload">
                 <tr>
                     <th style="width: 40%;"></th>
@@ -63,6 +64,7 @@
                     <?php } ?>
                 </tr>
             </table>
+            </div>
             <?php } ?>
         </div>
 
