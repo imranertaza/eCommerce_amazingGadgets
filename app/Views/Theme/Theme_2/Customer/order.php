@@ -4,6 +4,7 @@
             <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
         </div>
         <div class="cart">
+            <div class="table-responsive">
             <table class="cart-table w-100 text-center" id="tableReload">
                 <thead>
                 <tr>
@@ -32,7 +33,7 @@
                 <?php } ?>
                 </tbody>
             </table>
-
+            </div>
         </div>
     </div>
 </section>

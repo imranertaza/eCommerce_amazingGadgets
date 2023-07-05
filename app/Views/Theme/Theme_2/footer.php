@@ -366,39 +366,38 @@
         vertical:true,
         asNavFor: '.slider-for',
         dots: false,
-        arrows: false,
         focusOnSelect: true,
         verticalSwiping:true,
         responsive: [
             {
                 breakpoint: 992,
                 settings: {
-                    vertical: false,
+                vertical: true,
+                    slidesToShow: 5,
                 }
             },
             {
                 breakpoint: 768,
                 settings: {
-                    vertical: false,
+                    vertical: true,
+                    slidesToShow: 4,
                 }
             },
             {
-                breakpoint: 580,
+                breakpoint: 575,
                 settings: {
-                    vertical: false,
-                    slidesToShow: 3,
+                    vertical: true,
+                    slidesToShow: 4,
                 }
             },
             {
-                breakpoint: 380,
+                breakpoint: 400,
                 settings: {
-                    vertical: false,
-                    slidesToShow: 2,
+                    vertical: true,
+                    slidesToShow: 5
                 }
             }
         ]
-
-
     });
 </script>
 <script>
@@ -1215,6 +1214,7 @@
       }, 5000);
     });
   }
+
 
 </script>
 
