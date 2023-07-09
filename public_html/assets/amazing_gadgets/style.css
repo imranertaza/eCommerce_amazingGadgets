@@ -2087,7 +2087,7 @@ input[type='radio']:checked{
     }
 }
 @media (max-width:991px) {    
-    .title {padding: 5px 0 !important;}
+    /* .title {padding: 5px 0 !important;} */
     .title-text {left: 10%;}    
     .pro-item {width: 50px;}
 }
