@@ -2050,8 +2050,7 @@ input[type='radio']:checked{
     color: #ffffff !important;
 }
  .brand-img{
-     width:134px;
-     height:80px;
+     width:135px;
  }
 
  .bg-transparent {
@@ -2104,6 +2103,12 @@ input[type='radio']:checked{
     }
  }
  @media (max-width:767px) {
+    .message_alert {
+        width: 100%;
+        top: 0;
+        font-size: 14px;
+        text-align: center;
+    }
     .left-bor {
         display: none;
     }

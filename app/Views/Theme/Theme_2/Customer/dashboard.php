@@ -44,9 +44,9 @@
                         </div>
                         <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                             <h4 class="ti-or-n">Join our mailing list.</h4>
-                            <p class="mt-3 con-or">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p class="mb-3 con-or">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                             <h4 class="ti-or-n">Newsletters</h4>
-                            <p class="mt-3 con-or">You aren't subscribed to our newsletter.</p>
+                            <p class="mb-3 con-or">You aren't subscribed to our newsletter.</p>
                             <?php $check = get_data_by_id('newsletter','cc_customer','customer_id',newSession()->cusUserId);?>
                             <div class="form-check">
                                 <input class="form-check-input" onclick="subscription()" <?php echo ($check == 1)?'checked':'';?> type="checkbox" value="" id="flexCheckDefault">
