@@ -78,10 +78,10 @@
                         <div id="hotPro" class="swiper hotpro mo-text-center">
                             <div class="hotpro-nav position-absolute top-50 w-100" style="z-index:99">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="hotpro-button-prev left-arr float-start ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none">
-                                        <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#DEE2E6"/>
+                                        <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#000000"/>
                                 </svg>
                                 <svg class="hotpro-button-next float-end me-2" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-                                    <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#DEE2E6"/>
+                                    <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#000000"/>
                                 </svg>
                             </div>
                         <div class="swiper-wrapper">
@@ -457,10 +457,10 @@
                         <div id="etcPro" class="swiper etcpro mo-text-center">
                         <div class="etcpro-nav position-absolute top-50 w-100" style="z-index:99">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="etcpro-button-prev left-arr float-start ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none">
-                                        <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#DEE2E6"/>
+                                        <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#000000"/>
                                 </svg>
                                 <svg class="etcpro-button-next float-end me-2" xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
-                                    <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#DEE2E6"/>
+                                    <path d="M1.4 12L0 10.6L4.6 6L0 1.4L1.4 0L7.4 6L1.4 12Z" fill="#000000"/>
                                 </svg>
                             </div>
                         <div class="swiper-wrapper">

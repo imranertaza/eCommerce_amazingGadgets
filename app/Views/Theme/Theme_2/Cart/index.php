@@ -6,6 +6,7 @@
                     <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
                 </div>
             </div>
+            <div class="table-responsive">
             <table class="cart-table w-100 text-center " >
                 <thead>
                 <tr>
@@ -89,6 +90,7 @@
 
                 </tbody>
             </table>
+        </div>
             <?php if (!empty(Cart()->contents())){ ?>
             <p class="text-end"><a href="<?php echo base_url('checkout')?>" class="btn btn-dark rounded-0 px-4 btn-checkout">Proceed to checkout</a></p>
             <?php } ?>

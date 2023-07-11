@@ -3,64 +3,71 @@
         <div class="product-details">
             <div class=" p-3  mb-4 border-bottom">
                 <div class="row">
-                    <div class="col-lg-6 mb-3 mb-lg-0">
+                    <div class="col-md-7 col-lg-5 col-xl-6 mb-3 mb-lg-0">
                         <section class="banner-section ">
                             <div class="container  product-det-info">
                                 <div class="vehicle-detail-banner banner-content clearfix">
                                     <div class="banner-slider">
                                         <div class="thumb_plus_video">
-                                            <div class="slider slider-nav thumb-image">
-
-                                                <div class="thumbnail-image">
-                                                    <div class="thumbImg">
-                                                        <?php echo image_view('uploads/products', $products->product_id, '100_' . $products->image, 'noimage.png', 'img-fluid') ?>
-                                                    </div>
-                                                </div>
-
-                                                <?php
-                                                if (!empty($proImg)) {
-                                                    foreach ($proImg as $imgval) {
-                                                        echo '<div class="thumbnail-image"><div class="thumbImg">' . multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '100_' . $imgval->image, 'noimage.png', 'img-fluid') . '</div></div>';
-                                                    }
-                                                }
-                                                ?>
-                                                <?php if (!empty($products->video)) { ?>
-                                                    <div class="thumbnail-image">
-                                                        <div class="thumbImg video-thum">
-                                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                               data-bs-target="#videoeModal">
+                                            <div class="row">
+                                                <div class="col-2 col-sm-3 col-md-2 col-lg-3 px-0">
+                                                    <div class="slider slider-nav thumb-image">
+                                                        <div class="thumbnail-image">
+                                                            <div class="thumbImg">
                                                                 <?php echo image_view('uploads/products', $products->product_id, '100_' . $products->image, 'noimage.png', 'img-fluid') ?>
-                                                                <img src="<?php echo base_url('uploads/play.png') ?>"
-                                                                     alt="" class="play-image">
-                                                            </a>
+                                                            </div>
                                                         </div>
+
+                                                        <?php
+                                                        if (!empty($proImg)) {
+                                                            foreach ($proImg as $imgval) {
+                                                                echo '<div class="thumbnail-image"><div class="thumbImg">' . multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '100_' . $imgval->image, 'noimage.png', 'img-fluid') . '</div></div>';
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <?php if (!empty($products->video)) { ?>
+                                                            <div class="thumbnail-image">
+                                                                <div class="thumbImg video-thum">
+                                                                    <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                                    data-bs-target="#videoeModal">
+                                                                        <?php echo image_view('uploads/products', $products->product_id, '100_' . $products->image, 'noimage.png', 'img-fluid') ?>
+                                                                        <img src="<?php echo base_url('uploads/play.png') ?>"
+                                                                            alt="" class="play-image">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+
                                                     </div>
-                                                <?php } ?>
-
-                                            </div>
-
-
-                                            <div class="slider slider-for slider-cus-css">
-                                                <div class="slider-banner-image">
-                                                    <?php echo image_view('uploads/products', $products->product_id, '437_' . $products->image, 'noimage.png', 'img-fluid') ?>
                                                 </div>
+                                                <div class="col-10 col-sm-9 col-md-10 col-lg-9">
+                                                    <div class="slider slider-for slider-cus-css">
+                                                        <div class="slider-banner-image">
+                                                            <?php echo image_view('uploads/products', $products->product_id, '437_' . $products->image, 'noimage.png', 'img-fluid') ?>
+                                                        </div>
 
-                                                <?php
-                                                if (!empty($proImg)) {
-                                                    foreach ($proImg as $imgval) {
-                                                        echo '<div class="slider-banner-image">' . multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '437_' . $imgval->image, 'noimage.png', 'img-fluid') . '</div>';
-                                                    }
-                                                }
-                                                ?>
+                                                        <?php
+                                                        if (!empty($proImg)) {
+                                                            foreach ($proImg as $imgval) {
+                                                                echo '<div class="slider-banner-image">' . multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '437_' . $imgval->image, 'noimage.png', 'img-fluid') . '</div>';
+                                                            }
+                                                        }
+                                                        ?>
 
+                                                    </div>
+                                                </div>
                                             </div>
+                                            
+
+
+                                            
 
                                         </div>
                                     </div>
                                 </div>
                         </section>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-md-5 col-lg-4 col-xl-3">
                         <div class="product-info-det p-3" >
 
                             <form id="addto-cart-form" action="<?php echo base_url('addtocartdetail') ?>"  method="post" >
@@ -175,7 +182,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="col-md-12 col-lg-3">
                         <div class="top-div d-flex justify-content-between">
                             <div>
                                 <p class="free-text">Free shipping</p>
