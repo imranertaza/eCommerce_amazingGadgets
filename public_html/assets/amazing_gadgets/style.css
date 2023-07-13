@@ -110,9 +110,9 @@ a {
     right: 15px;
     top: 35%;
 }
-/* .allcategory .dropdown-menu li:last-child {
+.allcategory .dropdown-menu li:last-child {
     border: 0;
-} */
+}
 .allcategory .dropdown-menu li .icon {
     border-right: 1px solid #D0D0D0;
     margin-right: 15px;
