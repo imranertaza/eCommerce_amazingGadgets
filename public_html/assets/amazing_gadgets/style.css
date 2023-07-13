@@ -1416,7 +1416,7 @@ a {
      padding-right: inherit !important;
  }
  .cat-drop-menu{
-     height: 397px;overflow-y: scroll;overflow-x: hidden;
+     height: 397px;
  }
 
 /*.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{*/

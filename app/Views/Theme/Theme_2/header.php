@@ -169,19 +169,17 @@
                                         <?php echo get_data_by_id('code','cc_icons','icon_id',$pcat->icon_id); ?>
                                     </span>
                                     <?php echo $pcat->category_name; ?>
-                                    
-                                </a>
-                                <?php  if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>
-                                    <i class="fa-solid fa-angle-down float-end" data-bs-toggle="collapse" href="#collapse_<?php  print($pcat->prod_cat_id);?>" role="button" aria-expanded="false" aria-controls="collapse_<?php  print($pcat->prod_cat_id);?>"></i>
+                                    <?php  if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>
+                                        <i class="fa-solid fa-angle-right  float-end"></i>
                                     <?php } ?>
+                                </a>
+                                
                                 <?php if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>
-                                    <div class="collapse" id="collapse_<?php  print($pcat->prod_cat_id);?>">
-                                        <ul class="dropdown-menu dropdown-submenu" >
+                                    <ul class="dropdown-menu dropdown-submenu" >
                                             <?php foreach (getCategoryBySubArray($pcat->prod_cat_id) as $sCat){ ?>
                                             <li><a class="dropdown-item" href="<?php echo base_url('category/'.$sCat->prod_cat_id);?>"><?php echo $sCat->category_name; ?></a></li>
                                             <?php } ?>
                                         </ul>
-                                    </div>
                                 <?php } ?>
                             </li>
                             <?php } ?>
