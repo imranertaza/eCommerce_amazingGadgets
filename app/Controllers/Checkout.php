@@ -52,12 +52,17 @@ class Checkout extends BaseController {
             if ($query->for_registered_user == '1'){
                 $isLoggedInCustomer = $this->session->isLoggedInCustomer;
                 if (isset($isLoggedInCustomer) || $isLoggedInCustomer == TRUE) {
-                    $couponArray = array(
-                        'coupon_discount' => $query->discount
-                    );
-                    $this->session->set($couponArray);
-                    $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Coupon code applied successfully </div>');
-                    return redirect()->to('cart');
+                    if(!empty($this->cart->contents())) {
+                        $couponArray = array(
+                            'coupon_discount' => $query->discount
+                        );
+                        $this->session->set($couponArray);
+                        $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Coupon code applied successfully </div>');
+                        return redirect()->to('cart');
+                    }else{
+                        $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible text-white" role="alert">your cart is currently empty </div>');
+                        return redirect()->to('cart');
+                    }
                 }else{
                     $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Coupon code not working </div>');
                     return redirect()->to('cart');
@@ -69,12 +74,17 @@ class Checkout extends BaseController {
                 if (isset($isLoggedInCustomer) || $isLoggedInCustomer == TRUE) {
                     $checkSub = is_exists('cc_newsletter','customer_id',$this->session->cusUserId);
                     if ($checkSub == false) {
-                        $couponArray = array(
-                            'coupon_discount' => $query->discount
-                        );
-                        $this->session->set($couponArray);
-                        $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Coupon code applied successfully </div>');
-                        return redirect()->to('cart');
+                        if(!empty($this->cart->contents())) {
+                            $couponArray = array(
+                                'coupon_discount' => $query->discount
+                            );
+                            $this->session->set($couponArray);
+                            $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Coupon code applied successfully </div>');
+                            return redirect()->to('cart');
+                        }else{
+                            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible text-white" role="alert">your cart is currently empty </div>');
+                            return redirect()->to('cart');
+                        }
                     }else{
                         $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Coupon code not working </div>');
                         return redirect()->to('cart');
@@ -86,16 +96,21 @@ class Checkout extends BaseController {
             }
 
             if (($query->for_registered_user == '0') && ($query->for_subscribed_user == '0')){
-                $couponArray = array(
-                    'coupon_discount' => $query->discount
-                );
-                $this->session->set($couponArray);
-                $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Coupon code applied successfully </div>');
-                return redirect()->to('cart');
+                if(!empty($this->cart->contents())) {
+                    $couponArray = array(
+                        'coupon_discount' => $query->discount
+                    );
+                    $this->session->set($couponArray);
+                    $this->session->setFlashdata('message', '<div class="alert-success-m alert-success alert-dismissible" role="alert">Coupon code applied successfully </div>');
+                    return redirect()->to('cart');
+                }else{
+                    $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible text-white" role="alert">your cart is currently empty </div>');
+                    return redirect()->to('cart');
+                }
             }
 
         }else{
-            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">Coupon code not working </div>');
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible text-white" role="alert">Coupon code not working </div>');
             return redirect()->to('cart');
         }
 

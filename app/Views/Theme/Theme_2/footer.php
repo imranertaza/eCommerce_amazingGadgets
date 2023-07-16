@@ -737,40 +737,40 @@
       },
     });
 
-    $(document).ready(function(){
+    // $(document).ready(function(){
 
-        var quantitiy=0;
-        $('#plus-btn').click(function(e){
+        // var quantitiy=0;
+        // $('#plus-btn').click(function(e){
+        //
+        //     // Stop acting like a button
+        //     e.preventDefault();
+        //     // Get the field name
+        //     var quantity = parseInt($('#qty_input').val());
+        //
+        //     // If is not undefined
+        //
+        //     $('#qty_input').val(quantity + 1);
+        //
+        //
+        //     // Increment
+        //
+        // });
+        //
+        // $('#minus-btn').click(function(e){
+        //     // Stop acting like a button
+        //     e.preventDefault();
+        //     // Get the field name
+        //     var quantity = parseInt($('#qty_input').val());
+        //
+        //     // If is not undefined
+        //
+        //     // Increment
+        //     if(quantity>0){
+        //         $('#qty_input').val(quantity - 1);
+        //     }
+        // });
 
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            var quantity = parseInt($('#qty_input').val());
-
-            // If is not undefined
-
-            $('#qty_input').val(quantity + 1);
-
-
-            // Increment
-
-        });
-
-        $('#minus-btn').click(function(e){
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            var quantity = parseInt($('#qty_input').val());
-
-            // If is not undefined
-
-            // Increment
-            if(quantity>0){
-                $('#qty_input').val(quantity - 1);
-            }
-        });
-
-    });
+    // });
 
     function addToCompare(pro_id){
         $.ajax({

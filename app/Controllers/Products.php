@@ -51,6 +51,9 @@ class Products extends BaseController {
             }
             $allOption = '('.rtrim($optionWhere, ' OR ').')';
             $data['optionval'] = $options;
+
+//            print_r($allOption);
+//            die();
         }
 
         $data['brandval'] = array();

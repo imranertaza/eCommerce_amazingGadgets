@@ -214,13 +214,13 @@
                                     </div>
                                 </div>
                                 <div class="list-item-qty text-center bg-gray p-1 py-3 rounded-2 align-items-center d-flex flex-column pro-bg-check">
-                                    <button class="btn btn-sm w-100 p-0"
+                                    <button type="button" class="btn btn-sm w-100 p-0"
                                             onclick="plusItem('<?php echo $val['rowid']; ?>')" id="minus-btn"><i
                                                 class="fa fa-plus"></i></button>
                                     <input type="text" id="qty_input" name="qty"
                                            class="border-0 text-center item_<?php echo $val['rowid']; ?>"
                                            value="<?php echo $val['qty']; ?>" min="1" style="width:45px">
-                                    <button class="btn btn-sm w-100 p-0"
+                                    <button type="button" class="btn btn-sm w-100 p-0"
                                             onclick="minusItem('<?php echo $val['rowid']; ?>')" id="plus-btn"><i
                                                 class="fa fa-minus"></i></button>
 
