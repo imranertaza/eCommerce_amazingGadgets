@@ -157,7 +157,7 @@
                 <div class="col-md-3">
                     <?php if(isset($home_menu)){  ?>
                     <div class="allcategory h-100 me-md-3">
-                        <button class="cat-btn-h d-flex d-md-inline justify-content-between justify-content-md-start gap-1 btn py-3 bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="cat-btn-h d-flex d-md-inline justify-content-between justify-content-md-start gap-1 btn bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid order-2 order-md-1 fa-bars me-3 no-mg"></i>
                             <span class="order-1 order-md-2">Shop by Categories</span>
                         </button>
@@ -170,15 +170,16 @@
                                     </span>
                                     <?php echo $pcat->category_name; ?>
                                     <?php  if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>
-                                    <i class="fa-solid fa-angle-right  float-end"></i>
+                                        <i class="fa-solid fa-angle-right  float-end"></i>
                                     <?php } ?>
                                 </a>
-                                <?php  if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>
-                                <ul class="dropdown-menu dropdown-submenu" >
-                                    <?php foreach (getCategoryBySubArray($pcat->prod_cat_id) as $sCat){ ?>
-                                    <li><a class="dropdown-item" href="<?php echo base_url('category/'.$sCat->prod_cat_id);?>"><?php echo $sCat->category_name; ?></a></li>
-                                    <?php } ?>
-                                </ul>
+                                
+                                <?php if(!empty(count(getCategoryBySubArray($pcat->prod_cat_id)))){ ?>
+                                    <ul class="dropdown-menu dropdown-submenu" >
+                                            <?php foreach (getCategoryBySubArray($pcat->prod_cat_id) as $sCat){ ?>
+                                            <li><a class="dropdown-item" href="<?php echo base_url('category/'.$sCat->prod_cat_id);?>"><?php echo $sCat->category_name; ?></a></li>
+                                            <?php } ?>
+                                        </ul>
                                 <?php } ?>
                             </li>
                             <?php } ?>

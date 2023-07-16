@@ -50,7 +50,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-bottom ">
-                                                        <div class="product-title-hot height-40 mb-md-2 text-capitalize">
+                                                        <div class="product-title-hot mb-md-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
                                                         </div>
                                                         <div class="price-hot mb-md-3">
@@ -166,7 +166,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="product-bottom ">
-                                                            <div class="product-title-hot height-40 mb-2 text-capitalize">
+                                                            <div class="product-title-hot mb-2 text-capitalize">
                                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
                                                             </div>
                                                             <div class="price-hot mb-3">
@@ -197,7 +197,7 @@
 
         <div class="weekly-deals marg-top-90 special-products  mb-5">
             <div class="row gx-0">
-                <div class="col-md-3 col-12 mb-3 mb-md-3">
+                <div class="col-md-3 col-12 mb-3 mb-md-0">
                     <div class="deal-box border position-relative  h-100 me-md-3 mo-m-r-0">
                         <div class="title  bg-black text-white d-flex justify-content-between ">
                             <span class="title-hot">Special products</span>
@@ -211,7 +211,7 @@
                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo image_view('uploads/products',$pro->product_id,'191_'.$pro->image,'noimage.png','img-fluid  ')?></a>
                                         </div>
                                         <div class="col-10 col-md-8 p-2">
-                                            <div class="product-title-special height-40 mb-2 text-capitalize">
+                                            <div class="product-title-special mb-2 text-capitalize">
                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,40);?></a>
                                             </div>
                                             <div class="price-special mb-3">
@@ -232,7 +232,7 @@
                         <div class="banner">
                             <?php
                             $special_banner_1 = get_lebel_by_value_in_theme_settings('special_banner');
-                            echo image_view('uploads/special_banner', '', $special_banner_1, 'noimage.png', '');
+                            echo image_view('uploads/special_banner', '', $special_banner_1, 'noimage.png', 'w-100');
                             ?>
                         </div>
                         <div class="products mt-5 ">
@@ -454,7 +454,7 @@
                 </div>
                 <div class="col-sm-9 col-12">
                     <div class="products h-100">
-                        <div id="etcPro" class="swiper etcpro mo-text-center">
+                        <div id="etcPro" class="swiper etcpro mo-text-center h-100">
                         <div class="etcpro-nav position-absolute top-50 w-100" style="z-index:99">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="etcpro-button-prev left-arr float-start ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none">
                                         <path d="M6 12L0 6L6 0L7.4 1.4L2.8 6L7.4 10.6L6 12Z" fill="#000000"/>
