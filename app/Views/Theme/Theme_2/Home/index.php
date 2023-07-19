@@ -57,7 +57,7 @@
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
-                                                                <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                                <small class="off-price"> <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                             <?php } ?>
                                                         </div>
 
@@ -111,9 +111,6 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom mt-auto">
-                                            <div class="category-new">
-                                                Categorie
-                                            </div>
                                             <div class="product-title-new mb-md-2 text-capitalize">
                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                             </div>
@@ -121,7 +118,7 @@
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                     <?php echo currency_symbol($pro->price);?>
                                                 <?php }else{ ?>
-                                                    <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                    <small class="off-price"> <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                 <?php } ?>
                                             </div>
 
@@ -173,7 +170,7 @@
                                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                     <?php echo currency_symbol($pro->price);?>
                                                                 <?php }else{ ?>
-                                                                    <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                                    <small class="off-price" > <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                                 <?php } ?>
                                                             </div>
                                                             <?php echo addToCartBtnIcon($pro->product_id);?>
@@ -218,7 +215,7 @@
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                     <?php echo currency_symbol($pro->price);?>
                                                 <?php }else{ ?>
-                                                    <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                    <small class="off-price"> <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                 <?php } ?>
                                             </div>
                                         </div>
@@ -239,9 +236,9 @@
 
                             <div class="menu d-flex justify-content-between ">
                                 <div class="nav nav-tabs border-0 special-tab" id="nav-tab" role="tablist">
-                                    <a class="btn border btn-sp-m nav-link active " onclick="loadFun('regular')" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><?php echo $special_category_one_name;?></a>
-                                    <a class="btn border btn-sp-m nav-link" onclick="loadFun('regular-2')" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><?php echo $special_category_two_name;?></a>
-                                    <a class="btn border btn-sp-m nav-link" onclick="loadFun('regular-3')" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><?php echo $special_category_three_name;?></a>
+                                    <a class="btn border rounded-0 btn-sp-m nav-link active " onclick="loadFun('regular')" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><?php echo $special_category_one_name;?></a>
+                                    <a class="btn border rounded-0 btn-sp-m nav-link" onclick="loadFun('regular-2')" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><?php echo $special_category_two_name;?></a>
+                                    <a class="btn border rounded-0 btn-sp-m nav-link" onclick="loadFun('regular-3')" data-bs-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><?php echo $special_category_three_name;?></a>
                                 </div>
                                 <div class="menu-icon ">
                                 </div>
@@ -284,9 +281,6 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-bottom mt-auto">
-                                                        <div class="category-new">
-                                                            Categorie
-                                                        </div>
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
@@ -294,7 +288,7 @@
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
-                                                                <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                                <small class="off-price" > <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                             <?php } ?>
                                                         </div>
                                                         <?php echo addToCartBtn($pro->product_id);?>
@@ -340,9 +334,6 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-bottom mt-auto">
-                                                        <div class="category-new">
-                                                            Categorie
-                                                        </div>
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
@@ -350,7 +341,7 @@
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
-                                                                <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                                <small class="off-price" > <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                             <?php } ?>
                                                         </div>
                                                         <?php echo addToCartBtn($pro->product_id);?>
@@ -396,9 +387,6 @@
                                                         </div>
                                                     </div>
                                                     <div class="product-bottom mt-auto">
-                                                        <div class="category-new">
-                                                            Categorie
-                                                        </div>
                                                         <div class="product-title-new mb-2 text-capitalize">
                                                             <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                         </div>
@@ -406,7 +394,7 @@
                                                             <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                                 <?php echo currency_symbol($pro->price);?>
                                                             <?php }else{ ?>
-                                                                <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                                <small class="off-price" > <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                             <?php } ?>
                                                         </div>
                                                         <?php echo addToCartBtn($pro->product_id);?>
@@ -496,9 +484,6 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom mt-auto">
-                                            <div class="category-new">
-                                                Categorie
-                                            </div>
                                             <div class="product-title-new mb-2 text-capitalize">
                                                 <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                             </div>
@@ -506,7 +491,7 @@
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                     <?php echo currency_symbol($pro->price);?>
                                                 <?php }else{ ?>
-                                                    <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                    <small class="off-price" > <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                 <?php } ?>
                                             </div>
                                             <?php echo addToCartBtn($pro->product_id);?>
@@ -546,13 +531,13 @@
 
                                 <?php
                                     $perPageShow = 6;
-                                    $count = count($brand)/$perPageShow;
+                                    $count = ceil(count($brand)/$perPageShow);
                                     $j = 1;
                                     for ($i=1; $i<=$count; $i++){
                                         $l = $i*$perPageShow;
                                         $act = ($l == $perPageShow)?'active':'';
                                     print '<div class="carousel-item '.$act.'"> <div class="row px-2">';
-                                    while($j<=$l){
+                                    while($j <= $l){
                                             if (array_key_exists($j-1, $brand)) {
                                                 echo '<div class="col-6 brand-item  mt-2  no-padding">'.image_view('uploads/brand', '', $brand[$j-1]->image, 'noimage.png', 'brand-img px-2 ').'</div>';
                                             }

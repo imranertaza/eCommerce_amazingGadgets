@@ -90,7 +90,7 @@
 
         <div class="weekly-footer marg-top-90 menu mb-3 mb-md-5">
             <div class="row gx-0">
-                <div class="col-md-3 col-12">
+                <div class="col-md-3 col-12 pe-3">
                     <h4 class="mb-0 f-title toggleButton">Our company</h4>
                     <div class="elementToToggle d-none d-md-block">
                         <ul class="list-unstyled ul-link mt-md-4">
@@ -101,7 +101,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-3 col-12">
+                <div class="col-md-3 col-12 pe-3">
                     <h4 class="mb-0 f-title toggleButton">Account</h4>
                     <div class="elementToToggle d-none d-md-block">
                         <ul class="list-unstyled ul-link mt-md-4">
@@ -113,7 +113,7 @@
                         </ul>
                     </div>                    
                 </div>
-                <div class="col-md-3 col-12">
+                <div class="col-md-3 col-12 pe-3">
                     <h4 class="mb-0 f-title toggleButton">Information</h4>
                     <div class="elementToToggle d-none d-md-block">
                         <ul class="list-unstyled ul-link mt-md-4">
@@ -412,6 +412,7 @@
             autoplay: true,
             dots:false,
             nav:true,
+            navText: ['<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M7.5 16.5L0 9L7.5 1.5L8.83125 2.83125L2.6625 9L8.83125 15.1687L7.5 16.5Z" fill="#2E2E2E"/></svg>', '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5.3623 15.825C5.1748 15.6375 5.08105 15.4155 5.08105 15.159C5.08105 14.903 5.1748 14.6813 5.3623 14.4938L10.8561 9L5.34355 3.4875C5.16855 3.3125 5.08105 3.09375 5.08105 2.83125C5.08105 2.56875 5.1748 2.34375 5.3623 2.15625C5.5498 1.96875 5.7718 1.875 6.0283 1.875C6.2843 1.875 6.50605 1.96875 6.69355 2.15625L12.9936 8.475C13.0686 8.55 13.1218 8.63125 13.1533 8.71875C13.1843 8.80625 13.1998 8.9 13.1998 9C13.1998 9.1 13.1843 9.19375 13.1533 9.28125C13.1218 9.36875 13.0686 9.45 12.9936 9.525L6.6748 15.8438C6.4998 16.0188 6.2843 16.1063 6.0283 16.1063C5.7718 16.1063 5.5498 16.0125 5.3623 15.825Z" fill="#2E2E2E"/></svg>'],
             responsive:{
                 0:{
                     items:1,
@@ -427,6 +428,7 @@
 
         $(".regular-4").slick({
             dots: false,
+            arrows:false,
             infinite: true,
             autoplay:true,
             speed: 500,

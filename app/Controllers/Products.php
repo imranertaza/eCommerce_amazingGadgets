@@ -112,7 +112,6 @@ class Products extends BaseController {
         $data['links'] = $data['pager']->links('default','custome_link');
 
 //        print $this->$searchModel->getLastQuery();
-
 //        print_r($data['products']);
 //        die();
 
