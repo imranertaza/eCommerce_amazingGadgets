@@ -91,21 +91,19 @@
                             <div class="mt-4">
                                 <div class="input-group mb-3 qty-tab" >
                                     <div class="input-group-prepend">
-                                        <button type="button" class="btn  btn-sm h-100 btn-q" onclick="minusItem('count')" id="minus-btn"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn rounded-0 btn-sm h-100 btn-q" onclick="minusItem('count')" id="minus-btn"><i class="fa fa-minus"></i></button>
                                     </div>
-                                    <input type="text" id="qty_input" name="qty" class="form-control text-center  form-control-sm item_count" value="1" min="1" required >
+                                    <input type="text" id="qty_input" name="qty" class="form-control text-center  form-control-sm item_count" value="1" min="1"   required >
                                     <div class="input-group-prepend">
-                                        <button type="button" class="btn  btn-sm h-100 btn-q" onclick="plusItem('count')" id="plus-btn"><i class="fa fa-plus"></i></button>
+                                        <button type="button" class="btn rounded-0 btn-sm h-100 btn-q" onclick="plusItem('count')" id="plus-btn"><i class="fa fa-plus"></i></button>
                                     </div>
                                 </div>
-                                <div class="price mb-3 price-tab-d " id="priceVal">
+                                <div class="price mb-3  " id="priceVal">
                                 <?php $spPric = get_data_by_id('special_price', 'cc_product_special', 'product_id', $products->product_id);
                                 if (empty($spPric)) { ?>
                                     <?php $pp = $products->price;    echo currency_symbol($products->price); ?>
                                 <?php } else { ?>
-                                    <small>
-                                        <del><?php echo currency_symbol($products->price); ?></del>
-                                    </small><br><?php echo currency_symbol($spPric); $pp = $spPric;?>
+                                    <small class="off-price-det"> <del><?php echo currency_symbol($products->price); ?></del> </small> <?php echo currency_symbol($spPric);$pp = $spPric;?>
                                 <?php } ?>
 
                                 </div>
@@ -568,9 +566,6 @@
                                                 </div>
                                             </div>
                                             <div class="product-bottom mt-auto">
-                                                <div class="category-new">
-                                                    Categorie
-                                                </div>
                                                 <div class="product-title-new mb-2 text-capitalize">
                                                     <a href="<?php echo base_url('detail/' . $rPro->product_id) ?>"><?php echo substr($rPro->name, 0, 60); ?></a>
                                                 </div>
@@ -579,14 +574,13 @@
                                                     if (empty($spPric)) { ?>
                                                         <?php echo currency_symbol($rPro->price); ?>
                                                     <?php } else { ?>
-                                                        <small>
+                                                        <small class="off-price">
                                                             <del><?php echo currency_symbol($rPro->price); ?></del>
                                                         </small>/<?php echo currency_symbol($spPric); ?>
                                                     <?php } ?>
                                                 </div>
-                                                <a href="javascript:void(0)"
-                                                   onclick="addToCart(<?php echo $rPro->product_id ?>)"
-                                                   class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
+
+                                                <?php echo addToCartBtn($rPro->product_id); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -667,9 +661,6 @@
                                                 </div>
                                             </div>
                                             <div class="product-bottom mt-auto">
-                                                <div class="category-new">
-                                                    Categorie
-                                                </div>
                                                 <div class="product-title-new mb-2 text-capitalize">
                                                     <a href="<?php echo base_url('detail/' . $rPro->product_id) ?>"><?php echo substr($rPro->name, 0, 60); ?></a>
                                                 </div>
@@ -678,14 +669,12 @@
                                                     if (empty($spPric)) { ?>
                                                         <?php echo currency_symbol($rPro->price); ?>
                                                     <?php } else { ?>
-                                                        <small>
+                                                        <small class="off-price">
                                                             <del><?php echo currency_symbol($rPro->price); ?></del>
                                                         </small>/<?php echo currency_symbol($spPric); ?>
                                                     <?php } ?>
                                                 </div>
-                                                <a href="javascript:void(0)"
-                                                   onclick="addToCart(<?php echo $rPro->product_id ?>)"
-                                                   class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
+                                                <?php echo addToCartBtn($rPro->product_id); ?>
                                             </div>
                                         </div>
                                     </div>

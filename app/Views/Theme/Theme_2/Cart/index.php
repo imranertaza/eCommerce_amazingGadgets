@@ -54,7 +54,7 @@
 
                             </div>
                             <div class="input-group justify-content-center" >
-                                <button class="btn btn-primary btn-sm" id="btn_<?php echo $val['rowid'];?>" style="display:none;" onclick="updateQty('<?php echo $val['rowid'];?>')">Update</button>
+                                <button class="btn bg-black text-white btn-sm" id="btn_<?php echo $val['rowid'];?>" style="display:none;" onclick="updateQty('<?php echo $val['rowid'];?>')">Update</button>
                             </div>
                         </td>
                         <td class="product-subtotal mo-text-center">

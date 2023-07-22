@@ -31,13 +31,7 @@
                         </div>
 
 
-                        <div class="form-group mt-4">
-                            <div class="custom-control custom-checkbox" id="pasShow">
-                                <input class="custom-control-input"  onclick="pass_show(this.value)" type="checkbox" id="passReset" value="1" >
-                                <label for="passReset" class="custom-control-label">Change password</label>
-                            </div>
-                        </div>
-                        <div id="pass-data"></div>
+
 
                     </div>
                     <div class="col-md-6 px-5">
@@ -74,24 +68,36 @@
                             <label>Postal code <span>*</span></label>
                             <input type="text" name="postcode" class="form-control" placeholder="Postal code" value="<?php echo !empty($address->postcode)?$address->postcode:'';?>" required>
                         </div>
-                        <?php
-                            $newChe = is_exists('cc_newsletter','customer_id',newSession()->cusUserId);
-                            if ($newChe == true){
-                        ?>
-                        <h6 style="margin-top:150px;">Newsletter</h6>
-                        <p>You Aren't Subscribed To Our Newsletter</p>
+
+
+                    </div>
+                    <div class="col-md-6 px-5" style="margin-top:120px;">
                         <div class="form-group mt-4">
-                            <div class="custom-control custom-checkbox">
-                                <input name="subscription" class="custom-control-input" type="checkbox" id="subscription" >
-                                <label for="subscription" class="custom-control-label">General subscription</label>
+                            <div class="custom-control custom-checkbox" id="pasShow">
+                                <input class="custom-control-input"  onclick="pass_show(this.value)" type="checkbox" id="passReset" value="1" >
+                                <label for="passReset" class="custom-control-label">Change password</label>
                             </div>
                         </div>
+                        <div id="pass-data"></div>
+                    </div>
+                    <div class="col-md-6 px-5" style="margin-top:120px;">
+                        <?php
+                        $newChe = is_exists('cc_newsletter','customer_id',newSession()->cusUserId);
+                        if ($newChe == true){
+                            ?>
+                            <h6 class="mt-4">Newsletter</h6>
+                            <p>You Aren't Subscribed To Our Newsletter</p>
+                            <div class="form-group mt-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input name="subscription" class="custom-control-input" type="checkbox" id="subscription" >
+                                    <label for="subscription" class="custom-control-label">General subscription</label>
+                                </div>
+                            </div>
                         <?php } ?>
-
                     </div>
                     <div class="col-md-12 text-center">
                         <div class="form-group mt-5">
-                            <button type="submit" class="btn btn-default bg-black text-white">Update</button>
+                            <button type="submit" class="btn btn-default bg-black text-white rounded-0 ">Update</button>
                         </div>
                     </div>
 

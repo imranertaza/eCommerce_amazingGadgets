@@ -34,6 +34,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="products cat-pro-mob">
                                 <div class="row gx-0 row-cols-1 row-cols-sm-2 row-cols-md-3 h-100 " id="grid-view" >
                                     <?php if (!empty($products)){foreach ($products as $pro){ ?>
@@ -69,9 +70,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="product-bottom mt-auto">
-                                                    <div class="category">
-                                                        Categorie
-                                                    </div>
                                                     <div class="product-title mb-2">
                                                         <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo substr($pro->name,0,60);?></a>
                                                     </div>
@@ -79,7 +77,7 @@
                                                         <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                             <?php echo currency_symbol($pro->price);?>
                                                         <?php }else{ ?>
-                                                            <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                            <small class="off-price" > <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                         <?php } ?>
                                                     </div>
                                                     <?php echo addToCartBtn($pro->product_id);?>
@@ -97,13 +95,13 @@
                                                 <?php if (modules_key_by_access('wishlist') == 1) { ?>
                                                     <?php if (!isset(newSession()->isLoggedInCustomer)){ ?>
 
-                                                        <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute  mt-2 ms-2"><i class="fa-solid fa-heart"></i>
+                                                        <a href="<?php echo base_url('login');?>" class="btn-wishlist position-absolute  mt-2 ms-2" style="bottom:58%;"><i class="fa-solid fa-heart"></i>
                                                             <span class="btn-wishlist-text position-absolute  mt-5 ms-2">Favorite</span>
                                                         </a>
 
                                                     <?php }else{ ?>
 
-                                                        <a href="javascript:void(0)" class="btn-wishlist position-absolute mt-2 ms-2" onclick="addToWishlist(<?php echo $pro->product_id ?>)"><i class="fa-solid fa-heart"></i>
+                                                        <a href="javascript:void(0)" class="btn-wishlist position-absolute mt-2 ms-2" style="bottom:57%;" onclick="addToWishlist(<?php echo $pro->product_id ?>)"><i class="fa-solid fa-heart"></i>
                                                             <span class="btn-wishlist-text position-absolute  mt-5 ms-2">Favorite</span>
                                                         </a>
 
@@ -124,9 +122,6 @@
 
 
                                                 <div class="product-bottom " style="width:60%;float:left; padding: 15px;" >
-                                                    <div class="category">
-                                                        Categorie
-                                                    </div>
                                                     <div class="product-title mb-2">
                                                         <a href="<?php echo base_url('detail/'.$pro->product_id)?>"><?php echo $pro->name;?></a>
                                                     </div>
@@ -140,7 +135,7 @@
                                                         <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                                             <?php echo currency_symbol($pro->price);?>
                                                         <?php }else{ ?>
-                                                            <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                            <small class="off-price" > <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                         <?php } ?>
                                                     </div>
                                                     <?php echo addToCartBtn($pro->product_id);?>
@@ -229,11 +224,11 @@
         $firstCar =  mb_substr($nameVal, 0, 1); $length = strlen($nameVal);
         $isColor = (($firstCar == '#') && ($length == 7))?'':$nameVal;
         $nameOp = !empty($isColor)?$isColor:'';
-        $style = empty($isColor)?"background-color: $nameVal;padding: 15px; border: unset;":"";
+        $style = empty($isColor)?"background-color: $nameVal !important;padding: 15px; border: unset;":"";
         ?>
 
                                                 <li class="mt-2"><input type="checkbox" onclick="formSubmit()"  class="btn-check" <?php foreach ($optionval as $vSel){ echo ($vSel == $opVal->option_value_id)?'checked':'';} ?> name="options[]" id="option_<?php echo $opVal->name; ?>" value="<?php echo $opVal->option_value_id?>"  autocomplete="off">
-                                                    <label class="btn btn-outline-secondary" style="<?php echo $style;?>"   for="option_<?php echo $opVal->name; ?>"><?php  echo $nameOp; ?></label></li>
+                                                    <label class="btn btn-outline-secondary rounded-0" style="<?php echo $style;?>"   for="option_<?php echo $opVal->name; ?>"><?php  echo $nameOp; ?></label></li>
                                                 <?php } ?>
                                             </ul>
                                         </div>

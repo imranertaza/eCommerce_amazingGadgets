@@ -46,9 +46,6 @@
                                             </div>
                                         </div>
                                         <div class="product-bottom mt-auto">
-                                            <div class="category">
-                                                Categorie
-                                            </div>
                                             <div class="product-title mb-2">
                                                 <a href="<?php echo base_url('detail/'.$pro['product_id'])?>"><?php echo substr($pro['name'],0,60);?></a>
                                             </div>
@@ -56,7 +53,7 @@
                                                 <?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro['product_id']);  if (empty($spPric)){ ?>
                                                     <?php echo currency_symbol($pro['price']);?>
                                                 <?php }else{ ?>
-                                                    <small> <del><?php echo currency_symbol($pro['price']);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                                    <small class="off-price" > <del><?php echo currency_symbol($pro['price']);?></del></small> <?php echo currency_symbol($spPric);?>
                                                 <?php } ?>
                                             </div>
                                             <?php echo addToCartBtn($pro['product_id']);?>

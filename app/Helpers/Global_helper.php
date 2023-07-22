@@ -502,7 +502,7 @@ function top_menu(){
     $view ='';
     foreach ($query as $val){
         $url = base_url('category/'.$val->prod_cat_id);
-        $view .='<li class="nav-item"><a class="nav-link" aria-current="page" href="'.$url.'" >'.$val->category_name.'</a></li>';
+        $view .='<li class="nav-item"><a class="cl" aria-current="page" href="'.$url.'" >'.$val->category_name.'</a></li>';
     }
     return $view;
 
@@ -583,7 +583,7 @@ function currency_symbol($amount){
     $cur = !empty($amount)?$amount:0;
     $split = explode('.',$cur);
     $flot = empty($split[1])?'00':$split[1];
-    $result = $symbol.' '.$split[0].'<sup>'.$flot.'</sup>';
+    $result = $symbol.''.$split[0].'<sup>'.$flot.'</sup>';
 
     return $result;
 }

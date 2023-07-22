@@ -8,7 +8,7 @@
                 <div class="message">
                     <img src="<?php echo base_url()?>/assets/img/can.svg" alt="success">
                     <p class="can-title">cancel !</p>
-                    <p class="suc-message">Your order has Canceled</p>
+                    <p class="suc-message">Your order Canceled</p>
                     <a href="<?php echo base_url()?>" class="btn bg-black text-white" style="width:175px;" ><img src="<?php echo base_url()?>/assets/img/aroue.svg" alt="success"> Back to home</a>
                 </div>
             </div>

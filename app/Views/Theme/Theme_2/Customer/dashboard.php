@@ -8,7 +8,7 @@
                             <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
                         </div>
 
-                        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                        <div class="col-md-6 col-lg-2 mb-4 mb-lg-0">
                             <div class="d-flex justify-content-between">
                                 <span class="mt-3 con-tit">Total Order</span>
                                 <?php
@@ -68,11 +68,11 @@
                                 <input type="password" name="confirm_password"  class="form-control con-or text-center" placeholder="Confirm Password*" required >
                             </div>
                             <div class="mb-3">
-                                <button type="submit" class="btn bg-dark text-white w-100" >Update</button>
+                                <button type="submit" class="btn bg-dark text-white w-100 rounded-0" >Update</button>
                             </div>
                             </form>
                         </div>
-                        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+                        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
                             <center><h4 class="ti-or-n">Recent Order</h4></center>
                             <table class="table table-borderless table-responsive">
                                 <tbody>

@@ -39,8 +39,8 @@
     <div class="topbar">
         <div class="container">
             <div class="row align-items-center m-t-h" >
-                <div class="col-sm-5 col-12 text-center text-sm-start">
-                    <span class="me-1"><a href="">Free delivery in dhaka</a></span>
+                <div class="col-sm-5 col-12 text-md-start-2 text-center text-sm-start">
+                    <span class="me-4"><a href="">Free delivery in dhaka</a></span>
                     <span><a href="<?php echo base_url('page/returns-policy')?>">Returns Policy</a></span>
                 </div>
                 <div class="col-sm-7 col-12 text-md-start-2  d-flex justify-content-center justify-content-md-end align-items-center top-bar-height" >
@@ -135,8 +135,8 @@
                     <div class="mini-cart d-flex position-relative" id="cartReload">
 
 
-                        <div class="cart-content d-none d-md-flex flex-column">
-                            <span class="w-100">My Cart</span>
+                        <div class="cart-content  d-flex align-items-center">
+<!--                            <span class="w-100">My Cart</span>-->
                             <span class="total"> <?php echo currency_symbol(Cart()->total()) ?></span>
                         </div>
 
@@ -161,7 +161,7 @@
                             <i class="fa-solid order-2 order-md-1 fa-bars me-3 no-mg"></i>
                             <span class="order-1 order-md-2">Shop by Categories</span>
                         </button>
-                        <ul class="dropdown-menu border  cat-drop-menu all-cat-menu btn-cat-show" >
+                        <ul class="dropdown-menu border  cat-drop-menu all-cat-menu btn-cat-show " >
                             <?php foreach (getSideMenuArray() as $pcat){?>
                             <li>
                                 <a class="dropdown-item" href="<?php echo base_url('category/'.$pcat->prod_cat_id);?>">
@@ -202,19 +202,19 @@
                             <div class="offcanvas-body w-100">
                                 <ul class="navbar d-flex flex-column flex-md-row align-items-start justify-content-md-between  text-uppercase mb-0">
                                     <li class="nav-item">
-                                        <a class="nav-link" aria-current="page" href="<?php echo base_url()?>">Home</a>
+                                        <a class="cl" aria-current="page" href="<?php echo base_url()?>">Home</a>
                                     </li>
 
                                     <?php echo top_menu();?>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('page/contact-us')?>">Contact</a>
+                                        <a class="cl" href="<?php echo base_url('page/contact-us')?>">Contact</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('page/about-us')?>">About Us</a>
+                                        <a class="cl" href="<?php echo base_url('page/about-us')?>">About Us</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('page/about-us')?>">Help Center</a>
+                                        <a class="cl" href="<?php echo base_url('page/contact')?>">Help Center</a>
                                     </li>
                                 </ul>
                             </div>

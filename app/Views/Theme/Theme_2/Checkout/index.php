@@ -224,7 +224,7 @@
                                             onclick="minusItem('<?php echo $val['rowid']; ?>')" id="plus-btn"><i
                                                 class="fa fa-minus"></i></button>
 
-                                    <button class="btn btn-primary btn-sm" id="btn_<?php echo $val['rowid']; ?>"
+                                    <button class="btn bg-black text-white btn-sm" id="btn_<?php echo $val['rowid']; ?>"
                                             style="display:none;" onclick="updateQty('<?php echo $val['rowid']; ?>')">
                                         Update
                                     </button>
@@ -251,7 +251,7 @@
                                 if (isset(newSession()->coupon_discount)) {
                                     $disc = round((Cart()->total() * newSession()->coupon_discount) / 100); ?>
                                     <span><?php echo currency_symbol($disc) ?></span>
-                                <?php }else{echo currency_symbol($disc); }
+                                <?php }else{ echo '<span>'.currency_symbol($disc).'</span>'; }
                                 $total = (isset(newSession()->coupon_discount)) ? Cart()->total() - $disc : Cart()->total(); ?>
                             </div>
                         </div>
