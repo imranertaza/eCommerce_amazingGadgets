@@ -207,15 +207,15 @@
 
                                     <?php echo top_menu();?>
 
-                                    <li class="nav-item">
-                                        <a class="cl" href="<?php echo base_url('page/contact-us')?>">Contact</a>
-                                    </li>
+
                                     <li class="nav-item">
                                         <a class="cl" href="<?php echo base_url('page/about-us')?>">About Us</a>
                                     </li>
+
                                     <li class="nav-item">
-                                        <a class="cl" href="<?php echo base_url('page/contact')?>">Help Center</a>
+                                        <a class="cl" href="<?php echo base_url('page/contact-us')?>">Contact Us</a>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
