@@ -583,7 +583,7 @@ function currency_symbol($amount){
     $cur = !empty($amount)?$amount:0;
     $split = explode('.',$cur);
     $flot = empty($split[1])?'00':$split[1];
-    $result = $symbol.' '.$split[0].'<sup>'.$flot.'</sup>';
+    $result = $symbol.''.$split[0].'<sup>'.$flot.'</sup>';
 
     return $result;
 }
