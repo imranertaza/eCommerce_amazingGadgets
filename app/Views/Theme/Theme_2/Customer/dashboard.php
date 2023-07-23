@@ -68,7 +68,7 @@
                                 <input type="password" name="confirm_password"  class="form-control con-or text-center" placeholder="Confirm Password*" required >
                             </div>
                             <div class="mb-3">
-                                <button type="submit" class="btn bg-dark text-white w-100 rounded-0" >Update</button>
+                                <button type="submit" class="btn bg-custom-color text-white w-100 rounded-0" >Update</button>
                             </div>
                             </form>
                         </div>

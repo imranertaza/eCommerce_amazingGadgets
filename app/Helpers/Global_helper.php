@@ -837,10 +837,10 @@ function addToCartBtnIcon($product_id){
     $btn = '';
     if (!empty($qtyCheck)){
         if ($optionCheck == true){
-            $btn = '<a href="javascript:void(0)" onclick="addToCart('.$product_id.')" class="btn btn-cart bg-black text-white rounded-0 mt-3">'.$icon.'</a>';
+            $btn = '<a href="javascript:void(0)" onclick="addToCart('.$product_id.')" class="btn btn-cart bg-custom-color text-white rounded-0 mt-3">'.$icon.'</a>';
         }else{
             $url = base_url('detail/'.$product_id);
-            $btn = '<a href="'.$url.'"  class="btn btn-cart bg-black text-white rounded-0 mt-3">'.$icon.'</a>';
+            $btn = '<a href="'.$url.'"  class="btn btn-cart bg-custom-color text-white rounded-0 mt-3">'.$icon.'</a>';
         }
 
     }else{

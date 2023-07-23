@@ -26,7 +26,7 @@
             <div class="row  gx-0">
                 <div class="col-md-3 col-12 mb-3 mb-md-0">
                     <div class="deal-box border position-relative  h-100 me-md-3 mo-m-r-0">
-                        <div class="title bg-black text-white d-flex justify-content-between ">
+                        <div class="title bg-custom-color text-white d-flex justify-content-between ">
                             <span class="title-hot">Hot Deals</span>
                             <span class="icon-mt">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="hotdeal-button-prev left-arr" width="8"
@@ -158,7 +158,7 @@
             <div class="row  gx-0">
                 <div class="col-md-3 col-12 mb-3 mb-md-0">
                     <div class="deal-box border position-relative  h-100 me-3 mo-m-r-0">
-                        <div class="title bg-black text-white d-flex justify-content-between ">
+                        <div class="title bg-custom-color text-white d-flex justify-content-between ">
                             <span class="title-hot">Trending Collection</span>
                             <span class="icon-mt">
                                         <svg class="trend-button-prev left-arr" xmlns="http://www.w3.org/2000/svg"
@@ -225,7 +225,7 @@
             <div class="row gx-0">
                 <div class="col-md-3 col-12 mb-3 mb-md-0">
                     <div class="deal-box border position-relative  h-100 me-md-3 mo-m-r-0">
-                        <div class="title  bg-black text-white d-flex justify-content-between ">
+                        <div class="title  bg-custom-color text-white d-flex justify-content-between ">
                             <span class="title-hot">Special products</span>
                             <span>
                             </span>
@@ -602,7 +602,7 @@
             <div class="row gx-0">
                 <div class="col-md-3 col-12 mb-3 mb-md-0">
                     <div class="deal-box border position-relative  h-100 me-md-3 mo-m-r-0">
-                        <div class="title  bg-black text-white d-flex justify-content-between ">
+                        <div class="title  bg-custom-color text-white d-flex justify-content-between ">
                             <span class="title-hot">Brands</span>
                             <span class="icon-mt brand-nav">
                                 
@@ -647,7 +647,7 @@
                             </div>
                         </div>
 
-                        <div class="title mt-3  bg-black text-white d-flex justify-content-between ">
+                        <div class="title mt-3  bg-custom-color text-white d-flex justify-content-between ">
                             <span class="title-hot">Brands Search</span>
 
                         </div>
@@ -681,7 +681,7 @@
             <div class="row gx-0">
                 <div class="col-md-3 col-12 mb-3 mb-md-0">
                     <div class="deal-box border position-relative h-100 me-md-3 mo-m-r-0">
-                        <div class="title  bg-black text-white d-flex justify-content-between ">
+                        <div class="title  bg-custom-color text-white d-flex justify-content-between ">
                             <span class="title-hot">Popular Categories</span>
                             <span class="icon-mt">
                                         <svg class="popcat-button-prev left-arr" xmlns="http://www.w3.org/2000/svg"

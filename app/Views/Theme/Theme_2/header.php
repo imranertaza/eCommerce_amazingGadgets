@@ -122,7 +122,7 @@
                             </div>
                             <input type="text" class="form-control" id="first-keywordTop" name="keywordTop" placeholder="Search item..." value="<?php echo isset($keywordTop)?$keywordTop:'';?>" >
                             <span class="input-group-btn">
-                                <button class="btn btn-default border rounded-0 bg-black text-white" onclick="topSearchValidation('first-form-top','first-cat','first-keywordTop','first-valid')"  type="button">
+                                <button class="btn btn-default border rounded-0 bg-custom-color text-white" onclick="topSearchValidation('first-form-top','first-cat','first-keywordTop','first-valid')"  type="button">
                                     <i class="fa-solid fa-search"></i>
                                 </button>
                             </span>
@@ -157,7 +157,7 @@
                 <div class="col-md-3">
                     <?php if(isset($home_menu)){  ?>
                     <div class="allcategory h-100 me-md-3">
-                        <button class="cat-btn-h d-flex d-md-inline justify-content-between justify-content-md-start gap-1 btn bg-black text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="cat-btn-h d-flex d-md-inline justify-content-between justify-content-md-start gap-1 btn bg-custom-color text-white text-uppercase show fw-semibold dropdown-toggle rounded-0 h-100  border-0 text-center w-100 btn-click " type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid order-2 order-md-1 fa-bars me-3 no-mg"></i>
                             <span class="order-1 order-md-2">Shop by Categories</span>
                         </button>
@@ -253,7 +253,7 @@
                                     </div>
                                     <input type="text" class="form-control" id="second-keywordTop" name="keywordTop" placeholder="Search item..." value="<?php echo isset($keywordTop)?$keywordTop:'';?>" >
                                     <span class="input-group-btn">
-                                <button class="btn btn-default border rounded-0 bg-black text-white" onclick="topSearchValidation('second-form-top','second-cat','second-keywordTop','second-valid')" type="button">
+                                <button class="btn btn-default border rounded-0 bg-custom-color text-white" onclick="topSearchValidation('second-form-top','second-cat','second-keywordTop','second-valid')" type="button">
                                     <i class="fa-solid fa-search"></i>
                                 </button>
                             </span>
@@ -289,7 +289,7 @@
                     <div class="col-sm-3 col-8">
                         <?php if(isset($home_menu)){  ?>
                             <div class="allcategory h-100 " style="width:94%;">
-                                <button class="cat-btn-h d-flex d-md-inline justify-content-between justify-content-md-start gap-1  btn bg-black text-white text-uppercase fw-semibold dropdown-toggle rounded-0 h-100 border-0 text-center w-100 btn-click" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="cat-btn-h d-flex d-md-inline justify-content-between justify-content-md-start gap-1  btn bg-custom-color text-white text-uppercase fw-semibold dropdown-toggle rounded-0 h-100 border-0 text-center w-100 btn-click" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-solid order-2 order-md-1 fa-bars me-3 no-mg"></i>
                                     <span class="order-1 order-md-2">Shop by Categories</span>
                                 </button>

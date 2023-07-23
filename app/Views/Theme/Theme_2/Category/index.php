@@ -165,7 +165,7 @@
 <script>
     if ($(window).width() > 767) {
         var sidebarDesktop = `<div class="d-none d-md-block">
-                                        <div class="title bg-black text-white">
+                                        <div class="title bg-custom-color text-white">
                                         <span class="title-hot"><?php
         if (!empty($prod_cat_id)){
         $par_id = get_data_by_id('parent_id','cc_product_category','prod_cat_id',$prod_cat_id);
@@ -300,7 +300,7 @@
     }
     else {
         var sidebarMobile = `<div class="d-block d-md-none">
-                                <button type="button" class="filterModal btn btn-primary bg-black border-0 mb-4 rounded-0" data-bs-toggle="modal" data-bs-target="#filterModal" data-bs-whatever="@mdo">
+                                <button type="button" class="filterModal btn btn-primary bg-custom-color border-0 mb-4 rounded-0" data-bs-toggle="modal" data-bs-target="#filterModal" data-bs-whatever="@mdo">
                                     <i class="fa-solid fa-filter"></i> Shop By
                                 </button>
                                 <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModal" aria-hidden="true">
@@ -310,7 +310,7 @@
                                             <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Shopping Options</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="title bg-black text-white">
+                                        <div class="title bg-custom-color text-white">
                                             <span class="title-hot"><?php
         if (!empty($prod_cat_id)){
         $par_id = get_data_by_id('parent_id','cc_product_category','prod_cat_id',$prod_cat_id);

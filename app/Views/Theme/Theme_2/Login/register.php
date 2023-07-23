@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Sign Up" class="btn btn-sign bg-transparent border-1 rounded-2 w-100 text-black fw-bold fs-5 border-dark">
+                        <input type="submit" value="Sign Up" class="btn btn-sign bg-transparent border-1 rounded-0 w-100 text-black fw-bold fs-5 border-dark">
                     </div>
                     <p class="text-center fs-4 my-3 text-gray">or</p>
                 </form>
@@ -84,7 +84,7 @@
 
         <div class="sing-in card px-5 bg-white text-center rounded-0 border-0">
             <p>Already have an account?</p>
-            <p><a href="<?php echo base_url('login') ?>" class="btn bg-black px-5 py-2 fs-5 text-white fw-semibold">Sign In</a></p>
+            <p><a href="<?php echo base_url('login') ?>" class="btn bg-custom-color rounded-0 px-5 py-2 fs-5 text-white fw-semibold">Sign In</a></p>
         </div>
     </div>
 </section>

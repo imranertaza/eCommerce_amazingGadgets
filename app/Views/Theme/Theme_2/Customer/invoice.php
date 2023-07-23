@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 mt-5">
-                    <div class="inv-detail bg-dark text-white rounded position-relative" style="line-height: 16px!important;">
+                    <div class="inv-detail bg-custom-color text-white rounded position-relative" style="line-height: 16px!important;">
                         <div class="row p-4">
                             <div class="col-md-8 ">
                                 <p class="fw-bold">Invoice Number</p>

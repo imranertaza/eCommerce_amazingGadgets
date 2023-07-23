@@ -54,7 +54,7 @@
 
                             </div>
                             <div class="input-group justify-content-center" >
-                                <button class="btn bg-black text-white btn-sm" id="btn_<?php echo $val['rowid'];?>" style="display:none;" onclick="updateQty('<?php echo $val['rowid'];?>')">Update</button>
+                                <button class="btn bg-custom-color text-white btn-sm" id="btn_<?php echo $val['rowid'];?>" style="display:none;" onclick="updateQty('<?php echo $val['rowid'];?>')">Update</button>
                             </div>
                         </td>
                         <td class="product-subtotal mo-text-center">
@@ -92,7 +92,7 @@
             </table>
         </div>
             <?php if (!empty(Cart()->contents())){ ?>
-            <p class="text-end"><a href="<?php echo base_url('checkout')?>" class="btn btn-dark rounded-0 px-4 btn-checkout">Proceed to checkout</a></p>
+            <p class="text-end"><a href="<?php echo base_url('checkout')?>" class="btn bg-custom-color text-white rounded-0 px-4 btn-checkout">Proceed to checkout</a></p>
             <?php } ?>
         </div>
     </div>

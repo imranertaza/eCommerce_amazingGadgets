@@ -46,7 +46,7 @@
                             <textarea name="message" class="form-control" id="message" cols="30" rows="6" placeholder="Question"></textarea>
                         </div>
                         <div class="mb-3">
-                            <input type="submit" value="Get a Quary" class="btn btn-dark">
+                            <input type="submit" value="Get a Quary" class="btn bg-custom-color text-white rounded-0">
                         </div>
                     </form>
                 </div>

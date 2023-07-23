@@ -80,7 +80,7 @@
                 <div class="col-md-6 col-12">
                     <div class="input-group weekly-newsletter-foot" style="width: 79%;">
                         <input type="text" name="subscribe_email" id="subscribe_email" class="form-control news-sub border-0 rounded-0" placeholder="Enter your Email address" aria-label="Search" aria-describedby="search-addon" />
-                        <button type="button" class="btn bg-black text-white rounded-0 sub-btn" onclick="subscribe()" >Subscribe Now</button>
+                        <button type="button" class="btn bg-custom-color text-white rounded-0 sub-btn" onclick="subscribe()" >Subscribe Now</button>
                     </div>
                 </div>
             </div>

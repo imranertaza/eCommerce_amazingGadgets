@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-md-12 text-center">
                         <div class="form-group mt-5">
-                            <button type="submit" class="btn btn-default bg-black text-white rounded-0 ">Update</button>
+                            <button type="submit" class="btn btn-default bg-custom-color text-white rounded-0 ">Update</button>
                         </div>
                     </div>
 

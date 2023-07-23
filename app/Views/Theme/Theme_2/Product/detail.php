@@ -504,7 +504,7 @@
                                         <div class=" w-100 text-center">
                                             <p class="price-rel"
                                                id="price-both"><?php echo currency_symbol($totalPrice); ?></p>
-                                            <button type="button" class="btn w-100 bg-black text-white mt-2"
+                                            <button type="button" class="btn w-100 bg-custom-color text-white mt-2"
                                                     onclick="groupAdtoCart()">Add to Cart
                                             </button>
                                         </div>
