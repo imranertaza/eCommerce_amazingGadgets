@@ -36,6 +36,7 @@ class Cart extends BaseController {
 
     public function addToCart(){
 
+
         $product_id = $this->request->getPost('product_id');
         $qty = $this->request->getPost('qtyall');
 
@@ -48,16 +49,21 @@ class Cart extends BaseController {
         if (!empty($specialprice)){
             $price = $specialprice;
         }
-        $data = array(
-            'id' => $product_id,
-            'name' => strval($name),
-            'qty' => $qty,
-            'price' => $price,
-            'color' => $color,
-            'size' => $size,
-        );
-        $this->cart->insert($data);
-        print 'Successfully add to cart';
+        $check = $this->check_qty($product_id , $qty);
+        if ($check == true) {
+            $data = array(
+                'id' => $product_id,
+                'name' => strval($name),
+                'qty' => $qty,
+                'price' => $price,
+                'color' => $color,
+                'size' => $size,
+            );
+            $this->cart->insert($data);
+            print 'Successfully add to cart';
+        }else{
+            print 'not enough quantity!';
+        }
     }
 
     public function addtocartdetail(){
@@ -98,8 +104,14 @@ class Cart extends BaseController {
         foreach(get_all_data_array('cc_option') as $v) {
             $data['op_'.strtolower($v->name)] = $this->request->getPost(strtolower($v->name));
         }
-        $this->cart->insert($data);
-        print 'Successfully add to cart';
+
+        $check = $this->check_qty($product_id , $qty);
+        if ($check == true) {
+            $this->cart->insert($data);
+            print 'Successfully add to cart';
+        }else{
+            print 'not enough quantity!';
+        }
     }
 
     public function addToCartGroup(){
@@ -131,8 +143,19 @@ class Cart extends BaseController {
             'rowid' => $rowid,
             'qty'   => $qty
         );
-        $this->cart->update($data);
-        print 'Successfully update to cart';
+
+
+        foreach($this->cart->contents() as $row) {
+            if ($row['rowid'] == $rowid) {
+                $check = $this->check_qty($row['id'], $qty);
+                if ($check == true) {
+                    $this->cart->update($data);
+                    print 'Successfully update to cart';
+                } else {
+                    print 'not enough quantity!';
+                }
+            }
+        }
     }
 
     public function removeToCart(){
@@ -144,6 +167,16 @@ class Cart extends BaseController {
         }
 
         print 'Successfully remove to cart';
+    }
+
+    private function check_qty($productID , $qty){
+        $table = DB()->table('cc_products');
+        $data = $table->where('product_id',$productID)->get()->getRow();
+        if ($data->quantity >= $qty){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

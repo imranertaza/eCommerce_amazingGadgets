@@ -4,6 +4,7 @@
         <div class="card p-3 rounded-0">
 <!--            <p class="text-end"><a href="#">Print This Page</a></p>-->
             <?php if (!empty($products)){ ?>
+                <div class="table-responsive">
             <table class="table table-bordered table-hover" id="compReload">
                 <tr>
                     <th style="width: 40%;"></th>
@@ -24,7 +25,7 @@
                             <span><?php $spPric = get_data_by_id('special_price','cc_product_special','product_id',$pro->product_id);  if (empty($spPric)){ ?>
                                     <?php echo currency_symbol($pro->price);?>
                                 <?php }else{ ?>
-                                    <small> <del><?php echo currency_symbol($pro->price);?></del></small>/<?php echo currency_symbol($spPric);?>
+                                    <small class="off-price" > <del><?php echo currency_symbol($pro->price);?></del></small> <?php echo currency_symbol($spPric);?>
                                                 <?php } ?></span><br>
                             <span>
                                     <?php echo product_id_by_rating($pro->product_id,'1');?>
@@ -63,6 +64,7 @@
                     <?php } ?>
                 </tr>
             </table>
+            </div>
             <?php } ?>
         </div>
 

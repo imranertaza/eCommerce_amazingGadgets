@@ -3,68 +3,75 @@
         <div class="product-details">
             <div class=" p-3  mb-4 border-bottom">
                 <div class="row">
-                    <div class="col-lg-6 mb-3 mb-lg-0">
+                    <div class="col-md-7 col-lg-5 col-xl-6 mb-3 mb-lg-0">
                         <section class="banner-section ">
                             <div class="container  product-det-info">
                                 <div class="vehicle-detail-banner banner-content clearfix">
                                     <div class="banner-slider">
                                         <div class="thumb_plus_video">
-                                            <div class="slider slider-nav thumb-image">
-
-                                                <div class="thumbnail-image">
-                                                    <div class="thumbImg">
-                                                        <?php echo image_view('uploads/products', $products->product_id, '100_' . $products->image, 'noimage.png', 'img-fluid') ?>
-                                                    </div>
-                                                </div>
-
-                                                <?php
-                                                if (!empty($proImg)) {
-                                                    foreach ($proImg as $imgval) {
-                                                        echo '<div class="thumbnail-image"><div class="thumbImg">' . multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '100_' . $imgval->image, 'noimage.png', 'img-fluid') . '</div></div>';
-                                                    }
-                                                }
-                                                ?>
-                                                <?php if (!empty($products->video)) { ?>
-                                                    <div class="thumbnail-image">
-                                                        <div class="thumbImg video-thum">
-                                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                               data-bs-target="#videoeModal">
+                                            <div class="row">
+                                                <div class="col-2 col-sm-3 col-md-2 col-lg-3 px-0">
+                                                    <div class="slider slider-nav thumb-image">
+                                                        <div class="thumbnail-image">
+                                                            <div class="thumbImg">
                                                                 <?php echo image_view('uploads/products', $products->product_id, '100_' . $products->image, 'noimage.png', 'img-fluid') ?>
-                                                                <img src="<?php echo base_url('uploads/play.png') ?>"
-                                                                     alt="" class="play-image">
-                                                            </a>
+                                                            </div>
                                                         </div>
+
+                                                        <?php
+                                                        if (!empty($proImg)) {
+                                                            foreach ($proImg as $imgval) {
+                                                                echo '<div class="thumbnail-image"><div class="thumbImg">' . multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '100_' . $imgval->image, 'noimage.png', 'img-fluid') . '</div></div>';
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <?php if (!empty($products->video)) { ?>
+                                                            <div class="thumbnail-image">
+                                                                <div class="thumbImg video-thum">
+                                                                    <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                                    data-bs-target="#videoeModal">
+                                                                        <?php echo image_view('uploads/products', $products->product_id, '100_' . $products->image, 'noimage.png', 'img-fluid') ?>
+                                                                        <img src="<?php echo base_url('uploads/play.png') ?>"
+                                                                            alt="" class="play-image">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+
                                                     </div>
-                                                <?php } ?>
-
-                                            </div>
-
-
-                                            <div class="slider slider-for slider-cus-css">
-                                                <div class="slider-banner-image">
-                                                    <?php echo image_view('uploads/products', $products->product_id, '437_' . $products->image, 'noimage.png', 'img-fluid') ?>
                                                 </div>
+                                                <div class="col-10 col-sm-9 col-md-10 col-lg-9">
+                                                    <div class="slider slider-for slider-cus-css">
+                                                        <div class="slider-banner-image">
+                                                            <?php echo image_view('uploads/products', $products->product_id, '437_' . $products->image, 'noimage.png', 'img-fluid') ?>
+                                                        </div>
 
-                                                <?php
-                                                if (!empty($proImg)) {
-                                                    foreach ($proImg as $imgval) {
-                                                        echo '<div class="slider-banner-image">' . multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '437_' . $imgval->image, 'noimage.png', 'img-fluid') . '</div>';
-                                                    }
-                                                }
-                                                ?>
+                                                        <?php
+                                                        if (!empty($proImg)) {
+                                                            foreach ($proImg as $imgval) {
+                                                                echo '<div class="slider-banner-image">' . multi_image_view('uploads/products', $imgval->product_id, $imgval->product_image_id, '437_' . $imgval->image, 'noimage.png', 'img-fluid') . '</div>';
+                                                            }
+                                                        }
+                                                        ?>
 
+                                                    </div>
+                                                </div>
                                             </div>
+                                            
+
+
+                                            
 
                                         </div>
                                     </div>
                                 </div>
                         </section>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-md-5 col-lg-4 col-xl-3">
                         <div class="product-info-det p-3" >
 
                             <form id="addto-cart-form" action="<?php echo base_url('addtocartdetail') ?>"  method="post" >
-                            <p class="mb-3 pro-t"><?php echo $products->name; ?></p>
+                            <h5 class="mb-3 pro-t"><?php echo $products->name; ?></h5>
                             <?php $stock = get_data_by_id('quantity', 'cc_products', 'product_id', $products->product_id) ?>
 
                             <div class="rating mb-3">
@@ -84,21 +91,19 @@
                             <div class="mt-4">
                                 <div class="input-group mb-3 qty-tab" >
                                     <div class="input-group-prepend">
-                                        <button type="button" class="btn  btn-sm h-100 btn-q" onclick="minusItem('count')" id="minus-btn"><i class="fa fa-minus"></i></button>
+                                        <button type="button" class="btn rounded-0 btn-sm h-100 btn-q" onclick="minusItem('count')" id="minus-btn"><i class="fa fa-minus"></i></button>
                                     </div>
-                                    <input type="text" id="qty_input" name="qty" class="form-control text-center  form-control-sm item_count" value="1" min="1" required >
+                                    <input type="text" id="qty_input" name="qty" class="form-control text-center  form-control-sm item_count" value="1" min="1"   required >
                                     <div class="input-group-prepend">
-                                        <button type="button" class="btn  btn-sm h-100 btn-q" onclick="plusItem('count')" id="plus-btn"><i class="fa fa-plus"></i></button>
+                                        <button type="button" class="btn rounded-0 btn-sm h-100 btn-q" onclick="plusItem('count')" id="plus-btn"><i class="fa fa-plus"></i></button>
                                     </div>
                                 </div>
-                                <div class="price mb-3 price-tab-d " id="priceVal">
+                                <div class="price mb-3  " id="priceVal">
                                 <?php $spPric = get_data_by_id('special_price', 'cc_product_special', 'product_id', $products->product_id);
                                 if (empty($spPric)) { ?>
                                     <?php $pp = $products->price;    echo currency_symbol($products->price); ?>
                                 <?php } else { ?>
-                                    <small>
-                                        <del><?php echo currency_symbol($products->price); ?></del>
-                                    </small><br><?php echo currency_symbol($spPric); $pp = $spPric;?>
+                                    <small class="off-price-det"> <del><?php echo currency_symbol($products->price); ?></del> </small> <?php echo currency_symbol($spPric);$pp = $spPric;?>
                                 <?php } ?>
 
                                 </div>
@@ -175,7 +180,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3">
+                    <div class="col-md-12 col-lg-3">
                         <div class="top-div d-flex justify-content-between">
                             <div>
                                 <p class="free-text">Free shipping</p>
@@ -317,7 +322,7 @@
 
         <div class="product-about ">
             <div class="row mb-4 mt-5">
-                <div class="col-lg-8">
+                <div class="col-lg-8 mb-3">
                     <ul class="nav nav-tabs list-unstyled mb-5 border-0 border-bottom custom-tab-up  des " id="myTab"
                         role="tablist">
                         <li class="nav-item" role="presentation">
@@ -414,7 +419,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mb-3">
                     <?php echo image_view('uploads/products', $products->product_id, '437_' . $products->image, 'noimage.png', 'img-fluid w-100') ?>
                 </div>
             </div>
@@ -499,7 +504,7 @@
                                         <div class=" w-100 text-center">
                                             <p class="price-rel"
                                                id="price-both"><?php echo currency_symbol($totalPrice); ?></p>
-                                            <button type="button" class="btn w-100 bg-black text-white mt-2"
+                                            <button type="button" class="btn w-100 bg-custom-color text-white mt-2"
                                                     onclick="groupAdtoCart()">Add to Cart
                                             </button>
                                         </div>
@@ -520,7 +525,7 @@
 
         <div class="row mb-4 related-products-oth">
             <div class="col-lg-12  p-4 rounded-0 border-bottom border-top">
-                <div class=" py-3 bg-white">
+                <div class="px-2 py-3 mb-3 bg-white">
                     <h4 class="text-uppercase">Related Product</h4>
                 </div>
                 <div class="card-body pb-3">
@@ -561,9 +566,6 @@
                                                 </div>
                                             </div>
                                             <div class="product-bottom mt-auto">
-                                                <div class="category-new">
-                                                    Categorie
-                                                </div>
                                                 <div class="product-title-new mb-2 text-capitalize">
                                                     <a href="<?php echo base_url('detail/' . $rPro->product_id) ?>"><?php echo substr($rPro->name, 0, 60); ?></a>
                                                 </div>
@@ -572,14 +574,13 @@
                                                     if (empty($spPric)) { ?>
                                                         <?php echo currency_symbol($rPro->price); ?>
                                                     <?php } else { ?>
-                                                        <small>
+                                                        <small class="off-price">
                                                             <del><?php echo currency_symbol($rPro->price); ?></del>
                                                         </small>/<?php echo currency_symbol($spPric); ?>
                                                     <?php } ?>
                                                 </div>
-                                                <a href="javascript:void(0)"
-                                                   onclick="addToCart(<?php echo $rPro->product_id ?>)"
-                                                   class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
+
+                                                <?php echo addToCartBtn($rPro->product_id); ?>
                                             </div>
                                         </div>
                                     </div>
@@ -619,7 +620,7 @@
 
         <div class="row mb-4 ">
             <div class="col-lg-12  p-4 rounded-0 border-bottom border-top">
-                <div class=" py-3 bg-white">
+                <div class="px-2 py-3 mb-3 bg-white">
                     <h4 class="text-uppercase">WE FOUND OTHER PRODUCTS YOU MIGHT LIKE!</h4>
                 </div>
                 <div class="card-body pb-3">
@@ -660,9 +661,6 @@
                                                 </div>
                                             </div>
                                             <div class="product-bottom mt-auto">
-                                                <div class="category-new">
-                                                    Categorie
-                                                </div>
                                                 <div class="product-title-new mb-2 text-capitalize">
                                                     <a href="<?php echo base_url('detail/' . $rPro->product_id) ?>"><?php echo substr($rPro->name, 0, 60); ?></a>
                                                 </div>
@@ -671,14 +669,12 @@
                                                     if (empty($spPric)) { ?>
                                                         <?php echo currency_symbol($rPro->price); ?>
                                                     <?php } else { ?>
-                                                        <small>
+                                                        <small class="off-price">
                                                             <del><?php echo currency_symbol($rPro->price); ?></del>
                                                         </small>/<?php echo currency_symbol($spPric); ?>
                                                     <?php } ?>
                                                 </div>
-                                                <a href="javascript:void(0)"
-                                                   onclick="addToCart(<?php echo $rPro->product_id ?>)"
-                                                   class="btn btn-cart w-100 rounded-0 mt-3">Add to Cart</a>
+                                                <?php echo addToCartBtn($rPro->product_id); ?>
                                             </div>
                                         </div>
                                     </div>

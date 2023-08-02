@@ -22,7 +22,7 @@ class Home extends BaseController {
         $featLimit = get_lebel_by_value_in_theme_settings('featured_products_limit');
         $data['prodFeat'] = $table->where('status','Active')->where('featured','1')->orderBy('product_id','DESC')->limit($featLimit)->get()->getResult();
 
-        $featLimit = get_lebel_by_value_in_theme_settings('featured_products_limit');
+
 
         $tabPopuler = DB()->table('cc_product_category_popular');
         $data['populerCat'] = $tabPopuler->limit(12)->get()->getResult();

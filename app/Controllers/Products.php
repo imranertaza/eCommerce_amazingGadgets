@@ -51,6 +51,9 @@ class Products extends BaseController {
             }
             $allOption = '('.rtrim($optionWhere, ' OR ').')';
             $data['optionval'] = $options;
+
+//            print_r($allOption);
+//            die();
         }
 
         $data['brandval'] = array();
@@ -109,7 +112,6 @@ class Products extends BaseController {
         $data['links'] = $data['pager']->links('default','custome_link');
 
 //        print $this->$searchModel->getLastQuery();
-
 //        print_r($data['products']);
 //        die();
 
