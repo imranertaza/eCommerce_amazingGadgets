@@ -124,9 +124,34 @@ $routes->post('/settings_update_action', 'Admin\Settings::update_action');
 $routes->post('/settings_update_action', 'Admin\Settings::update_action');
 
 //Shipping
-$routes->get('/shipping', 'Admin\Shipping::index');
-$routes->get('/shipping_settings/(:num)', 'Admin\Shipping::shipping_settings/$1');
-$routes->post('/shipping_update_action', 'Admin\Shipping::update_action');
+$routes->get('/shipping', 'Admin\Shipping\Shipping::index');
+
+$routes->get('/shipping_settings/(:num)', 'Admin\Shipping\Shipping::shipping_settings/$1');
+$routes->post('/shipping_update_action', 'Admin\Shipping\Shipping::update_action');
+$routes->post('/update_shipping_status', 'Admin\Shipping\Shipping::update_status');
+$routes->post('/remove_settings_weight', 'Admin\Shipping\Shipping::remove_settings_weight');
+
+//Payment method
+$routes->get('/payment', 'Admin\Payment\Payment::index');
+$routes->post('/payment_status_update', 'Admin\Payment\Payment::status_update');
+
+$routes->get('/cash_on/(:num)', 'Admin\Payment\Cash_on_delivery::settings/$1');
+$routes->post('/cash_on_update_action', 'Admin\Payment\Cash_on_delivery::update_action');
+
+$routes->get('/bank_transfer/(:num)', 'Admin\Payment\Bank_transfer::bank_settings/$1');
+$routes->post('/bank_transfer_update_action', 'Admin\Payment\Bank_transfer::update_action');
+
+$routes->get('/paypal/(:num)', 'Admin\Payment\Paypal::settings/$1');
+$routes->post('/paypal_update_action', 'Admin\Payment\Paypal::update_action');
+
+$routes->get('/western_union/(:num)', 'Admin\Payment\Western_union::settings/$1');
+$routes->post('/western_union_update_action', 'Admin\Payment\Western_union::update_action');
+
+$routes->get('/moneyGram/(:num)', 'Admin\Payment\MoneyGram::settings/$1');
+$routes->post('/moneyGram_update_action', 'Admin\Payment\MoneyGram::update_action');
+
+$routes->get('/bitcoin/(:num)', 'Admin\Payment\Bitcoin::settings/$1');
+$routes->post('/bitcoin_update_action', 'Admin\Payment\Bitcoin::update_action');
 
 //Ajax
 $routes->get('/page_list', 'Admin\Page_settings::index');
@@ -147,8 +172,10 @@ $routes->get('/coupon_delete/(:num)', 'Admin\Coupon::delete/$1');
 //
 $routes->get('/module', 'Admin\Module::index');
 $routes->post('/module_update_action', 'Admin\Module::update_action');
-//
 $routes->post('/module_update', 'Admin\Ajax::module_update');
+$routes->get('/module_settings/(:num)', 'Admin\Module::module_settings/$1');
+$routes->post('/module_settings_action', 'Admin\Module::module_settings_action');
+
 //
 $routes->get('/newsletter', 'Admin\Newsletter::index');
 
@@ -184,6 +211,13 @@ $routes->get('/reviews', 'Admin\Reviews::index');
 $routes->post('/reviews_status_update', 'Admin\Reviews::reviews_status_update');
 $routes->get('/reviews_delete/(:num)', 'Admin\Reviews::delete/$1');
 
+//Advanced Products routes
+$routes->get('/bulk_edit_products', 'Admin\Advanced_products::index');
+$routes->post('/bulk_status_update', 'Admin\Advanced_products::bulk_status_update');
+$routes->post('/bulk_data_update', 'Admin\Advanced_products::bulk_data_update');
+$routes->post('/bulk_all_status_update', 'Admin\Advanced_products::bulk_all_status_update');
+$routes->post('/bulk_category_view', 'Admin\Advanced_products::bulk_category_view');
+$routes->post('/bulk_category_update', 'Admin\Advanced_products::bulk_category_update');
 
 
 
@@ -240,6 +274,8 @@ $routes->post('/shipping_rate', 'Checkout::shipping_rate');
 $routes->get('/checkout_success', 'Checkout::success');
 $routes->get('/checkout_failed', 'Checkout::failed');
 $routes->get('/checkout_canceled', 'Checkout::canceled');
+
+$routes->post('/payment_instruction', 'Checkout::payment_instruction');
 
 
 //pages routes

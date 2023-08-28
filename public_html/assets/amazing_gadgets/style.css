@@ -2272,3 +2272,9 @@ input[type='radio']:checked{
 .bg-custom-color{
     background-color: #231f20 !important;
 }
+.width-30{
+    width: 30px !important;
+}
+.img-payment{
+    margin-top: -5px !important;
+}

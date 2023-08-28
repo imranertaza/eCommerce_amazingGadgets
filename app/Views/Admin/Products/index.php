@@ -27,46 +27,56 @@
                         <h3 class="card-title">Product List</h3>
                     </div>
                     <div class="col-md-4">
-                        <a href="<?php echo base_url('product_create') ?>" class="btn btn-primary btn-block btn-xs"><i class="fas fa-plus"></i> Add</a>
+                        <a href="<?php echo base_url('product_create') ?>" class="btn btn-primary btn-xs float-right"><i
+                                class="fas fa-plus"></i> Add</a>
+                        <?php if(modules_key_by_access('bulk_edit_products') == '1' ){?>
+                        <a href="<?php echo base_url('bulk_edit_products') ?>"
+                            class="btn btn-info btn-xs float-right mr-2"><i class="fas fa-plus"></i> Bulk Edit
+                            Products</a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                        <th>Sl</th>
-                        <th>Name</th>
-                        <th>Model</th>
-                        <th>Quantity</th>
-                        <th>Image</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th>Sl</th>
+                            <th>Name</th>
+                            <th>Model</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <?php $i=1; foreach ($product as $val){ ?>
-                    <tr>
-                        <td><?php echo $i++;?></td>
-                        <td><?php echo $val->name;?></td>
-                        <td><?php echo $val->model;?></td>
-                        <td> <?php echo $val->quantity;?></td>
-                        <td><?php echo image_view('uploads/products',$val->product_id,'100_'.$val->image,'noimage.png',$class='');?></td>
-                        <td>
-                            <a href="<?php echo base_url('product_update/'.$val->product_id)?>" class="btn btn-sm btn-info">Edit</a>
-                            <a href="<?php echo base_url('product_delete/'.$val->product_id)?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to Delete?')">delete</a>
-                        </td>
-                    </tr>
-                    <?php } ?>
+                        <?php $i=1; foreach ($product as $val){ ?>
+                        <tr>
+                            <td><?php echo $i++;?></td>
+                            <td><?php echo $val->name;?></td>
+                            <td><?php echo $val->model;?></td>
+                            <td> <?php echo $val->quantity;?></td>
+                            <td><?php echo image_view('uploads/products',$val->product_id,'100_'.$val->image,'noimage.png',$class='');?>
+                            </td>
+                            <td>
+                                <a href="<?php echo base_url('product_update/'.$val->product_id)?>"
+                                    class="btn btn-sm btn-info">Edit</a>
+                                <a href="<?php echo base_url('product_delete/'.$val->product_id)?>"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to Delete?')">delete</a>
+                            </td>
+                        </tr>
+                        <?php } ?>
                     </tbody>
                     <tfoot>
-                    <tr>
-                        <th>Sl</th>
-                        <th>Name</th>
-                        <th>Model</th>
-                        <th>Quantity</th>
-                        <th>Image</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th>Sl</th>
+                            <th>Name</th>
+                            <th>Model</th>
+                            <th>Quantity</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
                     </tfoot>
                 </table>
             </div>

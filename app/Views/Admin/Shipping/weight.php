@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Shipping Settings</h1>
+                    <h1>Weight Shipping Settings</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url('admin_dashboard')?>">Home</a></li>
-                        <li class="breadcrumb-item active">Shipping Settings</li>
+                        <li class="breadcrumb-item active">Weight Shipping Settings</li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3 class="card-title">Shipping Settings</h3>
+                        <h3 class="card-title">Weight Shipping Settings</h3>
                     </div>
                     <div class="col-md-4"></div>
                     <div class="col-md-12" style="margin-top: 10px">
@@ -35,6 +35,15 @@
             <div class="card-body">
                 <form action="<?php echo base_url('shipping_update_action')?>" method="post" enctype="multipart/form-data">
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control" name="status">
+                                    <option value="1" <?php echo ($shipping_status == '1')?'selected':'';?> >Active</option>
+                                    <option value="0" <?php echo ($shipping_status == '0')?'selected':'';?> >Inactive</option>
+                                </select>
+                            </div>
+                        </div>
                         <?php foreach ($shipping as $val){ ?>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -44,6 +53,20 @@
                             </div>
                         </div>
                         <?php } ?>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="#" class="btn btn-primary btn-sm" onclick="add_option_weight()"  style="float: right;">Add</a>
+                                    <h5>Set value</h5>
+                                </div>
+                            </div>
+                            <div id="new_chq">
+                                <?php foreach ($extra_settingd as $key => $val){ ?>
+                                    <div class="row" id="new_<?php echo $key ?>"><div class='col-md-5'><label>Weight</label><br><input type='text' name='weight_label[]'  class='form-control' value="<?php echo $val->label;?>"></div><div class='col-md-5'><label>Amount</label><br><input type='text' name='weight_value[]'  class='form-control' value="<?php echo $val->value;?>"><input type="hidden" name="weight_id[]" value="<?php echo $val->settings_id;?>"> </div><div class='col-md-2'><a href='javascript:void(0)' onclick='remove_weight(this),remove_data_weight(<?php echo $val->settings_id;?>)' class='btn btn-sm btn-danger' style='margin-top: 34px;'>X</a></div></div>
+                                <?php } ?>
+                            </div>
+                            <input type="hidden" id="total_chq" value="<?php echo (!empty($extra_settingd))?count($extra_settingd):'1';?>">
+                        </div>
 
                         <div class="col-md-12">
                             <button class="btn btn-primary" >Update</button>
