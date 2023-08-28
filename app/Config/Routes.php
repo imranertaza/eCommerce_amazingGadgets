@@ -144,6 +144,15 @@ $routes->post('/bank_transfer_update_action', 'Admin\Payment\Bank_transfer::upda
 $routes->get('/paypal/(:num)', 'Admin\Payment\Paypal::settings/$1');
 $routes->post('/paypal_update_action', 'Admin\Payment\Paypal::update_action');
 
+$routes->get('/western_union/(:num)', 'Admin\Payment\Western_union::settings/$1');
+$routes->post('/western_union_update_action', 'Admin\Payment\Western_union::update_action');
+
+$routes->get('/moneyGram/(:num)', 'Admin\Payment\MoneyGram::settings/$1');
+$routes->post('/moneyGram_update_action', 'Admin\Payment\MoneyGram::update_action');
+
+$routes->get('/bitcoin/(:num)', 'Admin\Payment\Bitcoin::settings/$1');
+$routes->post('/bitcoin_update_action', 'Admin\Payment\Bitcoin::update_action');
+
 //Ajax
 $routes->get('/page_list', 'Admin\Page_settings::index');
 $routes->get('/page_create', 'Admin\Page_settings::create');
