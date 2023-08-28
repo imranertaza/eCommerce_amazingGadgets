@@ -27,7 +27,8 @@
                     </div>
                     <div class="col-md-4 text-right"></div>
                     <div class="col-md-12" style="margin-top: 10px" id="message">
-                        <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
+                        <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message');
+                        endif; ?>
                     </div>
                 </div>
             </div>
@@ -41,18 +42,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ( $modules as $rows) {   ?>
+                        <?php foreach ($modules as $rows) {   ?>
                         <tr>
                             <td><?php print $rows->module_id; ?></td>
                             <td><?php print $rows->module_name; ?></td>
-                            <td width="200">
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" <?php echo ($rows->status == 1) ? 'checked' : '' ?> onchange="changeStatus(<?= $rows->module_id; ?>);" class="custom-control-input" id="custom_<?php print $rows->module_id; ?>">
-                                    <label class="custom-control-label" for="custom_<?php print $rows->module_id; ?>"></label>
+                            <td width="100">
+                                <div class="custom-switch" style="display: initial;">
+                                    <input type="checkbox" <?php echo ($rows->status == 1) ? 'checked' : '' ?>
+                                        onchange="changeStatus(<?= $rows->module_id; ?>);" class="custom-control-input"
+                                        id="custom_<?php print $rows->module_id; ?>">
+                                    <label class="custom-control-label"
+                                        for="custom_<?php print $rows->module_id; ?>"></label>
                                 </div>
+                                <?php
+                                    $check = is_exists('cc_module_settings', 'module_id', $rows->module_id);
+                                    if ($check == false) {
+                                    ?>
+                                <a href="<?php echo base_url('module_settings/' . $rows->module_id) ?>"
+                                    class="btn btn-primary btn-xs"><i class="fas fa-cogs"></i> </a>
+                                <?php } ?>
                             </td>
                         </tr>
-                    <?php }?>
+                        <?php } ?>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -66,7 +77,7 @@
 
             </div>
             <!-- /.card-body -->
-            <div class="card-footer">
+            <div class=" card-footer">
 
             </div>
             <!-- /.card-footer-->

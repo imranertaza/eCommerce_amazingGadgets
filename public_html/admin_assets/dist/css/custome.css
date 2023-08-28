@@ -36,3 +36,10 @@
 .list-op-aj{
     float: left;
 }
+
+.row_show{
+    display: revert !important;
+}
+.row_hide{
+    display: none !important;
+}
