@@ -37,9 +37,9 @@ class Checkout extends BaseController
         if (!empty($this->cart->contents())) {
             $table = DB()->table('cc_customer');
             $data['customer'] = $table->where('customer_id', $this->session->cusUserId)->get()->getRow();
-            
+
             $tableSet = DB()->table('cc_payment_settings');
-            $data['paypalEmail'] = $tableSet->where('payment_method_id','3')->where('label','email')->get()->getRow();
+            $data['paypalEmail'] = $tableSet->where('payment_method_id', '3')->where('label', 'email')->get()->getRow();
 
             $data['page_title'] = 'Checkout';
             echo view('Theme/' . get_lebel_by_value_in_settings('Theme') . '/header', $data);
@@ -213,6 +213,26 @@ class Checkout extends BaseController
             $table = DB()->table('cc_order');
             $table->insert($data);
             $order_id = DB()->insertID();
+
+
+
+
+            //card detail add
+            if ($data['payment_method'] == '7') {
+                $dataCard['payment_method_id'] = $data['payment_method'];
+                $dataCard['order_id'] = $order_id;
+                $dataCard['card_name'] = $this->request->getPost('card_name');
+                $dataCard['card_number'] = $this->request->getPost('card_number');
+                $dataCard['card_expiration'] = $this->request->getPost('card_expiration');
+                $dataCard['card_cvc'] = $this->request->getPost('card_cvc');
+
+                $tableCard = DB()->table('cc_order_card_details');
+                $tableCard->insert($dataCard);
+            }
+            //card detail add
+
+
+
 
 
 

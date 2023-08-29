@@ -153,6 +153,9 @@ $routes->post('/moneyGram_update_action', 'Admin\Payment\MoneyGram::update_actio
 $routes->get('/bitcoin/(:num)', 'Admin\Payment\Bitcoin::settings/$1');
 $routes->post('/bitcoin_update_action', 'Admin\Payment\Bitcoin::update_action');
 
+$routes->get('/credit_card/(:num)', 'Admin\Payment\Credit_card::settings/$1');
+$routes->post('/credit_card_update_action', 'Admin\Payment\Credit_card::update_action');
+
 //Ajax
 $routes->get('/page_list', 'Admin\Page_settings::index');
 $routes->get('/page_create', 'Admin\Page_settings::create');

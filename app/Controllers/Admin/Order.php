@@ -31,7 +31,7 @@ class Order extends BaseController
         } else {
 
             $table = DB()->table('cc_order');
-            $data['order'] = $table->get()->getResult();
+            $data['order'] = $table->orderBy('order_id', 'DESC')->get()->getResult();
 
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -59,14 +59,14 @@ class Order extends BaseController
         } else {
 
             $table = DB()->table('cc_order');
-            $data['order'] = $table->where('order_id',$order_id)->get()->getRow();
+            $data['order'] = $table->where('order_id', $order_id)->get()->getRow();
 
             $tableItem = DB()->table('cc_order_item');
-            $data['orderItem'] = $tableItem->where('order_id',$order_id)->get()->getResult();
+            $data['orderItem'] = $tableItem->where('order_id', $order_id)->get()->getResult();
 
             $tablehistory = DB()->table('cc_order_history');
-            $data['orderhistoryLast'] = $tablehistory->where('order_id',$order_id)->get()->getLastRow();
-            $data['orderhistory'] = $tablehistory->where('order_id',$order_id)->get()->getResult();
+            $data['orderhistoryLast'] = $tablehistory->where('order_id', $order_id)->get()->getLastRow();
+            $data['orderhistory'] = $tablehistory->where('order_id', $order_id)->get()->getResult();
 
 
             //$perm = array('create','read','update','delete','mod_access');
@@ -85,7 +85,8 @@ class Order extends BaseController
         }
     }
 
-    public function history_action(){
+    public function history_action()
+    {
         $data['order_id'] = $this->request->getPost('order_id');
         $data['order_status_id'] = $this->request->getPost('order_status_id');
         $data['comment'] = $this->request->getPost('comment');
@@ -97,17 +98,13 @@ class Order extends BaseController
 
         if ($this->validation->run($data) == FALSE) {
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert">' . $this->validation->listErrors() . ' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('order_view/' . $data['order_id'].'?selTab=history');
+            return redirect()->to('order_view/' . $data['order_id'] . '?selTab=history');
         } else {
             $table = DB()->table('cc_order_history');
             $table->insert($data);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert"> History Add Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            return redirect()->to('order_view/' . $data['order_id'].'?selTab=history');
-
+            return redirect()->to('order_view/' . $data['order_id'] . '?selTab=history');
         }
     }
-
-
-
 }
