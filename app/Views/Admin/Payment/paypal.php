@@ -62,7 +62,20 @@
                                 <input type="hidden" name="id[]" value="<?php echo $val->settings_id; ?>" required>
                             </div>
                         </div>
-                        <?php } ?>
+                        <?php } $rowVal = get_all_row_data_by_id('cc_payment_settings', 'label', 'api_url'); ?>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>API URL</label>
+                                <select name="label[]" class="form-control" required="">
+                                    <option value="sandbox" <?php echo ($rowVal->value == 'sandbox')?'selected':'';?>>
+                                        Sandbox</option>
+                                    <option value="paypal" <?php echo ($rowVal->value == 'paypal')?'selected':'';?>>
+                                        Paypal</option>
+                                </select>
+                                <input type="hidden" name="id[]" value="7" required="">
+                            </div>
+                        </div>
 
                         <div class="col-md-12">
                             <button class="btn btn-primary">Update</button>

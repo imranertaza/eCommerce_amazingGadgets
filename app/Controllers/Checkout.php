@@ -139,6 +139,7 @@ class Checkout extends BaseController
 
     public function checkout_action()
     {
+        
         $data['payment_firstname'] = $this->request->getPost('payment_firstname');
         $data['payment_lastname'] = $this->request->getPost('payment_lastname');
         $data['payment_phone'] = $this->request->getPost('payment_phone');
