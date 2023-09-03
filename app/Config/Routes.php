@@ -26,7 +26,7 @@ $routes->setAutoRoute(true);
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-//$routes->setAutoRoute(false);
+// $routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -279,6 +279,9 @@ $routes->get('/checkout_failed', 'Checkout::failed');
 $routes->get('/checkout_canceled', 'Checkout::canceled');
 
 $routes->post('/payment_instruction', 'Checkout::payment_instruction');
+
+$routes->get('/payment_paypal', 'Paypal::index');
+$routes->get('/payment_paypal_checkout_action', 'Paypal::paypal_checkout_action');
 
 
 //pages routes
