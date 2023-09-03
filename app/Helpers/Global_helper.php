@@ -911,3 +911,26 @@ function get_model_settings_value_by_modelId_or_label($modelId, $label)
     }
     return $data;
 }
+
+
+function paypal_settings()
+{
+    $rowApi = get_all_row_data_by_id('cc_payment_settings', 'label', 'api_url');
+    $api_username = get_all_row_data_by_id('cc_payment_settings', 'label', 'api_username');
+    $api_password = get_all_row_data_by_id('cc_payment_settings', 'label', 'api_password');
+    $api_signature = get_all_row_data_by_id('cc_payment_settings', 'label', 'api_signature');
+    $url_ex = ($rowApi->value == 'sandbox') ? 'sandbox.' : '';
+
+    $settings = array(
+        'api_username' => $api_username->value,
+        'api_password' => $api_password->value,
+        'api_signature' => $api_signature->value,
+        'api_endpoint' => 'https://api-3t.' . $url_ex . 'paypal.com/nvp',
+        'api_url' => 'https://www.' . $url_ex . 'paypal.com/webscr&cmd=_express-checkout&token=',
+        'api_version' => '65.1',
+        'payment_type' => 'Sale',
+        'currency' => 'USD',
+    );
+
+    return $settings;
+}

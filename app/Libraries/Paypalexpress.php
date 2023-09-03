@@ -11,7 +11,6 @@ class Paypalexpress
     public function __construct($pex_settings)
     {
         $this->pex_settings = $pex_settings;
-        helper('url');
         $this->session = \Config\Services::session();
     }
 

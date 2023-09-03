@@ -34,7 +34,7 @@ class Paypal extends BaseController
             $data['payment'] = $table->where('payment_method_id', $payment_method_id)->get()->getFirstRow();
 
             $table = DB()->table('cc_payment_settings');
-            $data['payment_settings'] = $table->where('payment_method_id', $payment_method_id)->where('label !=', 'paypal_real_url')->where('label !=', 'paypal_sandbox_url')->where('label !=', 'api_url')->get()->getResult();
+            $data['payment_settings'] = $table->where('payment_method_id', $payment_method_id)->where('label !=', 'api_url')->get()->getResult();
 
             $data['payment_method_id'] = $payment_method_id;
 

@@ -1265,15 +1265,6 @@
 
     function instruction_view(id, code) {
         if (code == 'paypal') {
-            <?php
-            $rowApi = get_all_row_data_by_id('cc_payment_settings', 'label', 'api_url');
-            $paypalUrl = get_all_row_data_by_id('cc_payment_settings', 'label', 'paypal_real_url');
-            $sandboxUrl = get_all_row_data_by_id('cc_payment_settings', 'label', 'paypal_sandbox_url');
-
-            $urlPaypalForm = ($rowApi->value == 'paypal') ? $paypalUrl->value : $sandboxUrl->value;
-            ?>
-
-            // $('#checkout-form').attr('action', '<?php echo $urlPaypalForm; ?>');
             $('#checkout-form').attr('action', '<?php echo base_url('payment_paypal'); ?>');
             $('#checkout-form').attr('method', 'GET');
         } else {
