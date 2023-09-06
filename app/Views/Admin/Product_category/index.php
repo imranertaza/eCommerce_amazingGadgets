@@ -62,7 +62,7 @@
                                 <td><?php
                                     $icon = get_data_by_id('name', 'cc_icons', 'icon_id', $val->icon_id);
                                     echo image_view('icons', '', $icon, 'noimage.png', 'size-20x20');
-                                    ?></td>
+                                    ?> </td>
                                 <td width="100"><input type="text" class="border-0" onchange="updateSorting(this.value,'<?php echo $val->prod_cat_id ?>')" value="<?php echo $val->sort_order; ?>"></td>
                                 <td width="180">
                                     <a href="<?php echo base_url('product_category_update/' . $val->prod_cat_id); ?>" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> Update</a>
