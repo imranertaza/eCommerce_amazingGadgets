@@ -838,7 +838,7 @@ function order_id_by_status($order_id)
 function getSideMenuArray()
 {
     $table = DB()->table('cc_product_category');
-    $query = $table->where('side_menu', 1)->get()->getResult();
+    $query = $table->where('side_menu', 1)->orderBy('sort_order', 'ASC')->get()->getResult();
     return $query;
 }
 

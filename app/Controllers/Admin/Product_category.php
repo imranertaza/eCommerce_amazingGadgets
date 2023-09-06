@@ -42,7 +42,7 @@ class Product_category extends BaseController
             echo view('Admin/header');
             echo view('Admin/sidebar');
             if (isset($data['mod_access']) and $data['mod_access'] == 1) {
-                echo view('Admin/Product_category/index',$data);
+                echo view('Admin/Product_category/index', $data);
             } else {
                 echo view('Admin/no_permission');
             }
@@ -50,12 +50,16 @@ class Product_category extends BaseController
         }
     }
 
-    public function create(){
+    public function create()
+    {
         $isLoggedInEcAdmin = $this->session->isLoggedInEcAdmin;
         $adRoleId = $this->session->adRoleId;
         if (!isset($isLoggedInEcAdmin) || $isLoggedInEcAdmin != TRUE) {
             return redirect()->to(site_url('admin'));
         } else {
+
+            $table = DB()->table('cc_product_category');
+            $data['category'] = $table->get()->getResult();
 
             //$perm = array('create','read','update','delete','mod_access');
             $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);
@@ -65,7 +69,7 @@ class Product_category extends BaseController
             echo view('Admin/header');
             echo view('Admin/sidebar');
             if (isset($data['create']) and $data['create'] == 1) {
-                echo view('Admin/Product_category/create');
+                echo view('Admin/Product_category/create', $data);
             } else {
                 echo view('Admin/no_permission');
             }
@@ -76,8 +80,8 @@ class Product_category extends BaseController
     public function create_action()
     {
         $data['category_name'] = $this->request->getPost('category_name');
-        $data['icon_id'] = !empty($this->request->getPost('icon_id'))?$this->request->getPost('icon_id'):null;
-        $data['parent_id'] = !empty($this->request->getPost('parent_id'))?$this->request->getPost('parent_id'):null;
+        $data['icon_id'] = !empty($this->request->getPost('icon_id')) ? $this->request->getPost('icon_id') : null;
+        $data['parent_id'] = !empty($this->request->getPost('parent_id')) ? $this->request->getPost('parent_id') : null;
         $data['createdBy'] = $this->session->adUserId;
 
         $this->validation->setRules([
@@ -123,6 +127,8 @@ class Product_category extends BaseController
             $table = DB()->table('cc_product_category');
             $data['category'] = $table->where('prod_cat_id', $prod_cat_id)->get()->getRow();
 
+            $table2 = DB()->table('cc_product_category');
+            $data['allcategory'] = $table2->where('prod_cat_id !=', $prod_cat_id)->get()->getResult();
 
             //$perm = array('create','read','update','delete','mod_access');
             $perm = $this->permission->module_permission_list($adRoleId, $this->module_name);
@@ -145,8 +151,8 @@ class Product_category extends BaseController
         $prod_cat_id = $this->request->getPost('prod_cat_id');
         $popular = $this->request->getPost('popular');
         $data['category_name'] = $this->request->getPost('category_name');
-        $data['icon_id'] = !empty($this->request->getPost('icon_id'))?$this->request->getPost('icon_id'):null;
-        $data['parent_id'] = !empty($this->request->getPost('parent_id'))?$this->request->getPost('parent_id'):null;
+        $data['icon_id'] = !empty($this->request->getPost('icon_id')) ? $this->request->getPost('icon_id') : null;
+        $data['parent_id'] = !empty($this->request->getPost('parent_id')) ? $this->request->getPost('parent_id') : null;
         $data['description'] = $this->request->getPost('description');
         $data['updatedBy'] = $this->session->adUserId;
 
@@ -159,17 +165,17 @@ class Product_category extends BaseController
             return redirect()->to('product_category_update/' . $prod_cat_id);
         } else {
 
-            $checkPop = is_exists('cc_product_category_popular','prod_cat_id',$prod_cat_id);
-            if ($popular =='on' ){
-                if ($checkPop == true){
+            $checkPop = is_exists('cc_product_category_popular', 'prod_cat_id', $prod_cat_id);
+            if ($popular == 'on') {
+                if ($checkPop == true) {
                     $polulerData['prod_cat_id'] = $prod_cat_id;
                     $tabPoluler = DB()->table('cc_product_category_popular');
                     $tabPoluler->insert($polulerData);
                 }
-            }else{
-                if ($checkPop == false){
+            } else {
+                if ($checkPop == false) {
                     $tabPoluler = DB()->table('cc_product_category_popular');
-                    $tabPoluler->where('prod_cat_id',$prod_cat_id)->delete();
+                    $tabPoluler->where('prod_cat_id', $prod_cat_id)->delete();
                 }
             }
 
@@ -203,7 +209,6 @@ class Product_category extends BaseController
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('product_category_update/' . $prod_cat_id);
-
         }
     }
 
@@ -234,11 +239,11 @@ class Product_category extends BaseController
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             return redirect()->to('product_category_update/' . $prod_cat_id);
-
         }
     }
 
-    public function delete($prod_cat_id){
+    public function delete($prod_cat_id)
+    {
 
         $target_dir = FCPATH . '/uploads/category/';
         //old image unlink
@@ -250,14 +255,14 @@ class Product_category extends BaseController
             }
         }
 
-        $checkProCat = is_exists('cc_product_to_category','category_id',$prod_cat_id);
-        if($checkProCat == false){
+        $checkProCat = is_exists('cc_product_to_category', 'category_id', $prod_cat_id);
+        if ($checkProCat == false) {
             $tableproCat = DB()->table('cc_product_to_category');
             $tableproCat->where('category_id', $prod_cat_id)->delete();
         }
 
-        $checkPopuCat = is_exists('cc_product_category_popular','prod_cat_id',$prod_cat_id);
-        if($checkPopuCat == false){
+        $checkPopuCat = is_exists('cc_product_category_popular', 'prod_cat_id', $prod_cat_id);
+        if ($checkPopuCat == false) {
             $tablePopuCat = DB()->table('cc_product_category_popular');
             $tablePopuCat->where('prod_cat_id', $prod_cat_id)->delete();
         }
@@ -270,4 +275,15 @@ class Product_category extends BaseController
         return redirect()->to('product_category');
     }
 
+    public function sort_update_action()
+    {
+        $prod_cat_id = $this->request->getPost('prod_cat_id');
+        $value = $this->request->getPost('value');
+
+        $data['sort_order'] = $value;
+
+        $table = DB()->table('cc_product_category');
+        $table->where('prod_cat_id', $prod_cat_id)->update($data);
+        print '<div class="alert alert-success alert-dismissible" role="alert">Update Record Success <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+    }
 }

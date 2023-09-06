@@ -761,4 +761,18 @@ function categoryBulkUpdateAction() {
         }
     });
 }
+
+function updateSorting(val, id) {
+    $.ajax({
+        url: '<?php echo base_url('product_category_sort_update_action') ?>',
+        type: "POST",
+        data: {
+            value: val,
+            prod_cat_id: id
+        },
+        success: function(data) {
+            $("#message").html(data);
+        }
+    });
+}
 </script>
