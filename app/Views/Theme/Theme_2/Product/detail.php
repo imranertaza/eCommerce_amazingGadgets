@@ -184,7 +184,7 @@
                         <div class="top-div d-flex justify-content-between">
                             <div>
                                 <p class="free-text">Free shipping</p>
-                                <p class="free-text-2">On all orders to dhaka</p>
+                                <!-- <p class="free-text-2">On all orders to dhaka</p> -->
                             </div>
                             <div class="icon-top-det">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" viewBox="0 0 57 57"
