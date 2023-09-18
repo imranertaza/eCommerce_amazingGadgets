@@ -112,6 +112,20 @@ class Settings extends BaseController
 
     }
 
+    public function country_zoon()
+    {
+        $country_id = $this->request->getPost('country_id');
+
+        $table = DB()->table('cc_zone');
+        $data = $table->where('country_id', $country_id)->get()->getResult();
+        $options = '';
+        foreach ($data as $value) {
+            $options .= '<option value="' . $value->zone_id . '" ';
+            $options .= '>' . $value->name . '</option>';
+        }
+        print $options;
+    }
+
 
 
 }
