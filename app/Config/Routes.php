@@ -119,7 +119,7 @@ $routes->get('/customers_delete/(:num)', 'Admin\Customers::delete/$1');
 //Settings
 $routes->get('/settings', 'Admin\Settings::index');
 $routes->post('/settings_update_action', 'Admin\Settings::update_action');
-
+$routes->post('/get_state', 'Admin\Settings::country_zoon');
 
 $routes->post('/settings_update_action', 'Admin\Settings::update_action');
 
