@@ -77,6 +77,8 @@ $routes->post('/product_category_update_action_others', 'Admin\Product_category:
 $routes->get('/product_category_update/(:num)', 'Admin\Product_category::update/$1');
 $routes->get('/product_category_delete/(:num)', 'Admin\Product_category::delete/$1');
 
+$routes->post('/product_category_sort_update_action', 'Admin\Product_category::sort_update_action');
+
 //Products
 $routes->get('/products', 'Admin\Products::index');
 $routes->get('/product_create', 'Admin\Products::create');
